@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Mdbook Embed Preprocessor</title>
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1>Mdbook Embed Preprocessor</h1>
+
+        <p>
+          This is a <a href="https://rust-lang.github.io/mdBook" target="_blank">mdbook</a> preprocessor plugin that
+          allows you embed apps to your book. If you find any problems while using it or have any other suggestions,
+          welcmoe to open an <a href="https://github.com/MR-Addict/mdbook-embedify/issues" target="_blank">issue</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2>1. Installation</h2>
+
+        <p>
+          First, you need to install mdbook-embedify to your computer.You can install it from crates.io using cargo.
+        </p>
+
+        <pre><code>cargo install mdbook-embedify</code></pre>
+
+        <p>After installation, add the following code to your <code class="code">book.toml</code> file:</p>
+
+        <pre><code>[preprocessor.embedify]</code></pre>
+      </section>
+
+      <section>
+        <h2>2. Usage</h2>
+
+        <p>Then you can use <code class="code">embed</code> macro to embed an app. The syntax is like this:</p>
+
+        <pre><code>{% embed app options[] %}</code></pre>
+
+        <p>
+          <strong>options</strong> are key-value based array seperated by space and its value must be wrapped by quotes.
+          For example:
+        </p>
+
+        <pre><code>{% embed codepen username="MR-Addict" slug="NWBOqKw" height="600" theme="dark" %}</code></pre>
+
+        <p>Below is the list of supported apps and their options(<strong class="red">*</strong> means required):</p>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>App</th>
+              <th>options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>youtube</td>
+              <td>id<strong class="red">*</strong></td>
+            </tr>
+            <tr>
+              <td>gist</td>
+              <td>id<strong class="red">*</strong></td>
+            </tr>
+            <tr>
+              <td>codepen</td>
+              <td>username<strong class="red">*</strong>, slug<strong class="red">*</strong>, height, theme</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>3. Examples</h2>
+
+        <h3>3.1 Gist</h3>
+
+        <pre><code>{% embed gist id="76cf171d1bdd7da41d4ca96b908eb57a" %}</code></pre>
+
+        <script src="https://gist.github.com/MR-Addict/76cf171d1bdd7da41d4ca96b908eb57a.js"></script>
+
+        <h3>3.2 Youtube</h3>
+
+        <pre><code>{% embed youtube id="EngW7tLk6R8" %}</code></pre>
+
+        <iframe
+          allowfullscreen
+          src="https://www.youtube.com/embed/EngW7tLk6R8"
+          style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 0.375rem"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        ></iframe>
+
+        <h3>3.3 Codepen</h3>
+
+        <pre><code>{% embed codepen username="MR-Addict" slug="NWBOqKw" height="600" theme="dark" %}</code></pre>
+
+        <iframe
+          height="600"
+          title="Codepen"
+          allowfullscreen
+          allowtransparency
+          style="width: 100%; border: none; border-radius: 0.375rem"
+          src="https://codepen.io/MR-Addict/embed/NWBOqKw?default-tab=result&theme-id=dark"
+        ></iframe>
+      </section>
+    </main>
+
+    <footer>
+      Made by <a href="https://github.com/MR-Addict" target="_blank">MR-Addict</a> | Licence
+      <a href="https://opensource.org/license/mit" target="_blank">MIT</a>
+    </footer>
+  </body>
+</html>

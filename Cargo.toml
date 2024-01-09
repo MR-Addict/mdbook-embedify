@@ -1,0 +1,19 @@
+[package]
+name = "mdbook-embedify"
+version = "0.0.1"
+edition = "2021"
+license = "MIT"
+readme = "README.md"
+keywords = ["mdbook", "embed", "plugin"]
+authors = ["MR-Addict <MR-Addict@qq.com>"]
+repository = "https://github.com/MR-Addict/mdbook-embedify"
+documentation = "https://mr-addict.github.io/mdbook-embedify"
+description = "A rust based mdbook preprocessor plugin that allows you to embed apps to your book"
+
+[dependencies]
+clap = "4.4.13"
+mdbook = "0.4.36"
+regex = "1.10.2"
+roxmltree = "0.19.0"
+semver = "1.0.21"
+serde_json = "1.0.111"

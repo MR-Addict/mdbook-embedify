@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: blue;
+}
+
+:root {
+  --gray-100: #f3f4f6;
+  --gray-200: #f3f4f6;
+  --gray-300: #d1d5db;
+  --gray-400: #d1d5db;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+}
+
+body {
+  font-family: monospace;
+  font-size: 16px;
+
+  min-height: 100vh;
+  min-height: 100avh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1rem;
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+  font-weight: bolder;
+  color: var(--gray-800);
+}
+
+h1 {
+  font-size: 1.7rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+}
+
+p {
+  color: var(--gray-800);
+}
+
+main {
+  width: 100%;
+  max-width: 50rem;
+
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--gray-300);
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+pre {
+  border-radius: 0.25rem;
+  padding: 0.7rem 0.7rem;
+  background-color: var(--gray-200);
+  border: 1px solid var(--gray-300);
+
+  overflow-x: auto;
+}
+
+.code {
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--gray-200);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--gray-200);
+}
+
+.table :is(th, td) {
+  border: 1px solid var(--gray-300);
+  padding: 0.5rem 0.7rem;
+}
+
+.table th {
+  text-align: left;
+}
+
+.red {
+  color: red;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 0.5rem;
+  }
+}
