@@ -38,7 +38,8 @@ impl Preprocessor for Embed {
                 let options_str = caps.get(2).map_or("", |m| m.as_str());
 
                 // render the template
-                let template = utils::render_template(app, &utils::parse_options(options_str));
+                let options = utils::parse_options(options_str);
+                let template = utils::render_template(app, &options);
 
                 // replace the content
                 chapter.content = re.replace_all(&content as &str, template).to_string()

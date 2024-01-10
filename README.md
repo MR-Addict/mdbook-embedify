@@ -2,7 +2,7 @@
 
 ![Crates.io](https://img.shields.io/crates/v/mdbook-embedify) ![Crates.io](https://img.shields.io/crates/l/mdbook-embedify)
 
-This is a [mdbook](https://rust-lang.github.io/mdBook) preprocessor plugin that allows you to embed apps to your book.
+This is a [mdbook](https://rust-lang.github.io/mdBook) preprocessor plugin that allows you to embed apps to your book, like youtube, codepen and some other apps.
 
 ## 1. Installation
 
@@ -34,6 +34,6 @@ Then you can use `embed` macro to embed an app. The syntax is like this:
 
 ## 3. Examples
 
-![example](docs/example.png)
+![example](docs/assets/images/example.png)
 
 You can see a live demo and more detailed documentation [here](https://mr-addict.github.io/mdbook-embedify).

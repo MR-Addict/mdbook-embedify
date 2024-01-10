@@ -8,7 +8,7 @@ keywords = ["mdbook", "embed", "plugin"]
 authors = ["MR-Addict <MR-Addict@qq.com>"]
 repository = "https://github.com/MR-Addict/mdbook-embedify"
 documentation = "https://mr-addict.github.io/mdbook-embedify"
-description = "A rust based mdbook preprocessor plugin that allows you to embed apps to your book"
+description = "A rust based mdbook preprocessor plugin that allows you to embed apps to your book, like youtube, codepen and some other apps"
 
 [dependencies]
 clap = "4.4.13"
