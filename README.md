@@ -26,10 +26,10 @@ Then you can use `embed` macro to embed an app. The syntax is like this:
 {% embed app options[] %}
 ```
 
-**options** are key-value based array seperated by space and its value must be wrapped by quotes. For example:
+**options** are key-value based array seperated by space and its value must be wrapped by **quotes**. For example:
 
 ```text
-{% embed codepen username="MR-Addict" slug="NWBOqKw" height="600" theme="dark" %}
+{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" %}
 ```
 
 ## 3. Examples

@@ -105,6 +105,10 @@ pre {
   color: red;
 }
 
+iframe:not(:last-of-type) {
+  margin-bottom: 2rem;
+}
+
 @media (max-width: 600px) {
   body {
     padding: 0.5rem;

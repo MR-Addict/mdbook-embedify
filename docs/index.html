@@ -45,7 +45,7 @@
           For example:
         </p>
 
-        <pre><code>{% embed codepen username="MR-Addict" slug="NWBOqKw" height="600" theme="dark" %}</code></pre>
+        <pre><code>{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" %}</code></pre>
 
         <p>Below is the list of supported apps and their options(<strong class="red">*</strong> means required):</p>
 
@@ -58,16 +58,28 @@
           </thead>
           <tbody>
             <tr>
-              <td>youtube</td>
-              <td>id<strong class="red">*</strong></td>
-            </tr>
-            <tr>
               <td>gist</td>
               <td>id<strong class="red">*</strong></td>
             </tr>
             <tr>
+              <td>youtube</td>
+              <td>id<strong class="red">*</strong></td>
+            </tr>
+            <tr>
+              <td>bilibili</td>
+              <td>id<strong class="red">*</strong></td>
+            </tr>
+            <tr>
+              <td>codesandbox</td>
+              <td>id<strong class="red">*</strong>, theme(dark)</td>
+            </tr>
+            <tr>
+              <td>stackblitz</td>
+              <td>id<strong class="red">*</strong>, theme(dark)</td>
+            </tr>
+            <tr>
               <td>codepen</td>
-              <td>username<strong class="red">*</strong>, slug<strong class="red">*</strong>, height, theme</td>
+              <td>user<strong class="red">*</strong>, slug<strong class="red">*</strong>, theme(dark), height(600)</td>
             </tr>
           </tbody>
         </table>
@@ -76,13 +88,13 @@
       <section>
         <h2>3. Examples</h2>
 
-        <h3>3.1 Gist</h3>
+        <h3>Gist</h3>
 
         <pre><code>{% embed gist id="76cf171d1bdd7da41d4ca96b908eb57a" %}</code></pre>
 
         <script src="https://gist.github.com/MR-Addict/76cf171d1bdd7da41d4ca96b908eb57a.js"></script>
 
-        <h3>3.2 Youtube</h3>
+        <h3>Youtube</h3>
 
         <pre><code>{% embed youtube id="EngW7tLk6R8" %}</code></pre>
 
@@ -93,9 +105,44 @@
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         ></iframe>
 
-        <h3>3.3 Codepen</h3>
+        <h3>Bilibili</h3>
 
-        <pre><code>{% embed codepen username="MR-Addict" slug="NWBOqKw" height="600" theme="dark" %}</code></pre>
+        <pre><code>{% embed bilibili id="BV1uT4y1P7CX" danmaku="0" %}</code></pre>
+
+        <iframe
+          allowfullscreen
+          name="Bilibili"
+          src="https://player.bilibili.com/player.html?bvid=BV1uT4y1P7CX&danmaku=0"
+          style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 0.375rem"
+        ></iframe>
+
+        <h3>Codesandbox</h3>
+
+        <pre><code>{% embed codesandbox id="ke8wx" theme="dark" %}</code></pre>
+
+        <iframe
+          loading="lazy"
+          name="Sandbox"
+          src="https://codesandbox.io/embed/ke8wx?&theme=light"
+          style="width: 100%; height: 100%; border: solid 1px #e5e7eb; aspect-ratio: 16/9; border-radius: 0.375rem"
+        ></iframe>
+
+        <h3>Stackblitz</h3>
+
+        <pre><code>{% embed stackblitz id="vitejs-vite-y8mdxg" theme="light" %}</code></pre>
+
+        <iframe
+          loading="lazy"
+          name="Stackblitz"
+          src="https://stackblitz.com/edit/vitejs-vite-y8mdxg?embed=1&theme=light&view=preview"
+          style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 0.375rem"
+        ></iframe>
+      </section>
+
+      <section>
+        <h3>Codepen</h3>
+
+        <pre><code>{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" %}</code></pre>
 
         <iframe
           height="600"
