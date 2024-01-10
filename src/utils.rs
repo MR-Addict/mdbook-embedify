@@ -1,8 +1,57 @@
 use clap::{Arg, Command};
 use mdbook::preprocess::Preprocessor;
+use regex::Regex;
+use rust_embed::RustEmbed;
 use std::process;
 
-pub fn handle_support_reply(pre: &dyn Preprocessor) {
+#[derive(RustEmbed)]
+#[folder = "templates/"]
+struct Assets;
+
+pub fn parse_options(options_str: &str) -> Vec<(String, String)> {
+    // wrap the options in a <p> tag
+    let options_str = format!("<p {}/>", options_str);
+    // parse the options and warn if there is an syntax error
+    let doc = roxmltree::Document::parse(&options_str)
+        .expect("Failed to parse options, please check your syntax");
+    let mut options = Vec::new();
+    for attr in doc.root_element().attributes() {
+        options.push((attr.name().to_owned(), attr.value().to_owned()));
+    }
+    options
+}
+
+pub fn render_template(app: &str, placeholders: &[(String, String)]) -> String {
+    let path = format!("{}.html", app);
+    // check if file exists
+    if !Assets::iter().any(|name| name == path) {
+        panic!("App {} is not supported", app);
+    }
+    // get the template from the embedded files
+    let template = Assets::get(&path).unwrap();
+    // get template as string
+    let template = std::str::from_utf8(template.data.as_ref()).unwrap();
+    // convert to string
+    let mut result = template.to_string();
+    // replace the key with the value
+    for (key, value) in placeholders {
+        // replace {key} or {key|default} with value
+        let pattern = format!(r"\{{{}\|?[^}}]*}}", key);
+        let re = Regex::new(&pattern).unwrap();
+        result = re.replace_all(&result, value).to_string();
+    }
+    // check if there are any placeholders left, this makes the process faster
+    if result.contains('{') && result.contains('}') {
+        // replace {key|default} with default value
+        let re = Regex::new(r"\{([^|]+)\|([^}]+)\}").unwrap();
+        result = re.replace_all(&result, "$2").to_string();
+    }
+    // return the result
+    result.to_string()
+}
+
+pub fn reply_supports(pre: &dyn Preprocessor) {
+    // Handle support for the --supports command line argument
     let matches = Command::new("mdbook-embedify")
         .about("A mdbook embed preprocessor")
         .subcommand(

@@ -9,10 +9,12 @@ use std::io;
 fn main() {
     let embed = Embed::new();
 
-    utils::handle_support_reply(&embed);
+    // reply --supports command line argument
+    utils::reply_supports(&embed);
 
     let (ctx, book) = CmdPreprocessor::parse_input(io::stdin()).unwrap();
     let result = embed.run(&ctx, book).unwrap();
 
+    // Write the result to stdout
     serde_json::to_writer(io::stdout(), &result).unwrap();
 }
