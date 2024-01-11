@@ -6,7 +6,7 @@ This is a [mdbook](https://rust-lang.github.io/mdBook) preprocessor plugin that 
 
 ## 1. Installation
 
-First, you need to install mdbook-embedify to your computer.You can install it from crates.io using cargo.
+First, you need to install mdbook-embedify to your computer. You can install it from crates.io using cargo.
 
 ```sh
 cargo install mdbook-embedify

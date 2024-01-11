@@ -35,10 +35,17 @@ pub fn render_template(app: &str, placeholders: &[(String, String)]) -> String {
     let mut result = template.to_string();
     // replace the key with the value
     for (key, value) in placeholders {
-        // replace {key} or {key|default} with value
-        let pattern = format!(r"\{{{}\|?[^}}]*}}", key);
-        let re = Regex::new(&pattern).unwrap();
-        result = re.replace_all(&result, value).to_string();
+        // replace {key} with value
+        let re = Regex::new(&format!(r"\{{{}}}", key)).unwrap();
+        let replaced_result = re.replace_all(&result, value).to_string();
+        // replacement was successful
+        if replaced_result != result {
+            result = replaced_result;
+        } else {
+            //replacement does not success, try replace {key|default} with value
+            let re = Regex::new(&format!(r"\{{{}\|[^}}]*}}", key)).unwrap();
+            result = re.replace_all(&result, value).to_string();
+        }
     }
     // check if there are any placeholders left, this makes the process faster
     if result.contains('{') && result.contains('}') {
