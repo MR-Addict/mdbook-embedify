@@ -10,9 +10,9 @@
 <!-- embed ignore begin -->
 
 ```text
-{% embed codesandbox id="ke8wx" theme="dark" %}
+{% embed codesandbox id="ke8wx" theme="light" %}
 ```
 
 <!-- embed ignore end -->
 
-{% embed codesandbox id="ke8wx" theme="dark" %}
+{% embed codesandbox id="ke8wx" theme="light" %}

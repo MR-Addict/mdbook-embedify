@@ -38,7 +38,7 @@ impl Preprocessor for Embed {
 
                 // if scroll-to-top is enabled, add {% embed scrolltotop %}
                 if scroll_to_top {
-                    content.push_str("\n{% embed scroll-to-top %}");
+                    content.push_str("\n{% embed scroll-to-top %}\n");
                 }
 
                 // this can make the process faster

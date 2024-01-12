@@ -2,14 +2,19 @@
 
 Sometimes you may want preprocessors to ignore some embeds.
 
-You can do it by adding group of `<!-- embed ignore begin -->` and `<!-- embed ignore end -->` comment to the content where you want to ignore. For example:
+You can do it by wrapping content that you want to ignore with below two comments:
+
+- `<!-- embed ignore begin -->`
+- `<!-- embed ignore end -->`
+
+For example:
 
 ```text
-
 <!-- embed ignore begin -->
 
-{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" %}
+{% embed youtube id="DyTCOwB0DVw" %}
 
 <!-- embed ignore end -->
-
 ```
+
+And youtube embed won't be rendered.

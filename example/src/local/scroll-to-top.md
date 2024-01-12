@@ -23,4 +23,4 @@ scroll-to-top = true
 
 <!-- embed ignore end -->
 
-This book uses this option. You can see it at the bottom right corner of this page. But it only shows pages that are longer enough to scroll. You can see it in action by scrolling down this page.
+This book uses this option. You can see it at the bottom right corner of this page. But it only shows pages that are longer enough to scroll. You can see it in action by scrolling down this page. Or you can see it my another book [Notes](https://mr-addict.github.io/notes).

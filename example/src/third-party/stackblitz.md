@@ -10,9 +10,9 @@
 <!-- embed ignore begin -->
 
 ```text
-{% embed codesandbox id="vitejs-vite-y8mdxg" theme="dark" %}
+{% embed stackblitz id="vitejs-vite-y8mdxg" theme="light" %}
 ```
 
 <!-- embed ignore end -->
 
-{% embed codesandbox id="vitejs-vite-y8mdxg" theme="dark" %}
+{% embed stackblitz id="vitejs-vite-y8mdxg" theme="light" %}
