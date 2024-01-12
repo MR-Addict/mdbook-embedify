@@ -182,15 +182,19 @@
                     <main>
                         <h1 id="ignore-embeds"><a class="header" href="#ignore-embeds">Ignore Embeds</a></h1>
 <p>Sometimes you may want preprocessors to ignore some embeds.</p>
-<p>You can do it by adding group of <code>&lt;!-- embed ignore begin --&gt;</code> and <code>&lt;!-- embed ignore end --&gt;</code> comment to the content where you want to ignore. For example:</p>
-<pre><code class="language-text">
-&lt;!-- embed ignore begin --&gt;
+<p>You can do it by wrapping content that you want to ignore with below two comments:</p>
+<ul>
+<li><code>&lt;!-- embed ignore begin --&gt;</code></li>
+<li><code>&lt;!-- embed ignore end --&gt;</code></li>
+</ul>
+<p>For example:</p>
+<pre><code class="language-text">&lt;!-- embed ignore begin --&gt;
 
-{% embed codepen user=&quot;MR-Addict&quot; slug=&quot;NWBOqKw&quot; height=&quot;600&quot; theme=&quot;dark&quot; %}
+{% embed youtube id=&quot;DyTCOwB0DVw&quot; %}
 
 &lt;!-- embed ignore end --&gt;
-
 </code></pre>
+<p>And youtube embed won’t be rendered.</p>
 <style>
   .scroll-to-top {
     display: flex;

@@ -230,8 +230,7 @@
     />
 </svg>
 </button></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="usage"><a class="header" href="#usage">Usage</a></h1>
-<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
 <p>There are two ways to install this plugin.</p>
 <p>You can install it from crates.io using cargo.</p>
 <pre><code class="language-sh">cargo install mdbook-embedify
@@ -304,15 +303,19 @@
 </button></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ignore-embeds"><a class="header" href="#ignore-embeds">Ignore Embeds</a></h1>
 <p>Sometimes you may want preprocessors to ignore some embeds.</p>
-<p>You can do it by adding group of <code>&lt;!-- embed ignore begin --&gt;</code> and <code>&lt;!-- embed ignore end --&gt;</code> comment to the content where you want to ignore. For example:</p>
-<pre><code class="language-text">
-&lt;!-- embed ignore begin --&gt;
+<p>You can do it by wrapping content that you want to ignore with below two comments:</p>
+<ul>
+<li><code>&lt;!-- embed ignore begin --&gt;</code></li>
+<li><code>&lt;!-- embed ignore end --&gt;</code></li>
+</ul>
+<p>For example:</p>
+<pre><code class="language-text">&lt;!-- embed ignore begin --&gt;
 
-{% embed codepen user=&quot;MR-Addict&quot; slug=&quot;NWBOqKw&quot; height=&quot;600&quot; theme=&quot;dark&quot; %}
+{% embed youtube id=&quot;DyTCOwB0DVw&quot; %}
 
 &lt;!-- embed ignore end --&gt;
-
 </code></pre>
+<p>And youtube embed won’t be rendered.</p>
 <style>
   .scroll-to-top {
     display: flex;
@@ -423,12 +426,13 @@ scroll-to-top = true
 </svg>
 </button></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="third-party-apps"><a class="header" href="#third-party-apps">Third Party Apps</a></h1>
-<p>Third party apps are apps that are hosted on third party sites.</p>
-<p>Below are all supported third party apps and its detailed usage.</p>
+<p>Third party apps are apps that are hosted on third party sites. Below are all supported third party apps and its detailed options.</p>
 <ul>
 <li><a href="third-party/gist.html">Gist</a></li>
 <li><a href="third-party/youtube.html">Youtube</a></li>
 <li><a href="third-party/bilibili.html">Bilibili</a></li>
+<li><a href="third-party/codesandbox.html">Codesandbox</a></li>
+<li><a href="third-party/stackblitz.html">Stackblitz</a></li>
 <li><a href="third-party/codepen.html">Codepen</a></li>
 </ul>
 <style>
@@ -547,14 +551,14 @@ scroll-to-top = true
 </div>
 <h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed youtube id=&quot;EngW7tLk6R8&quot; %}
+<pre><code class="language-text">{% embed youtube id=&quot;DyTCOwB0DVw&quot; %}
 </code></pre>
 <!-- embed ignore end -->
 <iframe
   allowfullscreen
   loading="lazy"
   name="YouTube"
-  src="https://www.youtube.com/embed/EngW7tLk6R8"
+  src="https://www.youtube.com/embed/DyTCOwB0DVw"
   style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 ></iframe>
@@ -876,9 +880,8 @@ scroll-to-top = true
 </svg>
 </button></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="local-apps"><a class="header" href="#local-apps">Local Apps</a></h1>
-<p>Local apps are apps that are not hosted on third party sites.</p>
-<p>They are hosted on your local book, so it is not necessary to have internet connection to use them.</p>
-<p>Below are all supported local apps and its detailed usage.</p>
+<p>Local apps are apps hosted on your local book, so it is not necessary to have internet connection to use them.</p>
+<p>Below are all supported local apps and its detailed options.</p>
 <ul>
 <li><a href="local/scroll-to-top.html">Scroll To Top</a></li>
 </ul>

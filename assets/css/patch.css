@@ -4,5 +4,11 @@ table {
 }
 
 table tr :is(th, td) {
-  padding-block: 10px;
+  padding-block: 7px;
+}
+
+@media (min-width: 768px) {
+  table tr :is(th, td) {
+    padding-block: 10px;
+  }
 }
