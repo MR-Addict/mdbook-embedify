@@ -1,0 +1,8 @@
+/* patch for table */
+table {
+  width: 100%;
+}
+
+table tr :is(th, td) {
+  padding-block: 10px;
+}

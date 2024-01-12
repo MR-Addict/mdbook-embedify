@@ -32,8 +32,21 @@ Then you can use `embed` macro to embed an app. The syntax is like this:
 {% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" %}
 ```
 
+Some apps are not third-party apps, for example scroll-to-top button. You can use it like this:
+
+```text
+{% embed scroll-to-top %}
+```
+
+But this only works for chapter that embeds this, not for the whole book. Most of cases, you want to use it for the whole book. You can do this by adding `scroll-to-top` option to embedify preprocessor in `book.toml` file like this:
+
+```toml
+[preprocessor.embedify]
+scroll-to-top = true
+```
+
 ## 3. Examples
 
-![example](docs/assets/images/example.png)
+![example](example.png)
 
 You can see a live demo and more detailed documentation [here](https://mr-addict.github.io/mdbook-embedify).

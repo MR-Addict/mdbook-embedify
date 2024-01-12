@@ -23,16 +23,17 @@ pub fn parse_options(options_str: &str) -> Vec<(String, String)> {
 
 pub fn render_template(app: &str, placeholders: &[(String, String)]) -> String {
     let path = format!("{}.html", app);
-    // check if file exists
+    // check if app is supported
     if !Assets::iter().any(|name| name == path) {
         panic!("App {} is not supported", app);
     }
+
     // get the template from the embedded files
     let template = Assets::get(&path).unwrap();
     // get template as string
     let template = std::str::from_utf8(template.data.as_ref()).unwrap();
-    // convert to string
     let mut result = template.to_string();
+
     // replace the key with the value
     for (key, value) in placeholders {
         // replace {key} with value
@@ -40,19 +41,18 @@ pub fn render_template(app: &str, placeholders: &[(String, String)]) -> String {
         let replaced_result = re.replace_all(&result, value).to_string();
         // replacement was successful
         if replaced_result != result {
-            result = replaced_result;
+            result = replaced_result
         } else {
             //replacement does not success, try replace {key|default} with value
             let re = Regex::new(&format!(r"\{{{}\|[^}}]*}}", key)).unwrap();
             result = re.replace_all(&result, value).to_string();
         }
     }
-    // check if there are any placeholders left, this makes the process faster
-    if result.contains('{') && result.contains('}') {
-        // replace {key|default} with default value
-        let re = Regex::new(r"\{([^|]+)\|([^}]+)\}").unwrap();
-        result = re.replace_all(&result, "$2").to_string();
-    }
+
+    // replace {key|default} with default value
+    let re = Regex::new(r"\{([^|]+)\|([^}]+)\}").unwrap();
+    result = re.replace_all(&result, "$2").to_string();
+
     // return the result
     result.to_string()
 }

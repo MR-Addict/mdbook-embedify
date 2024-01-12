@@ -1,0 +1,51 @@
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      right: calc(0.5rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+
+<button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+  <svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+    <path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+  </svg>
+</button>
