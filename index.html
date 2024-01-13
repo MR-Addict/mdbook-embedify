@@ -91,7 +91,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html" class="active"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li class="chapter-item expanded "><a href="ignore-embeds.html"><strong aria-hidden="true">3.</strong> Ignore Embeds</a></li><li class="chapter-item expanded "><a href="global-configuration.html"><strong aria-hidden="true">4.</strong> Global Configuration</a></li><li class="chapter-item expanded "><a href="third-party/intro.html"><strong aria-hidden="true">5.</strong> Third Party Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="third-party/gist.html"><strong aria-hidden="true">5.1.</strong> Gist</a></li><li class="chapter-item "><a href="third-party/youtube.html"><strong aria-hidden="true">5.2.</strong> Youtube</a></li><li class="chapter-item "><a href="third-party/bilibili.html"><strong aria-hidden="true">5.3.</strong> Bilibili</a></li><li class="chapter-item "><a href="third-party/codesandbox.html"><strong aria-hidden="true">5.4.</strong> Codesandbox</a></li><li class="chapter-item "><a href="third-party/stackblitz.html"><strong aria-hidden="true">5.5.</strong> Stackblitz</a></li><li class="chapter-item "><a href="third-party/codepen.html"><strong aria-hidden="true">5.6.</strong> Codepen</a></li></ol></li><li class="chapter-item expanded "><a href="local/intro.html"><strong aria-hidden="true">6.</strong> Local Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="local/scroll-to-top.html"><strong aria-hidden="true">6.1.</strong> Scroll To Top</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html" class="active"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li class="chapter-item expanded "><a href="ignore-embeds.html"><strong aria-hidden="true">3.</strong> Ignore Embeds</a></li><li class="chapter-item expanded "><a href="global-configuration.html"><strong aria-hidden="true">4.</strong> Global Configuration</a></li><li class="chapter-item expanded "><a href="third-party/intro.html"><strong aria-hidden="true">5.</strong> Third Party Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="third-party/gist.html"><strong aria-hidden="true">5.1.</strong> Gist</a></li><li class="chapter-item "><a href="third-party/youtube.html"><strong aria-hidden="true">5.2.</strong> Youtube</a></li><li class="chapter-item "><a href="third-party/bilibili.html"><strong aria-hidden="true">5.3.</strong> Bilibili</a></li><li class="chapter-item "><a href="third-party/codesandbox.html"><strong aria-hidden="true">5.4.</strong> Codesandbox</a></li><li class="chapter-item "><a href="third-party/stackblitz.html"><strong aria-hidden="true">5.5.</strong> Stackblitz</a></li><li class="chapter-item "><a href="third-party/codepen.html"><strong aria-hidden="true">5.6.</strong> Codepen</a></li></ol></li><li class="chapter-item expanded "><a href="local/intro.html"><strong aria-hidden="true">6.</strong> Local Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="local/scroll-to-top.html"><strong aria-hidden="true">6.1.</strong> Scroll to Top</a></li><li class="chapter-item "><a href="local/announcement-banner.html"><strong aria-hidden="true">6.2.</strong> Announcement Banner</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -183,55 +183,6 @@
                         <h1 id="mdbook-embedify"><a class="header" href="#mdbook-embedify">Mdbook Embedify</a></h1>
 <p><img src="https://img.shields.io/crates/v/mdbook-embedify" alt="Crates.io" /> <img src="https://img.shields.io/crates/l/mdbook-embedify" alt="Crates.io" /></p>
 <p>This is a <a href="https://rust-lang.github.io/mdBook">mdbook</a> preprocessor plugin that allows you to embed apps to your book, like youtube, codepen and some other apps.</p>
-<style>
-  .scroll-to-top {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    position: fixed;
-    padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
-
-    border: none;
-    border-radius: 50%;
-    color: #fff;
-    background-color: var(--icons);
-
-    z-index: 999;
-    cursor: pointer;
-  }
-  .scroll-to-top.hidden {
-    display: none;
-  }
-  @media (min-width: 768px) {
-    .scroll-to-top {
-      right: calc(0.5rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
-    }
-  }
-</style>
-<script async defer>
-  window.addEventListener("scroll", () => {
-    const button = document.querySelector(".scroll-to-top");
-    button.classList.toggle("hidden", window.scrollY < 200);
-  });
-</script>
-<p><button
-  type="button"
-  aria-label="scroll-top"
-  class="scroll-to-top hidden"
-  onclick="window.scroll({top: 0, behavior: 'smooth'})"
->
-<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
-<path
-      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
-    />
-</svg>
-</button></p>
 
                     </main>
 
