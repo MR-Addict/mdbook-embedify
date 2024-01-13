@@ -181,6 +181,140 @@
                         <h1 id="mdbook-embedify"><a class="header" href="#mdbook-embedify">Mdbook Embedify</a></h1>
 <p><img src="https://img.shields.io/crates/v/mdbook-embedify" alt="Crates.io" /> <img src="https://img.shields.io/crates/l/mdbook-embedify" alt="Crates.io" /></p>
 <p>This is a <a href="https://rust-lang.github.io/mdBook">mdbook</a> preprocessor plugin that allows you to embed apps to your book, like youtube, codepen and some other apps.</p>
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      right: calc(0.5rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+<p><button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+<path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+</svg>
+</button></p>
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-style="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-style="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-style="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    /* make overflowd text to be dots */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    right: 1rem;
+    position: absolute;
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div class="announcement-banner" data-style="default" data-name="v0.1.0">
+  <p><em>Version <strong>0.2.1</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1">here</a>.</em></p>
+ <button type="button">X</button>
+</div>
+<script>
+  const localData = JSON.parse(localStorage.getItem("announcement-banner"));
+  const banner = document.querySelector(".announcement-banner");
+  const name = banner.getAttribute("data-name");
+
+  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  else {
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("announcement-banner", JSON.stringify({ name, hide: true }));
+    });
+  }
+</script>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
 <p>There are two ways to install this plugin.</p>
 <p>You can install it from crates.io using cargo.</p>
@@ -202,6 +336,140 @@
 </code></pre>
 <!-- embed ignore end -->
 <p>You can see some examples at examples section.</p>
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      right: calc(0.5rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+<p><button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+<path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+</svg>
+</button></p>
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-style="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-style="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-style="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    /* make overflowd text to be dots */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    right: 1rem;
+    position: absolute;
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div class="announcement-banner" data-style="default" data-name="v0.1.0">
+  <p><em>Version <strong>0.2.1</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1">here</a>.</em></p>
+ <button type="button">X</button>
+</div>
+<script>
+  const localData = JSON.parse(localStorage.getItem("announcement-banner"));
+  const banner = document.querySelector(".announcement-banner");
+  const name = banner.getAttribute("data-name");
+
+  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  else {
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("announcement-banner", JSON.stringify({ name, hide: true }));
+    });
+  }
+</script>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ignore-embeds"><a class="header" href="#ignore-embeds">Ignore Embeds</a></h1>
 <p>Sometimes you may want preprocessors to ignore some embeds.</p>
 <p>You can do it by wrapping content that you want to ignore with below two comments:</p>
@@ -217,6 +485,140 @@
 &lt;!-- embed ignore end --&gt;
 </code></pre>
 <p>And youtube embed won’t be rendered.</p>
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      right: calc(0.5rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+<p><button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+<path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+</svg>
+</button></p>
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-style="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-style="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-style="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    /* make overflowd text to be dots */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    right: 1rem;
+    position: absolute;
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div class="announcement-banner" data-style="default" data-name="v0.1.0">
+  <p><em>Version <strong>0.2.1</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1">here</a>.</em></p>
+ <button type="button">X</button>
+</div>
+<script>
+  const localData = JSON.parse(localStorage.getItem("announcement-banner"));
+  const banner = document.querySelector(".announcement-banner");
+  const name = banner.getAttribute("data-name");
+
+  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  else {
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("announcement-banner", JSON.stringify({ name, hide: true }));
+    });
+  }
+</script>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="global-configuration"><a class="header" href="#global-configuration">Global Configuration</a></h1>
 <p>Some apps allow you to automatically add to every chapter. You can do this by adding <code>app-name = true</code> to embedify preprocessor in <code>book.toml</code> file to enable it.</p>
 <p>For example:</p>
@@ -236,9 +638,143 @@ scroll-to-top.enable = true
 announcement-banner.enable = true
 announcement-banner.name = &quot;v0.1.0&quot;
 announcement-banner.style = &quot;default&quot;
-announcement-banner.message = &quot;*Version **0.2.0** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.0).*&quot;
+announcement-banner.message = &quot;*Version **0.2.1** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1).*&quot;
 </code></pre>
 <p>You can see more details about each app at its own page.</p>
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      right: calc(0.5rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+<p><button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+<path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+</svg>
+</button></p>
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-style="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-style="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-style="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    /* make overflowd text to be dots */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    right: 1rem;
+    position: absolute;
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div class="announcement-banner" data-style="default" data-name="v0.1.0">
+  <p><em>Version <strong>0.2.1</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1">here</a>.</em></p>
+ <button type="button">X</button>
+</div>
+<script>
+  const localData = JSON.parse(localStorage.getItem("announcement-banner"));
+  const banner = document.querySelector(".announcement-banner");
+  const name = banner.getAttribute("data-name");
+
+  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  else {
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("announcement-banner", JSON.stringify({ name, hide: true }));
+    });
+  }
+</script>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="third-party-apps"><a class="header" href="#third-party-apps">Third Party Apps</a></h1>
 <p>Third party apps are apps that are hosted on third party sites. Below are all supported third party apps and its detailed options.</p>
 <ul>
@@ -249,6 +785,140 @@ announcement-banner.message = &quot;*Version **0.2.0** now has relased, check it
 <li><a href="third-party/stackblitz.html">Stackblitz</a></li>
 <li><a href="third-party/codepen.html">Codepen</a></li>
 </ul>
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      right: calc(0.5rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+<p><button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+<path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+</svg>
+</button></p>
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-style="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-style="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-style="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    /* make overflowd text to be dots */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    right: 1rem;
+    position: absolute;
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div class="announcement-banner" data-style="default" data-name="v0.1.0">
+  <p><em>Version <strong>0.2.1</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1">here</a>.</em></p>
+ <button type="button">X</button>
+</div>
+<script>
+  const localData = JSON.parse(localStorage.getItem("announcement-banner"));
+  const banner = document.querySelector(".announcement-banner");
+  const name = banner.getAttribute("data-name");
+
+  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  else {
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("announcement-banner", JSON.stringify({ name, hide: true }));
+    });
+  }
+</script>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="options"><a class="header" href="#options">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Gist ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
@@ -260,6 +930,140 @@ announcement-banner.message = &quot;*Version **0.2.0** now has relased, check it
 </code></pre>
 <!-- embed ignore end -->
 <script src="https://gist.github.com/76cf171d1bdd7da41d4ca96b908eb57a.js"></script>
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      right: calc(0.5rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+<p><button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+<path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+</svg>
+</button></p>
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-style="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-style="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-style="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    /* make overflowd text to be dots */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    right: 1rem;
+    position: absolute;
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div class="announcement-banner" data-style="default" data-name="v0.1.0">
+  <p><em>Version <strong>0.2.1</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1">here</a>.</em></p>
+ <button type="button">X</button>
+</div>
+<script>
+  const localData = JSON.parse(localStorage.getItem("announcement-banner"));
+  const banner = document.querySelector(".announcement-banner");
+  const name = banner.getAttribute("data-name");
+
+  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  else {
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("announcement-banner", JSON.stringify({ name, hide: true }));
+    });
+  }
+</script>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="options-1"><a class="header" href="#options-1">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
@@ -278,6 +1082,140 @@ announcement-banner.message = &quot;*Version **0.2.0** now has relased, check it
   style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 ></iframe>
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      right: calc(0.5rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+<p><button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+<path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+</svg>
+</button></p>
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-style="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-style="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-style="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    /* make overflowd text to be dots */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    right: 1rem;
+    position: absolute;
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div class="announcement-banner" data-style="default" data-name="v0.1.0">
+  <p><em>Version <strong>0.2.1</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1">here</a>.</em></p>
+ <button type="button">X</button>
+</div>
+<script>
+  const localData = JSON.parse(localStorage.getItem("announcement-banner"));
+  const banner = document.querySelector(".announcement-banner");
+  const name = banner.getAttribute("data-name");
+
+  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  else {
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("announcement-banner", JSON.stringify({ name, hide: true }));
+    });
+  }
+</script>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="options-2"><a class="header" href="#options-2">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
@@ -295,6 +1233,140 @@ announcement-banner.message = &quot;*Version **0.2.0** now has relased, check it
   src="https://player.bilibili.com/player.html?bvid=BV1uT4y1P7CX&danmaku=0"
   style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
 ></iframe>
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      right: calc(0.5rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+<p><button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+<path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+</svg>
+</button></p>
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-style="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-style="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-style="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    /* make overflowd text to be dots */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    right: 1rem;
+    position: absolute;
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div class="announcement-banner" data-style="default" data-name="v0.1.0">
+  <p><em>Version <strong>0.2.1</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1">here</a>.</em></p>
+ <button type="button">X</button>
+</div>
+<script>
+  const localData = JSON.parse(localStorage.getItem("announcement-banner"));
+  const banner = document.querySelector(".announcement-banner");
+  const name = banner.getAttribute("data-name");
+
+  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  else {
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("announcement-banner", JSON.stringify({ name, hide: true }));
+    });
+  }
+</script>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="options-3"><a class="header" href="#options-3">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Project ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
@@ -312,6 +1384,140 @@ announcement-banner.message = &quot;*Version **0.2.0** now has relased, check it
   src="https://codesandbox.io/embed/ke8wx?&theme=light"
   style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
 ></iframe>
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      right: calc(0.5rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+<p><button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+<path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+</svg>
+</button></p>
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-style="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-style="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-style="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    /* make overflowd text to be dots */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    right: 1rem;
+    position: absolute;
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div class="announcement-banner" data-style="default" data-name="v0.1.0">
+  <p><em>Version <strong>0.2.1</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1">here</a>.</em></p>
+ <button type="button">X</button>
+</div>
+<script>
+  const localData = JSON.parse(localStorage.getItem("announcement-banner"));
+  const banner = document.querySelector(".announcement-banner");
+  const name = banner.getAttribute("data-name");
+
+  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  else {
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("announcement-banner", JSON.stringify({ name, hide: true }));
+    });
+  }
+</script>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="options-4"><a class="header" href="#options-4">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Project ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
@@ -329,6 +1535,140 @@ announcement-banner.message = &quot;*Version **0.2.0** now has relased, check it
   src="https://stackblitz.com/edit/vitejs-vite-y8mdxg?embed=1&theme=light&view=preview"
   style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
 ></iframe>
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      right: calc(0.5rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+<p><button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+<path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+</svg>
+</button></p>
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-style="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-style="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-style="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    /* make overflowd text to be dots */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    right: 1rem;
+    position: absolute;
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div class="announcement-banner" data-style="default" data-name="v0.1.0">
+  <p><em>Version <strong>0.2.1</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1">here</a>.</em></p>
+ <button type="button">X</button>
+</div>
+<script>
+  const localData = JSON.parse(localStorage.getItem("announcement-banner"));
+  const banner = document.querySelector(".announcement-banner");
+  const name = banner.getAttribute("data-name");
+
+  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  else {
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("announcement-banner", JSON.stringify({ name, hide: true }));
+    });
+  }
+</script>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="options-5"><a class="header" href="#options-5">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">user</td><td style="text-align: left">username</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
@@ -350,6 +1690,140 @@ announcement-banner.message = &quot;*Version **0.2.0** now has relased, check it
   style="width: 100%; border: none; border-radius: 1rem; background: black"
   src="https://codepen.io/MR-Addict/embed/NWBOqKw?default-tab=result&theme-id=dark"
 ></iframe>
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      right: calc(0.5rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+<p><button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+<path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+</svg>
+</button></p>
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-style="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-style="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-style="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    /* make overflowd text to be dots */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    right: 1rem;
+    position: absolute;
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div class="announcement-banner" data-style="default" data-name="v0.1.0">
+  <p><em>Version <strong>0.2.1</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1">here</a>.</em></p>
+ <button type="button">X</button>
+</div>
+<script>
+  const localData = JSON.parse(localStorage.getItem("announcement-banner"));
+  const banner = document.querySelector(".announcement-banner");
+  const name = banner.getAttribute("data-name");
+
+  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  else {
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("announcement-banner", JSON.stringify({ name, hide: true }));
+    });
+  }
+</script>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="local-apps"><a class="header" href="#local-apps">Local Apps</a></h1>
 <p>Local apps are apps hosted on your local book, so it is not necessary to have internet connection to use them.</p>
 <p>Below are all supported local apps and its detailed options.</p>
@@ -357,6 +1831,140 @@ announcement-banner.message = &quot;*Version **0.2.0** now has relased, check it
 <li><a href="local/scroll-to-top.html">Scroll To Top</a></li>
 <li><a href="local/announcement-banner.html">Announcement Banner</a></li>
 </ul>
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      right: calc(0.5rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+<p><button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+<path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+</svg>
+</button></p>
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-style="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-style="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-style="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    /* make overflowd text to be dots */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    right: 1rem;
+    position: absolute;
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div class="announcement-banner" data-style="default" data-name="v0.1.0">
+  <p><em>Version <strong>0.2.1</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1">here</a>.</em></p>
+ <button type="button">X</button>
+</div>
+<script>
+  const localData = JSON.parse(localStorage.getItem("announcement-banner"));
+  const banner = document.querySelector(".announcement-banner");
+  const name = banner.getAttribute("data-name");
+
+  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  else {
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("announcement-banner", JSON.stringify({ name, hide: true }));
+    });
+  }
+</script>
 <div style="break-before: page; page-break-before: always;"></div><p>Scroll to top button app has no options. You can use it like this:</p>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed scroll-to-top %}
@@ -367,6 +1975,140 @@ announcement-banner.message = &quot;*Version **0.2.0** now has relased, check it
 scroll-to-top.enable = true
 </code></pre>
 <p>This book uses this option. You can see it at the bottom right corner of this page. But it only shows when pages are long enough to scroll. Or you can see it my another book <a href="https://mr-addict.github.io/notes">Notes</a>.</p>
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      right: calc(0.5rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+<p><button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+<path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+</svg>
+</button></p>
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-style="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-style="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-style="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    /* make overflowd text to be dots */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    right: 1rem;
+    position: absolute;
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div class="announcement-banner" data-style="default" data-name="v0.1.0">
+  <p><em>Version <strong>0.2.1</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1">here</a>.</em></p>
+ <button type="button">X</button>
+</div>
+<script>
+  const localData = JSON.parse(localStorage.getItem("announcement-banner"));
+  const banner = document.querySelector(".announcement-banner");
+  const name = banner.getAttribute("data-name");
+
+  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  else {
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("announcement-banner", JSON.stringify({ name, hide: true }));
+    });
+  }
+</script>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="options-6"><a class="header" href="#options-6">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">name</td><td style="text-align: left">Announcement name</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
@@ -376,7 +2118,7 @@ scroll-to-top.enable = true
 </div>
 <h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed announcement-banner name=&quot;v0.1.0&quot; style=&quot;default&quot; message=&quot;*Version **0.2.0** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.0).*&quot; %}
+<pre><code class="language-text">{% embed announcement-banner name=&quot;v0.1.0&quot; style=&quot;default&quot; message=&quot;*Version **0.2.1** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1).*&quot; %}
 </code></pre>
 <!-- embed ignore end -->
 <p>This book’s announcement banner is enabled, you can see it at the top of this page.</p>
@@ -385,9 +2127,143 @@ scroll-to-top.enable = true
 announcement-banner.enable = true
 announcement-banner.name = &quot;v0.1.0&quot;
 announcement-banner.style = &quot;default&quot;
-announcement-banner.message = &quot;*Version **0.2.0** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.0).*&quot;
+announcement-banner.message = &quot;*Version **0.2.1** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1).*&quot;
 </code></pre>
 <p>Note that announcement banner name must be <strong>unique</strong>, otherwise it won’t be shown if there is another announcement banner with the same name when user closed it.</p>
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      right: calc(0.5rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+<p><button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+<path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+</svg>
+</button></p>
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-style="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-style="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-style="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    /* make overflowd text to be dots */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    right: 1rem;
+    position: absolute;
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div class="announcement-banner" data-style="default" data-name="v0.1.0">
+  <p><em>Version <strong>0.2.1</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1">here</a>.</em></p>
+ <button type="button">X</button>
+</div>
+<script>
+  const localData = JSON.parse(localStorage.getItem("announcement-banner"));
+  const banner = document.querySelector(".announcement-banner");
+  const name = banner.getAttribute("data-name");
+
+  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  else {
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("announcement-banner", JSON.stringify({ name, hide: true }));
+    });
+  }
+</script>
 
                     </main>
 
