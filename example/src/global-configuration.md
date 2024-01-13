@@ -26,7 +26,7 @@ scroll-to-top.enable = true
 announcement-banner.enable = true
 announcement-banner.name = "v0.1.0"
 announcement-banner.style = "default"
-announcement-banner.message = "*Version **0.2.0** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.0).*"
+announcement-banner.message = "*Version **0.2.1** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1).*"
 ```
 
 You can see more details about each app at its own page.
