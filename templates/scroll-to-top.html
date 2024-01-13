@@ -30,13 +30,6 @@
   }
 </style>
 
-<script async defer>
-  window.addEventListener("scroll", () => {
-    const button = document.querySelector(".scroll-to-top");
-    button.classList.toggle("hidden", window.scrollY < 200);
-  });
-</script>
-
 <button
   type="button"
   aria-label="scroll-top"
@@ -49,3 +42,10 @@
     />
   </svg>
 </button>
+
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>

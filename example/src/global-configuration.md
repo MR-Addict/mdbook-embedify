@@ -6,7 +6,7 @@ For example:
 
 ```toml
 [preprocessor.embedify]
-scroll-to-top = true
+scroll-to-top.enable = true
 ```
 
 <!-- embed ignore begin -->
@@ -17,4 +17,16 @@ scroll-to-top = true
 
 <!-- embed ignore end -->
 
-Now `scroll-to-top` is the only app that supports global configuration.
+Below is a full list of apps that support this feature:
+
+```toml
+[preprocessor.embedify]
+scroll-to-top.enable = true
+
+announcement-banner.enable = true
+announcement-banner.name = "v0.1.0"
+announcement-banner.style = "default"
+announcement-banner.message = "*Version **0.2.0** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.0).*"
+```
+
+You can see more details about each app at its own page.

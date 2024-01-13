@@ -13,6 +13,7 @@ description = "A rust based mdbook preprocessor plugin that allows you to embed 
 [dependencies]
 clap = "4.4.13"
 mdbook = "0.4.36"
+pulldown-cmark = "0.9.3"
 regex = "1.10.2"
 roxmltree = "0.19.0"
 rust-embed = "8.2.0"

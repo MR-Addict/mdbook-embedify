@@ -12,4 +12,5 @@
   - [Stackblitz](third-party/stackblitz.md)
   - [Codepen](third-party/codepen.md)
 - [Local Apps](local/intro.md)
-  - [Scroll To Top](local/scroll-to-top.md)
+  - [Scroll to Top](local/scroll-to-top.md)
+  - [Announcement Banner](local/announcement-banner.md)
