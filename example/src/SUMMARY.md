@@ -1,6 +1,6 @@
 # Summary
 
-- [Preview](intro.md)
+- [Intro](intro.md)
 - [Usage](usage.md)
 - [Ignore Embeds](ignore-embeds.md)
 - [Global Configuration](global-configuration.md)
