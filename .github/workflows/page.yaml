@@ -12,11 +12,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: setup
+      - uses: actions/checkout@master
+
+      - name: Cahce
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+
+      - name: Setup toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Install mdbook-embedify
         run: |
-          cd example && cp assets/bin/* /usr/local/bin
-          chmod u+x /usr/local/bin/mdbook* && mdbook build
+          cargo install mdbook-embedify --force --path .
+          cp example/assets/bin/* /usr/local/bin && chmod u+x /usr/local/bin/mdbook*
+
+      - name: Build book
+        run: mdbook build example
+
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
