@@ -1,6 +1,6 @@
 # Global Configuration
 
-Some apps allow you to automatically add to every chapter. You can do this by adding `app-name = true` to embedify preprocessor in `book.toml` file to enable it.
+Some apps allow you to automatically add to every chapter. You can do this by modifying `book.toml` file to enable them.
 
 For example:
 
@@ -13,20 +13,20 @@ scroll-to-top.enable = true
 
 > 💥Attention
 >
-> When you do this, you don't need to add `{% embed scroll-to-top %}` manually. It will be automatically added it to every chapter. Otherwise, it will be rendered twice.
+> When you do this, you don't need to add `{% embed scroll-to-top %}` manually. It will be automatically added it to every chapter. If you do, it will be rendered twice.
 
 <!-- embed ignore end -->
 
-Below is a full list of apps that support this feature:
+Below is a full list of apps that support global configuration:
 
 ```toml
 [preprocessor.embedify]
 scroll-to-top.enable = true
 
 announcement-banner.enable = true
-announcement-banner.name = "0.2.1"
+announcement-banner.name = "0.2.2"
 announcement-banner.style = "default"
-announcement-banner.message = "*Version **0.2.1** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1).*"
+announcement-banner.message = "*Version **0.2.2** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2).*"
 ```
 
 You can see more details about each app at its own page.
