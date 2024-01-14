@@ -67,9 +67,10 @@
 </div>
 
 <script>
-  const localData = JSON.parse(localStorage.getItem("announcement-banner"));
   const banner = document.querySelector(".announcement-banner");
   const name = banner.getAttribute("data-name");
+  const message = banner.querySelector("p").textContent;
+  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
   if (localData && localData.hide === true && localData.name === name) banner.remove();
   else {
@@ -80,7 +81,7 @@
     // add event listener to close button
     banner.querySelector("button").addEventListener("click", () => {
       banner.remove();
-      localStorage.setItem("announcement-banner", JSON.stringify({ name, hide: true }));
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ name, hide: true, message }));
     });
   }
 </script>

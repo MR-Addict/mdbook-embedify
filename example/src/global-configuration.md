@@ -24,7 +24,7 @@ Below is a full list of apps that support this feature:
 scroll-to-top.enable = true
 
 announcement-banner.enable = true
-announcement-banner.name = "v0.1.0"
+announcement-banner.name = "0.2.1"
 announcement-banner.style = "default"
 announcement-banner.message = "*Version **0.2.1** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1).*"
 ```

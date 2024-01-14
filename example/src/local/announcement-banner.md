@@ -11,7 +11,7 @@
 <!-- embed ignore begin -->
 
 ```text
-{% embed announcement-banner name="v0.1.0" style="default" message="*Version **0.2.1** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1).*" %}
+{% embed announcement-banner name="0.2.1" style="default" message="*Version **0.2.1** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1).*" %}
 ```
 
 <!-- embed ignore end -->
@@ -23,7 +23,7 @@ However, you may want to enable it for the whole book. You can do this by adding
 ```toml
 [preprocessor.embedify]
 announcement-banner.enable = true
-announcement-banner.name = "v0.1.0"
+announcement-banner.name = "0.2.1"
 announcement-banner.style = "default"
 announcement-banner.message = "*Version **0.2.1** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1).*"
 ```
