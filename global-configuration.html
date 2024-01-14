@@ -181,7 +181,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="global-configuration"><a class="header" href="#global-configuration">Global Configuration</a></h1>
-<p>Some apps allow you to automatically add to every chapter. You can do this by adding <code>app-name = true</code> to embedify preprocessor in <code>book.toml</code> file to enable it.</p>
+<p>Some apps allow you to automatically add to every chapter. You can do this by modifying <code>book.toml</code> file to enable them.</p>
 <p>For example:</p>
 <pre><code class="language-toml">[preprocessor.embedify]
 scroll-to-top.enable = true
@@ -189,17 +189,17 @@ scroll-to-top.enable = true
 <!-- embed ignore begin -->
 <blockquote>
 <p>💥Attention</p>
-<p>When you do this, you don’t need to add <code>{% embed scroll-to-top %}</code> manually. It will be automatically added it to every chapter. Otherwise, it will be rendered twice.</p>
+<p>When you do this, you don’t need to add <code>{% embed scroll-to-top %}</code> manually. It will be automatically added it to every chapter. If you do, it will be rendered twice.</p>
 </blockquote>
 <!-- embed ignore end -->
-<p>Below is a full list of apps that support this feature:</p>
+<p>Below is a full list of apps that support global configuration:</p>
 <pre><code class="language-toml">[preprocessor.embedify]
 scroll-to-top.enable = true
 
 announcement-banner.enable = true
-announcement-banner.name = &quot;0.2.1&quot;
+announcement-banner.name = &quot;0.2.2&quot;
 announcement-banner.style = &quot;default&quot;
-announcement-banner.message = &quot;*Version **0.2.1** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1).*&quot;
+announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2).*&quot;
 </code></pre>
 <p>You can see more details about each app at its own page.</p>
 <style>
@@ -314,8 +314,8 @@ announcement-banner.message = &quot;*Version **0.2.1** now has relased, check it
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-style="default" data-name="0.2.1">
-  <p><em>Version <strong>0.2.1</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.1">here</a>.</em></p>
+<div class="announcement-banner" data-style="default" data-name="0.2.2">
+  <p><em>Version <strong>0.2.2</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2">here</a>.</em></p>
  <button type="button">X</button>
 </div>
 <script>
