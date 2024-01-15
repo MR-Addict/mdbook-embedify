@@ -1,6 +1,6 @@
 # Ignore Embeds
 
-Sometimes you may want preprocessors to ignore some embeds.
+Sometimes you may want preprocessor to ignore some embeds.
 
 You can do it by wrapping content that you want to ignore with below two comments:
 

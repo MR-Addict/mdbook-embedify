@@ -25,12 +25,11 @@ impl Preprocessor for Embed {
 
         let announcement_banner_enabled =
             utils::get_config_bool(config, "announcement-banner.enable", false);
-        let announcement_banner_name =
-            utils::get_config_string(config, "announcement-banner.name", "");
+        let announcement_banner_id = utils::get_config_string(config, "announcement-banner.id", "");
+        let announcement_banner_theme =
+            utils::get_config_string(config, "announcement-banner.theme", "default");
         let announcement_banner_message =
             utils::get_config_string(config, "announcement-banner.message", "");
-        let announcement_banner_style =
-            utils::get_config_string(config, "announcement-banner.style", "default");
 
         book.for_each_mut(|item| {
             if let mdbook::book::BookItem::Chapter(chapter) = item {
@@ -39,8 +38,8 @@ impl Preprocessor for Embed {
                 }
                 if announcement_banner_enabled {
                     chapter.content.push_str(&format!(
-                        "\n{{% embed announcement-banner name=\"{}\" message=\"{}\" style=\"{}\" %}}\n",
-                        announcement_banner_name, announcement_banner_message, announcement_banner_style
+                        "\n{{% embed announcement-banner id=\"{}\" message=\"{}\" theme=\"{}\" %}}\n",
+                        announcement_banner_id, announcement_banner_message, announcement_banner_theme
                     ));
                 }
                 chapter.content = utils::render_embeds(chapter.content.clone());

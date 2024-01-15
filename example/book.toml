@@ -22,7 +22,7 @@ mathjax-support = true
 copy-fonts = true
 no-section-label = false
 git-repository-url = "https://github.com/mr-addict/mdbook-embedify"
-edit-url-template = "https://github.com/mr-addict/mdbook-embedify/edit/main/{path}"
+edit-url-template = "https://github.com/mr-addict/mdbook-embedify/edit/main/example/{path}"
 additional-css = ["assets/css/patch.css"]
 
 [output.html.print]
@@ -51,9 +51,10 @@ heading-split-level = 3
 copy-js = true
 
 [preprocessor.embedify]
+command = "target/release/mdbook-embedify.exe"
 scroll-to-top.enable = true
 
 announcement-banner.enable = true
-announcement-banner.name = "0.2.2"
-announcement-banner.style = "default"
+announcement-banner.id = "0.2.2"
+announcement-banner.theme = "default"
 announcement-banner.message = "*Version **0.2.2** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2).*"

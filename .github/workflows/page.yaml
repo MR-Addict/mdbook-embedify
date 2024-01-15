@@ -37,7 +37,7 @@ jobs:
           cp example/assets/bin/* /usr/local/bin && chmod u+x /usr/local/bin/mdbook*
 
       - name: Build book
-        run: mdbook build example
+        run: sed -i 54d example/book.toml && mdbook build example
 
       - uses: peaceiris/actions-gh-pages@v3
         with:

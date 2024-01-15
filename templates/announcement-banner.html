@@ -22,17 +22,17 @@
     --site-announcement-bar-stripe-color2: #d1d5db;
   }
 
-  .announcement-banner[data-style="ocean"] {
+  .announcement-banner[data-theme="ocean"] {
     --site-announcement-bar-stripe-color1: #86b2f9;
     --site-announcement-bar-stripe-color2: #7298ea;
   }
 
-  .announcement-banner[data-style="forest"] {
+  .announcement-banner[data-theme="forest"] {
     --site-announcement-bar-stripe-color1: #97f5d6;
     --site-announcement-bar-stripe-color2: #6de0bf;
   }
 
-  .announcement-banner[data-style="lava"] {
+  .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #fea3a3;
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
@@ -62,17 +62,17 @@
   }
 </style>
 
-<div class="announcement-banner" data-style="{% style|default %}" data-name="{% name %}">
+<div class="announcement-banner" data-theme="{% theme|default %}" data-id="{% id %}">
   {% message %} <button type="button">X</button>
 </div>
 
 <script>
   const banner = document.querySelector(".announcement-banner");
-  const name = banner.getAttribute("data-name");
+  const id = banner.getAttribute("data-id");
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
   else {
     // move banner before page class element slibling
     const page = document.querySelector(".page");
@@ -81,7 +81,7 @@
     // add event listener to close button
     banner.querySelector("button").addEventListener("click", () => {
       banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ name, hide: true, message }));
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
     });
   }
 </script>
