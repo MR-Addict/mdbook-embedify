@@ -256,17 +256,17 @@
     --site-announcement-bar-stripe-color2: #d1d5db;
   }
 
-  .announcement-banner[data-style="ocean"] {
+  .announcement-banner[data-theme="ocean"] {
     --site-announcement-bar-stripe-color1: #86b2f9;
     --site-announcement-bar-stripe-color2: #7298ea;
   }
 
-  .announcement-banner[data-style="forest"] {
+  .announcement-banner[data-theme="forest"] {
     --site-announcement-bar-stripe-color1: #97f5d6;
     --site-announcement-bar-stripe-color2: #6de0bf;
   }
 
-  .announcement-banner[data-style="lava"] {
+  .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #fea3a3;
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
@@ -295,17 +295,17 @@
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-style="default" data-name="0.2.2">
+<div class="announcement-banner" data-theme="default" data-id="0.2.2">
   <p><em>Version <strong>0.2.2</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2">here</a>.</em></p>
  <button type="button">X</button>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
-  const name = banner.getAttribute("data-name");
+  const id = banner.getAttribute("data-id");
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
   else {
     // move banner before page class element slibling
     const page = document.querySelector(".page");
@@ -314,7 +314,7 @@
     // add event listener to close button
     banner.querySelector("button").addEventListener("click", () => {
       banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ name, hide: true, message }));
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
     });
   }
 </script>
@@ -412,17 +412,17 @@
     --site-announcement-bar-stripe-color2: #d1d5db;
   }
 
-  .announcement-banner[data-style="ocean"] {
+  .announcement-banner[data-theme="ocean"] {
     --site-announcement-bar-stripe-color1: #86b2f9;
     --site-announcement-bar-stripe-color2: #7298ea;
   }
 
-  .announcement-banner[data-style="forest"] {
+  .announcement-banner[data-theme="forest"] {
     --site-announcement-bar-stripe-color1: #97f5d6;
     --site-announcement-bar-stripe-color2: #6de0bf;
   }
 
-  .announcement-banner[data-style="lava"] {
+  .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #fea3a3;
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
@@ -451,17 +451,17 @@
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-style="default" data-name="0.2.2">
+<div class="announcement-banner" data-theme="default" data-id="0.2.2">
   <p><em>Version <strong>0.2.2</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2">here</a>.</em></p>
  <button type="button">X</button>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
-  const name = banner.getAttribute("data-name");
+  const id = banner.getAttribute("data-id");
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
   else {
     // move banner before page class element slibling
     const page = document.querySelector(".page");
@@ -470,12 +470,12 @@
     // add event listener to close button
     banner.querySelector("button").addEventListener("click", () => {
       banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ name, hide: true, message }));
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
     });
   }
 </script>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ignore-embeds"><a class="header" href="#ignore-embeds">Ignore Embeds</a></h1>
-<p>Sometimes you may want preprocessors to ignore some embeds.</p>
+<p>Sometimes you may want preprocessor to ignore some embeds.</p>
 <p>You can do it by wrapping content that you want to ignore with below two comments:</p>
 <ul>
 <li><code>&lt;!-- embed ignore begin --&gt;</code></li>
@@ -562,17 +562,17 @@
     --site-announcement-bar-stripe-color2: #d1d5db;
   }
 
-  .announcement-banner[data-style="ocean"] {
+  .announcement-banner[data-theme="ocean"] {
     --site-announcement-bar-stripe-color1: #86b2f9;
     --site-announcement-bar-stripe-color2: #7298ea;
   }
 
-  .announcement-banner[data-style="forest"] {
+  .announcement-banner[data-theme="forest"] {
     --site-announcement-bar-stripe-color1: #97f5d6;
     --site-announcement-bar-stripe-color2: #6de0bf;
   }
 
-  .announcement-banner[data-style="lava"] {
+  .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #fea3a3;
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
@@ -601,17 +601,17 @@
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-style="default" data-name="0.2.2">
+<div class="announcement-banner" data-theme="default" data-id="0.2.2">
   <p><em>Version <strong>0.2.2</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2">here</a>.</em></p>
  <button type="button">X</button>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
-  const name = banner.getAttribute("data-name");
+  const id = banner.getAttribute("data-id");
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
   else {
     // move banner before page class element slibling
     const page = document.querySelector(".page");
@@ -620,7 +620,7 @@
     // add event listener to close button
     banner.querySelector("button").addEventListener("click", () => {
       banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ name, hide: true, message }));
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
     });
   }
 </script>
@@ -641,8 +641,8 @@ scroll-to-top.enable = true
 scroll-to-top.enable = true
 
 announcement-banner.enable = true
-announcement-banner.name = &quot;0.2.2&quot;
-announcement-banner.style = &quot;default&quot;
+announcement-banner.id = &quot;0.2.2&quot;
+announcement-banner.theme = &quot;default&quot;
 announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2).*&quot;
 </code></pre>
 <p>You can see more details about each app at its own page.</p>
@@ -719,17 +719,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     --site-announcement-bar-stripe-color2: #d1d5db;
   }
 
-  .announcement-banner[data-style="ocean"] {
+  .announcement-banner[data-theme="ocean"] {
     --site-announcement-bar-stripe-color1: #86b2f9;
     --site-announcement-bar-stripe-color2: #7298ea;
   }
 
-  .announcement-banner[data-style="forest"] {
+  .announcement-banner[data-theme="forest"] {
     --site-announcement-bar-stripe-color1: #97f5d6;
     --site-announcement-bar-stripe-color2: #6de0bf;
   }
 
-  .announcement-banner[data-style="lava"] {
+  .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #fea3a3;
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
@@ -758,17 +758,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-style="default" data-name="0.2.2">
+<div class="announcement-banner" data-theme="default" data-id="0.2.2">
   <p><em>Version <strong>0.2.2</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2">here</a>.</em></p>
  <button type="button">X</button>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
-  const name = banner.getAttribute("data-name");
+  const id = banner.getAttribute("data-id");
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
   else {
     // move banner before page class element slibling
     const page = document.querySelector(".page");
@@ -777,7 +777,7 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     // add event listener to close button
     banner.querySelector("button").addEventListener("click", () => {
       banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ name, hide: true, message }));
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
     });
   }
 </script>
@@ -864,17 +864,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     --site-announcement-bar-stripe-color2: #d1d5db;
   }
 
-  .announcement-banner[data-style="ocean"] {
+  .announcement-banner[data-theme="ocean"] {
     --site-announcement-bar-stripe-color1: #86b2f9;
     --site-announcement-bar-stripe-color2: #7298ea;
   }
 
-  .announcement-banner[data-style="forest"] {
+  .announcement-banner[data-theme="forest"] {
     --site-announcement-bar-stripe-color1: #97f5d6;
     --site-announcement-bar-stripe-color2: #6de0bf;
   }
 
-  .announcement-banner[data-style="lava"] {
+  .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #fea3a3;
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
@@ -903,17 +903,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-style="default" data-name="0.2.2">
+<div class="announcement-banner" data-theme="default" data-id="0.2.2">
   <p><em>Version <strong>0.2.2</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2">here</a>.</em></p>
  <button type="button">X</button>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
-  const name = banner.getAttribute("data-name");
+  const id = banner.getAttribute("data-id");
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
   else {
     // move banner before page class element slibling
     const page = document.querySelector(".page");
@@ -922,7 +922,7 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     // add event listener to close button
     banner.querySelector("button").addEventListener("click", () => {
       banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ name, hide: true, message }));
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
     });
   }
 </script>
@@ -1010,17 +1010,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     --site-announcement-bar-stripe-color2: #d1d5db;
   }
 
-  .announcement-banner[data-style="ocean"] {
+  .announcement-banner[data-theme="ocean"] {
     --site-announcement-bar-stripe-color1: #86b2f9;
     --site-announcement-bar-stripe-color2: #7298ea;
   }
 
-  .announcement-banner[data-style="forest"] {
+  .announcement-banner[data-theme="forest"] {
     --site-announcement-bar-stripe-color1: #97f5d6;
     --site-announcement-bar-stripe-color2: #6de0bf;
   }
 
-  .announcement-banner[data-style="lava"] {
+  .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #fea3a3;
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
@@ -1049,17 +1049,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-style="default" data-name="0.2.2">
+<div class="announcement-banner" data-theme="default" data-id="0.2.2">
   <p><em>Version <strong>0.2.2</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2">here</a>.</em></p>
  <button type="button">X</button>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
-  const name = banner.getAttribute("data-name");
+  const id = banner.getAttribute("data-id");
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
   else {
     // move banner before page class element slibling
     const page = document.querySelector(".page");
@@ -1068,7 +1068,7 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     // add event listener to close button
     banner.querySelector("button").addEventListener("click", () => {
       banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ name, hide: true, message }));
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
     });
   }
 </script>
@@ -1163,17 +1163,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     --site-announcement-bar-stripe-color2: #d1d5db;
   }
 
-  .announcement-banner[data-style="ocean"] {
+  .announcement-banner[data-theme="ocean"] {
     --site-announcement-bar-stripe-color1: #86b2f9;
     --site-announcement-bar-stripe-color2: #7298ea;
   }
 
-  .announcement-banner[data-style="forest"] {
+  .announcement-banner[data-theme="forest"] {
     --site-announcement-bar-stripe-color1: #97f5d6;
     --site-announcement-bar-stripe-color2: #6de0bf;
   }
 
-  .announcement-banner[data-style="lava"] {
+  .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #fea3a3;
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
@@ -1202,17 +1202,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-style="default" data-name="0.2.2">
+<div class="announcement-banner" data-theme="default" data-id="0.2.2">
   <p><em>Version <strong>0.2.2</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2">here</a>.</em></p>
  <button type="button">X</button>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
-  const name = banner.getAttribute("data-name");
+  const id = banner.getAttribute("data-id");
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
   else {
     // move banner before page class element slibling
     const page = document.querySelector(".page");
@@ -1221,7 +1221,7 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     // add event listener to close button
     banner.querySelector("button").addEventListener("click", () => {
       banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ name, hide: true, message }));
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
     });
   }
 </script>
@@ -1315,17 +1315,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     --site-announcement-bar-stripe-color2: #d1d5db;
   }
 
-  .announcement-banner[data-style="ocean"] {
+  .announcement-banner[data-theme="ocean"] {
     --site-announcement-bar-stripe-color1: #86b2f9;
     --site-announcement-bar-stripe-color2: #7298ea;
   }
 
-  .announcement-banner[data-style="forest"] {
+  .announcement-banner[data-theme="forest"] {
     --site-announcement-bar-stripe-color1: #97f5d6;
     --site-announcement-bar-stripe-color2: #6de0bf;
   }
 
-  .announcement-banner[data-style="lava"] {
+  .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #fea3a3;
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
@@ -1354,17 +1354,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-style="default" data-name="0.2.2">
+<div class="announcement-banner" data-theme="default" data-id="0.2.2">
   <p><em>Version <strong>0.2.2</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2">here</a>.</em></p>
  <button type="button">X</button>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
-  const name = banner.getAttribute("data-name");
+  const id = banner.getAttribute("data-id");
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
   else {
     // move banner before page class element slibling
     const page = document.querySelector(".page");
@@ -1373,7 +1373,7 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     // add event listener to close button
     banner.querySelector("button").addEventListener("click", () => {
       banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ name, hide: true, message }));
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
     });
   }
 </script>
@@ -1467,17 +1467,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     --site-announcement-bar-stripe-color2: #d1d5db;
   }
 
-  .announcement-banner[data-style="ocean"] {
+  .announcement-banner[data-theme="ocean"] {
     --site-announcement-bar-stripe-color1: #86b2f9;
     --site-announcement-bar-stripe-color2: #7298ea;
   }
 
-  .announcement-banner[data-style="forest"] {
+  .announcement-banner[data-theme="forest"] {
     --site-announcement-bar-stripe-color1: #97f5d6;
     --site-announcement-bar-stripe-color2: #6de0bf;
   }
 
-  .announcement-banner[data-style="lava"] {
+  .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #fea3a3;
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
@@ -1506,17 +1506,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-style="default" data-name="0.2.2">
+<div class="announcement-banner" data-theme="default" data-id="0.2.2">
   <p><em>Version <strong>0.2.2</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2">here</a>.</em></p>
  <button type="button">X</button>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
-  const name = banner.getAttribute("data-name");
+  const id = banner.getAttribute("data-id");
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
   else {
     // move banner before page class element slibling
     const page = document.querySelector(".page");
@@ -1525,7 +1525,7 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     // add event listener to close button
     banner.querySelector("button").addEventListener("click", () => {
       banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ name, hide: true, message }));
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
     });
   }
 </script>
@@ -1619,17 +1619,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     --site-announcement-bar-stripe-color2: #d1d5db;
   }
 
-  .announcement-banner[data-style="ocean"] {
+  .announcement-banner[data-theme="ocean"] {
     --site-announcement-bar-stripe-color1: #86b2f9;
     --site-announcement-bar-stripe-color2: #7298ea;
   }
 
-  .announcement-banner[data-style="forest"] {
+  .announcement-banner[data-theme="forest"] {
     --site-announcement-bar-stripe-color1: #97f5d6;
     --site-announcement-bar-stripe-color2: #6de0bf;
   }
 
-  .announcement-banner[data-style="lava"] {
+  .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #fea3a3;
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
@@ -1658,17 +1658,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-style="default" data-name="0.2.2">
+<div class="announcement-banner" data-theme="default" data-id="0.2.2">
   <p><em>Version <strong>0.2.2</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2">here</a>.</em></p>
  <button type="button">X</button>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
-  const name = banner.getAttribute("data-name");
+  const id = banner.getAttribute("data-id");
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
   else {
     // move banner before page class element slibling
     const page = document.querySelector(".page");
@@ -1677,7 +1677,7 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     // add event listener to close button
     banner.querySelector("button").addEventListener("click", () => {
       banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ name, hide: true, message }));
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
     });
   }
 </script>
@@ -1775,17 +1775,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     --site-announcement-bar-stripe-color2: #d1d5db;
   }
 
-  .announcement-banner[data-style="ocean"] {
+  .announcement-banner[data-theme="ocean"] {
     --site-announcement-bar-stripe-color1: #86b2f9;
     --site-announcement-bar-stripe-color2: #7298ea;
   }
 
-  .announcement-banner[data-style="forest"] {
+  .announcement-banner[data-theme="forest"] {
     --site-announcement-bar-stripe-color1: #97f5d6;
     --site-announcement-bar-stripe-color2: #6de0bf;
   }
 
-  .announcement-banner[data-style="lava"] {
+  .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #fea3a3;
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
@@ -1814,17 +1814,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-style="default" data-name="0.2.2">
+<div class="announcement-banner" data-theme="default" data-id="0.2.2">
   <p><em>Version <strong>0.2.2</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2">here</a>.</em></p>
  <button type="button">X</button>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
-  const name = banner.getAttribute("data-name");
+  const id = banner.getAttribute("data-id");
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
   else {
     // move banner before page class element slibling
     const page = document.querySelector(".page");
@@ -1833,7 +1833,7 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     // add event listener to close button
     banner.querySelector("button").addEventListener("click", () => {
       banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ name, hide: true, message }));
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
     });
   }
 </script>
@@ -1917,17 +1917,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     --site-announcement-bar-stripe-color2: #d1d5db;
   }
 
-  .announcement-banner[data-style="ocean"] {
+  .announcement-banner[data-theme="ocean"] {
     --site-announcement-bar-stripe-color1: #86b2f9;
     --site-announcement-bar-stripe-color2: #7298ea;
   }
 
-  .announcement-banner[data-style="forest"] {
+  .announcement-banner[data-theme="forest"] {
     --site-announcement-bar-stripe-color1: #97f5d6;
     --site-announcement-bar-stripe-color2: #6de0bf;
   }
 
-  .announcement-banner[data-style="lava"] {
+  .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #fea3a3;
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
@@ -1956,17 +1956,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-style="default" data-name="0.2.2">
+<div class="announcement-banner" data-theme="default" data-id="0.2.2">
   <p><em>Version <strong>0.2.2</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2">here</a>.</em></p>
  <button type="button">X</button>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
-  const name = banner.getAttribute("data-name");
+  const id = banner.getAttribute("data-id");
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
   else {
     // move banner before page class element slibling
     const page = document.querySelector(".page");
@@ -1975,7 +1975,7 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     // add event listener to close button
     banner.querySelector("button").addEventListener("click", () => {
       banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ name, hide: true, message }));
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
     });
   }
 </script>
@@ -2062,17 +2062,17 @@ scroll-to-top.enable = true
     --site-announcement-bar-stripe-color2: #d1d5db;
   }
 
-  .announcement-banner[data-style="ocean"] {
+  .announcement-banner[data-theme="ocean"] {
     --site-announcement-bar-stripe-color1: #86b2f9;
     --site-announcement-bar-stripe-color2: #7298ea;
   }
 
-  .announcement-banner[data-style="forest"] {
+  .announcement-banner[data-theme="forest"] {
     --site-announcement-bar-stripe-color1: #97f5d6;
     --site-announcement-bar-stripe-color2: #6de0bf;
   }
 
-  .announcement-banner[data-style="lava"] {
+  .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #fea3a3;
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
@@ -2101,17 +2101,17 @@ scroll-to-top.enable = true
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-style="default" data-name="0.2.2">
+<div class="announcement-banner" data-theme="default" data-id="0.2.2">
   <p><em>Version <strong>0.2.2</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2">here</a>.</em></p>
  <button type="button">X</button>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
-  const name = banner.getAttribute("data-name");
+  const id = banner.getAttribute("data-id");
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
   else {
     // move banner before page class element slibling
     const page = document.querySelector(".page");
@@ -2120,31 +2120,31 @@ scroll-to-top.enable = true
     // add event listener to close button
     banner.querySelector("button").addEventListener("click", () => {
       banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ name, hide: true, message }));
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
     });
   }
 </script>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="options-6"><a class="header" href="#options-6">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
-<tr><td style="text-align: left">name</td><td style="text-align: left">Announcement name</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">id</td><td style="text-align: left">Announcement id</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">message</td><td style="text-align: left">Announcement message, supports markdown syntax</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
-<tr><td style="text-align: left">style</td><td style="text-align: left">Supports style: <strong>default</strong>, <strong>ocean</strong>, <strong>forest</strong>, <strong>lava</strong></td><td style="text-align: left">No</td><td style="text-align: left">default</td></tr>
+<tr><td style="text-align: left">theme</td><td style="text-align: left">Supports theme: <strong>default</strong>, <strong>ocean</strong>, <strong>forest</strong>, <strong>lava</strong></td><td style="text-align: left">No</td><td style="text-align: left">default</td></tr>
 </tbody></table>
 </div>
 <h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed announcement-banner name=&quot;0.2.2&quot; style=&quot;default&quot; message=&quot;*Version **0.2.2** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2).*&quot; %}
+<pre><code class="language-text">{% embed announcement-banner id=&quot;0.2.2&quot; theme=&quot;default&quot; message=&quot;*Version **0.2.2** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2).*&quot; %}
 </code></pre>
 <!-- embed ignore end -->
 <p>This book’s announcement banner is enabled, you can see it at the top of this page.</p>
 <p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file:</p>
 <pre><code class="language-toml">[preprocessor.embedify]
 announcement-banner.enable = true
-announcement-banner.name = &quot;0.2.2&quot;
-announcement-banner.style = &quot;default&quot;
+announcement-banner.id = &quot;0.2.2&quot;
+announcement-banner.theme = &quot;default&quot;
 announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2).*&quot;
 </code></pre>
-<p>Note that announcement banner name must be <strong>unique</strong>, otherwise it won’t be shown if there is another announcement banner with the same name when user closed it.</p>
+<p>Note that announcement banner id must be <strong>unique</strong>, otherwise it won’t be shown if there is another announcement banner with the same id when user closed it.</p>
 <style>
   .scroll-to-top {
     display: flex;
@@ -2218,17 +2218,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     --site-announcement-bar-stripe-color2: #d1d5db;
   }
 
-  .announcement-banner[data-style="ocean"] {
+  .announcement-banner[data-theme="ocean"] {
     --site-announcement-bar-stripe-color1: #86b2f9;
     --site-announcement-bar-stripe-color2: #7298ea;
   }
 
-  .announcement-banner[data-style="forest"] {
+  .announcement-banner[data-theme="forest"] {
     --site-announcement-bar-stripe-color1: #97f5d6;
     --site-announcement-bar-stripe-color2: #6de0bf;
   }
 
-  .announcement-banner[data-style="lava"] {
+  .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #fea3a3;
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
@@ -2257,17 +2257,17 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-style="default" data-name="0.2.2">
+<div class="announcement-banner" data-theme="default" data-id="0.2.2">
   <p><em>Version <strong>0.2.2</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.2">here</a>.</em></p>
  <button type="button">X</button>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
-  const name = banner.getAttribute("data-name");
+  const id = banner.getAttribute("data-id");
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.name === name) banner.remove();
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
   else {
     // move banner before page class element slibling
     const page = document.querySelector(".page");
@@ -2276,7 +2276,7 @@ announcement-banner.message = &quot;*Version **0.2.2** now has relased, check it
     // add event listener to close button
     banner.querySelector("button").addEventListener("click", () => {
       banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ name, hide: true, message }));
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
     });
   }
 </script>
