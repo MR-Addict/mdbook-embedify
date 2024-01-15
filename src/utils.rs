@@ -130,7 +130,8 @@ pub fn get_config_bool(config: &Config, key: &str, default: bool) -> bool {
 pub fn reply_supports(pre: &dyn Preprocessor) {
     // Handle support for the --supports command line argument
     let matches = Command::new("mdbook-embedify")
-        .about("A mdbook embed preprocessor")
+        .about("A mdbook embed preprocessor that embeds app to your book")
+        .version(env!("CARGO_PKG_VERSION"))
         .subcommand(
             Command::new("supports")
                 .arg(Arg::new("renderer").required(true))

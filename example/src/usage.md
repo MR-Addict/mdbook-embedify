@@ -10,6 +10,12 @@ cargo install mdbook-embedify
 
 Or you can download the binary from [releases](https://github.com/mr-addict/mdbook-embedify/releases) page.
 
+Then you can check your installation by running:
+
+```sh
+mdbook-embedify --version
+```
+
 After installation, add the following code to your `book.toml` file:
 
 ```toml
@@ -38,4 +44,4 @@ For example:
 
 <!-- embed ignore end -->
 
-You can see some examples at examples section.
+You can see some examples at apps section.
