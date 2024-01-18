@@ -51,7 +51,7 @@ heading-split-level = 3
 copy-js = true
 
 [preprocessor.embedify]
-command = "target/release/mdbook-embedify.exe"
+command = "target/release/mdbook-embedify"
 scroll-to-top.enable = true
 
 announcement-banner.enable = true

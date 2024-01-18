@@ -31,13 +31,10 @@ jobs:
           toolchain: stable
           override: true
 
-      - name: Install mdbook-embedify
-        run: |
-          cargo install mdbook-embedify --force --path .
-          cp example/assets/bin/* /usr/local/bin && chmod u+x /usr/local/bin/mdbook*
-
       - name: Build book
-        run: sed -i 54d example/book.toml && mdbook build example
+        run: |
+          cp example/assets/bin/* /usr/local/bin && chmod u+x /usr/local/bin/mdbook*
+          cargo build --release && mdbook build example
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
