@@ -52,6 +52,7 @@ copy-js = true
 
 [preprocessor.embedify]
 command = "target/release/mdbook-embedify"
+
 scroll-to-top.enable = true
 
 announcement-banner.enable = true

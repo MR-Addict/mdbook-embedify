@@ -1,8 +1,6 @@
 mod embed;
 mod utils;
-
 use crate::embed::Embed;
-
 use mdbook::preprocess::{CmdPreprocessor, Preprocessor};
 use std::io;
 
