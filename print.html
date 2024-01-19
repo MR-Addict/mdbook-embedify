@@ -208,7 +208,7 @@
   @media (min-width: 768px) {
     .scroll-to-top {
       bottom: 4rem;
-      right: calc(0.5rem + 90px + var(--page-padding));
+      right: calc(1.25rem + 90px + var(--page-padding));
     }
     .scroll-to-top:hover {
       background-color: var(--icons-hover);
@@ -238,10 +238,13 @@
     color: black;
     z-index: 150;
     display: flex;
+    position: relative;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    position: relative;
+    margin: 0;
+    padding: 1rem 3.5rem;
 
     background: repeating-linear-gradient(
       45deg,
@@ -274,17 +277,17 @@
 
   .announcement-banner p {
     margin: 0;
-    padding: 1rem 3.5rem;
-
-    /* make overflowd text to be dots */
+    padding: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .announcement-banner button {
+    top: 50%;
     right: 1rem;
     position: absolute;
+    transform: translateY(-50%);
 
     width: 3rem;
     height: 3rem;
@@ -298,7 +301,7 @@
 </style>
 <div class="announcement-banner" data-theme="default" data-id="0.2.3">
   <p><em>Version <strong>0.2.3</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.3">here</a>.</em></p>
- <button type="button">X</button>
+<p><button type="button">X</button></p>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
@@ -368,7 +371,7 @@
   @media (min-width: 768px) {
     .scroll-to-top {
       bottom: 4rem;
-      right: calc(0.5rem + 90px + var(--page-padding));
+      right: calc(1.25rem + 90px + var(--page-padding));
     }
     .scroll-to-top:hover {
       background-color: var(--icons-hover);
@@ -398,10 +401,13 @@
     color: black;
     z-index: 150;
     display: flex;
+    position: relative;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    position: relative;
+    margin: 0;
+    padding: 1rem 3.5rem;
 
     background: repeating-linear-gradient(
       45deg,
@@ -434,17 +440,17 @@
 
   .announcement-banner p {
     margin: 0;
-    padding: 1rem 3.5rem;
-
-    /* make overflowd text to be dots */
+    padding: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .announcement-banner button {
+    top: 50%;
     right: 1rem;
     position: absolute;
+    transform: translateY(-50%);
 
     width: 3rem;
     height: 3rem;
@@ -458,7 +464,7 @@
 </style>
 <div class="announcement-banner" data-theme="default" data-id="0.2.3">
   <p><em>Version <strong>0.2.3</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.3">here</a>.</em></p>
- <button type="button">X</button>
+<p><button type="button">X</button></p>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
@@ -519,7 +525,7 @@
   @media (min-width: 768px) {
     .scroll-to-top {
       bottom: 4rem;
-      right: calc(0.5rem + 90px + var(--page-padding));
+      right: calc(1.25rem + 90px + var(--page-padding));
     }
     .scroll-to-top:hover {
       background-color: var(--icons-hover);
@@ -549,10 +555,13 @@
     color: black;
     z-index: 150;
     display: flex;
+    position: relative;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    position: relative;
+    margin: 0;
+    padding: 1rem 3.5rem;
 
     background: repeating-linear-gradient(
       45deg,
@@ -585,17 +594,17 @@
 
   .announcement-banner p {
     margin: 0;
-    padding: 1rem 3.5rem;
-
-    /* make overflowd text to be dots */
+    padding: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .announcement-banner button {
+    top: 50%;
     right: 1rem;
     position: absolute;
+    transform: translateY(-50%);
 
     width: 3rem;
     height: 3rem;
@@ -609,7 +618,7 @@
 </style>
 <div class="announcement-banner" data-theme="default" data-id="0.2.3">
   <p><em>Version <strong>0.2.3</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.3">here</a>.</em></p>
- <button type="button">X</button>
+<p><button type="button">X</button></p>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
@@ -677,7 +686,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
   @media (min-width: 768px) {
     .scroll-to-top {
       bottom: 4rem;
-      right: calc(0.5rem + 90px + var(--page-padding));
+      right: calc(1.25rem + 90px + var(--page-padding));
     }
     .scroll-to-top:hover {
       background-color: var(--icons-hover);
@@ -707,10 +716,13 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
     color: black;
     z-index: 150;
     display: flex;
+    position: relative;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    position: relative;
+    margin: 0;
+    padding: 1rem 3.5rem;
 
     background: repeating-linear-gradient(
       45deg,
@@ -743,17 +755,17 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 
   .announcement-banner p {
     margin: 0;
-    padding: 1rem 3.5rem;
-
-    /* make overflowd text to be dots */
+    padding: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .announcement-banner button {
+    top: 50%;
     right: 1rem;
     position: absolute;
+    transform: translateY(-50%);
 
     width: 3rem;
     height: 3rem;
@@ -767,7 +779,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 </style>
 <div class="announcement-banner" data-theme="default" data-id="0.2.3">
   <p><em>Version <strong>0.2.3</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.3">here</a>.</em></p>
- <button type="button">X</button>
+<p><button type="button">X</button></p>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
@@ -823,7 +835,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
   @media (min-width: 768px) {
     .scroll-to-top {
       bottom: 4rem;
-      right: calc(0.5rem + 90px + var(--page-padding));
+      right: calc(1.25rem + 90px + var(--page-padding));
     }
     .scroll-to-top:hover {
       background-color: var(--icons-hover);
@@ -853,10 +865,13 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
     color: black;
     z-index: 150;
     display: flex;
+    position: relative;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    position: relative;
+    margin: 0;
+    padding: 1rem 3.5rem;
 
     background: repeating-linear-gradient(
       45deg,
@@ -889,17 +904,17 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 
   .announcement-banner p {
     margin: 0;
-    padding: 1rem 3.5rem;
-
-    /* make overflowd text to be dots */
+    padding: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .announcement-banner button {
+    top: 50%;
     right: 1rem;
     position: absolute;
+    transform: translateY(-50%);
 
     width: 3rem;
     height: 3rem;
@@ -913,7 +928,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 </style>
 <div class="announcement-banner" data-theme="default" data-id="0.2.3">
   <p><em>Version <strong>0.2.3</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.3">here</a>.</em></p>
- <button type="button">X</button>
+<p><button type="button">X</button></p>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
@@ -970,7 +985,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
   @media (min-width: 768px) {
     .scroll-to-top {
       bottom: 4rem;
-      right: calc(0.5rem + 90px + var(--page-padding));
+      right: calc(1.25rem + 90px + var(--page-padding));
     }
     .scroll-to-top:hover {
       background-color: var(--icons-hover);
@@ -1000,10 +1015,13 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
     color: black;
     z-index: 150;
     display: flex;
+    position: relative;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    position: relative;
+    margin: 0;
+    padding: 1rem 3.5rem;
 
     background: repeating-linear-gradient(
       45deg,
@@ -1036,17 +1054,17 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 
   .announcement-banner p {
     margin: 0;
-    padding: 1rem 3.5rem;
-
-    /* make overflowd text to be dots */
+    padding: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .announcement-banner button {
+    top: 50%;
     right: 1rem;
     position: absolute;
+    transform: translateY(-50%);
 
     width: 3rem;
     height: 3rem;
@@ -1060,7 +1078,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 </style>
 <div class="announcement-banner" data-theme="default" data-id="0.2.3">
   <p><em>Version <strong>0.2.3</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.3">here</a>.</em></p>
- <button type="button">X</button>
+<p><button type="button">X</button></p>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
@@ -1124,7 +1142,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
   @media (min-width: 768px) {
     .scroll-to-top {
       bottom: 4rem;
-      right: calc(0.5rem + 90px + var(--page-padding));
+      right: calc(1.25rem + 90px + var(--page-padding));
     }
     .scroll-to-top:hover {
       background-color: var(--icons-hover);
@@ -1154,10 +1172,13 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
     color: black;
     z-index: 150;
     display: flex;
+    position: relative;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    position: relative;
+    margin: 0;
+    padding: 1rem 3.5rem;
 
     background: repeating-linear-gradient(
       45deg,
@@ -1190,17 +1211,17 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 
   .announcement-banner p {
     margin: 0;
-    padding: 1rem 3.5rem;
-
-    /* make overflowd text to be dots */
+    padding: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .announcement-banner button {
+    top: 50%;
     right: 1rem;
     position: absolute;
+    transform: translateY(-50%);
 
     width: 3rem;
     height: 3rem;
@@ -1214,7 +1235,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 </style>
 <div class="announcement-banner" data-theme="default" data-id="0.2.3">
   <p><em>Version <strong>0.2.3</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.3">here</a>.</em></p>
- <button type="button">X</button>
+<p><button type="button">X</button></p>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
@@ -1277,7 +1298,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
   @media (min-width: 768px) {
     .scroll-to-top {
       bottom: 4rem;
-      right: calc(0.5rem + 90px + var(--page-padding));
+      right: calc(1.25rem + 90px + var(--page-padding));
     }
     .scroll-to-top:hover {
       background-color: var(--icons-hover);
@@ -1307,10 +1328,13 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
     color: black;
     z-index: 150;
     display: flex;
+    position: relative;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    position: relative;
+    margin: 0;
+    padding: 1rem 3.5rem;
 
     background: repeating-linear-gradient(
       45deg,
@@ -1343,17 +1367,17 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 
   .announcement-banner p {
     margin: 0;
-    padding: 1rem 3.5rem;
-
-    /* make overflowd text to be dots */
+    padding: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .announcement-banner button {
+    top: 50%;
     right: 1rem;
     position: absolute;
+    transform: translateY(-50%);
 
     width: 3rem;
     height: 3rem;
@@ -1367,7 +1391,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 </style>
 <div class="announcement-banner" data-theme="default" data-id="0.2.3">
   <p><em>Version <strong>0.2.3</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.3">here</a>.</em></p>
- <button type="button">X</button>
+<p><button type="button">X</button></p>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
@@ -1430,7 +1454,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
   @media (min-width: 768px) {
     .scroll-to-top {
       bottom: 4rem;
-      right: calc(0.5rem + 90px + var(--page-padding));
+      right: calc(1.25rem + 90px + var(--page-padding));
     }
     .scroll-to-top:hover {
       background-color: var(--icons-hover);
@@ -1460,10 +1484,13 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
     color: black;
     z-index: 150;
     display: flex;
+    position: relative;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    position: relative;
+    margin: 0;
+    padding: 1rem 3.5rem;
 
     background: repeating-linear-gradient(
       45deg,
@@ -1496,17 +1523,17 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 
   .announcement-banner p {
     margin: 0;
-    padding: 1rem 3.5rem;
-
-    /* make overflowd text to be dots */
+    padding: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .announcement-banner button {
+    top: 50%;
     right: 1rem;
     position: absolute;
+    transform: translateY(-50%);
 
     width: 3rem;
     height: 3rem;
@@ -1520,7 +1547,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 </style>
 <div class="announcement-banner" data-theme="default" data-id="0.2.3">
   <p><em>Version <strong>0.2.3</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.3">here</a>.</em></p>
- <button type="button">X</button>
+<p><button type="button">X</button></p>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
@@ -1583,7 +1610,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
   @media (min-width: 768px) {
     .scroll-to-top {
       bottom: 4rem;
-      right: calc(0.5rem + 90px + var(--page-padding));
+      right: calc(1.25rem + 90px + var(--page-padding));
     }
     .scroll-to-top:hover {
       background-color: var(--icons-hover);
@@ -1613,10 +1640,13 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
     color: black;
     z-index: 150;
     display: flex;
+    position: relative;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    position: relative;
+    margin: 0;
+    padding: 1rem 3.5rem;
 
     background: repeating-linear-gradient(
       45deg,
@@ -1649,17 +1679,17 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 
   .announcement-banner p {
     margin: 0;
-    padding: 1rem 3.5rem;
-
-    /* make overflowd text to be dots */
+    padding: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .announcement-banner button {
+    top: 50%;
     right: 1rem;
     position: absolute;
+    transform: translateY(-50%);
 
     width: 3rem;
     height: 3rem;
@@ -1673,7 +1703,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 </style>
 <div class="announcement-banner" data-theme="default" data-id="0.2.3">
   <p><em>Version <strong>0.2.3</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.3">here</a>.</em></p>
- <button type="button">X</button>
+<p><button type="button">X</button></p>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
@@ -1740,7 +1770,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
   @media (min-width: 768px) {
     .scroll-to-top {
       bottom: 4rem;
-      right: calc(0.5rem + 90px + var(--page-padding));
+      right: calc(1.25rem + 90px + var(--page-padding));
     }
     .scroll-to-top:hover {
       background-color: var(--icons-hover);
@@ -1770,10 +1800,13 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
     color: black;
     z-index: 150;
     display: flex;
+    position: relative;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    position: relative;
+    margin: 0;
+    padding: 1rem 3.5rem;
 
     background: repeating-linear-gradient(
       45deg,
@@ -1806,17 +1839,17 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 
   .announcement-banner p {
     margin: 0;
-    padding: 1rem 3.5rem;
-
-    /* make overflowd text to be dots */
+    padding: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .announcement-banner button {
+    top: 50%;
     right: 1rem;
     position: absolute;
+    transform: translateY(-50%);
 
     width: 3rem;
     height: 3rem;
@@ -1830,7 +1863,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 </style>
 <div class="announcement-banner" data-theme="default" data-id="0.2.3">
   <p><em>Version <strong>0.2.3</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.3">here</a>.</em></p>
- <button type="button">X</button>
+<p><button type="button">X</button></p>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
@@ -1883,7 +1916,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
   @media (min-width: 768px) {
     .scroll-to-top {
       bottom: 4rem;
-      right: calc(0.5rem + 90px + var(--page-padding));
+      right: calc(1.25rem + 90px + var(--page-padding));
     }
     .scroll-to-top:hover {
       background-color: var(--icons-hover);
@@ -1913,10 +1946,13 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
     color: black;
     z-index: 150;
     display: flex;
+    position: relative;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    position: relative;
+    margin: 0;
+    padding: 1rem 3.5rem;
 
     background: repeating-linear-gradient(
       45deg,
@@ -1949,17 +1985,17 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 
   .announcement-banner p {
     margin: 0;
-    padding: 1rem 3.5rem;
-
-    /* make overflowd text to be dots */
+    padding: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .announcement-banner button {
+    top: 50%;
     right: 1rem;
     position: absolute;
+    transform: translateY(-50%);
 
     width: 3rem;
     height: 3rem;
@@ -1973,7 +2009,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 </style>
 <div class="announcement-banner" data-theme="default" data-id="0.2.3">
   <p><em>Version <strong>0.2.3</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.3">here</a>.</em></p>
- <button type="button">X</button>
+<p><button type="button">X</button></p>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
@@ -2029,7 +2065,7 @@ scroll-to-top.enable = true
   @media (min-width: 768px) {
     .scroll-to-top {
       bottom: 4rem;
-      right: calc(0.5rem + 90px + var(--page-padding));
+      right: calc(1.25rem + 90px + var(--page-padding));
     }
     .scroll-to-top:hover {
       background-color: var(--icons-hover);
@@ -2059,10 +2095,13 @@ scroll-to-top.enable = true
     color: black;
     z-index: 150;
     display: flex;
+    position: relative;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    position: relative;
+    margin: 0;
+    padding: 1rem 3.5rem;
 
     background: repeating-linear-gradient(
       45deg,
@@ -2095,17 +2134,17 @@ scroll-to-top.enable = true
 
   .announcement-banner p {
     margin: 0;
-    padding: 1rem 3.5rem;
-
-    /* make overflowd text to be dots */
+    padding: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .announcement-banner button {
+    top: 50%;
     right: 1rem;
     position: absolute;
+    transform: translateY(-50%);
 
     width: 3rem;
     height: 3rem;
@@ -2119,7 +2158,7 @@ scroll-to-top.enable = true
 </style>
 <div class="announcement-banner" data-theme="default" data-id="0.2.3">
   <p><em>Version <strong>0.2.3</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.3">here</a>.</em></p>
- <button type="button">X</button>
+<p><button type="button">X</button></p>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
@@ -2186,7 +2225,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
   @media (min-width: 768px) {
     .scroll-to-top {
       bottom: 4rem;
-      right: calc(0.5rem + 90px + var(--page-padding));
+      right: calc(1.25rem + 90px + var(--page-padding));
     }
     .scroll-to-top:hover {
       background-color: var(--icons-hover);
@@ -2216,10 +2255,13 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
     color: black;
     z-index: 150;
     display: flex;
+    position: relative;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    position: relative;
+    margin: 0;
+    padding: 1rem 3.5rem;
 
     background: repeating-linear-gradient(
       45deg,
@@ -2252,17 +2294,17 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 
   .announcement-banner p {
     margin: 0;
-    padding: 1rem 3.5rem;
-
-    /* make overflowd text to be dots */
+    padding: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .announcement-banner button {
+    top: 50%;
     right: 1rem;
     position: absolute;
+    transform: translateY(-50%);
 
     width: 3rem;
     height: 3rem;
@@ -2276,7 +2318,7 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
 </style>
 <div class="announcement-banner" data-theme="default" data-id="0.2.3">
   <p><em>Version <strong>0.2.3</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.3">here</a>.</em></p>
- <button type="button">X</button>
+<p><button type="button">X</button></p>
 </div>
 <script>
   const banner = document.querySelector(".announcement-banner");
