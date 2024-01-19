@@ -78,9 +78,8 @@ impl Preprocessor for Embed {
     fn run(&self, ctx: &PreprocessorContext, mut book: Book) -> Result<Book, Error> {
         let config = &ctx.config;
 
-        let scroll_to_top_enabled = utils::get_config_bool(config, "scroll-to-top.enable", false);
-        let announcement_banner_enabled =
-            utils::get_config_bool(config, "announcement-banner.enable", false);
+        let scroll_to_top = utils::get_config_bool(config, "scroll-to-top.enable");
+        let announcement_banner = utils::get_config_bool(config, "announcement-banner.enable");
 
         book.for_each_mut(|item| {
             if let mdbook::book::BookItem::Chapter(chapter) = item {
@@ -89,12 +88,12 @@ impl Preprocessor for Embed {
                     chapter.content = render_general_embeds(chapter.content.clone());
                 }
                 // render the global scroll to top button
-                if scroll_to_top_enabled {
+                if scroll_to_top {
                     let template = utils::render_template("scroll-to-top", &Vec::new());
                     chapter.content.push_str(&template);
                 }
                 // render the global announcement banner
-                if announcement_banner_enabled {
+                if announcement_banner {
                     let template = render_announcement_banner(config);
                     chapter.content.push_str(&template);
                 }

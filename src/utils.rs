@@ -9,19 +9,19 @@ use std::process;
 #[folder = "templates/"]
 struct Assets;
 
+pub fn get_config_bool(config: &Config, key: &str) -> bool {
+    config
+        .get(format!("preprocessor.embedify.{}", key).as_str())
+        .and_then(|v| v.as_bool())
+        .unwrap_or(false)
+}
+
 pub fn get_config_string(config: &Config, key: &str, default: &str) -> String {
     config
         .get(format!("preprocessor.embedify.{}", key).as_str())
         .and_then(|v| v.as_str())
         .unwrap_or(default)
         .to_string()
-}
-
-pub fn get_config_bool(config: &Config, key: &str, default: bool) -> bool {
-    config
-        .get(format!("preprocessor.embedify.{}", key).as_str())
-        .and_then(|v| v.as_bool())
-        .unwrap_or(default)
 }
 
 pub fn parse_options(options_str: &str) -> Vec<(String, String)> {
@@ -61,17 +61,10 @@ pub fn render_template(app: &str, placeholders: &[(String, String)]) -> String {
             replacement = html.into();
         }
 
-        // replace {% key %} with replacement
-        let re = Regex::new(&format!(r"\{{% {}\ %\}}", key)).unwrap();
-        let replaced_result = re.replace_all(&result, replacement.clone()).to_string();
-        // replacement was successful
-        if replaced_result != result {
-            result = replaced_result
-        } else {
-            //replacement does not success, try replace {% key|default %} with replacement
-            let re = Regex::new(&format!(r"\{{% {}\|[^%]* %\}}", key)).unwrap();
-            result = re.replace_all(&result, replacement).to_string();
-        }
+        // replace {% key %} or {% key|default %} with replacement
+        let pattern = format!(r"\{{% {}\|?[^|}}]* %\}}", key);
+        let re = Regex::new(&pattern).unwrap();
+        result = re.replace_all(&result, replacement).to_string();
     }
 
     // replace {% key|default %} with default value

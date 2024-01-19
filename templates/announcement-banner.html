@@ -3,10 +3,13 @@
     color: black;
     z-index: 150;
     display: flex;
+    position: relative;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    position: relative;
+    margin: 0;
+    padding: 1rem 3.5rem;
 
     background: repeating-linear-gradient(
       45deg,
@@ -39,17 +42,17 @@
 
   .announcement-banner p {
     margin: 0;
-    padding: 1rem 3.5rem;
-
-    /* make overflowd text to be dots */
+    padding: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .announcement-banner button {
+    top: 50%;
     right: 1rem;
     position: absolute;
+    transform: translateY(-50%);
 
     width: 3rem;
     height: 3rem;
@@ -63,7 +66,8 @@
 </style>
 
 <div class="announcement-banner" data-theme="{% theme|default %}" data-id="{% id %}">
-  {% message %} <button type="button">X</button>
+  {% message %}
+  <button type="button">X</button>
 </div>
 
 <script>
