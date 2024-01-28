@@ -191,16 +191,16 @@
 </div>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed announcement-banner id=&quot;0.2.3&quot; theme=&quot;default&quot; message=&quot;*Version **0.2.3** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.3).*&quot; %}
+<pre><code class="language-text">{% embed announcement-banner id=&quot;0.2.4&quot; theme=&quot;default&quot; message=&quot;*Version **0.2.4** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.4).*&quot; %}
 </code></pre>
 <!-- embed ignore end -->
 <p>This book’s announcement banner is enabled, you can see it at the top of this page.</p>
 <p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file:</p>
 <pre><code class="language-toml">[preprocessor.embedify]
 announcement-banner.enable = true
-announcement-banner.id = &quot;0.2.3&quot;
+announcement-banner.id = &quot;0.2.4&quot;
 announcement-banner.theme = &quot;default&quot;
-announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.3).*&quot;
+announcement-banner.message = &quot;*Version **0.2.4** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.4).*&quot;
 </code></pre>
 <p>Note that announcement banner id must be <strong>unique</strong>, otherwise it won’t be shown if there is another announcement banner with the same id when user closed it.</p>
 <style>
@@ -296,9 +296,11 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
   }
 
   .announcement-banner p {
+    width: 100%;
     margin: 0;
     padding: 0;
     overflow: hidden;
+    text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
@@ -319,8 +321,8 @@ announcement-banner.message = &quot;*Version **0.2.3** now has relased, check it
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-theme="default" data-id="0.2.3">
-  <p><em>Version <strong>0.2.3</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.3">here</a>.</em></p>
+<div class="announcement-banner" data-theme="default" data-id="0.2.4">
+  <p><em>Version <strong>0.2.4</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.4">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
