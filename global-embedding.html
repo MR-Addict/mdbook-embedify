@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Global Configuration - Mdbook Embedify</title>
+        <title>Global Embedding - Mdbook Embedify</title>
 
 
         <!-- Custom HTML head -->
@@ -91,7 +91,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li class="chapter-item expanded "><a href="ignore-embeds.html"><strong aria-hidden="true">3.</strong> Ignore Embeds</a></li><li class="chapter-item expanded "><a href="global-configuration.html" class="active"><strong aria-hidden="true">4.</strong> Global Configuration</a></li><li class="chapter-item expanded "><a href="third-party/intro.html"><strong aria-hidden="true">5.</strong> Third Party Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="third-party/gist.html"><strong aria-hidden="true">5.1.</strong> Gist</a></li><li class="chapter-item "><a href="third-party/youtube.html"><strong aria-hidden="true">5.2.</strong> Youtube</a></li><li class="chapter-item "><a href="third-party/bilibili.html"><strong aria-hidden="true">5.3.</strong> Bilibili</a></li><li class="chapter-item "><a href="third-party/codesandbox.html"><strong aria-hidden="true">5.4.</strong> Codesandbox</a></li><li class="chapter-item "><a href="third-party/stackblitz.html"><strong aria-hidden="true">5.5.</strong> Stackblitz</a></li><li class="chapter-item "><a href="third-party/codepen.html"><strong aria-hidden="true">5.6.</strong> Codepen</a></li></ol></li><li class="chapter-item expanded "><a href="local/intro.html"><strong aria-hidden="true">6.</strong> Local Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="local/scroll-to-top.html"><strong aria-hidden="true">6.1.</strong> Scroll to Top</a></li><li class="chapter-item "><a href="local/announcement-banner.html"><strong aria-hidden="true">6.2.</strong> Announcement Banner</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li class="chapter-item expanded "><a href="ignore-embeds.html"><strong aria-hidden="true">3.</strong> Ignore Embeds</a></li><li class="chapter-item expanded "><a href="global-embedding.html" class="active"><strong aria-hidden="true">4.</strong> Global Embedding</a></li><li class="chapter-item expanded "><a href="third-party/intro.html"><strong aria-hidden="true">5.</strong> Third Party Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="third-party/gist.html"><strong aria-hidden="true">5.1.</strong> Gist</a></li><li class="chapter-item "><a href="third-party/youtube.html"><strong aria-hidden="true">5.2.</strong> Youtube</a></li><li class="chapter-item "><a href="third-party/bilibili.html"><strong aria-hidden="true">5.3.</strong> Bilibili</a></li><li class="chapter-item "><a href="third-party/codesandbox.html"><strong aria-hidden="true">5.4.</strong> Codesandbox</a></li><li class="chapter-item "><a href="third-party/stackblitz.html"><strong aria-hidden="true">5.5.</strong> Stackblitz</a></li><li class="chapter-item "><a href="third-party/codepen.html"><strong aria-hidden="true">5.6.</strong> Codepen</a></li></ol></li><li class="chapter-item expanded "><a href="local/intro.html"><strong aria-hidden="true">6.</strong> Local Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="local/scroll-to-top.html"><strong aria-hidden="true">6.1.</strong> Scroll to Top</a></li><li class="chapter-item "><a href="local/announcement-banner.html"><strong aria-hidden="true">6.2.</strong> Announcement Banner</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -153,7 +153,7 @@
                         <a href="https://github.com/mr-addict/mdbook-embedify" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/mr-addict/mdbook-embedify/edit/main/example/src/global-configuration.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/mr-addict/mdbook-embedify/edit/main/example/src/global-embedding.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -182,8 +182,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="global-configuration"><a class="header" href="#global-configuration">Global Configuration</a></h1>
-<p>Some apps allow you to automatically add to every chapter. You can do this by modifying <code>book.toml</code> file to enable them.</p>
+                        <h1 id="global-embedding"><a class="header" href="#global-embedding">Global Embedding</a></h1>
+<p>Some apps allow you to automatically embed to every chapter. You can do this by modifying <code>book.toml</code> file to enable them.</p>
 <p>For example:</p>
 <pre><code class="language-toml">[preprocessor.embedify]
 scroll-to-top.enable = true
