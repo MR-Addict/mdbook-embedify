@@ -1,6 +1,6 @@
-# Global Configuration
+# Global Embedding
 
-Some apps allow you to automatically add to every chapter. You can do this by modifying `book.toml` file to enable them.
+Some apps allow you to automatically embed to every chapter. You can do this by modifying `book.toml` file to enable them.
 
 For example:
 

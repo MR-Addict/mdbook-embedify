@@ -3,7 +3,7 @@
 - [Intro](intro.md)
 - [Usage](usage.md)
 - [Ignore Embeds](ignore-embeds.md)
-- [Global Configuration](global-configuration.md)
+- [Global Embedding](global-embedding.md)
 - [Third Party Apps](third-party/intro.md)
   - [Gist](third-party/gist.md)
   - [Youtube](third-party/youtube.md)
