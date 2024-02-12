@@ -1,9 +1,13 @@
+# Announcement Banner
+
+Announcement banner allows you put important messages at the top of the page. It supports **markdown** syntax so that you can easily customize the message.
+
 ## Options
 
 | Option  | Description                                                  | Required | Default |
 | :------ | :----------------------------------------------------------- | :------- | :------ |
 | id      | Announcement id                                              | Yes      | - -     |
-| message | Announcement message, supports markdown syntax               | Yes      | - -     |
+| message | Announcement message, markdown supported                     | Yes      | - -     |
 | theme   | Supports theme: **default**, **ocean**, **forest**, **lava** | No       | default |
 
 ## Example

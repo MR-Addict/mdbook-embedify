@@ -1,3 +1,7 @@
+# Giscus
+
+[Giscus](https://giscus.app) is a comments system powered by GitHub Discussions. Let visitors leave comments and reactions on your website via GitHub! Heavily inspired by [utterances](https://github.com/utterance/utterances).
+
 ## Options
 
 | Option            | Description      | Required | Default |
@@ -37,15 +41,9 @@ giscus.lang = "en"
 
 ## Good to know
 
-Giscus is a comments system powered by GitHub Discussions. It's a great way to have discussions about our book. But it's only supported while your app is deployed. You can't see it if you open it with **file://** protocol.
+Giscus is only supported while your app is deployed. You can't see it if you open it with **file://** protocol which is mdbook default behavior.
 
-The simple way is to serve your book with a static server. For example:
-
-**python installed**
-
-```sh
-python -m http.server --directory book
-```
+The simple way is to serve your book with a static server so that you can see the giscus by opening it with **http://** protocol. Typically, there is no problem if you deploy your book to GitHub Pages or Netlify. But if you want to see it locally, you can use below commands to serve your book.
 
 **node.js installed**
 
@@ -53,4 +51,8 @@ python -m http.server --directory book
 npx serve book
 ```
 
-You can find more giscus configurations at [Giscus App](https://giscus.app/).
+**python installed**
+
+```sh
+python -m http.server --directory book
+```

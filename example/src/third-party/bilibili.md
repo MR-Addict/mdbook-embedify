@@ -1,3 +1,7 @@
+# Bilibili
+
+[Bilibili](https://www.bilibili.com) is a Chinese video sharing website based in Shanghai, themed around animation, comic, and games (ACG), where users can submit, view, and add commentary subtitles on videos.
+
 ## Options
 
 | Option | Description | Required | Default |

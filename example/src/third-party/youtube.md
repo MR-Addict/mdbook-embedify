@@ -1,3 +1,7 @@
+# Youtube
+
+[YouTube](https://www.youtube.com) is an online video sharing and social media platform.
+
 ## Options
 
 | Option | Description | Required | Default |

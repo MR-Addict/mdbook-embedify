@@ -1,3 +1,7 @@
+# Codepen
+
+[Codepen](https://codepen.io) is a social development environment for front-end designers and developers. It's the best place to build and deploy a website, show off your work, build test cases, and find inspiration.
+
 ## Options
 
 | Option | Description   | Required | Default |
