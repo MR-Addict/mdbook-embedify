@@ -29,7 +29,7 @@ giscus.enable = true
 giscus.repo = "MR-Addict/mdbook-embedify"
 giscus.repo-id = "R_kgDOLCxX0Q"
 giscus.category = "General"
-giscus.category-id = "DIC_kwDOLCxX0c4CdGx"
+giscus.category-id = "DIC_kwDOLCxX0c4CdGx-"
 giscus.reactions-enabled = "1"
 giscus.theme = "light"
 giscus.lang = "en"
@@ -52,3 +52,5 @@ python -m http.server --directory book
 ```sh
 npx serve book
 ```
+
+You can find more giscus configurations at [Giscus App](https://giscus.app/).
