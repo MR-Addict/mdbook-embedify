@@ -211,15 +211,17 @@ giscus.reactions-enabled = &quot;1&quot;
 giscus.theme = &quot;light&quot;
 giscus.lang = &quot;en&quot;
 </code></pre>
-<h2 id="good-to-know"><a class="header" href="#good-to-know">Good to know</a></h2>
-<p>Giscus is only supported while your app is deployed. You can’t see it if you open it with <strong>file://</strong> protocol which is mdbook default behavior.</p>
-<p>The simple way is to serve your book with a static server so that you can see the giscus by opening it with <strong>http://</strong> protocol. Typically, there is no problem if you deploy your book to GitHub Pages or Netlify. But if you want to see it locally, you can use below commands to serve your book.</p>
+<h2 id="refuse-to-connect"><a class="header" href="#refuse-to-connect">Refuse to Connect</a></h2>
+<p>Giscus will refuse to connect if you build and preview your book with <strong>file://</strong> protocol. The easiest solution is to use some static server so that you can preview your book with <strong>http://</strong> protocol.</p>
+<p>For exampe:</p>
 <p><strong>node.js installed</strong></p>
 <pre><code class="language-sh">npx serve book
 </code></pre>
+<p>Which will serve your book at <a href="http://localhost:3000">http://localhost:3000</a>.</p>
 <p><strong>python installed</strong></p>
 <pre><code class="language-sh">python -m http.server --directory book
 </code></pre>
+<p>Which will serve your book at <a href="http://localhost:8080">http://localhost:8080</a>.</p>
 <style>
   .scroll-to-top {
     display: flex;
@@ -274,7 +276,6 @@ giscus.lang = &quot;en&quot;
   .announcement-banner {
     color: black;
     z-index: 150;
-    display: flex;
     position: relative;
     flex-direction: column;
     justify-content: center;
@@ -338,7 +339,7 @@ giscus.lang = &quot;en&quot;
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-theme="default" data-id="0.2.4">
+<div style="display: none" class="announcement-banner" data-theme="default" data-id="0.2.4">
   <p><em>Version <strong>0.2.4</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.4">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
@@ -348,8 +349,10 @@ giscus.lang = &quot;en&quot;
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.id === id) banner.remove();
-  else {
+  if (!localData || localData.id !== id || localData.hide !== true) {
+    // update banner display style to be flex
+    banner.style.display = "flex";
+
     // move banner before page class element slibling
     const page = document.querySelector(".page");
     page.parentNode.insertBefore(banner, page);

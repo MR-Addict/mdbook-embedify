@@ -267,7 +267,6 @@ giscus.lang = &quot;en&quot;
   .announcement-banner {
     color: black;
     z-index: 150;
-    display: flex;
     position: relative;
     flex-direction: column;
     justify-content: center;
@@ -331,7 +330,7 @@ giscus.lang = &quot;en&quot;
     background-color: transparent;
   }
 </style>
-<div class="announcement-banner" data-theme="default" data-id="0.2.4">
+<div style="display: none" class="announcement-banner" data-theme="default" data-id="0.2.4">
   <p><em>Version <strong>0.2.4</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.4">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
@@ -341,8 +340,10 @@ giscus.lang = &quot;en&quot;
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.id === id) banner.remove();
-  else {
+  if (!localData || localData.id !== id || localData.hide !== true) {
+    // update banner display style to be flex
+    banner.style.display = "flex";
+
     // move banner before page class element slibling
     const page = document.querySelector(".page");
     page.parentNode.insertBefore(banner, page);
