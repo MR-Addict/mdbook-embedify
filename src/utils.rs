@@ -29,7 +29,7 @@ pub fn parse_options(options_str: &str) -> Vec<(String, String)> {
     let options_str = format!("<p {}/>", options_str);
     // parse the options and warn if there is an syntax error
     let doc = roxmltree::Document::parse(&options_str)
-        .expect("Failed to parse options, please check your syntax");
+        .expect("Failed to parse embed options, please check your syntax");
     let mut options = Vec::new();
     for attr in doc.root_element().attributes() {
         options.push((attr.name().to_owned(), attr.value().to_owned()));

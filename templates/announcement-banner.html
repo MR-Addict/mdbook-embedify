@@ -2,7 +2,6 @@
   .announcement-banner {
     color: black;
     z-index: 150;
-    display: flex;
     position: relative;
     flex-direction: column;
     justify-content: center;
@@ -67,7 +66,7 @@
   }
 </style>
 
-<div class="announcement-banner" data-theme="{% theme|default %}" data-id="{% id %}">
+<div style="display: none" class="announcement-banner" data-theme="{% theme|default %}" data-id="{% id %}">
   {% markdown(message) %}
   <button type="button">X</button>
 </div>
@@ -78,8 +77,10 @@
   const message = banner.querySelector("p").textContent;
   const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (localData && localData.hide === true && localData.id === id) banner.remove();
-  else {
+  if (!localData || localData.id !== id || localData.hide !== true) {
+    // update banner display style to be flex
+    banner.style.display = "flex";
+
     // move banner before page class element slibling
     const page = document.querySelector(".page");
     page.parentNode.insertBefore(banner, page);
