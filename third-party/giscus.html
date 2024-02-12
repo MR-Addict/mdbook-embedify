@@ -91,7 +91,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li class="chapter-item expanded "><a href="../ignore-embeds.html"><strong aria-hidden="true">3.</strong> Ignore Embeds</a></li><li class="chapter-item expanded "><a href="../global-embedding.html"><strong aria-hidden="true">4.</strong> Global Embedding</a></li><li class="chapter-item expanded "><a href="../third-party/intro.html"><strong aria-hidden="true">5.</strong> Third Party Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../third-party/gist.html"><strong aria-hidden="true">5.1.</strong> Gist</a></li><li class="chapter-item "><a href="../third-party/youtube.html"><strong aria-hidden="true">5.2.</strong> Youtube</a></li><li class="chapter-item expanded "><a href="../third-party/giscus.html" class="active"><strong aria-hidden="true">5.3.</strong> Giscus</a></li><li class="chapter-item "><a href="../third-party/bilibili.html"><strong aria-hidden="true">5.4.</strong> Bilibili</a></li><li class="chapter-item "><a href="../third-party/codesandbox.html"><strong aria-hidden="true">5.5.</strong> Codesandbox</a></li><li class="chapter-item "><a href="../third-party/stackblitz.html"><strong aria-hidden="true">5.6.</strong> Stackblitz</a></li><li class="chapter-item "><a href="../third-party/codepen.html"><strong aria-hidden="true">5.7.</strong> Codepen</a></li></ol></li><li class="chapter-item expanded "><a href="../local/intro.html"><strong aria-hidden="true">6.</strong> Local Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../local/scroll-to-top.html"><strong aria-hidden="true">6.1.</strong> Scroll to Top</a></li><li class="chapter-item "><a href="../local/announcement-banner.html"><strong aria-hidden="true">6.2.</strong> Announcement Banner</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li class="chapter-item expanded "><a href="../ignore-embeds.html"><strong aria-hidden="true">3.</strong> Ignore Embeds</a></li><li class="chapter-item expanded "><a href="../global-embedding.html"><strong aria-hidden="true">4.</strong> Global Embedding</a></li><li class="chapter-item expanded "><a href="../third-party/intro.html"><strong aria-hidden="true">5.</strong> Third Party Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../third-party/gist.html"><strong aria-hidden="true">5.1.</strong> Gist</a></li><li class="chapter-item expanded "><a href="../third-party/giscus.html" class="active"><strong aria-hidden="true">5.2.</strong> Giscus</a></li><li class="chapter-item "><a href="../third-party/youtube.html"><strong aria-hidden="true">5.3.</strong> Youtube</a></li><li class="chapter-item "><a href="../third-party/codepen.html"><strong aria-hidden="true">5.4.</strong> Codepen</a></li><li class="chapter-item "><a href="../third-party/stackblitz.html"><strong aria-hidden="true">5.5.</strong> Stackblitz</a></li><li class="chapter-item "><a href="../third-party/codesandbox.html"><strong aria-hidden="true">5.6.</strong> Codesandbox</a></li><li class="chapter-item "><a href="../third-party/bilibili.html"><strong aria-hidden="true">5.7.</strong> Bilibili</a></li></ol></li><li class="chapter-item expanded "><a href="../local/intro.html"><strong aria-hidden="true">6.</strong> Local Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../local/scroll-to-top.html"><strong aria-hidden="true">6.1.</strong> Scroll to Top</a></li><li class="chapter-item "><a href="../local/announcement-banner.html"><strong aria-hidden="true">6.2.</strong> Announcement Banner</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -182,7 +182,9 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="options"><a class="header" href="#options">Options</a></h2>
+                        <h1 id="giscus"><a class="header" href="#giscus">Giscus</a></h1>
+<p><a href="https://giscus.app">Giscus</a> is a comments system powered by GitHub Discussions. Let visitors leave comments and reactions on your website via GitHub! Heavily inspired by <a href="https://github.com/utterance/utterances">utterances</a>.</p>
+<h2 id="options"><a class="header" href="#options">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">repo</td><td style="text-align: left">Repository</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">repo-id</td><td style="text-align: left">Repository ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
@@ -210,15 +212,14 @@ giscus.theme = &quot;light&quot;
 giscus.lang = &quot;en&quot;
 </code></pre>
 <h2 id="good-to-know"><a class="header" href="#good-to-know">Good to know</a></h2>
-<p>Giscus is a comments system powered by GitHub Discussions. It’s a great way to have discussions about our book. But it’s only supported while your app is deployed. You can’t see it if you open it with <strong>file://</strong> protocol.</p>
-<p>The simple way is to serve your book with a static server. For example:</p>
-<p><strong>python installed</strong></p>
-<pre><code class="language-sh">python -m http.server --directory book
-</code></pre>
+<p>Giscus is only supported while your app is deployed. You can’t see it if you open it with <strong>file://</strong> protocol which is mdbook default behavior.</p>
+<p>The simple way is to serve your book with a static server so that you can see the giscus by opening it with <strong>http://</strong> protocol. Typically, there is no problem if you deploy your book to GitHub Pages or Netlify. But if you want to see it locally, you can use below commands to serve your book.</p>
 <p><strong>node.js installed</strong></p>
 <pre><code class="language-sh">npx serve book
 </code></pre>
-<p>You can find more giscus configurations at <a href="https://giscus.app/">Giscus App</a>.</p>
+<p><strong>python installed</strong></p>
+<pre><code class="language-sh">python -m http.server --directory book
+</code></pre>
 <style>
   .scroll-to-top {
     display: flex;
@@ -387,11 +388,11 @@ giscus.lang = &quot;en&quot;
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../third-party/youtube.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../third-party/gist.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../third-party/bilibili.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../third-party/youtube.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -401,11 +402,11 @@ giscus.lang = &quot;en&quot;
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../third-party/youtube.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../third-party/gist.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../third-party/bilibili.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../third-party/youtube.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

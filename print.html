@@ -92,7 +92,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li class="chapter-item expanded "><a href="ignore-embeds.html"><strong aria-hidden="true">3.</strong> Ignore Embeds</a></li><li class="chapter-item expanded "><a href="global-embedding.html"><strong aria-hidden="true">4.</strong> Global Embedding</a></li><li class="chapter-item expanded "><a href="third-party/intro.html"><strong aria-hidden="true">5.</strong> Third Party Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="third-party/gist.html"><strong aria-hidden="true">5.1.</strong> Gist</a></li><li class="chapter-item "><a href="third-party/youtube.html"><strong aria-hidden="true">5.2.</strong> Youtube</a></li><li class="chapter-item "><a href="third-party/giscus.html"><strong aria-hidden="true">5.3.</strong> Giscus</a></li><li class="chapter-item "><a href="third-party/bilibili.html"><strong aria-hidden="true">5.4.</strong> Bilibili</a></li><li class="chapter-item "><a href="third-party/codesandbox.html"><strong aria-hidden="true">5.5.</strong> Codesandbox</a></li><li class="chapter-item "><a href="third-party/stackblitz.html"><strong aria-hidden="true">5.6.</strong> Stackblitz</a></li><li class="chapter-item "><a href="third-party/codepen.html"><strong aria-hidden="true">5.7.</strong> Codepen</a></li></ol></li><li class="chapter-item expanded "><a href="local/intro.html"><strong aria-hidden="true">6.</strong> Local Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="local/scroll-to-top.html"><strong aria-hidden="true">6.1.</strong> Scroll to Top</a></li><li class="chapter-item "><a href="local/announcement-banner.html"><strong aria-hidden="true">6.2.</strong> Announcement Banner</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li class="chapter-item expanded "><a href="ignore-embeds.html"><strong aria-hidden="true">3.</strong> Ignore Embeds</a></li><li class="chapter-item expanded "><a href="global-embedding.html"><strong aria-hidden="true">4.</strong> Global Embedding</a></li><li class="chapter-item expanded "><a href="third-party/intro.html"><strong aria-hidden="true">5.</strong> Third Party Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="third-party/gist.html"><strong aria-hidden="true">5.1.</strong> Gist</a></li><li class="chapter-item "><a href="third-party/giscus.html"><strong aria-hidden="true">5.2.</strong> Giscus</a></li><li class="chapter-item "><a href="third-party/youtube.html"><strong aria-hidden="true">5.3.</strong> Youtube</a></li><li class="chapter-item "><a href="third-party/codepen.html"><strong aria-hidden="true">5.4.</strong> Codepen</a></li><li class="chapter-item "><a href="third-party/stackblitz.html"><strong aria-hidden="true">5.5.</strong> Stackblitz</a></li><li class="chapter-item "><a href="third-party/codesandbox.html"><strong aria-hidden="true">5.6.</strong> Codesandbox</a></li><li class="chapter-item "><a href="third-party/bilibili.html"><strong aria-hidden="true">5.7.</strong> Bilibili</a></li></ol></li><li class="chapter-item expanded "><a href="local/intro.html"><strong aria-hidden="true">6.</strong> Local Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="local/scroll-to-top.html"><strong aria-hidden="true">6.1.</strong> Scroll to Top</a></li><li class="chapter-item "><a href="local/announcement-banner.html"><strong aria-hidden="true">6.2.</strong> Announcement Banner</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -909,11 +909,12 @@ giscus.lang = &quot;en&quot;
 <p>Third party apps are apps that are hosted on third party sites. Below are all supported third party apps and its detailed options.</p>
 <ul>
 <li><a href="third-party/gist.html">Gist</a></li>
+<li><a href="third-party/giscus.html">Giscus</a></li>
 <li><a href="third-party/youtube.html">Youtube</a></li>
-<li><a href="third-party/bilibili.html">Bilibili</a></li>
-<li><a href="third-party/codesandbox.html">Codesandbox</a></li>
-<li><a href="third-party/stackblitz.html">Stackblitz</a></li>
 <li><a href="third-party/codepen.html">Codepen</a></li>
+<li><a href="third-party/stackblitz.html">Stackblitz</a></li>
+<li><a href="third-party/codesandbox.html">Codesandbox</a></li>
+<li><a href="third-party/bilibili.html">Bilibili</a></li>
 </ul>
 <style>
   .scroll-to-top {
@@ -1078,7 +1079,9 @@ giscus.lang = &quot;en&quot;
   crossorigin="anonymous"
   async
 ></script>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="options"><a class="header" href="#options">Options</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="gist"><a class="header" href="#gist">Gist</a></h1>
+<p><a href="https://gist.github.com">Gist</a> is a simple way to share snippets and pastes with others. All gists are Git repositories, so they are automatically versioned, forkable and usable from Git.</p>
+<h2 id="options"><a class="header" href="#options">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Gist ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 </tbody></table>
@@ -1252,12 +1255,215 @@ giscus.lang = &quot;en&quot;
   crossorigin="anonymous"
   async
 ></script>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="options-1"><a class="header" href="#options-1">Options</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="giscus"><a class="header" href="#giscus">Giscus</a></h1>
+<p><a href="https://giscus.app">Giscus</a> is a comments system powered by GitHub Discussions. Let visitors leave comments and reactions on your website via GitHub! Heavily inspired by <a href="https://github.com/utterance/utterances">utterances</a>.</p>
+<h2 id="options-1"><a class="header" href="#options-1">Options</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
+<tr><td style="text-align: left">repo</td><td style="text-align: left">Repository</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">repo-id</td><td style="text-align: left">Repository ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">category</td><td style="text-align: left">Category</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">category-id</td><td style="text-align: left">Category ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">reactions-enabled</td><td style="text-align: left">Enable reactions</td><td style="text-align: left">No</td><td style="text-align: left">1</td></tr>
+<tr><td style="text-align: left">theme</td><td style="text-align: left">Theme</td><td style="text-align: left">No</td><td style="text-align: left">light</td></tr>
+<tr><td style="text-align: left">lang</td><td style="text-align: left">Language</td><td style="text-align: left">No</td><td style="text-align: left">en</td></tr>
+</tbody></table>
+</div>
+<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<!-- embed ignore begin -->
+<pre><code class="language-text">{% embed giscus repo=&quot;MR-Addict/mdbook-embedify&quot; repo-id=&quot;R_kgDOLCxX0Q&quot; category=&quot;General&quot; category-id=&quot;DIC_kwDOLCxX0c4CdGx-&quot; theme=&quot;light&quot; %}
+</code></pre>
+<!-- embed ignore end -->
+<p>This book’s giscus is enabled, you can see it at the bottom of this page. And you can also have a try by commenting below.</p>
+<p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file:</p>
+<pre><code class="language-toml">giscus.enable = true
+giscus.repo = &quot;MR-Addict/mdbook-embedify&quot;
+giscus.repo-id = &quot;R_kgDOLCxX0Q&quot;
+giscus.category = &quot;General&quot;
+giscus.category-id = &quot;DIC_kwDOLCxX0c4CdGx-&quot;
+giscus.reactions-enabled = &quot;1&quot;
+giscus.theme = &quot;light&quot;
+giscus.lang = &quot;en&quot;
+</code></pre>
+<h2 id="good-to-know"><a class="header" href="#good-to-know">Good to know</a></h2>
+<p>Giscus is only supported while your app is deployed. You can’t see it if you open it with <strong>file://</strong> protocol which is mdbook default behavior.</p>
+<p>The simple way is to serve your book with a static server so that you can see the giscus by opening it with <strong>http://</strong> protocol. Typically, there is no problem if you deploy your book to GitHub Pages or Netlify. But if you want to see it locally, you can use below commands to serve your book.</p>
+<p><strong>node.js installed</strong></p>
+<pre><code class="language-sh">npx serve book
+</code></pre>
+<p><strong>python installed</strong></p>
+<pre><code class="language-sh">python -m http.server --directory book
+</code></pre>
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      bottom: 4rem;
+      right: calc(1.25rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+<p><button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+<path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+</svg>
+</button></p>
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div class="announcement-banner" data-theme="default" data-id="0.2.4">
+  <p><em>Version <strong>0.2.4</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.4">here</a>.</em></p>
+<p><button type="button">X</button></p>
+</div>
+<script>
+  const banner = document.querySelector(".announcement-banner");
+  const id = banner.getAttribute("data-id");
+  const message = banner.querySelector("p").textContent;
+  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
+  else {
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+    });
+  }
+</script>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx-"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="youtube"><a class="header" href="#youtube">Youtube</a></h1>
+<p><a href="https://www.youtube.com">YouTube</a> is an online video sharing and social media platform.</p>
+<h2 id="options-2"><a class="header" href="#options-2">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 </tbody></table>
 </div>
-<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed youtube id=&quot;DyTCOwB0DVw&quot; %}
 </code></pre>
@@ -1433,222 +1639,28 @@ giscus.lang = &quot;en&quot;
   crossorigin="anonymous"
   async
 ></script>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="options-2"><a class="header" href="#options-2">Options</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="codepen"><a class="header" href="#codepen">Codepen</a></h1>
+<p><a href="https://codepen.io">Codepen</a> is a social development environment for front-end designers and developers. It’s the best place to build and deploy a website, show off your work, build test cases, and find inspiration.</p>
+<h2 id="options-3"><a class="header" href="#options-3">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
-<tr><td style="text-align: left">repo</td><td style="text-align: left">Repository</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
-<tr><td style="text-align: left">repo-id</td><td style="text-align: left">Repository ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
-<tr><td style="text-align: left">category</td><td style="text-align: left">Category</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
-<tr><td style="text-align: left">category-id</td><td style="text-align: left">Category ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
-<tr><td style="text-align: left">reactions-enabled</td><td style="text-align: left">Enable reactions</td><td style="text-align: left">No</td><td style="text-align: left">1</td></tr>
-<tr><td style="text-align: left">theme</td><td style="text-align: left">Theme</td><td style="text-align: left">No</td><td style="text-align: left">light</td></tr>
-<tr><td style="text-align: left">lang</td><td style="text-align: left">Language</td><td style="text-align: left">No</td><td style="text-align: left">en</td></tr>
-</tbody></table>
-</div>
-<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
-<!-- embed ignore begin -->
-<pre><code class="language-text">{% embed giscus repo=&quot;MR-Addict/mdbook-embedify&quot; repo-id=&quot;R_kgDOLCxX0Q&quot; category=&quot;General&quot; category-id=&quot;DIC_kwDOLCxX0c4CdGx-&quot; theme=&quot;light&quot; %}
-</code></pre>
-<!-- embed ignore end -->
-<p>This book’s giscus is enabled, you can see it at the bottom of this page. And you can also have a try by commenting below.</p>
-<p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file:</p>
-<pre><code class="language-toml">giscus.enable = true
-giscus.repo = &quot;MR-Addict/mdbook-embedify&quot;
-giscus.repo-id = &quot;R_kgDOLCxX0Q&quot;
-giscus.category = &quot;General&quot;
-giscus.category-id = &quot;DIC_kwDOLCxX0c4CdGx-&quot;
-giscus.reactions-enabled = &quot;1&quot;
-giscus.theme = &quot;light&quot;
-giscus.lang = &quot;en&quot;
-</code></pre>
-<h2 id="good-to-know"><a class="header" href="#good-to-know">Good to know</a></h2>
-<p>Giscus is a comments system powered by GitHub Discussions. It’s a great way to have discussions about our book. But it’s only supported while your app is deployed. You can’t see it if you open it with <strong>file://</strong> protocol.</p>
-<p>The simple way is to serve your book with a static server. For example:</p>
-<p><strong>python installed</strong></p>
-<pre><code class="language-sh">python -m http.server --directory book
-</code></pre>
-<p><strong>node.js installed</strong></p>
-<pre><code class="language-sh">npx serve book
-</code></pre>
-<p>You can find more giscus configurations at <a href="https://giscus.app/">Giscus App</a>.</p>
-<style>
-  .scroll-to-top {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    position: fixed;
-    padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
-
-    border: none;
-    border-radius: 50%;
-    color: #fff;
-    background-color: var(--icons);
-
-    z-index: 999;
-    cursor: pointer;
-  }
-  .scroll-to-top.hidden {
-    display: none;
-  }
-  @media (min-width: 768px) {
-    .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
-    }
-  }
-</style>
-<p><button
-  type="button"
-  aria-label="scroll-top"
-  class="scroll-to-top hidden"
-  onclick="window.scroll({top: 0, behavior: 'smooth'})"
->
-<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
-<path
-      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
-    />
-</svg>
-</button></p>
-<script>
-  window.addEventListener("scroll", () => {
-    const button = document.querySelector(".scroll-to-top");
-    button.classList.toggle("hidden", window.scrollY < 200);
-  });
-</script>
-<style>
-  .announcement-banner {
-    color: black;
-    z-index: 150;
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    margin: 0;
-    padding: 1rem 3.5rem;
-
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
-<div class="announcement-banner" data-theme="default" data-id="0.2.4">
-  <p><em>Version <strong>0.2.4</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.4">here</a>.</em></p>
-<p><button type="button">X</button></p>
-</div>
-<script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (localData && localData.hide === true && localData.id === id) banner.remove();
-  else {
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
-<style>
-  .giscus {
-    margin-top: 6rem;
-  }
-</style>
-<script
-  src="https://giscus.app/client.js"
-  data-repo="MR-Addict/mdbook-embedify"
-  data-repo-id="R_kgDOLCxX0Q"
-  data-category="General"
-  data-category-id="DIC_kwDOLCxX0c4CdGx-"
-  data-mapping="title"
-  data-strict="0"
-  data-reactions-enabled="1"
-  data-emit-metadata="0"
-  data-input-position="bottom"
-  data-theme="light"
-  data-lang="en"
-  data-loading="lazy"
-  crossorigin="anonymous"
-  async
-></script>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="options-3"><a class="header" href="#options-3">Options</a></h2>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
-<tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">user</td><td style="text-align: left">username</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">slug</td><td style="text-align: left">Project slug</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">height</td><td style="text-align: left">Iframe height</td><td style="text-align: left">No</td><td style="text-align: left">600</td></tr>
+<tr><td style="text-align: left">theme</td><td style="text-align: left">Iframe theme</td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
 </tbody></table>
 </div>
 <h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed bilibili id=&quot;BV1uT4y1P7CX&quot; %}
+<pre><code class="language-text">{% embed codepen user=&quot;MR-Addict&quot; slug=&quot;NWBOqKw&quot; height=&quot;600&quot; theme=&quot;dark&quot; %}
 </code></pre>
 <!-- embed ignore end -->
 <iframe
   allowfullscreen
   loading="lazy"
-  name="bilibili"
-  src="https://player.bilibili.com/player.html?bvid=BV1uT4y1P7CX&danmaku=0"
-  style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
+  name="codepen"
+  height="600"
+  style="width: 100%; border: none; border-radius: 1rem; background: black"
+  src="https://codepen.io/MR-Addict/embed/NWBOqKw?default-tab=result&theme-id=dark"
 ></iframe>
 <style>
   .scroll-to-top {
@@ -1813,193 +1825,15 @@ giscus.lang = &quot;en&quot;
   crossorigin="anonymous"
   async
 ></script>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="options-4"><a class="header" href="#options-4">Options</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="stackblitz"><a class="header" href="#stackblitz">Stackblitz</a></h1>
+<p><a href="https://stackblitz.com">Stackblitz</a> is an instant fullstack web IDE for the JavaScript ecosystem. It’s powered by <a href="https://blog.stackblitz.com/posts/introducing-webcontainers">WebContainers</a>, the first WebAssembly-based operating system which boots the Node.js environment in milliseconds, securely within your browser tab.</p>
+<h2 id="options-4"><a class="header" href="#options-4">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Project ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Iframe theme</td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
 </tbody></table>
 </div>
 <h2 id="example-4"><a class="header" href="#example-4">Example</a></h2>
-<!-- embed ignore begin -->
-<pre><code class="language-text">{% embed codesandbox id=&quot;ke8wx&quot; theme=&quot;light&quot; %}
-</code></pre>
-<!-- embed ignore end -->
-<iframe
-  loading="lazy"
-  name="sandbox"
-  src="https://codesandbox.io/embed/ke8wx?&theme=light"
-  style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
-></iframe>
-<style>
-  .scroll-to-top {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    position: fixed;
-    padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
-
-    border: none;
-    border-radius: 50%;
-    color: #fff;
-    background-color: var(--icons);
-
-    z-index: 999;
-    cursor: pointer;
-  }
-  .scroll-to-top.hidden {
-    display: none;
-  }
-  @media (min-width: 768px) {
-    .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
-    }
-  }
-</style>
-<p><button
-  type="button"
-  aria-label="scroll-top"
-  class="scroll-to-top hidden"
-  onclick="window.scroll({top: 0, behavior: 'smooth'})"
->
-<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
-<path
-      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
-    />
-</svg>
-</button></p>
-<script>
-  window.addEventListener("scroll", () => {
-    const button = document.querySelector(".scroll-to-top");
-    button.classList.toggle("hidden", window.scrollY < 200);
-  });
-</script>
-<style>
-  .announcement-banner {
-    color: black;
-    z-index: 150;
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    margin: 0;
-    padding: 1rem 3.5rem;
-
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
-<div class="announcement-banner" data-theme="default" data-id="0.2.4">
-  <p><em>Version <strong>0.2.4</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.4">here</a>.</em></p>
-<p><button type="button">X</button></p>
-</div>
-<script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (localData && localData.hide === true && localData.id === id) banner.remove();
-  else {
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
-<style>
-  .giscus {
-    margin-top: 6rem;
-  }
-</style>
-<script
-  src="https://giscus.app/client.js"
-  data-repo="MR-Addict/mdbook-embedify"
-  data-repo-id="R_kgDOLCxX0Q"
-  data-category="General"
-  data-category-id="DIC_kwDOLCxX0c4CdGx-"
-  data-mapping="title"
-  data-strict="0"
-  data-reactions-enabled="1"
-  data-emit-metadata="0"
-  data-input-position="bottom"
-  data-theme="light"
-  data-lang="en"
-  data-loading="lazy"
-  crossorigin="anonymous"
-  async
-></script>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="options-5"><a class="header" href="#options-5">Options</a></h2>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
-<tr><td style="text-align: left">id</td><td style="text-align: left">Project ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
-<tr><td style="text-align: left">theme</td><td style="text-align: left">Iframe theme</td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
-</tbody></table>
-</div>
-<h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed stackblitz id=&quot;vitejs-vite-y8mdxg&quot; theme=&quot;light&quot; %}
 </code></pre>
@@ -2173,26 +2007,206 @@ giscus.lang = &quot;en&quot;
   crossorigin="anonymous"
   async
 ></script>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="options-6"><a class="header" href="#options-6">Options</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="codesandbox"><a class="header" href="#codesandbox">Codesandbox</a></h1>
+<p><a href="https://codesandbox.io">Codesandbox</a> is an online code editor that allows you to create and share web applications. It is particularly useful for web developers who want to work on React, Vue, Angular, or any other front-end libraries.</p>
+<h2 id="options-5"><a class="header" href="#options-5">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
-<tr><td style="text-align: left">user</td><td style="text-align: left">username</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
-<tr><td style="text-align: left">slug</td><td style="text-align: left">Project slug</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
-<tr><td style="text-align: left">height</td><td style="text-align: left">Iframe height</td><td style="text-align: left">No</td><td style="text-align: left">600</td></tr>
+<tr><td style="text-align: left">id</td><td style="text-align: left">Project ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Iframe theme</td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
+</tbody></table>
+</div>
+<h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
+<!-- embed ignore begin -->
+<pre><code class="language-text">{% embed codesandbox id=&quot;ke8wx&quot; theme=&quot;light&quot; %}
+</code></pre>
+<!-- embed ignore end -->
+<iframe
+  loading="lazy"
+  name="sandbox"
+  src="https://codesandbox.io/embed/ke8wx?&theme=light"
+  style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
+></iframe>
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      bottom: 4rem;
+      right: calc(1.25rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+<p><button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+<path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+</svg>
+</button></p>
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div class="announcement-banner" data-theme="default" data-id="0.2.4">
+  <p><em>Version <strong>0.2.4</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.4">here</a>.</em></p>
+<p><button type="button">X</button></p>
+</div>
+<script>
+  const banner = document.querySelector(".announcement-banner");
+  const id = banner.getAttribute("data-id");
+  const message = banner.querySelector("p").textContent;
+  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
+  else {
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+    });
+  }
+</script>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx-"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bilibili"><a class="header" href="#bilibili">Bilibili</a></h1>
+<p><a href="https://www.bilibili.com">Bilibili</a> is a Chinese video sharing website based in Shanghai, themed around animation, comic, and games (ACG), where users can submit, view, and add commentary subtitles on videos.</p>
+<h2 id="options-6"><a class="header" href="#options-6">Options</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
+<tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 </tbody></table>
 </div>
 <h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed codepen user=&quot;MR-Addict&quot; slug=&quot;NWBOqKw&quot; height=&quot;600&quot; theme=&quot;dark&quot; %}
+<pre><code class="language-text">{% embed bilibili id=&quot;BV1uT4y1P7CX&quot; %}
 </code></pre>
 <!-- embed ignore end -->
 <iframe
   allowfullscreen
   loading="lazy"
-  name="codepen"
-  height="600"
-  style="width: 100%; border: none; border-radius: 1rem; background: black"
-  src="https://codepen.io/MR-Addict/embed/NWBOqKw?default-tab=result&theme-id=dark"
+  name="bilibili"
+  src="https://player.bilibili.com/player.html?bvid=BV1uT4y1P7CX&danmaku=0"
+  style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
 ></iframe>
 <style>
   .scroll-to-top {
@@ -2527,7 +2541,11 @@ giscus.lang = &quot;en&quot;
   crossorigin="anonymous"
   async
 ></script>
-<div style="break-before: page; page-break-before: always;"></div><p>Scroll to top button app has no options. You can use it like this:</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="scroll-to-top-button"><a class="header" href="#scroll-to-top-button">Scroll to top button</a></h1>
+<p>Scroll to top button allows users to smoothly scroll back to the top of the page.</p>
+<h2 id="options-7"><a class="header" href="#options-7">Options</a></h2>
+<p>Scroll to top button app has no options.</p>
+<h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed scroll-to-top %}
 </code></pre>
@@ -2700,14 +2718,16 @@ scroll-to-top.enable = true
   crossorigin="anonymous"
   async
 ></script>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="options-7"><a class="header" href="#options-7">Options</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="announcement-banner"><a class="header" href="#announcement-banner">Announcement Banner</a></h1>
+<p>Announcement banner allows you put important messages at the top of the page. It supports <strong>markdown</strong> syntax so that you can easily customize the message.</p>
+<h2 id="options-8"><a class="header" href="#options-8">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Announcement id</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
-<tr><td style="text-align: left">message</td><td style="text-align: left">Announcement message, supports markdown syntax</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">message</td><td style="text-align: left">Announcement message, markdown supported</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Supports theme: <strong>default</strong>, <strong>ocean</strong>, <strong>forest</strong>, <strong>lava</strong></td><td style="text-align: left">No</td><td style="text-align: left">default</td></tr>
 </tbody></table>
 </div>
-<h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
+<h2 id="example-8"><a class="header" href="#example-8">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed announcement-banner id=&quot;0.2.4&quot; theme=&quot;default&quot; message=&quot;*Version **0.2.4** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.4).*&quot; %}
 </code></pre>
