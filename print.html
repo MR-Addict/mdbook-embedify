@@ -92,7 +92,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li class="chapter-item expanded "><a href="ignore-embeds.html"><strong aria-hidden="true">3.</strong> Ignore Embeds</a></li><li class="chapter-item expanded "><a href="global-embedding.html"><strong aria-hidden="true">4.</strong> Global Embedding</a></li><li class="chapter-item expanded "><a href="third-party/intro.html"><strong aria-hidden="true">5.</strong> Third Party Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="third-party/gist.html"><strong aria-hidden="true">5.1.</strong> Gist</a></li><li class="chapter-item "><a href="third-party/youtube.html"><strong aria-hidden="true">5.2.</strong> Youtube</a></li><li class="chapter-item "><a href="third-party/bilibili.html"><strong aria-hidden="true">5.3.</strong> Bilibili</a></li><li class="chapter-item "><a href="third-party/codesandbox.html"><strong aria-hidden="true">5.4.</strong> Codesandbox</a></li><li class="chapter-item "><a href="third-party/stackblitz.html"><strong aria-hidden="true">5.5.</strong> Stackblitz</a></li><li class="chapter-item "><a href="third-party/codepen.html"><strong aria-hidden="true">5.6.</strong> Codepen</a></li></ol></li><li class="chapter-item expanded "><a href="local/intro.html"><strong aria-hidden="true">6.</strong> Local Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="local/scroll-to-top.html"><strong aria-hidden="true">6.1.</strong> Scroll to Top</a></li><li class="chapter-item "><a href="local/announcement-banner.html"><strong aria-hidden="true">6.2.</strong> Announcement Banner</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li class="chapter-item expanded "><a href="ignore-embeds.html"><strong aria-hidden="true">3.</strong> Ignore Embeds</a></li><li class="chapter-item expanded "><a href="global-embedding.html"><strong aria-hidden="true">4.</strong> Global Embedding</a></li><li class="chapter-item expanded "><a href="third-party/intro.html"><strong aria-hidden="true">5.</strong> Third Party Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="third-party/gist.html"><strong aria-hidden="true">5.1.</strong> Gist</a></li><li class="chapter-item "><a href="third-party/youtube.html"><strong aria-hidden="true">5.2.</strong> Youtube</a></li><li class="chapter-item "><a href="third-party/giscus.html"><strong aria-hidden="true">5.3.</strong> Giscus</a></li><li class="chapter-item "><a href="third-party/bilibili.html"><strong aria-hidden="true">5.4.</strong> Bilibili</a></li><li class="chapter-item "><a href="third-party/codesandbox.html"><strong aria-hidden="true">5.5.</strong> Codesandbox</a></li><li class="chapter-item "><a href="third-party/stackblitz.html"><strong aria-hidden="true">5.6.</strong> Stackblitz</a></li><li class="chapter-item "><a href="third-party/codepen.html"><strong aria-hidden="true">5.7.</strong> Codepen</a></li></ol></li><li class="chapter-item expanded "><a href="local/intro.html"><strong aria-hidden="true">6.</strong> Local Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="local/scroll-to-top.html"><strong aria-hidden="true">6.1.</strong> Scroll to Top</a></li><li class="chapter-item "><a href="local/announcement-banner.html"><strong aria-hidden="true">6.2.</strong> Announcement Banner</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -324,6 +324,28 @@
     });
   }
 </script>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
 <p>There are two ways to install this plugin.</p>
 <p>You can install it from crates.io using cargo.</p>
@@ -489,6 +511,28 @@
     });
   }
 </script>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ignore-embeds"><a class="header" href="#ignore-embeds">Ignore Embeds</a></h1>
 <p>Sometimes you may want preprocessor to ignore some embeds.</p>
 <p>You can do it by wrapping content that you want to ignore with below two comments:</p>
@@ -645,6 +689,28 @@
     });
   }
 </script>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="global-embedding"><a class="header" href="#global-embedding">Global Embedding</a></h1>
 <p>Some apps allow you to automatically embed to every chapter. You can do this by modifying <code>book.toml</code> file to enable them.</p>
 <p>For example:</p>
@@ -665,6 +731,15 @@ announcement-banner.enable = true
 announcement-banner.id = &quot;0.2.4&quot;
 announcement-banner.theme = &quot;default&quot;
 announcement-banner.message = &quot;*Version **0.2.4** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.4).*&quot;
+
+giscus.enable = true
+giscus.repo = &quot;MR-Addict/mdbook-embedify&quot;
+giscus.repo-id = &quot;R_kgDOLCxX0Q&quot;
+giscus.category = &quot;General&quot;
+giscus.category-id = &quot;DIC_kwDOLCxX0c4CdGx-&quot;
+giscus.reactions-enabled = &quot;1&quot;
+giscus.theme = &quot;light&quot;
+giscus.lang = &quot;en&quot;
 </code></pre>
 <p>You can see more details about each app at its own page.</p>
 <style>
@@ -808,6 +883,28 @@ announcement-banner.message = &quot;*Version **0.2.4** now has relased, check it
     });
   }
 </script>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="third-party-apps"><a class="header" href="#third-party-apps">Third Party Apps</a></h1>
 <p>Third party apps are apps that are hosted on third party sites. Below are all supported third party apps and its detailed options.</p>
 <ul>
@@ -959,6 +1056,28 @@ announcement-banner.message = &quot;*Version **0.2.4** now has relased, check it
     });
   }
 </script>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="options"><a class="header" href="#options">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Gist ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
@@ -1111,6 +1230,28 @@ announcement-banner.message = &quot;*Version **0.2.4** now has relased, check it
     });
   }
 </script>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="options-1"><a class="header" href="#options-1">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
@@ -1270,12 +1411,233 @@ announcement-banner.message = &quot;*Version **0.2.4** now has relased, check it
     });
   }
 </script>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="options-2"><a class="header" href="#options-2">Options</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
+<tr><td style="text-align: left">repo</td><td style="text-align: left">Repository</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">repo-id</td><td style="text-align: left">Repository ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">category</td><td style="text-align: left">Category</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">category-id</td><td style="text-align: left">Category ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">reactions-enabled</td><td style="text-align: left">Enable reactions</td><td style="text-align: left">No</td><td style="text-align: left">1</td></tr>
+<tr><td style="text-align: left">theme</td><td style="text-align: left">Theme</td><td style="text-align: left">No</td><td style="text-align: left">light</td></tr>
+<tr><td style="text-align: left">lang</td><td style="text-align: left">Language</td><td style="text-align: left">No</td><td style="text-align: left">en</td></tr>
+</tbody></table>
+</div>
+<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
+<!-- embed ignore begin -->
+<pre><code class="language-text">{% embed giscus repo=&quot;MR-Addict/mdbook-embedify&quot; repo-id=&quot;R_kgDOLCxX0Q&quot; category=&quot;General&quot; category-id=&quot;DIC_kwDOLCxX0c4CdGx-&quot; theme=&quot;light&quot; %}
+</code></pre>
+<!-- embed ignore end -->
+<p>This book’s giscus is enabled, you can see it at the bottom of this page. And you can also have a try by commenting below.</p>
+<p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file:</p>
+<pre><code class="language-toml">giscus.enable = true
+giscus.repo = &quot;MR-Addict/mdbook-embedify&quot;
+giscus.repo-id = &quot;R_kgDOLCxX0Q&quot;
+giscus.category = &quot;General&quot;
+giscus.category-id = &quot;DIC_kwDOLCxX0c4CdGx&quot;
+giscus.reactions-enabled = &quot;1&quot;
+giscus.theme = &quot;light&quot;
+giscus.lang = &quot;en&quot;
+</code></pre>
+<h2 id="good-to-know"><a class="header" href="#good-to-know">Good to know</a></h2>
+<p>Giscus is a comments system powered by GitHub Discussions. It’s a great way to have discussions about our book. But it’s only supported while your app is deployed. You can’t see it if you open it with <strong>file://</strong> protocol.</p>
+<p>The simple way is to serve your book with a static server. For example:</p>
+<p><strong>python installed</strong></p>
+<pre><code class="language-sh">python -m http.server --directory book
+</code></pre>
+<p><strong>node.js installed</strong></p>
+<pre><code class="language-sh">npx serve book
+</code></pre>
+<style>
+  .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 1.25rem;
+    right: calc(1.25rem + var(--page-padding));
+
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    background-color: var(--icons);
+
+    z-index: 999;
+    cursor: pointer;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .scroll-to-top {
+      bottom: 4rem;
+      right: calc(1.25rem + 90px + var(--page-padding));
+    }
+    .scroll-to-top:hover {
+      background-color: var(--icons-hover);
+    }
+  }
+</style>
+<p><button
+  type="button"
+  aria-label="scroll-top"
+  class="scroll-to-top hidden"
+  onclick="window.scroll({top: 0, behavior: 'smooth'})"
+>
+<svg height="18" width="18" fill="currentColor" viewBox="0 0 512 512">
+<path
+      d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+    />
+</svg>
+</button></p>
+<script>
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div class="announcement-banner" data-theme="default" data-id="0.2.4">
+  <p><em>Version <strong>0.2.4</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.4">here</a>.</em></p>
+<p><button type="button">X</button></p>
+</div>
+<script>
+  const banner = document.querySelector(".announcement-banner");
+  const id = banner.getAttribute("data-id");
+  const message = banner.querySelector("p").textContent;
+  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+
+  if (localData && localData.hide === true && localData.id === id) banner.remove();
+  else {
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+    });
+  }
+</script>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="options-3"><a class="header" href="#options-3">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 </tbody></table>
 </div>
-<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
+<h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed bilibili id=&quot;BV1uT4y1P7CX&quot; %}
 </code></pre>
@@ -1428,13 +1790,35 @@ announcement-banner.message = &quot;*Version **0.2.4** now has relased, check it
     });
   }
 </script>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="options-3"><a class="header" href="#options-3">Options</a></h2>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="options-4"><a class="header" href="#options-4">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Project ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Iframe theme</td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
 </tbody></table>
 </div>
-<h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
+<h2 id="example-4"><a class="header" href="#example-4">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed codesandbox id=&quot;ke8wx&quot; theme=&quot;light&quot; %}
 </code></pre>
@@ -1586,13 +1970,35 @@ announcement-banner.message = &quot;*Version **0.2.4** now has relased, check it
     });
   }
 </script>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="options-4"><a class="header" href="#options-4">Options</a></h2>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="options-5"><a class="header" href="#options-5">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Project ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Iframe theme</td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
 </tbody></table>
 </div>
-<h2 id="example-4"><a class="header" href="#example-4">Example</a></h2>
+<h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed stackblitz id=&quot;vitejs-vite-y8mdxg&quot; theme=&quot;light&quot; %}
 </code></pre>
@@ -1744,7 +2150,29 @@ announcement-banner.message = &quot;*Version **0.2.4** now has relased, check it
     });
   }
 </script>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="options-5"><a class="header" href="#options-5">Options</a></h2>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="options-6"><a class="header" href="#options-6">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">user</td><td style="text-align: left">username</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">slug</td><td style="text-align: left">Project slug</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
@@ -1752,7 +2180,7 @@ announcement-banner.message = &quot;*Version **0.2.4** now has relased, check it
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Iframe theme</td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
 </tbody></table>
 </div>
-<h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
+<h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed codepen user=&quot;MR-Addict&quot; slug=&quot;NWBOqKw&quot; height=&quot;600&quot; theme=&quot;dark&quot; %}
 </code></pre>
@@ -1906,6 +2334,28 @@ announcement-banner.message = &quot;*Version **0.2.4** now has relased, check it
     });
   }
 </script>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="local-apps"><a class="header" href="#local-apps">Local Apps</a></h1>
 <p>Local apps are apps hosted on your local book, so it is not necessary to have internet connection to use them.</p>
 <p>Below are all supported local apps and its detailed options.</p>
@@ -2054,6 +2504,28 @@ announcement-banner.message = &quot;*Version **0.2.4** now has relased, check it
     });
   }
 </script>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
 <div style="break-before: page; page-break-before: always;"></div><p>Scroll to top button app has no options. You can use it like this:</p>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed scroll-to-top %}
@@ -2205,14 +2677,36 @@ scroll-to-top.enable = true
     });
   }
 </script>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="options-6"><a class="header" href="#options-6">Options</a></h2>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="options-7"><a class="header" href="#options-7">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Announcement id</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">message</td><td style="text-align: left">Announcement message, supports markdown syntax</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Supports theme: <strong>default</strong>, <strong>ocean</strong>, <strong>forest</strong>, <strong>lava</strong></td><td style="text-align: left">No</td><td style="text-align: left">default</td></tr>
 </tbody></table>
 </div>
-<h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
+<h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed announcement-banner id=&quot;0.2.4&quot; theme=&quot;default&quot; message=&quot;*Version **0.2.4** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.4).*&quot; %}
 </code></pre>
@@ -2367,6 +2861,28 @@ announcement-banner.message = &quot;*Version **0.2.4** now has relased, check it
     });
   }
 </script>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
 
                     </main>
 

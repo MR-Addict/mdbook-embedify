@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Codepen - Mdbook Embedify</title>
+        <title>Giscus - Mdbook Embedify</title>
 
 
         <!-- Custom HTML head -->
@@ -91,7 +91,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li class="chapter-item expanded "><a href="../ignore-embeds.html"><strong aria-hidden="true">3.</strong> Ignore Embeds</a></li><li class="chapter-item expanded "><a href="../global-embedding.html"><strong aria-hidden="true">4.</strong> Global Embedding</a></li><li class="chapter-item expanded "><a href="../third-party/intro.html"><strong aria-hidden="true">5.</strong> Third Party Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../third-party/gist.html"><strong aria-hidden="true">5.1.</strong> Gist</a></li><li class="chapter-item "><a href="../third-party/youtube.html"><strong aria-hidden="true">5.2.</strong> Youtube</a></li><li class="chapter-item "><a href="../third-party/giscus.html"><strong aria-hidden="true">5.3.</strong> Giscus</a></li><li class="chapter-item "><a href="../third-party/bilibili.html"><strong aria-hidden="true">5.4.</strong> Bilibili</a></li><li class="chapter-item "><a href="../third-party/codesandbox.html"><strong aria-hidden="true">5.5.</strong> Codesandbox</a></li><li class="chapter-item "><a href="../third-party/stackblitz.html"><strong aria-hidden="true">5.6.</strong> Stackblitz</a></li><li class="chapter-item expanded "><a href="../third-party/codepen.html" class="active"><strong aria-hidden="true">5.7.</strong> Codepen</a></li></ol></li><li class="chapter-item expanded "><a href="../local/intro.html"><strong aria-hidden="true">6.</strong> Local Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../local/scroll-to-top.html"><strong aria-hidden="true">6.1.</strong> Scroll to Top</a></li><li class="chapter-item "><a href="../local/announcement-banner.html"><strong aria-hidden="true">6.2.</strong> Announcement Banner</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li class="chapter-item expanded "><a href="../ignore-embeds.html"><strong aria-hidden="true">3.</strong> Ignore Embeds</a></li><li class="chapter-item expanded "><a href="../global-embedding.html"><strong aria-hidden="true">4.</strong> Global Embedding</a></li><li class="chapter-item expanded "><a href="../third-party/intro.html"><strong aria-hidden="true">5.</strong> Third Party Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../third-party/gist.html"><strong aria-hidden="true">5.1.</strong> Gist</a></li><li class="chapter-item "><a href="../third-party/youtube.html"><strong aria-hidden="true">5.2.</strong> Youtube</a></li><li class="chapter-item expanded "><a href="../third-party/giscus.html" class="active"><strong aria-hidden="true">5.3.</strong> Giscus</a></li><li class="chapter-item "><a href="../third-party/bilibili.html"><strong aria-hidden="true">5.4.</strong> Bilibili</a></li><li class="chapter-item "><a href="../third-party/codesandbox.html"><strong aria-hidden="true">5.5.</strong> Codesandbox</a></li><li class="chapter-item "><a href="../third-party/stackblitz.html"><strong aria-hidden="true">5.6.</strong> Stackblitz</a></li><li class="chapter-item "><a href="../third-party/codepen.html"><strong aria-hidden="true">5.7.</strong> Codepen</a></li></ol></li><li class="chapter-item expanded "><a href="../local/intro.html"><strong aria-hidden="true">6.</strong> Local Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../local/scroll-to-top.html"><strong aria-hidden="true">6.1.</strong> Scroll to Top</a></li><li class="chapter-item "><a href="../local/announcement-banner.html"><strong aria-hidden="true">6.2.</strong> Announcement Banner</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -153,7 +153,7 @@
                         <a href="https://github.com/mr-addict/mdbook-embedify" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/mr-addict/mdbook-embedify/edit/main/example/src/third-party/codepen.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/mr-addict/mdbook-embedify/edit/main/example/src/third-party/giscus.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -184,25 +184,40 @@
                     <main>
                         <h2 id="options"><a class="header" href="#options">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
-<tr><td style="text-align: left">user</td><td style="text-align: left">username</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
-<tr><td style="text-align: left">slug</td><td style="text-align: left">Project slug</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
-<tr><td style="text-align: left">height</td><td style="text-align: left">Iframe height</td><td style="text-align: left">No</td><td style="text-align: left">600</td></tr>
-<tr><td style="text-align: left">theme</td><td style="text-align: left">Iframe theme</td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
+<tr><td style="text-align: left">repo</td><td style="text-align: left">Repository</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">repo-id</td><td style="text-align: left">Repository ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">category</td><td style="text-align: left">Category</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">category-id</td><td style="text-align: left">Category ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">reactions-enabled</td><td style="text-align: left">Enable reactions</td><td style="text-align: left">No</td><td style="text-align: left">1</td></tr>
+<tr><td style="text-align: left">theme</td><td style="text-align: left">Theme</td><td style="text-align: left">No</td><td style="text-align: left">light</td></tr>
+<tr><td style="text-align: left">lang</td><td style="text-align: left">Language</td><td style="text-align: left">No</td><td style="text-align: left">en</td></tr>
 </tbody></table>
 </div>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed codepen user=&quot;MR-Addict&quot; slug=&quot;NWBOqKw&quot; height=&quot;600&quot; theme=&quot;dark&quot; %}
+<pre><code class="language-text">{% embed giscus repo=&quot;MR-Addict/mdbook-embedify&quot; repo-id=&quot;R_kgDOLCxX0Q&quot; category=&quot;General&quot; category-id=&quot;DIC_kwDOLCxX0c4CdGx-&quot; theme=&quot;light&quot; %}
 </code></pre>
 <!-- embed ignore end -->
-<iframe
-  allowfullscreen
-  loading="lazy"
-  name="codepen"
-  height="600"
-  style="width: 100%; border: none; border-radius: 1rem; background: black"
-  src="https://codepen.io/MR-Addict/embed/NWBOqKw?default-tab=result&theme-id=dark"
-></iframe>
+<p>This book’s giscus is enabled, you can see it at the bottom of this page. And you can also have a try by commenting below.</p>
+<p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file:</p>
+<pre><code class="language-toml">giscus.enable = true
+giscus.repo = &quot;MR-Addict/mdbook-embedify&quot;
+giscus.repo-id = &quot;R_kgDOLCxX0Q&quot;
+giscus.category = &quot;General&quot;
+giscus.category-id = &quot;DIC_kwDOLCxX0c4CdGx&quot;
+giscus.reactions-enabled = &quot;1&quot;
+giscus.theme = &quot;light&quot;
+giscus.lang = &quot;en&quot;
+</code></pre>
+<h2 id="good-to-know"><a class="header" href="#good-to-know">Good to know</a></h2>
+<p>Giscus is a comments system powered by GitHub Discussions. It’s a great way to have discussions about our book. But it’s only supported while your app is deployed. You can’t see it if you open it with <strong>file://</strong> protocol.</p>
+<p>The simple way is to serve your book with a static server. For example:</p>
+<p><strong>python installed</strong></p>
+<pre><code class="language-sh">python -m http.server --directory book
+</code></pre>
+<p><strong>node.js installed</strong></p>
+<pre><code class="language-sh">npx serve book
+</code></pre>
 <style>
   .scroll-to-top {
     display: flex;
@@ -371,11 +386,11 @@
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../third-party/stackblitz.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../third-party/youtube.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../local/intro.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../third-party/bilibili.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -385,11 +400,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../third-party/stackblitz.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../third-party/youtube.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../local/intro.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../third-party/bilibili.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
