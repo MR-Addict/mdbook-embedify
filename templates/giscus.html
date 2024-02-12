@@ -1,0 +1,23 @@
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+
+<script
+  src="{% src|https://giscus.app/client.js %}"
+  data-repo="{% repo %}"
+  data-repo-id="{% repo-id %}"
+  data-category="{% category %}"
+  data-category-id="{% category-id %}"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="{% reactions-enabled|1 %}"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="{% theme|light %}"
+  data-lang="{% lang|en %}"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>

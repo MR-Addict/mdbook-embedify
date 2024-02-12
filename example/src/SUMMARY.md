@@ -7,6 +7,7 @@
 - [Third Party Apps](third-party/intro.md)
   - [Gist](third-party/gist.md)
   - [Youtube](third-party/youtube.md)
+  - [Giscus](third-party/giscus.md)
   - [Bilibili](third-party/bilibili.md)
   - [Codesandbox](third-party/codesandbox.md)
   - [Stackblitz](third-party/stackblitz.md)

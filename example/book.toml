@@ -59,3 +59,12 @@ announcement-banner.enable = true
 announcement-banner.id = "0.2.4"
 announcement-banner.theme = "default"
 announcement-banner.message = "*Version **0.2.4** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.4).*"
+
+giscus.enable = true
+giscus.repo = "MR-Addict/mdbook-embedify"
+giscus.repo-id = "R_kgDOLCxX0Q"
+giscus.category = "General"
+giscus.category-id = "DIC_kwDOLCxX0c4CdGx"
+giscus.reactions-enabled = "1"
+giscus.theme = "light"
+giscus.lang = "en"

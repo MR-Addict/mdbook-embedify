@@ -70,6 +70,29 @@ fn render_announcement_banner(config: &Config) -> String {
     utils::render_template("announcement-banner", &options)
 }
 
+fn render_giscus(config: &Config) -> String {
+    // get the config
+    let repo = utils::get_config_string(config, "giscus.repo", "");
+    let repo_id = utils::get_config_string(config, "giscus.repo-id", "");
+    let category = utils::get_config_string(config, "giscus.category", "");
+    let category_id = utils::get_config_string(config, "giscus.category-id", "");
+    let reactions_enabled = utils::get_config_string(config, "giscus.reactions-enabled", "1");
+    let theme = utils::get_config_string(config, "giscus.theme", "light");
+    let lang = utils::get_config_string(config, "giscus.lang", "en");
+
+    // render the template
+    let options = vec![
+        ("repo".to_string(), repo),
+        ("repo-id".to_string(), repo_id),
+        ("category".to_string(), category),
+        ("category-id".to_string(), category_id),
+        ("reactions-enabled".to_string(), reactions_enabled),
+        ("theme".to_string(), theme),
+        ("lang".to_string(), lang),
+    ];
+    utils::render_template("giscus", &options)
+}
+
 impl Preprocessor for Embed {
     fn name(&self) -> &str {
         "mdbook-embedify"
@@ -80,6 +103,7 @@ impl Preprocessor for Embed {
 
         let scroll_to_top = utils::get_config_bool(config, "scroll-to-top.enable");
         let announcement_banner = utils::get_config_bool(config, "announcement-banner.enable");
+        let giscus = utils::get_config_bool(config, "giscus.enable");
 
         book.for_each_mut(|item| {
             if let mdbook::book::BookItem::Chapter(chapter) = item {
@@ -95,6 +119,11 @@ impl Preprocessor for Embed {
                 // render the global announcement banner
                 if announcement_banner {
                     let template = render_announcement_banner(config);
+                    chapter.content.push_str(&template);
+                }
+                // render the global giscus comments
+                if giscus {
+                    let template = render_giscus(config);
                     chapter.content.push_str(&template);
                 }
             }
