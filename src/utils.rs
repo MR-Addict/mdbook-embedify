@@ -43,32 +43,29 @@ pub fn render_template(app: &str, placeholders: &[(String, String)]) -> String {
     let template = std::str::from_utf8(file.data.as_ref()).unwrap();
 
     // create a processors vec
-    let mut processors: Vec<(String, fn(String) -> String)> = Vec::new();
-    processors.push(("markdown".to_string(), render_markdown_processor));
+    let processors: Vec<(String, fn(String) -> String)> = vec![
+        ("raw".to_string(), |content| content),
+        ("markdown".to_string(), render_markdown_processor),
+    ];
 
     // render placeholders
     let mut result = template.to_string();
     for (key, value) in placeholders {
         // iterate over the methods
         for (name, processor) in &processors {
-            let pattern = format!(r"\{{% {}\({}\) %\}}", name, key);
+            let pattern = format!(r"\{{% {}\({}(?:=([^)]+))?\) %\}}", name, key);
             let re = Regex::new(&pattern).unwrap();
             if re.is_match(&result) {
-                // replace {% processor(key) %} with processor rendered content
+                // replace {% processor(key=default) %} with processor rendered content
                 let rendered = processor(value.clone());
                 result = re.replace_all(&result, rendered).to_string();
-            } else {
-                // replace {% key %} or {% key|default %} with value
-                let pattern = format!(r"\{{% {}(\|[^}}]*)? %\}}", key);
-                let re = Regex::new(&pattern).unwrap();
-                result = re.replace_all(&result, value).to_string();
             }
         }
     }
 
-    // replace {% key|default %} with default value
-    let re = Regex::new(r"\{\% ([^|]+)\|([^}]+) \%\}").unwrap();
-    result = re.replace_all(&result, "$2").to_string();
+    // replace {% processor(key=default) %} with default value
+    let re = Regex::new(r"\{\% (\w+)\((\w+)=([^)]+)\) \%\}").unwrap();
+    result = re.replace_all(&result, "$3").to_string();
 
     // return the result
     result.to_string()

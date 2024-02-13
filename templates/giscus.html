@@ -5,18 +5,18 @@
 </style>
 
 <script
-  src="{% src|https://giscus.app/client.js %}"
-  data-repo="{% repo %}"
-  data-repo-id="{% repo-id %}"
-  data-category="{% category %}"
-  data-category-id="{% category-id %}"
+  src="{% raw(src=https://giscus.app/client.js) %}"
+  data-repo="{% raw(repo) %}"
+  data-repo-id="{% raw(repo-id) %}"
+  data-category="{% raw(category) %}"
+  data-category-id="{% raw(category-id) %}"
   data-mapping="title"
   data-strict="0"
-  data-reactions-enabled="{% reactions-enabled|1 %}"
+  data-reactions-enabled="{% raw(reactions-enabled=1) %}"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="{% theme|light %}"
-  data-lang="{% lang|en %}"
+  data-theme="{% raw(theme=light) %}"
+  data-lang="{% raw(lang=en) %}"
   data-loading="lazy"
   crossorigin="anonymous"
   async

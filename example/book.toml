@@ -7,12 +7,12 @@ src = "src"
 title = "Mdbook Embedify"
 
 [rust]
-edition = "2021" # the default edition for code blocks
+edition = "2021"
 
 [build]
 build-dir = "book"
 create-missing = false
-use-default-preprocessors = true
+use-default-preprocessors = false
 
 [output.html]
 default-theme = "Light"

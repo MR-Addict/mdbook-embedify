@@ -1,6 +1,6 @@
 # Youtube
 
-[YouTube](https://www.youtube.com) is an online video sharing and social media platform.
+[YouTube](https://www.youtube.com) is a popular online video sharing and social media platform.
 
 ## Options
 
