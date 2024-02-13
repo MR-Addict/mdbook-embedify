@@ -1,6 +1,6 @@
 # Announcement Banner
 
-Announcement banner allows you put important messages at the top of the page. It supports **markdown** syntax so that you can easily customize the message.
+Announcement banner allows you put important messages at the top of the page. It supports **markdown** syntax too.
 
 ## Options
 

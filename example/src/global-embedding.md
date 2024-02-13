@@ -23,6 +23,9 @@ Below is a full list of apps that support global configuration:
 [preprocessor.embedify]
 scroll-to-top.enable = true
 
+footer.enable = true
+footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)"
+
 announcement-banner.enable = true
 announcement-banner.id = "0.2.4"
 announcement-banner.theme = "default"

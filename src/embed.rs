@@ -1,4 +1,6 @@
+use crate::cfg;
 use crate::utils;
+
 use mdbook::{
     book::Book,
     errors::Error,
@@ -17,6 +19,7 @@ impl Embed {
 
 fn render_general_embeds(content: String) -> String {
     let mut content = content;
+
     // create a regex to match <!-- embed ignore begin -->...<!-- embed ignore end -->
     let re_ignore =
         Regex::new(r"(?s)<!-- embed ignore begin -->(.*)<!-- embed ignore end -->").unwrap();
@@ -35,7 +38,7 @@ fn render_general_embeds(content: String) -> String {
     let re_embed = Regex::new(r"\{% embed ([\w-]+)(.*) %\}").unwrap();
     content = re_embed
         .replace_all(&content, |caps: &regex::Captures| {
-            // parse app and options str
+            // parse app and options
             let app = caps.get(1).map_or("", |m| m.as_str());
             let options_str = caps.get(2).map_or("", |m| m.as_str());
 
@@ -57,9 +60,9 @@ fn render_general_embeds(content: String) -> String {
 
 fn render_announcement_banner(config: &Config) -> String {
     // get the config
-    let id = utils::get_config_string(config, "announcement-banner.id", "");
-    let theme = utils::get_config_string(config, "announcement-banner.theme", "default");
-    let message = utils::get_config_string(config, "announcement-banner.message", "");
+    let id = cfg::get_config_string(config, "announcement-banner.id", "");
+    let theme = cfg::get_config_string(config, "announcement-banner.theme", "default");
+    let message = cfg::get_config_string(config, "announcement-banner.message", "");
 
     // render the template
     let options = vec![
@@ -72,13 +75,13 @@ fn render_announcement_banner(config: &Config) -> String {
 
 fn render_giscus(config: &Config) -> String {
     // get the config
-    let repo = utils::get_config_string(config, "giscus.repo", "");
-    let repo_id = utils::get_config_string(config, "giscus.repo-id", "");
-    let category = utils::get_config_string(config, "giscus.category", "");
-    let category_id = utils::get_config_string(config, "giscus.category-id", "");
-    let reactions_enabled = utils::get_config_string(config, "giscus.reactions-enabled", "1");
-    let theme = utils::get_config_string(config, "giscus.theme", "light");
-    let lang = utils::get_config_string(config, "giscus.lang", "en");
+    let repo = cfg::get_config_string(config, "giscus.repo", "");
+    let repo_id = cfg::get_config_string(config, "giscus.repo-id", "");
+    let category = cfg::get_config_string(config, "giscus.category", "");
+    let category_id = cfg::get_config_string(config, "giscus.category-id", "");
+    let reactions_enabled = cfg::get_config_string(config, "giscus.reactions-enabled", "1");
+    let theme = cfg::get_config_string(config, "giscus.theme", "light");
+    let lang = cfg::get_config_string(config, "giscus.lang", "en");
 
     // render the template
     let options = vec![
@@ -93,6 +96,15 @@ fn render_giscus(config: &Config) -> String {
     utils::render_template("giscus", &options)
 }
 
+fn render_footer(config: &Config) -> String {
+    // get the config
+    let message = cfg::get_config_string(config, "footer.message", "");
+
+    // render the template
+    let options = vec![("message".to_string(), message)];
+    utils::render_template("footer", &options)
+}
+
 impl Preprocessor for Embed {
     fn name(&self) -> &str {
         "mdbook-embedify"
@@ -101,9 +113,10 @@ impl Preprocessor for Embed {
     fn run(&self, ctx: &PreprocessorContext, mut book: Book) -> Result<Book, Error> {
         let config = &ctx.config;
 
-        let scroll_to_top = utils::get_config_bool(config, "scroll-to-top.enable");
-        let announcement_banner = utils::get_config_bool(config, "announcement-banner.enable");
-        let giscus = utils::get_config_bool(config, "giscus.enable");
+        let footer = cfg::get_config_bool(config, "footer.enable");
+        let giscus = cfg::get_config_bool(config, "giscus.enable");
+        let scroll_to_top = cfg::get_config_bool(config, "scroll-to-top.enable");
+        let announcement_banner = cfg::get_config_bool(config, "announcement-banner.enable");
 
         book.for_each_mut(|item| {
             if let mdbook::book::BookItem::Chapter(chapter) = item {
@@ -124,6 +137,11 @@ impl Preprocessor for Embed {
                 // render the global giscus comments
                 if giscus {
                     let template = render_giscus(config);
+                    chapter.content.push_str(&template);
+                }
+                // render the global footer
+                if footer {
+                    let template = render_footer(config);
                     chapter.content.push_str(&template);
                 }
             }

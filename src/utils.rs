@@ -1,27 +1,16 @@
-use clap::{Arg, Command};
-use mdbook::{preprocess::Preprocessor, Config};
 use pulldown_cmark;
 use regex::Regex;
 use rust_embed::RustEmbed;
-use std::process;
 
 #[derive(RustEmbed)]
 #[folder = "templates"]
 struct Assets;
 
-pub fn get_config_bool(config: &Config, key: &str) -> bool {
-    config
-        .get(format!("preprocessor.embedify.{}", key).as_str())
-        .and_then(|v| v.as_bool())
-        .unwrap_or(false)
-}
-
-pub fn get_config_string(config: &Config, key: &str, default: &str) -> String {
-    config
-        .get(format!("preprocessor.embedify.{}", key).as_str())
-        .and_then(|v| v.as_str())
-        .unwrap_or(default)
-        .to_string()
+pub fn render_markdown_processor(content: String) -> String {
+    let mut html = String::new();
+    let parser = pulldown_cmark::Parser::new(&content);
+    pulldown_cmark::html::push_html(&mut html, parser);
+    html.into()
 }
 
 pub fn parse_options(options_str: &str) -> Vec<(String, String)> {
@@ -35,13 +24,6 @@ pub fn parse_options(options_str: &str) -> Vec<(String, String)> {
         options.push((attr.name().to_owned(), attr.value().to_owned()));
     }
     options
-}
-
-pub fn render_markdown_processor(content: String) -> String {
-    let mut html = String::new();
-    let parser = pulldown_cmark::Parser::new(&content);
-    pulldown_cmark::html::push_html(&mut html, parser);
-    html.into()
 }
 
 pub fn render_template(app: &str, placeholders: &[(String, String)]) -> String {
@@ -86,30 +68,4 @@ pub fn render_template(app: &str, placeholders: &[(String, String)]) -> String {
 
     // return the result
     result.to_string()
-}
-
-pub fn reply_supports(pre: &dyn Preprocessor) {
-    // Handle support for the --supports command line argument
-    let matches = Command::new("mdbook-embedify")
-        .about("A mdbook embed preprocessor that embeds app to your book")
-        .version(env!("CARGO_PKG_VERSION"))
-        .subcommand(
-            Command::new("supports")
-                .arg(Arg::new("renderer").required(true))
-                .about("Check whether a renderer is supported by this preprocessor"),
-        )
-        .get_matches();
-
-    if let Some(sub_args) = matches.subcommand_matches("supports") {
-        let renderer = sub_args
-            .get_one::<String>("renderer")
-            .expect("Required argument");
-
-        // Signal whether the renderer is supported by exiting with 1 or 0.
-        if pre.supports_renderer(renderer) {
-            process::exit(0);
-        } else {
-            process::exit(1);
-        }
-    }
 }

@@ -1,14 +1,18 @@
+mod cfg;
+mod cli;
 mod embed;
 mod utils;
+
 use crate::embed::Embed;
 use mdbook::preprocess::{CmdPreprocessor, Preprocessor};
 use std::io;
 
 fn main() {
+    let cli = cli::Cli::new();
     let embed = Embed::new();
 
     // reply --supports command line argument
-    utils::reply_supports(&embed);
+    cli.reply_supports(&embed);
 
     let (ctx, book) = CmdPreprocessor::parse_input(io::stdin()).unwrap();
     let result = embed.run(&ctx, book).unwrap();

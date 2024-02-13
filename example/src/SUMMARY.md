@@ -1,9 +1,14 @@
 # Summary
 
+# Basics
+
 - [Intro](intro.md)
 - [Usage](usage.md)
 - [Ignore Embeds](ignore-embeds.md)
 - [Global Embedding](global-embedding.md)
+
+# Apps
+
 - [Third Party Apps](third-party/intro.md)
   - [Gist](third-party/gist.md)
   - [Giscus](third-party/giscus.md)
@@ -13,5 +18,6 @@
   - [Codesandbox](third-party/codesandbox.md)
   - [Bilibili](third-party/bilibili.md)
 - [Local Apps](local/intro.md)
+  - [Footer](local/footer.md)
   - [Scroll to Top](local/scroll-to-top.md)
   - [Announcement Banner](local/announcement-banner.md)
