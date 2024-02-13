@@ -3,13 +3,12 @@ mod cli;
 mod embed;
 mod utils;
 
-use crate::embed::Embed;
 use mdbook::preprocess::{CmdPreprocessor, Preprocessor};
 use std::io;
 
 fn main() {
     let cli = cli::Cli::new();
-    let embed = Embed::new();
+    let embed = embed::Embed::new();
 
     // reply --supports command line argument
     cli.reply_supports(&embed);
