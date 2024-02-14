@@ -192,7 +192,7 @@
 </div>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed stackblitz id=&quot;vitejs-vite-y8mdxg&quot; theme=&quot;light&quot; %}
+<pre><code class="language-text">{% embed stackblitz id="vitejs-vite-y8mdxg" theme="light" %}
 </code></pre>
 <!-- embed ignore end -->
 <iframe
@@ -206,14 +206,14 @@
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -222,19 +222,18 @@
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>

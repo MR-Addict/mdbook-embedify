@@ -188,14 +188,14 @@
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -204,19 +204,18 @@
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>
@@ -381,7 +380,7 @@
 </code></pre>
 <p><strong>options</strong> are key-value based array seperated by space and its value must be wrapped by <strong>quotes</strong>.</p>
 <p>For example:</p>
-<pre><code class="language-text">{% embed codepen user=&quot;MR-Addict&quot; slug=&quot;NWBOqKw&quot; height=&quot;600&quot; theme=&quot;dark&quot; %}
+<pre><code class="language-text">{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" %}
 </code></pre>
 <!-- embed ignore end -->
 <p>You can see some examples at apps section.</p>
@@ -390,14 +389,14 @@
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -406,19 +405,18 @@
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>
@@ -572,7 +570,7 @@
 <p>For example:</p>
 <pre><code class="language-text">&lt;!-- embed ignore begin --&gt;
 
-{% embed youtube id=&quot;DyTCOwB0DVw&quot; %}
+{% embed youtube id="DyTCOwB0DVw" %}
 
 &lt;!-- embed ignore end --&gt;
 </code></pre>
@@ -582,14 +580,14 @@
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -598,19 +596,18 @@
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>
@@ -771,21 +768,21 @@ scroll-to-top.enable = true
 scroll-to-top.enable = true
 
 footer.enable = true
-footer.message = &quot;Copyright © 2024 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)&quot;
+footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)"
 
 announcement-banner.enable = true
-announcement-banner.id = &quot;0.2.6&quot;
-announcement-banner.theme = &quot;default&quot;
-announcement-banner.message = &quot;*Version **0.2.6** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.6).*&quot;
+announcement-banner.id = "0.2.6"
+announcement-banner.theme = "default"
+announcement-banner.message = "*Version **0.2.6** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.6).*"
 
 giscus.enable = true
-giscus.repo = &quot;MR-Addict/mdbook-embedify&quot;
-giscus.repo-id = &quot;R_kgDOLCxX0Q&quot;
-giscus.category = &quot;General&quot;
-giscus.category-id = &quot;DIC_kwDOLCxX0c4CdGx-&quot;
-giscus.reactions-enabled = &quot;1&quot;
-giscus.theme = &quot;light&quot;
-giscus.lang = &quot;en&quot;
+giscus.repo = "MR-Addict/mdbook-embedify"
+giscus.repo-id = "R_kgDOLCxX0Q"
+giscus.category = "General"
+giscus.category-id = "DIC_kwDOLCxX0c4CdGx-"
+giscus.reactions-enabled = "1"
+giscus.theme = "light"
+giscus.lang = "en"
 </code></pre>
 <p>You can see more details about each app at its own page.</p>
 <style>
@@ -793,14 +790,14 @@ giscus.lang = &quot;en&quot;
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -809,19 +806,18 @@ giscus.lang = &quot;en&quot;
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>
@@ -981,14 +977,14 @@ giscus.lang = &quot;en&quot;
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -997,19 +993,18 @@ giscus.lang = &quot;en&quot;
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>
@@ -1162,7 +1157,7 @@ giscus.lang = &quot;en&quot;
 </div>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed gist id=&quot;76cf171d1bdd7da41d4ca96b908eb57a&quot; %}
+<pre><code class="language-text">{% embed gist id="76cf171d1bdd7da41d4ca96b908eb57a" %}
 </code></pre>
 <!-- embed ignore end -->
 <script src="https://gist.github.com/76cf171d1bdd7da41d4ca96b908eb57a.js"></script>
@@ -1171,14 +1166,14 @@ giscus.lang = &quot;en&quot;
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -1187,19 +1182,18 @@ giscus.lang = &quot;en&quot;
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>
@@ -1358,19 +1352,19 @@ giscus.lang = &quot;en&quot;
 </div>
 <h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed giscus repo=&quot;MR-Addict/mdbook-embedify&quot; repo-id=&quot;R_kgDOLCxX0Q&quot; category=&quot;General&quot; category-id=&quot;DIC_kwDOLCxX0c4CdGx-&quot; theme=&quot;light&quot; %}
+<pre><code class="language-text">{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_kgDOLCxX0Q" category="General" category-id="DIC_kwDOLCxX0c4CdGx-" theme="light" %}
 </code></pre>
 <!-- embed ignore end -->
 <p>This book’s giscus is enabled, you can see it at the bottom of this page. And you can also have a try by commenting below.</p>
 <p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file after <code>[preprocessor.embedify]</code> section:</p>
 <pre><code class="language-toml">giscus.enable = true
-giscus.repo = &quot;MR-Addict/mdbook-embedify&quot;
-giscus.repo-id = &quot;R_kgDOLCxX0Q&quot;
-giscus.category = &quot;General&quot;
-giscus.category-id = &quot;DIC_kwDOLCxX0c4CdGx-&quot;
-giscus.reactions-enabled = &quot;1&quot;
-giscus.theme = &quot;light&quot;
-giscus.lang = &quot;en&quot;
+giscus.repo = "MR-Addict/mdbook-embedify"
+giscus.repo-id = "R_kgDOLCxX0Q"
+giscus.category = "General"
+giscus.category-id = "DIC_kwDOLCxX0c4CdGx-"
+giscus.reactions-enabled = "1"
+giscus.theme = "light"
+giscus.lang = "en"
 </code></pre>
 <h2 id="refuse-to-connect"><a class="header" href="#refuse-to-connect">Refuse to Connect</a></h2>
 <p>Giscus will refuse to connect if you build and preview your book with <strong>file://</strong> protocol. The easiest solution is to use some static server so that you can preview your book with <strong>http://</strong> protocol.</p>
@@ -1388,14 +1382,14 @@ giscus.lang = &quot;en&quot;
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -1404,19 +1398,18 @@ giscus.lang = &quot;en&quot;
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>
@@ -1569,7 +1562,7 @@ giscus.lang = &quot;en&quot;
 </div>
 <h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed youtube id=&quot;DyTCOwB0DVw&quot; %}
+<pre><code class="language-text">{% embed youtube id="DyTCOwB0DVw" %}
 </code></pre>
 <!-- embed ignore end -->
 <iframe
@@ -1585,14 +1578,14 @@ giscus.lang = &quot;en&quot;
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -1601,19 +1594,18 @@ giscus.lang = &quot;en&quot;
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>
@@ -1769,7 +1761,7 @@ giscus.lang = &quot;en&quot;
 </div>
 <h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed codepen user=&quot;MR-Addict&quot; slug=&quot;NWBOqKw&quot; height=&quot;600&quot; theme=&quot;dark&quot; %}
+<pre><code class="language-text">{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" %}
 </code></pre>
 <!-- embed ignore end -->
 <iframe
@@ -1785,14 +1777,14 @@ giscus.lang = &quot;en&quot;
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -1801,19 +1793,18 @@ giscus.lang = &quot;en&quot;
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>
@@ -1967,7 +1958,7 @@ giscus.lang = &quot;en&quot;
 </div>
 <h2 id="example-4"><a class="header" href="#example-4">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed stackblitz id=&quot;vitejs-vite-y8mdxg&quot; theme=&quot;light&quot; %}
+<pre><code class="language-text">{% embed stackblitz id="vitejs-vite-y8mdxg" theme="light" %}
 </code></pre>
 <!-- embed ignore end -->
 <iframe
@@ -1981,14 +1972,14 @@ giscus.lang = &quot;en&quot;
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -1997,19 +1988,18 @@ giscus.lang = &quot;en&quot;
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>
@@ -2163,7 +2153,7 @@ giscus.lang = &quot;en&quot;
 </div>
 <h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed codesandbox id=&quot;ke8wx&quot; theme=&quot;light&quot; %}
+<pre><code class="language-text">{% embed codesandbox id="ke8wx" theme="light" %}
 </code></pre>
 <!-- embed ignore end -->
 <iframe
@@ -2177,14 +2167,14 @@ giscus.lang = &quot;en&quot;
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -2193,19 +2183,18 @@ giscus.lang = &quot;en&quot;
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>
@@ -2358,7 +2347,7 @@ giscus.lang = &quot;en&quot;
 </div>
 <h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed bilibili id=&quot;BV1uT4y1P7CX&quot; %}
+<pre><code class="language-text">{% embed bilibili id="BV1uT4y1P7CX" %}
 </code></pre>
 <!-- embed ignore end -->
 <iframe
@@ -2373,14 +2362,14 @@ giscus.lang = &quot;en&quot;
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -2389,19 +2378,18 @@ giscus.lang = &quot;en&quot;
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>
@@ -2558,14 +2546,14 @@ giscus.lang = &quot;en&quot;
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -2574,19 +2562,18 @@ giscus.lang = &quot;en&quot;
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>
@@ -2739,27 +2726,27 @@ giscus.lang = &quot;en&quot;
 </div>
 <h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed footer message=&quot;Copyright © 2024 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)&quot; %}
+<pre><code class="language-text">{% embed footer message="Copyright © 2024 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)" %}
 </code></pre>
 <!-- embed ignore end -->
 <p>This book’s footer is enabled, you can see it at the bottom of this page.</p>
 <p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file after <code>[preprocessor.embedify]</code> section:</p>
 <pre><code class="language-toml">footer.enable = true
-footer.message = &quot;Copyright © 2024 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)&quot;
+footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)"
 </code></pre>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -2768,19 +2755,18 @@ footer.message = &quot;Copyright © 2024 • Created with ❤️ by [MR-Addict](
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>
@@ -2942,14 +2928,14 @@ footer.message = &quot;Copyright © 2024 • Created with ❤️ by [MR-Addict](
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -2958,19 +2944,18 @@ footer.message = &quot;Copyright © 2024 • Created with ❤️ by [MR-Addict](
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>
@@ -3125,15 +3110,15 @@ footer.message = &quot;Copyright © 2024 • Created with ❤️ by [MR-Addict](
 </div>
 <h2 id="example-9"><a class="header" href="#example-9">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed announcement-banner id=&quot;0.2.6&quot; theme=&quot;default&quot; message=&quot;*Version **0.2.6** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.6).*&quot; %}
+<pre><code class="language-text">{% embed announcement-banner id="0.2.6" theme="default" message="*Version **0.2.6** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.6).*" %}
 </code></pre>
 <!-- embed ignore end -->
 <p>This book’s announcement banner is enabled, you can see it at the top of this page.</p>
 <p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file after <code>[preprocessor.embedify]</code> section:</p>
 <pre><code class="language-toml">announcement-banner.enable = true
-announcement-banner.id = &quot;0.2.6&quot;
-announcement-banner.theme = &quot;default&quot;
-announcement-banner.message = &quot;*Version **0.2.6** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.6).*&quot;
+announcement-banner.id = "0.2.6"
+announcement-banner.theme = "default"
+announcement-banner.message = "*Version **0.2.6** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.6).*"
 </code></pre>
 <p>Note that announcement banner id must be <strong>unique</strong>, otherwise it won’t be shown if there is another announcement banner with the same id when user closed it.</p>
 <style>
@@ -3141,14 +3126,14 @@ announcement-banner.message = &quot;*Version **0.2.6** now has relased, check it
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -3157,19 +3142,18 @@ announcement-banner.message = &quot;*Version **0.2.6** now has relased, check it
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>

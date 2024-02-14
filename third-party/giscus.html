@@ -197,19 +197,19 @@
 </div>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed giscus repo=&quot;MR-Addict/mdbook-embedify&quot; repo-id=&quot;R_kgDOLCxX0Q&quot; category=&quot;General&quot; category-id=&quot;DIC_kwDOLCxX0c4CdGx-&quot; theme=&quot;light&quot; %}
+<pre><code class="language-text">{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_kgDOLCxX0Q" category="General" category-id="DIC_kwDOLCxX0c4CdGx-" theme="light" %}
 </code></pre>
 <!-- embed ignore end -->
 <p>This book’s giscus is enabled, you can see it at the bottom of this page. And you can also have a try by commenting below.</p>
 <p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file after <code>[preprocessor.embedify]</code> section:</p>
 <pre><code class="language-toml">giscus.enable = true
-giscus.repo = &quot;MR-Addict/mdbook-embedify&quot;
-giscus.repo-id = &quot;R_kgDOLCxX0Q&quot;
-giscus.category = &quot;General&quot;
-giscus.category-id = &quot;DIC_kwDOLCxX0c4CdGx-&quot;
-giscus.reactions-enabled = &quot;1&quot;
-giscus.theme = &quot;light&quot;
-giscus.lang = &quot;en&quot;
+giscus.repo = "MR-Addict/mdbook-embedify"
+giscus.repo-id = "R_kgDOLCxX0Q"
+giscus.category = "General"
+giscus.category-id = "DIC_kwDOLCxX0c4CdGx-"
+giscus.reactions-enabled = "1"
+giscus.theme = "light"
+giscus.lang = "en"
 </code></pre>
 <h2 id="refuse-to-connect"><a class="header" href="#refuse-to-connect">Refuse to Connect</a></h2>
 <p>Giscus will refuse to connect if you build and preview your book with <strong>file://</strong> protocol. The easiest solution is to use some static server so that you can preview your book with <strong>http://</strong> protocol.</p>
@@ -227,14 +227,14 @@ giscus.lang = &quot;en&quot;
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -243,19 +243,18 @@ giscus.lang = &quot;en&quot;
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>

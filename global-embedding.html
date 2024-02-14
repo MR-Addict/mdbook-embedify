@@ -199,21 +199,21 @@ scroll-to-top.enable = true
 scroll-to-top.enable = true
 
 footer.enable = true
-footer.message = &quot;Copyright © 2024 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)&quot;
+footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)"
 
 announcement-banner.enable = true
-announcement-banner.id = &quot;0.2.6&quot;
-announcement-banner.theme = &quot;default&quot;
-announcement-banner.message = &quot;*Version **0.2.6** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.6).*&quot;
+announcement-banner.id = "0.2.6"
+announcement-banner.theme = "default"
+announcement-banner.message = "*Version **0.2.6** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.6).*"
 
 giscus.enable = true
-giscus.repo = &quot;MR-Addict/mdbook-embedify&quot;
-giscus.repo-id = &quot;R_kgDOLCxX0Q&quot;
-giscus.category = &quot;General&quot;
-giscus.category-id = &quot;DIC_kwDOLCxX0c4CdGx-&quot;
-giscus.reactions-enabled = &quot;1&quot;
-giscus.theme = &quot;light&quot;
-giscus.lang = &quot;en&quot;
+giscus.repo = "MR-Addict/mdbook-embedify"
+giscus.repo-id = "R_kgDOLCxX0Q"
+giscus.category = "General"
+giscus.category-id = "DIC_kwDOLCxX0c4CdGx-"
+giscus.reactions-enabled = "1"
+giscus.theme = "light"
+giscus.lang = "en"
 </code></pre>
 <p>You can see more details about each app at its own page.</p>
 <style>
@@ -221,14 +221,14 @@ giscus.lang = &quot;en&quot;
     font-size: 2.5rem;
     width: 3.2rem;
     height: 3.2rem;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
     position: fixed;
     padding: 0.75rem;
-    bottom: 1.25rem;
-    right: calc(1.25rem + var(--page-padding));
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
 
     z-index: 999;
     cursor: pointer;
@@ -237,19 +237,18 @@ giscus.lang = &quot;en&quot;
     border-radius: 50%;
     background-color: var(--icons);
   }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
   .scroll-to-top.hidden {
     display: none;
   }
   .scroll-to-top i {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1080px) {
     .scroll-to-top {
-      bottom: 4rem;
-      right: calc(1.25rem + 90px + var(--page-padding));
-    }
-    .scroll-to-top:hover {
-      background-color: var(--icons-hover);
+      display: flex;
     }
   }
 </style>
