@@ -16,10 +16,9 @@ Scroll to top button app has no options.
 
 <!-- embed ignore end -->
 
-Typically, we want to use it for the whole book. You can do this by adding below options to `book.toml` file:
+Typically, we want to use it for the whole book. You can do this by adding below options to `book.toml` file after `[preprocessor.embedify]` section:
 
 ```toml
-[preprocessor.embedify]
 scroll-to-top.enable = true
 ```
 

@@ -22,10 +22,9 @@ Announcement banner allows you put important messages at the top of the page. It
 
 This book's announcement banner is enabled, you can see it at the top of this page.
 
-However, you may want to enable it for the whole book. You can do this by adding below options to `book.toml` file:
+However, you may want to enable it for the whole book. You can do this by adding below options to `book.toml` file after `[preprocessor.embedify]` section:
 
 ```toml
-[preprocessor.embedify]
 announcement-banner.enable = true
 announcement-banner.id = "0.2.5"
 announcement-banner.theme = "default"

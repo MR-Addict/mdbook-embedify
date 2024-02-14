@@ -26,7 +26,7 @@
 
 This book's giscus is enabled, you can see it at the bottom of this page. And you can also have a try by commenting below.
 
-However, you may want to enable it for the whole book. You can do this by adding below options to `book.toml` file:
+However, you may want to enable it for the whole book. You can do this by adding below options to `book.toml` file after `[preprocessor.embedify]` section:
 
 ```toml
 giscus.enable = true
