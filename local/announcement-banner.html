@@ -197,18 +197,14 @@
 </code></pre>
 <!-- embed ignore end -->
 <p>This book’s announcement banner is enabled, you can see it at the top of this page.</p>
-<p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file:</p>
-<pre><code class="language-toml">[preprocessor.embedify]
-announcement-banner.enable = true
+<p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file after <code>[preprocessor.embedify]</code> section:</p>
+<pre><code class="language-toml">announcement-banner.enable = true
 announcement-banner.id = &quot;0.2.5&quot;
 announcement-banner.theme = &quot;default&quot;
 announcement-banner.message = &quot;*Version **0.2.5** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.5).*&quot;
 </code></pre>
 <p>Note that announcement banner id must be <strong>unique</strong>, otherwise it won’t be shown if there is another announcement banner with the same id when user closed it.</p>
 <style>
-  .scroll-to-top i {
-    transform: translateY(-2px);
-  }
   .scroll-to-top {
     font-size: 2.5rem;
     width: 3.2rem;
@@ -222,16 +218,18 @@ announcement-banner.message = &quot;*Version **0.2.5** now has relased, check it
     bottom: 1.25rem;
     right: calc(1.25rem + var(--page-padding));
 
-    border: none;
-    border-radius: 50%;
-    color: #fff;
-    background-color: var(--icons);
-
     z-index: 999;
     cursor: pointer;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--icons);
   }
   .scroll-to-top.hidden {
     display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
   }
   @media (min-width: 768px) {
     .scroll-to-top {
@@ -243,15 +241,11 @@ announcement-banner.message = &quot;*Version **0.2.5** now has relased, check it
     }
   }
 </style>
-<p><button
-  type="button"
-  aria-label="scroll-top"
-  class="scroll-to-top hidden"
-  onclick="window.scroll({top: 0, behavior: 'smooth'})"
->
-<i class="fa fa-angle-up"></i>
-</button></p>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+  <i class="fa fa-angle-up"></i>
+</button>
 <script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
   window.addEventListener("scroll", () => {
     const button = document.querySelector(".scroll-to-top");
     button.classList.toggle("hidden", window.scrollY < 200);
