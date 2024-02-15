@@ -20,7 +20,7 @@
 <!-- embed ignore begin -->
 
 ```text
-{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_kgDOLCxX0Q" category="General" category-id="DIC_kwDOLCxX0c4CdGx-" theme="light" loading="lazy" %}
+{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_kgDOLCxX0Q" category="General" category-id="DIC_kwDOLCxX0c4CdGx-" theme="light" loading="eager" %}
 ```
 
 <!-- embed ignore end -->
