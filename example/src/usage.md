@@ -41,7 +41,7 @@ The basic syntax is like this:
 For example:
 
 ```text
-{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" %}
+{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" loading="lazy" %}
 ```
 
 <!-- embed ignore end -->

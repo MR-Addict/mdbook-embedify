@@ -4,19 +4,20 @@
 
 ## Options
 
-| Option | Description  | Required | Default |
-| :----- | :----------- | :------- | :------ |
-| id     | Project ID   | Yes      | - -     |
-| theme  | Iframe theme | No       | dark    |
+| Option  | Description  | Required | Default |
+| :------ | :----------- | :------- | :------ |
+| id      | Project ID   | Yes      | - -     |
+| theme   | Iframe theme | No       | dark    |
+| loading | Loading type | No       | lazy    |
 
 ## Example
 
 <!-- embed ignore begin -->
 
 ```text
-{% embed stackblitz id="vitejs-vite-y8mdxg" theme="light" %}
+{% embed stackblitz id="vitejs-vite-y8mdxg" theme="light" loading="lazy" %}
 ```
 
 <!-- embed ignore end -->
 
-{% embed stackblitz id="vitejs-vite-y8mdxg" theme="light" %}
+{% embed stackblitz id="vitejs-vite-y8mdxg" theme="light" loading="lazy" %}

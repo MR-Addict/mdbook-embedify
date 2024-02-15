@@ -39,6 +39,7 @@ giscus.category-id = "DIC_kwDOLCxX0c4CdGx-"
 giscus.reactions-enabled = "1"
 giscus.theme = "light"
 giscus.lang = "en"
+giscus.loading = "eager"
 ```
 
 You can see more details about each app at its own page.

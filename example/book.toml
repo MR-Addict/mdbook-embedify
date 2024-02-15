@@ -6,9 +6,6 @@ multilingual = false
 src = "src"
 title = "Mdbook Embedify"
 
-[rust]
-edition = "2021"
-
 [build]
 build-dir = "book"
 create-missing = false
@@ -31,12 +28,6 @@ enable = true
 [output.html.fold]
 enable = true
 level = 1
-
-[output.html.playground]
-editable = true
-copyable = true
-copy-js = true
-line-numbers = true
 
 [output.html.search]
 enable = true
@@ -71,3 +62,4 @@ giscus.category-id = "DIC_kwDOLCxX0c4CdGx-"
 giscus.reactions-enabled = "1"
 giscus.theme = "light"
 giscus.lang = "en"
+giscus.loading = "eager"

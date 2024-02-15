@@ -82,6 +82,7 @@ fn render_giscus(config: &Config) -> String {
     let reactions_enabled = cfg::get_config_string(config, "giscus.reactions-enabled", "1");
     let theme = cfg::get_config_string(config, "giscus.theme", "light");
     let lang = cfg::get_config_string(config, "giscus.lang", "en");
+    let loading = cfg::get_config_string(config, "giscus.loading", "lazy");
 
     // render the template
     let options = vec![
@@ -92,6 +93,7 @@ fn render_giscus(config: &Config) -> String {
         ("reactions-enabled".to_string(), reactions_enabled),
         ("theme".to_string(), theme),
         ("lang".to_string(), lang),
+        ("loading".to_string(), loading),
     ];
     utils::render_template("giscus", &options)
 }

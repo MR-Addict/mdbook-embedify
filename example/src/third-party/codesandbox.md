@@ -4,19 +4,20 @@
 
 ## Options
 
-| Option | Description  | Required | Default |
-| :----- | :----------- | :------- | :------ |
-| id     | Project ID   | Yes      | - -     |
-| theme  | Iframe theme | No       | dark    |
+| Option  | Description  | Required | Default |
+| :------ | :----------- | :------- | :------ |
+| id      | Project ID   | Yes      | - -     |
+| theme   | Iframe theme | No       | dark    |
+| loading | Loading type | No       | lazy    |
 
 ## Example
 
 <!-- embed ignore begin -->
 
 ```text
-{% embed codesandbox id="ke8wx" theme="light" %}
+{% embed codesandbox id="ke8wx" theme="light" loading="lazy" %}
 ```
 
 <!-- embed ignore end -->
 
-{% embed codesandbox id="ke8wx" theme="light" %}
+{% embed codesandbox id="ke8wx" theme="light" loading="lazy" %}

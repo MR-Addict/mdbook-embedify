@@ -12,7 +12,7 @@ For example:
 ```text
 <!-- embed ignore begin -->
 
-{% embed youtube id="DyTCOwB0DVw" %}
+{% embed youtube id="DyTCOwB0DVw" loading="lazy" %}
 
 <!-- embed ignore end -->
 ```

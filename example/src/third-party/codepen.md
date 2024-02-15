@@ -4,21 +4,22 @@
 
 ## Options
 
-| Option | Description   | Required | Default |
-| :----- | :------------ | :------- | :------ |
-| user   | username      | Yes      | - -     |
-| slug   | Project slug  | Yes      | - -     |
-| height | Iframe height | No       | 600     |
-| theme  | Iframe theme  | No       | dark    |
+| Option  | Description   | Required | Default |
+| :------ | :------------ | :------- | :------ |
+| user    | username      | Yes      | - -     |
+| slug    | Project slug  | Yes      | - -     |
+| height  | Iframe height | No       | 600     |
+| theme   | Iframe theme  | No       | dark    |
+| loading | Loading type  | No       | lazy    |
 
 ## Example
 
 <!-- embed ignore begin -->
 
 ```text
-{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" %}
+{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" loading="lazy" %}
 ```
 
 <!-- embed ignore end -->
 
-{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" %}
+{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" loading="lazy" %}

@@ -13,13 +13,14 @@
 | reactions-enabled | Enable reactions | No       | 1       |
 | theme             | Theme            | No       | light   |
 | lang              | Language         | No       | en      |
+| loading           | Loading type     | No       | lazy    |
 
 ## Example
 
 <!-- embed ignore begin -->
 
 ```text
-{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_kgDOLCxX0Q" category="General" category-id="DIC_kwDOLCxX0c4CdGx-" theme="light" %}
+{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_kgDOLCxX0Q" category="General" category-id="DIC_kwDOLCxX0c4CdGx-" theme="light" loading="lazy" %}
 ```
 
 <!-- embed ignore end -->
@@ -37,6 +38,7 @@ giscus.category-id = "DIC_kwDOLCxX0c4CdGx-"
 giscus.reactions-enabled = "1"
 giscus.theme = "light"
 giscus.lang = "en"
+giscus.loading = "eager"
 ```
 
 ## Refuse to Connect

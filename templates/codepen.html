@@ -1,7 +1,7 @@
 <iframe
   allowfullscreen
-  loading="lazy"
   name="codepen"
+  loading="{% raw(loading=lazy) %}"
   height="{% raw(height=600) %}"
   style="width: 100%; border: none; border-radius: 1rem; background: black"
   src="https://codepen.io/{% raw(user) %}/embed/{% raw(slug) %}?default-tab=result&theme-id={% raw(theme=dark) %}"
