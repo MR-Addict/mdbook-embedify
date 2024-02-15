@@ -193,11 +193,12 @@
 <tr><td style="text-align: left">reactions-enabled</td><td style="text-align: left">Enable reactions</td><td style="text-align: left">No</td><td style="text-align: left">1</td></tr>
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Theme</td><td style="text-align: left">No</td><td style="text-align: left">light</td></tr>
 <tr><td style="text-align: left">lang</td><td style="text-align: left">Language</td><td style="text-align: left">No</td><td style="text-align: left">en</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_kgDOLCxX0Q" category="General" category-id="DIC_kwDOLCxX0c4CdGx-" theme="light" %}
+<pre><code class="language-text">{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_kgDOLCxX0Q" category="General" category-id="DIC_kwDOLCxX0c4CdGx-" theme="light" loading="lazy" %}
 </code></pre>
 <!-- embed ignore end -->
 <p>This book’s giscus is enabled, you can see it at the bottom of this page. And you can also have a try by commenting below.</p>
@@ -210,6 +211,7 @@ giscus.category-id = "DIC_kwDOLCxX0c4CdGx-"
 giscus.reactions-enabled = "1"
 giscus.theme = "light"
 giscus.lang = "en"
+giscus.loading = "eager"
 </code></pre>
 <h2 id="refuse-to-connect"><a class="header" href="#refuse-to-connect">Refuse to Connect</a></h2>
 <p>Giscus will refuse to connect if you build and preview your book with <strong>file://</strong> protocol. The easiest solution is to use some static server so that you can preview your book with <strong>http://</strong> protocol.</p>
@@ -378,7 +380,7 @@ giscus.lang = "en"
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -430,19 +432,11 @@ giscus.lang = "en"
 
 
 
-        <script>
-            window.playground_line_numbers = true;
-        </script>
 
         <script>
             window.playground_copyable = true;
         </script>
 
-        <script src="../ace.js"></script>
-        <script src="../editor.js"></script>
-        <script src="../mode-rust.js"></script>
-        <script src="../theme-dawn.js"></script>
-        <script src="../theme-tomorrow_night.js"></script>
 
         <script src="../elasticlunr.min.js"></script>
         <script src="../mark.min.js"></script>

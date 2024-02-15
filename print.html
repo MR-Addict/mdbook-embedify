@@ -339,7 +339,7 @@
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -380,7 +380,7 @@
 </code></pre>
 <p><strong>options</strong> are key-value based array seperated by space and its value must be wrapped by <strong>quotes</strong>.</p>
 <p>For example:</p>
-<pre><code class="language-text">{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" %}
+<pre><code class="language-text">{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" loading="lazy" %}
 </code></pre>
 <!-- embed ignore end -->
 <p>You can see some examples at apps section.</p>
@@ -540,7 +540,7 @@
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -570,7 +570,7 @@
 <p>For example:</p>
 <pre><code class="language-text">&lt;!-- embed ignore begin --&gt;
 
-{% embed youtube id="DyTCOwB0DVw" %}
+{% embed youtube id="DyTCOwB0DVw" loading="lazy" %}
 
 &lt;!-- embed ignore end --&gt;
 </code></pre>
@@ -731,7 +731,7 @@
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -783,6 +783,7 @@ giscus.category-id = "DIC_kwDOLCxX0c4CdGx-"
 giscus.reactions-enabled = "1"
 giscus.theme = "light"
 giscus.lang = "en"
+giscus.loading = "eager"
 </code></pre>
 <p>You can see more details about each app at its own page.</p>
 <style>
@@ -941,7 +942,7 @@ giscus.lang = "en"
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -1128,7 +1129,7 @@ giscus.lang = "en"
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -1317,7 +1318,7 @@ giscus.lang = "en"
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -1348,11 +1349,12 @@ giscus.lang = "en"
 <tr><td style="text-align: left">reactions-enabled</td><td style="text-align: left">Enable reactions</td><td style="text-align: left">No</td><td style="text-align: left">1</td></tr>
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Theme</td><td style="text-align: left">No</td><td style="text-align: left">light</td></tr>
 <tr><td style="text-align: left">lang</td><td style="text-align: left">Language</td><td style="text-align: left">No</td><td style="text-align: left">en</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
 <h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_kgDOLCxX0Q" category="General" category-id="DIC_kwDOLCxX0c4CdGx-" theme="light" %}
+<pre><code class="language-text">{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_kgDOLCxX0Q" category="General" category-id="DIC_kwDOLCxX0c4CdGx-" theme="light" loading="lazy" %}
 </code></pre>
 <!-- embed ignore end -->
 <p>This book’s giscus is enabled, you can see it at the bottom of this page. And you can also have a try by commenting below.</p>
@@ -1365,6 +1367,7 @@ giscus.category-id = "DIC_kwDOLCxX0c4CdGx-"
 giscus.reactions-enabled = "1"
 giscus.theme = "light"
 giscus.lang = "en"
+giscus.loading = "eager"
 </code></pre>
 <h2 id="refuse-to-connect"><a class="header" href="#refuse-to-connect">Refuse to Connect</a></h2>
 <p>Giscus will refuse to connect if you build and preview your book with <strong>file://</strong> protocol. The easiest solution is to use some static server so that you can preview your book with <strong>http://</strong> protocol.</p>
@@ -1533,7 +1536,7 @@ giscus.lang = "en"
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -1558,17 +1561,18 @@ giscus.lang = "en"
 <h2 id="options-2"><a class="header" href="#options-2">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
 <h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed youtube id="DyTCOwB0DVw" %}
+<pre><code class="language-text">{% embed youtube id="DyTCOwB0DVw" loading="lazy" %}
 </code></pre>
 <!-- embed ignore end -->
 <iframe
   allowfullscreen
-  loading="lazy"
   name="youtube"
+  loading="lazy"
   src="https://www.youtube.com/embed/DyTCOwB0DVw"
   style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -1729,7 +1733,7 @@ giscus.lang = "en"
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -1757,17 +1761,18 @@ giscus.lang = "en"
 <tr><td style="text-align: left">slug</td><td style="text-align: left">Project slug</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">height</td><td style="text-align: left">Iframe height</td><td style="text-align: left">No</td><td style="text-align: left">600</td></tr>
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Iframe theme</td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
 <h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" %}
+<pre><code class="language-text">{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" loading="lazy" %}
 </code></pre>
 <!-- embed ignore end -->
 <iframe
   allowfullscreen
-  loading="lazy"
   name="codepen"
+  loading="lazy"
   height="600"
   style="width: 100%; border: none; border-radius: 1rem; background: black"
   src="https://codepen.io/MR-Addict/embed/NWBOqKw?default-tab=result&theme-id=dark"
@@ -1928,7 +1933,7 @@ giscus.lang = "en"
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -1954,16 +1959,17 @@ giscus.lang = "en"
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Project ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Iframe theme</td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
 <h2 id="example-4"><a class="header" href="#example-4">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed stackblitz id="vitejs-vite-y8mdxg" theme="light" %}
+<pre><code class="language-text">{% embed stackblitz id="vitejs-vite-y8mdxg" theme="light" loading="lazy" %}
 </code></pre>
 <!-- embed ignore end -->
 <iframe
-  loading="lazy"
   name="stackblitz"
+  loading="lazy"
   src="https://stackblitz.com/edit/vitejs-vite-y8mdxg?embed=1&theme=light&view=preview"
   style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
 ></iframe>
@@ -2123,7 +2129,7 @@ giscus.lang = "en"
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -2149,16 +2155,17 @@ giscus.lang = "en"
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Project ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Iframe theme</td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
 <h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed codesandbox id="ke8wx" theme="light" %}
+<pre><code class="language-text">{% embed codesandbox id="ke8wx" theme="light" loading="lazy" %}
 </code></pre>
 <!-- embed ignore end -->
 <iframe
-  loading="lazy"
   name="sandbox"
+  loading="lazy"
   src="https://codesandbox.io/embed/ke8wx?&theme=light"
   style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
 ></iframe>
@@ -2318,7 +2325,7 @@ giscus.lang = "en"
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -2343,17 +2350,18 @@ giscus.lang = "en"
 <h2 id="options-6"><a class="header" href="#options-6">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
 <h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed bilibili id="BV1uT4y1P7CX" %}
+<pre><code class="language-text">{% embed bilibili id="BV1uT4y1P7CX" loading="lazy" %}
 </code></pre>
 <!-- embed ignore end -->
 <iframe
   allowfullscreen
-  loading="lazy"
   name="bilibili"
+  loading="lazy"
   src="https://player.bilibili.com/player.html?bvid=BV1uT4y1P7CX&danmaku=0"
   style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
 ></iframe>
@@ -2513,7 +2521,7 @@ giscus.lang = "en"
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -2697,7 +2705,7 @@ giscus.lang = "en"
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -2890,7 +2898,7 @@ footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -3079,7 +3087,7 @@ footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -3277,7 +3285,7 @@ announcement-banner.message = "*Version **0.2.6** now has relased, check it out 
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -3317,19 +3325,11 @@ announcement-banner.message = "*Version **0.2.6** now has relased, check it out 
 
 
 
-        <script>
-            window.playground_line_numbers = true;
-        </script>
 
         <script>
             window.playground_copyable = true;
         </script>
 
-        <script src="ace.js"></script>
-        <script src="editor.js"></script>
-        <script src="mode-rust.js"></script>
-        <script src="theme-dawn.js"></script>
-        <script src="theme-tomorrow_night.js"></script>
 
         <script src="elasticlunr.min.js"></script>
         <script src="mark.min.js"></script>

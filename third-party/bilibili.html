@@ -187,17 +187,18 @@
 <h2 id="options"><a class="header" href="#options">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed bilibili id="BV1uT4y1P7CX" %}
+<pre><code class="language-text">{% embed bilibili id="BV1uT4y1P7CX" loading="lazy" %}
 </code></pre>
 <!-- embed ignore end -->
 <iframe
   allowfullscreen
-  loading="lazy"
   name="bilibili"
+  loading="lazy"
   src="https://player.bilibili.com/player.html?bvid=BV1uT4y1P7CX&danmaku=0"
   style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
 ></iframe>
@@ -357,7 +358,7 @@
   data-input-position="bottom"
   data-theme="light"
   data-lang="en"
-  data-loading="lazy"
+  data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
@@ -409,19 +410,11 @@
 
 
 
-        <script>
-            window.playground_line_numbers = true;
-        </script>
 
         <script>
             window.playground_copyable = true;
         </script>
 
-        <script src="../ace.js"></script>
-        <script src="../editor.js"></script>
-        <script src="../mode-rust.js"></script>
-        <script src="../theme-dawn.js"></script>
-        <script src="../theme-tomorrow_night.js"></script>
 
         <script src="../elasticlunr.min.js"></script>
         <script src="../mark.min.js"></script>
