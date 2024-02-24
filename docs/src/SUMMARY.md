@@ -11,6 +11,7 @@
 
 - [Third Party Apps](third-party/index.md)
   - [Gist](third-party/gist.md)
+  - [Vimeo](third-party/vimeo.md)
   - [Giscus](third-party/giscus.md)
   - [Youtube](third-party/youtube.md)
   - [Codepen](third-party/codepen.md)
