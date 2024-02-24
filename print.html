@@ -92,7 +92,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Basics</li><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li class="chapter-item expanded "><a href="ignore-embeds.html"><strong aria-hidden="true">3.</strong> Ignore Embeds</a></li><li class="chapter-item expanded "><a href="global-embedding.html"><strong aria-hidden="true">4.</strong> Global Embedding</a></li><li class="chapter-item expanded affix "><li class="part-title">Apps</li><li class="chapter-item expanded "><a href="third-party/index.html"><strong aria-hidden="true">5.</strong> Third Party Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="third-party/gist.html"><strong aria-hidden="true">5.1.</strong> Gist</a></li><li class="chapter-item "><a href="third-party/giscus.html"><strong aria-hidden="true">5.2.</strong> Giscus</a></li><li class="chapter-item "><a href="third-party/youtube.html"><strong aria-hidden="true">5.3.</strong> Youtube</a></li><li class="chapter-item "><a href="third-party/codepen.html"><strong aria-hidden="true">5.4.</strong> Codepen</a></li><li class="chapter-item "><a href="third-party/stackblitz.html"><strong aria-hidden="true">5.5.</strong> Stackblitz</a></li><li class="chapter-item "><a href="third-party/codesandbox.html"><strong aria-hidden="true">5.6.</strong> Codesandbox</a></li><li class="chapter-item "><a href="third-party/bilibili.html"><strong aria-hidden="true">5.7.</strong> Bilibili</a></li></ol></li><li class="chapter-item expanded "><a href="local/index.html"><strong aria-hidden="true">6.</strong> Local Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="local/footer.html"><strong aria-hidden="true">6.1.</strong> Footer</a></li><li class="chapter-item "><a href="local/scroll-to-top.html"><strong aria-hidden="true">6.2.</strong> Scroll to Top</a></li><li class="chapter-item "><a href="local/announcement-banner.html"><strong aria-hidden="true">6.3.</strong> Announcement Banner</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Basics</li><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li class="chapter-item expanded "><a href="ignore-embeds.html"><strong aria-hidden="true">3.</strong> Ignore Embeds</a></li><li class="chapter-item expanded "><a href="global-embedding.html"><strong aria-hidden="true">4.</strong> Global Embedding</a></li><li class="chapter-item expanded affix "><li class="part-title">Apps</li><li class="chapter-item expanded "><a href="third-party/index.html"><strong aria-hidden="true">5.</strong> Third Party Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="third-party/gist.html"><strong aria-hidden="true">5.1.</strong> Gist</a></li><li class="chapter-item "><a href="third-party/vimeo.html"><strong aria-hidden="true">5.2.</strong> Vimeo</a></li><li class="chapter-item "><a href="third-party/giscus.html"><strong aria-hidden="true">5.3.</strong> Giscus</a></li><li class="chapter-item "><a href="third-party/youtube.html"><strong aria-hidden="true">5.4.</strong> Youtube</a></li><li class="chapter-item "><a href="third-party/codepen.html"><strong aria-hidden="true">5.5.</strong> Codepen</a></li><li class="chapter-item "><a href="third-party/stackblitz.html"><strong aria-hidden="true">5.6.</strong> Stackblitz</a></li><li class="chapter-item "><a href="third-party/codesandbox.html"><strong aria-hidden="true">5.7.</strong> Codesandbox</a></li><li class="chapter-item "><a href="third-party/bilibili.html"><strong aria-hidden="true">5.8.</strong> Bilibili</a></li></ol></li><li class="chapter-item expanded "><a href="local/index.html"><strong aria-hidden="true">6.</strong> Local Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="local/footer.html"><strong aria-hidden="true">6.1.</strong> Footer</a></li><li class="chapter-item "><a href="local/scroll-to-top.html"><strong aria-hidden="true">6.2.</strong> Scroll to Top</a></li><li class="chapter-item "><a href="local/announcement-banner.html"><strong aria-hidden="true">6.3.</strong> Announcement Banner</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -1338,9 +1338,205 @@ giscus.loading = "eager"
 </style>
 <footer><p>Copyright © 2024 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p>
 </footer>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vimeo"><a class="header" href="#vimeo">Vimeo</a></h1>
+<p>Vimeo is a video hosting platform that allows you to upload and share videos.</p>
+<h2 id="options-1"><a class="header" href="#options-1">Options</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
+<tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
+</tbody></table>
+</div>
+<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<!-- embed ignore begin -->
+<pre><code class="language-text">{% embed vimeo id="914391191" loading="lazy" %}
+</code></pre>
+<!-- embed ignore end -->
+<iframe
+  name="vimeo"
+  loading="lazy"
+  allow="autoplay; fullscreen; picture-in-picture"
+  src="https://player.vimeo.com/video/914391191"
+  style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
+></iframe>
+<style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+
+    z-index: 999;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--icons);
+  }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
+</style>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+  <i class="fa fa-angle-up"></i>
+</button>
+<script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.7" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.7</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.7">here</a>.</em></p>
+<p><button type="button">X</button></p>
+</div>
+<script>
+  const banner = document.querySelector(".announcement-banner");
+  const id = banner.getAttribute("data-id");
+  const message = banner.querySelector("p").textContent;
+  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+
+  if (!localData || localData.id !== id || localData.hide !== true) {
+    // update banner display style to be flex
+    banner.style.display = "flex";
+
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+    });
+  }
+</script>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx-"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="eager"
+  crossorigin="anonymous"
+  async
+></script>
+<style>
+  footer {
+    text-align: center;
+    text-wrap: balance;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  footer p {
+    margin: 0;
+  }
+</style>
+<footer><p>Copyright © 2024 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p>
+</footer>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="giscus"><a class="header" href="#giscus">Giscus</a></h1>
 <p><a href="https://giscus.app">Giscus</a> is a comments system powered by GitHub Discussions. Let visitors leave comments and reactions on your website via GitHub! Heavily inspired by <a href="https://github.com/utterance/utterances">utterances</a>.</p>
-<h2 id="options-1"><a class="header" href="#options-1">Options</a></h2>
+<h2 id="options-2"><a class="header" href="#options-2">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">repo</td><td style="text-align: left">Repository</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">repo-id</td><td style="text-align: left">Repository ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
@@ -1352,7 +1548,7 @@ giscus.loading = "eager"
 <tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
-<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_kgDOLCxX0Q" category="General" category-id="DIC_kwDOLCxX0c4CdGx-" theme="light" loading="eager" %}
 </code></pre>
@@ -1558,13 +1754,13 @@ giscus.loading = "eager"
 </footer>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="youtube"><a class="header" href="#youtube">Youtube</a></h1>
 <p><a href="https://www.youtube.com">YouTube</a> is a popular online video sharing and social media platform.</p>
-<h2 id="options-2"><a class="header" href="#options-2">Options</a></h2>
+<h2 id="options-3"><a class="header" href="#options-3">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
-<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
+<h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed youtube id="DyTCOwB0DVw" loading="lazy" %}
 </code></pre>
@@ -1755,7 +1951,7 @@ giscus.loading = "eager"
 </footer>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="codepen"><a class="header" href="#codepen">Codepen</a></h1>
 <p><a href="https://codepen.io">Codepen</a> is a social development environment for front-end designers and developers. It’s the best place to build and deploy a website, show off your work, build test cases, and find inspiration.</p>
-<h2 id="options-3"><a class="header" href="#options-3">Options</a></h2>
+<h2 id="options-4"><a class="header" href="#options-4">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">user</td><td style="text-align: left">username</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">slug</td><td style="text-align: left">Project slug</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
@@ -1764,7 +1960,7 @@ giscus.loading = "eager"
 <tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
-<h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
+<h2 id="example-4"><a class="header" href="#example-4">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" loading="lazy" %}
 </code></pre>
@@ -1955,14 +2151,14 @@ giscus.loading = "eager"
 </footer>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="stackblitz"><a class="header" href="#stackblitz">Stackblitz</a></h1>
 <p><a href="https://stackblitz.com">Stackblitz</a> is an instant fullstack web IDE for the JavaScript ecosystem. It’s powered by <a href="https://blog.stackblitz.com/posts/introducing-webcontainers">WebContainers</a>, the first WebAssembly-based operating system which boots the Node.js environment in milliseconds, securely within your browser tab.</p>
-<h2 id="options-4"><a class="header" href="#options-4">Options</a></h2>
+<h2 id="options-5"><a class="header" href="#options-5">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Project ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Iframe theme</td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
 <tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
-<h2 id="example-4"><a class="header" href="#example-4">Example</a></h2>
+<h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed stackblitz id="vitejs-vite-y8mdxg" theme="light" loading="lazy" %}
 </code></pre>
@@ -2151,14 +2347,14 @@ giscus.loading = "eager"
 </footer>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="codesandbox"><a class="header" href="#codesandbox">Codesandbox</a></h1>
 <p><a href="https://codesandbox.io">Codesandbox</a> is an online code editor that allows you to create and share web applications. It is particularly useful for web developers who want to work on React, Vue, Angular, or any other front-end libraries.</p>
-<h2 id="options-5"><a class="header" href="#options-5">Options</a></h2>
+<h2 id="options-6"><a class="header" href="#options-6">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Project ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Iframe theme</td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
 <tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
-<h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
+<h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed codesandbox id="ke8wx" theme="light" loading="lazy" %}
 </code></pre>
@@ -2347,13 +2543,13 @@ giscus.loading = "eager"
 </footer>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="bilibili"><a class="header" href="#bilibili">Bilibili</a></h1>
 <p><a href="https://www.bilibili.com">Bilibili</a> is a Chinese video sharing website based in Shanghai, themed around animation, comic, and games (ACG), where users can submit, view, and add commentary subtitles on videos.</p>
-<h2 id="options-6"><a class="header" href="#options-6">Options</a></h2>
+<h2 id="options-7"><a class="header" href="#options-7">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
-<h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
+<h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed bilibili id="BV1uT4y1P7CX" loading="lazy" %}
 </code></pre>
@@ -2727,12 +2923,12 @@ giscus.loading = "eager"
 </footer>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="footer"><a class="header" href="#footer">Footer</a></h1>
 <p>The footer app is useful for displaying copyright information, privacy policy, and other legal information. It supports <strong>markdown</strong> syntax so that you can easily customize the message.</p>
-<h2 id="options-7"><a class="header" href="#options-7">Options</a></h2>
+<h2 id="options-8"><a class="header" href="#options-8">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">message</td><td style="text-align: left">Footer message, markdown supported</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 </tbody></table>
 </div>
-<h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
+<h2 id="example-8"><a class="header" href="#example-8">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed footer message="Copyright © 2024 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)" %}
 </code></pre>
@@ -2920,9 +3116,9 @@ footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https
 </footer>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="scroll-to-top-button"><a class="header" href="#scroll-to-top-button">Scroll to top button</a></h1>
 <p>Scroll to top button allows users to smoothly scroll back to the top of the page.</p>
-<h2 id="options-8"><a class="header" href="#options-8">Options</a></h2>
+<h2 id="options-9"><a class="header" href="#options-9">Options</a></h2>
 <p>Scroll to top button app has no options.</p>
-<h2 id="example-8"><a class="header" href="#example-8">Example</a></h2>
+<h2 id="example-9"><a class="header" href="#example-9">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed scroll-to-top %}
 </code></pre>
@@ -3109,14 +3305,14 @@ footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https
 </footer>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="announcement-banner"><a class="header" href="#announcement-banner">Announcement Banner</a></h1>
 <p>Announcement banner allows you put important messages at the top of the page. It supports <strong>markdown</strong> syntax too.</p>
-<h2 id="options-9"><a class="header" href="#options-9">Options</a></h2>
+<h2 id="options-10"><a class="header" href="#options-10">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Announcement id</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">message</td><td style="text-align: left">Announcement message, markdown supported</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Supports theme: <strong>default</strong>, <strong>ocean</strong>, <strong>forest</strong>, <strong>lava</strong></td><td style="text-align: left">No</td><td style="text-align: left">default</td></tr>
 </tbody></table>
 </div>
-<h2 id="example-9"><a class="header" href="#example-9">Example</a></h2>
+<h2 id="example-10"><a class="header" href="#example-10">Example</a></h2>
 <!-- embed ignore begin -->
 <pre><code class="language-text">{% embed announcement-banner id="0.2.7" theme="default" message="*Version **0.2.7** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.7).*" %}
 </code></pre>
