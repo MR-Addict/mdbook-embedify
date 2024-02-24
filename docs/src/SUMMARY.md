@@ -2,14 +2,14 @@
 
 # Basics
 
-- [Intro](intro.md)
+- [Intro](index.md)
 - [Usage](usage.md)
 - [Ignore Embeds](ignore-embeds.md)
 - [Global Embedding](global-embedding.md)
 
 # Apps
 
-- [Third Party Apps](third-party/intro.md)
+- [Third Party Apps](third-party/index.md)
   - [Gist](third-party/gist.md)
   - [Giscus](third-party/giscus.md)
   - [Youtube](third-party/youtube.md)
@@ -17,7 +17,7 @@
   - [Stackblitz](third-party/stackblitz.md)
   - [Codesandbox](third-party/codesandbox.md)
   - [Bilibili](third-party/bilibili.md)
-- [Local Apps](local/intro.md)
+- [Local Apps](local/index.md)
   - [Footer](local/footer.md)
   - [Scroll to Top](local/scroll-to-top.md)
   - [Announcement Banner](local/announcement-banner.md)

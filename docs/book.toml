@@ -4,7 +4,7 @@ description = "This is a mdbook preprocessor plugin that allows you embed apps t
 language = "en"
 multilingual = false
 src = "src"
-title = "Mdbook Embedify"
+title = "mdbook-embedify"
 
 [build]
 build-dir = "book"
@@ -47,7 +47,7 @@ command = "target/release/mdbook-embedify"
 scroll-to-top.enable = true
 
 footer.enable = true
-footer.message = "Copyright © 2024 ❤️ By [MR-Addict](https://github.com/MR-Addict)"
+footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)"
 
 announcement-banner.enable = true
 announcement-banner.id = "0.2.7"

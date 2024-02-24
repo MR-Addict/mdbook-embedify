@@ -33,10 +33,10 @@ jobs:
 
       - name: Build book
         run: |
-          cp example/assets/bin/* /usr/local/bin && chmod u+x /usr/local/bin/mdbook*
-          cargo build --release && mdbook build example
+          chmod u+x docs/assets/bin/* && cp docs/assets/bin/* /usr/local/bin
+          cargo build --release && mdbook build docs
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./example/book
+          publish_dir: ./docs/book
