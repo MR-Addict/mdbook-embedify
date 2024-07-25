@@ -92,7 +92,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Basics</li><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li class="chapter-item expanded "><a href="ignore-embeds.html"><strong aria-hidden="true">3.</strong> Ignore Embeds</a></li><li class="chapter-item expanded "><a href="global-embedding.html"><strong aria-hidden="true">4.</strong> Global Embedding</a></li><li class="chapter-item expanded affix "><li class="part-title">Apps</li><li class="chapter-item expanded "><a href="third-party/index.html"><strong aria-hidden="true">5.</strong> Third Party Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="third-party/gist.html"><strong aria-hidden="true">5.1.</strong> Gist</a></li><li class="chapter-item "><a href="third-party/vimeo.html"><strong aria-hidden="true">5.2.</strong> Vimeo</a></li><li class="chapter-item "><a href="third-party/giscus.html"><strong aria-hidden="true">5.3.</strong> Giscus</a></li><li class="chapter-item "><a href="third-party/youtube.html"><strong aria-hidden="true">5.4.</strong> Youtube</a></li><li class="chapter-item "><a href="third-party/codepen.html"><strong aria-hidden="true">5.5.</strong> Codepen</a></li><li class="chapter-item "><a href="third-party/stackblitz.html"><strong aria-hidden="true">5.6.</strong> Stackblitz</a></li><li class="chapter-item "><a href="third-party/codesandbox.html"><strong aria-hidden="true">5.7.</strong> Codesandbox</a></li><li class="chapter-item "><a href="third-party/bilibili.html"><strong aria-hidden="true">5.8.</strong> Bilibili</a></li></ol></li><li class="chapter-item expanded "><a href="local/index.html"><strong aria-hidden="true">6.</strong> Local Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="local/footer.html"><strong aria-hidden="true">6.1.</strong> Footer</a></li><li class="chapter-item "><a href="local/scroll-to-top.html"><strong aria-hidden="true">6.2.</strong> Scroll to Top</a></li><li class="chapter-item "><a href="local/announcement-banner.html"><strong aria-hidden="true">6.3.</strong> Announcement Banner</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Basics</li><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Intro</a></li><li class="chapter-item expanded "><a href="usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li class="chapter-item expanded "><a href="global-embedding.html"><strong aria-hidden="true">3.</strong> Global Embedding</a></li><li class="chapter-item expanded "><a href="ignore-embeds.html"><strong aria-hidden="true">4.</strong> Ignore Embeds</a></li><li class="chapter-item expanded "><a href="more-apps.html"><strong aria-hidden="true">5.</strong> More Apps</a></li><li class="chapter-item expanded affix "><li class="part-title">Apps</li><li class="chapter-item expanded "><a href="third-party/index.html"><strong aria-hidden="true">6.</strong> Third Party Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="third-party/gist.html"><strong aria-hidden="true">6.1.</strong> Gist</a></li><li class="chapter-item "><a href="third-party/vimeo.html"><strong aria-hidden="true">6.2.</strong> Vimeo</a></li><li class="chapter-item "><a href="third-party/giscus.html"><strong aria-hidden="true">6.3.</strong> Giscus</a></li><li class="chapter-item "><a href="third-party/youtube.html"><strong aria-hidden="true">6.4.</strong> Youtube</a></li><li class="chapter-item "><a href="third-party/codepen.html"><strong aria-hidden="true">6.5.</strong> Codepen</a></li><li class="chapter-item "><a href="third-party/stackblitz.html"><strong aria-hidden="true">6.6.</strong> Stackblitz</a></li><li class="chapter-item "><a href="third-party/codesandbox.html"><strong aria-hidden="true">6.7.</strong> Codesandbox</a></li><li class="chapter-item "><a href="third-party/bilibili.html"><strong aria-hidden="true">6.8.</strong> Bilibili</a></li></ol></li><li class="chapter-item expanded "><a href="local/index.html"><strong aria-hidden="true">7.</strong> Local Apps</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="local/footer.html"><strong aria-hidden="true">7.1.</strong> Footer</a></li><li class="chapter-item "><a href="local/scroll-to-top.html"><strong aria-hidden="true">7.2.</strong> Scroll to Top</a></li><li class="chapter-item "><a href="local/announcement-banner.html"><strong aria-hidden="true">7.3.</strong> Announcement Banner</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -278,6 +278,7 @@
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-wrap: balance;
   }
 
   .announcement-banner button {
@@ -361,7 +362,7 @@
 </footer>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="usage"><a class="header" href="#usage">Usage</a></h1>
 <h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
-<p>There are two ways to install this plugin.</p>
+<p>There are two ways to install this preprocessor.</p>
 <p>You can install it from crates.io using cargo.</p>
 <pre><code class="language-sh">cargo install mdbook-embedify
 </code></pre>
@@ -372,7 +373,7 @@
 <p>After installation, add the following code to your <code>book.toml</code> file:</p>
 <pre><code class="language-toml">[preprocessor.embedify]
 </code></pre>
-<p>And that’s it! You can now use <code>embed</code> macro to embed apps to your book.</p>
+<p>And that's it! You can now use <code>embed</code> macro to embed apps to your book.</p>
 <h2 id="syntax"><a class="header" href="#syntax">Syntax</a></h2>
 <p>The basic syntax is like this:</p>
 <!-- embed ignore begin -->
@@ -479,197 +480,7 @@
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
-<div style="display: none" data-id="0.2.8" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.8</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.8">here</a>.</em></p>
-<p><button type="button">X</button></p>
-</div>
-<script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
-<style>
-  .giscus {
-    margin-top: 6rem;
-  }
-</style>
-<script
-  src="https://giscus.app/client.js"
-  data-repo="MR-Addict/mdbook-embedify"
-  data-repo-id="R_kgDOLCxX0Q"
-  data-category="General"
-  data-category-id="DIC_kwDOLCxX0c4CdGx-"
-  data-mapping="title"
-  data-strict="0"
-  data-reactions-enabled="1"
-  data-emit-metadata="0"
-  data-input-position="bottom"
-  data-theme="light"
-  data-lang="en"
-  data-loading="eager"
-  crossorigin="anonymous"
-  async
-></script>
-<style>
-  footer {
-    text-align: center;
     text-wrap: balance;
-    margin-top: 5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  footer p {
-    margin: 0;
-  }
-</style>
-<footer><p>Copyright © 2024 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p>
-</footer>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="ignore-embeds"><a class="header" href="#ignore-embeds">Ignore Embeds</a></h1>
-<p>Sometimes you may want preprocessor to ignore some embeds.</p>
-<p>You can do it by wrapping content that you want to ignore with below two comments:</p>
-<ul>
-<li><code>&lt;!-- embed ignore begin --&gt;</code></li>
-<li><code>&lt;!-- embed ignore end --&gt;</code></li>
-</ul>
-<p>For example:</p>
-<pre><code class="language-text">&lt;!-- embed ignore begin --&gt;
-
-{% embed youtube id="DyTCOwB0DVw" loading="lazy" %}
-
-&lt;!-- embed ignore end --&gt;
-</code></pre>
-<p>And youtube embed won’t be rendered.</p>
-<style>
-  .scroll-to-top {
-    font-size: 2.5rem;
-    width: 3.2rem;
-    height: 3.2rem;
-    display: none;
-    align-items: center;
-    justify-content: center;
-
-    position: fixed;
-    padding: 0.75rem;
-    bottom: 4rem;
-    right: calc(1.25rem + 90px + var(--page-padding));
-
-    z-index: 999;
-    cursor: pointer;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    background-color: var(--icons);
-  }
-  .scroll-to-top:hover {
-    background-color: var(--icons-hover);
-  }
-  .scroll-to-top.hidden {
-    display: none;
-  }
-  .scroll-to-top i {
-    transform: translateY(-2px);
-  }
-  @media (min-width: 1080px) {
-    .scroll-to-top {
-      display: flex;
-    }
-  }
-</style>
-<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
-  <i class="fa fa-angle-up"></i>
-</button>
-<script>
-  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
-  window.addEventListener("scroll", () => {
-    const button = document.querySelector(".scroll-to-top");
-    button.classList.toggle("hidden", window.scrollY < 200);
-  });
-</script>
-<style>
-  .announcement-banner {
-    color: black;
-    z-index: 150;
-    position: relative;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    margin: 0;
-    padding: 1rem 3.5rem;
-
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
   }
 
   .announcement-banner button {
@@ -760,7 +571,7 @@ scroll-to-top.enable = true
 <!-- embed ignore begin -->
 <blockquote>
 <p>💥Attention</p>
-<p>When you do this, you don’t need to add <code>{% embed scroll-to-top %}</code> manually. It will be automatically added it to every chapter. If you do, it will be rendered twice.</p>
+<p>When you do this, you don't need to add <code>{% embed scroll-to-top %}</code> manually. It will be automatically added it to every chapter. If you do, it will be rendered twice.</p>
 </blockquote>
 <!-- embed ignore end -->
 <p>Below is a full list of apps that support global configuration:</p>
@@ -881,6 +692,424 @@ giscus.loading = "eager"
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.8" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.8</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.8">here</a>.</em></p>
+<p><button type="button">X</button></p>
+</div>
+<script>
+  const banner = document.querySelector(".announcement-banner");
+  const id = banner.getAttribute("data-id");
+  const message = banner.querySelector("p").textContent;
+  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+
+  if (!localData || localData.id !== id || localData.hide !== true) {
+    // update banner display style to be flex
+    banner.style.display = "flex";
+
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+    });
+  }
+</script>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx-"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="eager"
+  crossorigin="anonymous"
+  async
+></script>
+<style>
+  footer {
+    text-align: center;
+    text-wrap: balance;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  footer p {
+    margin: 0;
+  }
+</style>
+<footer><p>Copyright © 2024 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p>
+</footer>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ignore-embeds"><a class="header" href="#ignore-embeds">Ignore Embeds</a></h1>
+<p>Sometimes you may want preprocessor to ignore some embeds.</p>
+<p>You can do it by wrapping content that you want to ignore with below two comments:</p>
+<ul>
+<li><code>&lt;!-- embed ignore begin --&gt;</code></li>
+<li><code>&lt;!-- embed ignore end --&gt;</code></li>
+</ul>
+<p>For example:</p>
+<pre><code class="language-text">&lt;!-- embed ignore begin --&gt;
+
+{% embed youtube id="DyTCOwB0DVw" loading="lazy" %}
+
+&lt;!-- embed ignore end --&gt;
+</code></pre>
+<p>And youtube embed won't be rendered.</p>
+<style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+
+    z-index: 999;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--icons);
+  }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
+</style>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+  <i class="fa fa-angle-up"></i>
+</button>
+<script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.8" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.8</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.8">here</a>.</em></p>
+<p><button type="button">X</button></p>
+</div>
+<script>
+  const banner = document.querySelector(".announcement-banner");
+  const id = banner.getAttribute("data-id");
+  const message = banner.querySelector("p").textContent;
+  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+
+  if (!localData || localData.id !== id || localData.hide !== true) {
+    // update banner display style to be flex
+    banner.style.display = "flex";
+
+    // move banner before page class element slibling
+    const page = document.querySelector(".page");
+    page.parentNode.insertBefore(banner, page);
+
+    // add event listener to close button
+    banner.querySelector("button").addEventListener("click", () => {
+      banner.remove();
+      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+    });
+  }
+</script>
+<style>
+  .giscus {
+    margin-top: 6rem;
+  }
+</style>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="MR-Addict/mdbook-embedify"
+  data-repo-id="R_kgDOLCxX0Q"
+  data-category="General"
+  data-category-id="DIC_kwDOLCxX0c4CdGx-"
+  data-mapping="title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="light"
+  data-lang="en"
+  data-loading="eager"
+  crossorigin="anonymous"
+  async
+></script>
+<style>
+  footer {
+    text-align: center;
+    text-wrap: balance;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  footer p {
+    margin: 0;
+  }
+</style>
+<footer><p>Copyright © 2024 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p>
+</footer>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="more-apps"><a class="header" href="#more-apps">More Apps</a></h1>
+<p>In this section, I will show you how to add more apps to this preprocessor.</p>
+<h2 id="create-a-new-app"><a class="header" href="#create-a-new-app">Create a new app</a></h2>
+<p>You may have some other apps that this preprocessor doesn't support. Actually, it's very easy to add a new app based on my custom template engine.</p>
+<p>What we need to do is put a new app template in the <code>templates</code> folder. The template file name should be the app name.</p>
+<p>For example we want to add a new app called <code>youtube</code>, and we know that youtube embedding code is using an iframe. It looks like this:</p>
+<pre><code class="language-html">&lt;iframe
+  allowfullscreen
+  name="youtube"
+  loading="lazy"
+  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+  style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+&gt;&lt;/iframe&gt;
+</code></pre>
+<blockquote>
+<p>💥Attention</p>
+<p>You can even add <code>style</code> and <code>js</code> content to the template file. you can take a look of <a href="templates/scroll-to-top.html">scroll-to-top</a> example.</p>
+</blockquote>
+<h2 id="add-options"><a class="header" href="#add-options">Add options</a></h2>
+<p>We want the src youtube <code>id</code> and <code>loading</code> strategy to be dynamic and loading strategy has default <code>lazy</code> value. So we can replace them with placeholders like this:</p>
+<pre><code class="language-html">&lt;iframe
+  allowfullscreen
+  name="youtube"
+  loading="{% raw(loading=lazy) %}"
+  src="https://www.youtube.com/embed/{% raw(id) %}"
+  style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+&gt;&lt;/iframe&gt;
+</code></pre>
+<p>The placeholder syntax is similar to a <strong>function call</strong> in programming languages.</p>
+<p>Which <code>raw</code> means the value will not be changed. Now the preprocessor supports two functions, <code>raw</code> and <code>markdown</code>. <code>markdown</code> call will treat the value as markdown content and render it to be html. This call is used in <code>footer</code> and <code>announcement-banner</code> apps. And inner value will be the <code>key</code>, if the key has a <code>default</code> value, we put an equal sign and the default value after the key.</p>
+<h2 id="build-the-project"><a class="header" href="#build-the-project">Build the project</a></h2>
+<p>After build the project, the new app will be automatically added to the preprocessor binary.</p>
+<pre><code class="language-sh">cargo build --release
+</code></pre>
+<p>And you can use it in your book:</p>
+<!-- embed ignore begin -->
+<pre><code class="language-text">{% embed youtube id="dQw4w9WgXcQ" loading="eager" %}
+</code></pre>
+<p>Because the <code>loading</code> key has a default value <code>lazy</code>, we can omit it.</p>
+<pre><code class="language-text">{% embed youtube id="dQw4w9WgXcQ" %}
+</code></pre>
+<!-- embed ignore end -->
+<p>If you are using this repository as a template, then you can build your book to see the result by running:</p>
+<pre><code class="language-sh">mdbook build docs
+</code></pre>
+<p>That's it. If you have some apps need to be added, you can create a new issue or pull request.</p>
+<style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+
+    z-index: 999;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--icons);
+  }
+  .scroll-to-top:hover {
+    background-color: var(--icons-hover);
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
+</style>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+  <i class="fa fa-angle-up"></i>
+</button>
+<script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+<style>
+  .announcement-banner {
+    color: black;
+    z-index: 150;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0;
+    padding: 1rem 3.5rem;
+
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
   }
 
   .announcement-banner button {
@@ -1068,6 +1297,7 @@ giscus.loading = "eager"
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-wrap: balance;
   }
 
   .announcement-banner button {
@@ -1257,6 +1487,7 @@ giscus.loading = "eager"
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-wrap: balance;
   }
 
   .announcement-banner button {
@@ -1453,6 +1684,7 @@ giscus.loading = "eager"
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-wrap: balance;
   }
 
   .announcement-banner button {
@@ -1553,7 +1785,7 @@ giscus.loading = "eager"
 <pre><code class="language-text">{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_kgDOLCxX0Q" category="General" category-id="DIC_kwDOLCxX0c4CdGx-" theme="light" loading="eager" %}
 </code></pre>
 <!-- embed ignore end -->
-<p>This book’s giscus is enabled, you can see it at the bottom of this page. And you can also have a try by commenting below.</p>
+<p>This book's giscus is enabled, you can see it at the bottom of this page. And you can also have a try by commenting below.</p>
 <p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file after <code>[preprocessor.embedify]</code> section:</p>
 <pre><code class="language-toml">giscus.enable = true
 giscus.repo = "MR-Addict/mdbook-embedify"
@@ -1671,6 +1903,7 @@ giscus.loading = "eager"
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-wrap: balance;
   }
 
   .announcement-banner button {
@@ -1868,6 +2101,7 @@ giscus.loading = "eager"
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-wrap: balance;
   }
 
   .announcement-banner button {
@@ -1950,7 +2184,7 @@ giscus.loading = "eager"
 <footer><p>Copyright © 2024 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p>
 </footer>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="codepen"><a class="header" href="#codepen">Codepen</a></h1>
-<p><a href="https://codepen.io">Codepen</a> is a social development environment for front-end designers and developers. It’s the best place to build and deploy a website, show off your work, build test cases, and find inspiration.</p>
+<p><a href="https://codepen.io">Codepen</a> is a social development environment for front-end designers and developers. It's the best place to build and deploy a website, show off your work, build test cases, and find inspiration.</p>
 <h2 id="options-4"><a class="header" href="#options-4">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">user</td><td style="text-align: left">username</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
@@ -2068,6 +2302,7 @@ giscus.loading = "eager"
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-wrap: balance;
   }
 
   .announcement-banner button {
@@ -2150,7 +2385,7 @@ giscus.loading = "eager"
 <footer><p>Copyright © 2024 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p>
 </footer>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="stackblitz"><a class="header" href="#stackblitz">Stackblitz</a></h1>
-<p><a href="https://stackblitz.com">Stackblitz</a> is an instant fullstack web IDE for the JavaScript ecosystem. It’s powered by <a href="https://blog.stackblitz.com/posts/introducing-webcontainers">WebContainers</a>, the first WebAssembly-based operating system which boots the Node.js environment in milliseconds, securely within your browser tab.</p>
+<p><a href="https://stackblitz.com">Stackblitz</a> is an instant fullstack web IDE for the JavaScript ecosystem. It's powered by <a href="https://blog.stackblitz.com/posts/introducing-webcontainers">WebContainers</a>, the first WebAssembly-based operating system which boots the Node.js environment in milliseconds, securely within your browser tab.</p>
 <h2 id="options-5"><a class="header" href="#options-5">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Project ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
@@ -2264,6 +2499,7 @@ giscus.loading = "eager"
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-wrap: balance;
   }
 
   .announcement-banner button {
@@ -2460,6 +2696,7 @@ giscus.loading = "eager"
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-wrap: balance;
   }
 
   .announcement-banner button {
@@ -2656,6 +2893,7 @@ giscus.loading = "eager"
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-wrap: balance;
   }
 
   .announcement-banner button {
@@ -2840,6 +3078,7 @@ giscus.loading = "eager"
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-wrap: balance;
   }
 
   .announcement-banner button {
@@ -2933,7 +3172,7 @@ giscus.loading = "eager"
 <pre><code class="language-text">{% embed footer message="Copyright © 2024 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)" %}
 </code></pre>
 <!-- embed ignore end -->
-<p>This book’s footer is enabled, you can see it at the bottom of this page.</p>
+<p>This book's footer is enabled, you can see it at the bottom of this page.</p>
 <p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file after <code>[preprocessor.embedify]</code> section:</p>
 <pre><code class="language-toml">footer.enable = true
 footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)"
@@ -3033,6 +3272,7 @@ footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-wrap: balance;
   }
 
   .announcement-banner button {
@@ -3222,6 +3462,7 @@ footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-wrap: balance;
   }
 
   .announcement-banner button {
@@ -3317,14 +3558,14 @@ footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https
 <pre><code class="language-text">{% embed announcement-banner id="0.2.8" theme="default" message="*Version **0.2.8** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.8).*" %}
 </code></pre>
 <!-- embed ignore end -->
-<p>This book’s announcement banner is enabled, you can see it at the top of this page.</p>
+<p>This book's announcement banner is enabled, you can see it at the top of this page.</p>
 <p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file after <code>[preprocessor.embedify]</code> section:</p>
 <pre><code class="language-toml">announcement-banner.enable = true
 announcement-banner.id = "0.2.8"
 announcement-banner.theme = "default"
 announcement-banner.message = "*Version **0.2.8** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.8).*"
 </code></pre>
-<p>Note that announcement banner id must be <strong>unique</strong>, otherwise it won’t be shown if there is another announcement banner with the same id when user closed it.</p>
+<p>Note that announcement banner id must be <strong>unique</strong>, otherwise it won't be shown if there is another announcement banner with the same id when user closed it.</p>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
@@ -3420,6 +3661,7 @@ announcement-banner.message = "*Version **0.2.8** now has relased, check it out 
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-wrap: balance;
   }
 
   .announcement-banner button {
