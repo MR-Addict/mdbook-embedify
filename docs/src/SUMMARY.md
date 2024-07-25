@@ -4,8 +4,9 @@
 
 - [Intro](index.md)
 - [Usage](usage.md)
-- [Ignore Embeds](ignore-embeds.md)
 - [Global Embedding](global-embedding.md)
+- [Ignore Embeds](ignore-embeds.md)
+- [More Apps](more-apps.md)
 
 # Apps
 

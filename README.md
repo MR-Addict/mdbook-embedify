@@ -47,3 +47,7 @@ Then you can use `embed` macro to embed an app. The syntax is like this:
 ![preview](preview.png)
 
 You can see a live demo and more detailed documentation [here](https://mr-addict.github.io/mdbook-embedify).
+
+## 4. More Apps
+
+If you want to add more apps to this preprocessor, you can follow the instructions [here](https://mr-addict.github.io/mdbook-embedify/more-apps.html).

@@ -2,7 +2,7 @@
 
 ## Installation
 
-There are two ways to install this plugin.
+There are two ways to install this preprocessor.
 
 You can install it from crates.io using cargo.
 

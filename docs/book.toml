@@ -14,12 +14,12 @@ use-default-preprocessors = false
 [output.html]
 default-theme = "Light"
 preferred-dark-theme = "Ayu"
-curly-quotes = true
+smart-punctuation = true
 mathjax-support = true
 copy-fonts = true
 no-section-label = false
 git-repository-url = "https://github.com/mr-addict/mdbook-embedify"
-edit-url-template = "https://github.com/mr-addict/mdbook-embedify/edit/main/example/{path}"
+edit-url-template = "https://github.com/mr-addict/mdbook-embedify/edit/main/docs/{path}"
 additional-css = ["assets/css/patch.css"]
 
 [output.html.print]
