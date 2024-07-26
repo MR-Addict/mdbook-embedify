@@ -1,7 +1,7 @@
 <style>
   .announcement-banner {
-    color: black;
     z-index: 150;
+    color: var(--fg);
     position: relative;
     flex-direction: column;
     justify-content: center;
@@ -37,6 +37,26 @@
   .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #fea3a3;
     --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
   }
 
   .announcement-banner p {

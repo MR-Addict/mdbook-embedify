@@ -4,11 +4,13 @@ In this section, I will show you how to add more apps to this preprocessor.
 
 ## Create a new app
 
-You may have some other apps that this preprocessor doesn't support. Actually, it's very easy to add a new app based on my custom template engine.
+You may have some other apps that preprocessor doesn't support yet. However, it's very easy to add a new app based on project custom template engine.
 
-What we need to do is put a new app template in the `templates` folder. The template file name should be the app name.
+What we need to do is put a new app template in the `templates` folder. The template file name should be the app name ended with `.html`.
 
-For example we want to add a new app called `youtube`, and we know that youtube embedding code is using an iframe. It looks like this:
+For example we want to add a new app called `youtube`, then we could create a `youtube.html` under `templates` folder.
+
+We know that we can use an iframe to embed a youtube video. Template file could be like this:
 
 ```html
 <iframe
@@ -23,11 +25,9 @@ For example we want to add a new app called `youtube`, and we know that youtube 
 
 > 💥Attention
 >
-> You can even add `style` and `js` content to the template file. you can take a look of [scroll-to-top](templates/scroll-to-top.html) example.
+> You can even add `style` and `js` content to the template file. But the `style` and `js` content should be put in the `style` and `js` blocks.
 
-## Add options
-
-We want the src youtube `id` and `loading` strategy to be dynamic and loading strategy has default `lazy` value. So we can replace them with placeholders like this:
+However, we want video `id` and `loading` strategy to be dynamic and loading strategy has default `lazy` value. So we can replace them with placeholders like this:
 
 ```html
 <iframe
@@ -40,9 +40,19 @@ We want the src youtube `id` and `loading` strategy to be dynamic and loading st
 ></iframe>
 ```
 
-The placeholder syntax is similar to a **function call** in programming languages.
+The placeholder syntax is similar to a **function call** in programming languages, which is the combination of function `name` and `argument` wrapped by `{%` and `%}`.
 
-Which `raw` means the value will not be changed. Now the preprocessor supports two functions, `raw` and `markdown`. `markdown` call will treat the value as markdown content and render it to be html. This call is used in `footer` and `announcement-banner` apps. And inner value will be the `key`, if the key has a `default` value, we put an equal sign and the default value after the key.
+**Function name**
+
+The preprocessor reconginzes two function names, `raw` and `markdown`. Which `raw` will keep inner value as it is, `markdown` will treat the inner value as markdown content and render it to be html.
+
+**Function argument**
+
+The inner value is key follwed by a default value in the form of `key=default_value`. If the key is not provided, the default value will be used.
+
+So `raw(id)` means the placeholder will be replaced by the value of `id` key and id is not optional because it doesn't have a default value.
+
+`raw(loading=lazy)` means the placeholder will be replaced by the value of `loading` key. If user doesn't provide the value, the default value `lazy` will be used. And means loading is optional.
 
 ## Build the project
 
