@@ -185,9 +185,10 @@
                         <h1 id="more-apps"><a class="header" href="#more-apps">More Apps</a></h1>
 <p>In this section, I will show you how to add more apps to this preprocessor.</p>
 <h2 id="create-a-new-app"><a class="header" href="#create-a-new-app">Create a new app</a></h2>
-<p>You may have some other apps that this preprocessor doesn't support. Actually, it's very easy to add a new app based on my custom template engine.</p>
-<p>What we need to do is put a new app template in the <code>templates</code> folder. The template file name should be the app name.</p>
-<p>For example we want to add a new app called <code>youtube</code>, and we know that youtube embedding code is using an iframe. It looks like this:</p>
+<p>You may have some other apps that preprocessor doesn't support yet. However, it's very easy to add a new app based on project custom template engine.</p>
+<p>What we need to do is put a new app template in the <code>templates</code> folder. The template file name should be the app name ended with <code>.html</code>.</p>
+<p>For example we want to add a new app called <code>youtube</code>, then we could create a <code>youtube.html</code> under <code>templates</code> folder.</p>
+<p>We know that we can use an iframe to embed a youtube video. Template file could be like this:</p>
 <pre><code class="language-html">&lt;iframe
   allowfullscreen
   name="youtube"
@@ -199,10 +200,9 @@
 </code></pre>
 <blockquote>
 <p>💥Attention</p>
-<p>You can even add <code>style</code> and <code>js</code> content to the template file. you can take a look of <a href="templates/scroll-to-top.html">scroll-to-top</a> example.</p>
+<p>You can even add <code>style</code> and <code>js</code> content to the template file. But the <code>style</code> and <code>js</code> content should be put in the <code>style</code> and <code>js</code> blocks.</p>
 </blockquote>
-<h2 id="add-options"><a class="header" href="#add-options">Add options</a></h2>
-<p>We want the src youtube <code>id</code> and <code>loading</code> strategy to be dynamic and loading strategy has default <code>lazy</code> value. So we can replace them with placeholders like this:</p>
+<p>However, we want video <code>id</code> and <code>loading</code> strategy to be dynamic and loading strategy has default <code>lazy</code> value. So we can replace them with placeholders like this:</p>
 <pre><code class="language-html">&lt;iframe
   allowfullscreen
   name="youtube"
@@ -212,8 +212,13 @@
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 &gt;&lt;/iframe&gt;
 </code></pre>
-<p>The placeholder syntax is similar to a <strong>function call</strong> in programming languages.</p>
-<p>Which <code>raw</code> means the value will not be changed. Now the preprocessor supports two functions, <code>raw</code> and <code>markdown</code>. <code>markdown</code> call will treat the value as markdown content and render it to be html. This call is used in <code>footer</code> and <code>announcement-banner</code> apps. And inner value will be the <code>key</code>, if the key has a <code>default</code> value, we put an equal sign and the default value after the key.</p>
+<p>The placeholder syntax is similar to a <strong>function call</strong> in programming languages, which is the combination of function <code>name</code> and <code>argument</code> wrapped by <code>{%</code> and <code>%}</code>.</p>
+<p><strong>Function name</strong></p>
+<p>The preprocessor reconginzes two function names, <code>raw</code> and <code>markdown</code>. Which <code>raw</code> will keep inner value as it is, <code>markdown</code> will treat the inner value as markdown content and render it to be html.</p>
+<p><strong>Function argument</strong></p>
+<p>The inner value is key follwed by a default value in the form of <code>key=default_value</code>. If the key is not provided, the default value will be used.</p>
+<p>So <code>raw(id)</code> means the placeholder will be replaced by the value of <code>id</code> key and id is not optional because it doesn't have a default value.</p>
+<p><code>raw(loading=lazy)</code> means the placeholder will be replaced by the value of <code>loading</code> key. If user doesn't provide the value, the default value <code>lazy</code> will be used. And means loading is optional.</p>
 <h2 id="build-the-project"><a class="header" href="#build-the-project">Build the project</a></h2>
 <p>After build the project, the new app will be automatically added to the preprocessor binary.</p>
 <pre><code class="language-sh">cargo build --release
@@ -246,13 +251,10 @@
 
     z-index: 999;
     cursor: pointer;
-    color: #fff;
     border: none;
+    color: var(--bg);
+    background: var(--fg);
     border-radius: 50%;
-    background-color: var(--icons);
-  }
-  .scroll-to-top:hover {
-    background-color: var(--icons-hover);
   }
   .scroll-to-top.hidden {
     display: none;
@@ -278,8 +280,8 @@
 </script>
 <style>
   .announcement-banner {
-    color: black;
     z-index: 150;
+    color: var(--fg);
     position: relative;
     flex-direction: column;
     justify-content: center;
@@ -317,6 +319,26 @@
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
 
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+
   .announcement-banner p {
     width: 100%;
     margin: 0;
@@ -344,8 +366,8 @@
     background-color: transparent;
   }
 </style>
-<div style="display: none" data-id="0.2.8" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.8</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.8">here</a>.</em></p>
+<div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>

@@ -202,9 +202,9 @@ footer.enable = true
 footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)"
 
 announcement-banner.enable = true
-announcement-banner.id = "0.2.8"
+announcement-banner.id = "0.2.9"
 announcement-banner.theme = "default"
-announcement-banner.message = "*Version **0.2.8** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.8).*"
+announcement-banner.message = "*Version **0.2.9** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9).*"
 
 giscus.enable = true
 giscus.repo = "MR-Addict/mdbook-embedify"
@@ -233,13 +233,10 @@ giscus.loading = "eager"
 
     z-index: 999;
     cursor: pointer;
-    color: #fff;
     border: none;
+    color: var(--bg);
+    background: var(--fg);
     border-radius: 50%;
-    background-color: var(--icons);
-  }
-  .scroll-to-top:hover {
-    background-color: var(--icons-hover);
   }
   .scroll-to-top.hidden {
     display: none;
@@ -265,8 +262,8 @@ giscus.loading = "eager"
 </script>
 <style>
   .announcement-banner {
-    color: black;
     z-index: 150;
+    color: var(--fg);
     position: relative;
     flex-direction: column;
     justify-content: center;
@@ -304,6 +301,26 @@ giscus.loading = "eager"
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
 
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+
   .announcement-banner p {
     width: 100%;
     margin: 0;
@@ -331,8 +348,8 @@ giscus.loading = "eager"
     background-color: transparent;
   }
 </style>
-<div style="display: none" data-id="0.2.8" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.8</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.8">here</a>.</em></p>
+<div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
