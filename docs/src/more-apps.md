@@ -6,9 +6,9 @@ In this section, I will show you how to add more apps to this preprocessor.
 
 You may have some other apps that preprocessor doesn't support yet. However, it's very easy to add a new app based on project custom template engine.
 
-What we need to do is put a new app template in the `templates` folder. The template file name should be the app name ended with `.html`.
+What we need to do is put a new app template in the **templates** folder. The template file name should be the app name ended with **.html**.
 
-For example we want to add a new app called `youtube`, then we could create a `youtube.html` under `templates` folder.
+For example we want to add a new app called **youtube**, then we could create a **youtube.html** under **templates** folder.
 
 We know that we can use an iframe to embed a youtube video. Template file could be like this:
 
@@ -25,9 +25,9 @@ We know that we can use an iframe to embed a youtube video. Template file could 
 
 > 💥Attention
 >
-> You can even add `style` and `js` content to the template file. But the `style` and `js` content should be put in the `style` and `js` blocks.
+> You can even add **style** and **js** content to the template file. But the style and js content should be put in the style and js **blocks**.
 
-However, we want video `id` and `loading` strategy to be dynamic and loading strategy has default `lazy` value. So we can replace them with placeholders like this:
+However, we want video **id** and **loading** strategy to be dynamic and loading strategy has default **lazy** value. So we can replace them with placeholders like this:
 
 ```html
 <iframe
@@ -40,19 +40,19 @@ However, we want video `id` and `loading` strategy to be dynamic and loading str
 ></iframe>
 ```
 
-The placeholder syntax is similar to a **function call** in programming languages, which is the combination of function `name` and `argument` wrapped by `{%` and `%}`.
+The placeholder syntax is similar to a **function call** in programming languages, which is the combination of function **name** and **argument** wrapped by **{%** and **%}**.
 
 **Function name**
 
-The preprocessor reconginzes two function names, `raw` and `markdown`. Which `raw` will keep inner value as it is, `markdown` will treat the inner value as markdown content and render it to be html.
+The preprocessor reconginzes two function names, **raw** and **markdown**. Which raw will keep inner value as it is, markdown will treat the inner value as markdown content and render it to be html.
 
 **Function argument**
 
-The inner value is key follwed by a default value in the form of `key=default_value`. If the key is not provided, the default value will be used.
+The inner value is key follwed by a default value in the form of **key=default_value**. If the key is not provided, the default value will be used.
 
-So `raw(id)` means the placeholder will be replaced by the value of `id` key and id is not optional because it doesn't have a default value.
+So **raw(id)** means the placeholder will be replaced by the value of **id** key and id is not optional because it doesn't have a default value.
 
-`raw(loading=lazy)` means the placeholder will be replaced by the value of `loading` key. If user doesn't provide the value, the default value `lazy` will be used. And means loading is optional.
+**raw(loading=lazy)** means the placeholder will be replaced by the value of **loading** key. If user doesn't provide the value, the default value **lazy** will be used. And means loading is optional.
 
 ## Build the project
 

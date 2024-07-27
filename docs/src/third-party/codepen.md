@@ -4,13 +4,13 @@
 
 ## Options
 
-| Option  | Description   | Required | Default |
-| :------ | :------------ | :------- | :------ |
-| user    | username      | Yes      | - -     |
-| slug    | Project slug  | Yes      | - -     |
-| height  | Iframe height | No       | 600     |
-| theme   | Iframe theme  | No       | dark    |
-| loading | Loading type  | No       | lazy    |
+| Option  | Description                     | Required | Default |
+| :------ | :------------------------------ | :------- | :------ |
+| user    | username                        | Yes      | - -     |
+| slug    | Project slug                    | Yes      | - -     |
+| height  | Iframe height                   | No       | 600     |
+| theme   | Iframe theme                    | No       | dark    |
+| loading | Supports **lazy** and **eager** | No       | lazy    |
 
 ## Example
 

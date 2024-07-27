@@ -86,30 +86,25 @@
     background-color: transparent;
   }
 </style>
-
 <div style="display: none" data-id="{% raw(id) %}" class="announcement-banner" data-theme="{% raw(theme=default) %}">
   {% markdown(message) %}
   <button type="button">X</button>
 </div>
-
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
 
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
 </script>

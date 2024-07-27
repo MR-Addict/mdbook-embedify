@@ -3,7 +3,6 @@
     margin-top: 6rem;
   }
 </style>
-
 <script
   src="{% raw(src=https://giscus.app/client.js) %}"
   data-repo="{% raw(repo) %}"
@@ -15,9 +14,25 @@
   data-reactions-enabled="{% raw(reactions-enabled=1) %}"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="{% raw(theme=light) %}"
+  data-theme="{% raw(theme=book) %}"
   data-lang="{% raw(lang=en) %}"
   data-loading="{% raw(loading=lazy) %}"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>

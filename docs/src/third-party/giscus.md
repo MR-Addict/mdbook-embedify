@@ -4,23 +4,23 @@
 
 ## Options
 
-| Option            | Description      | Required | Default |
-| :---------------- | :--------------- | :------- | :------ |
-| repo              | Repository       | Yes      | - -     |
-| repo-id           | Repository ID    | Yes      | - -     |
-| category          | Category         | Yes      | - -     |
-| category-id       | Category ID      | Yes      | - -     |
-| reactions-enabled | Enable reactions | No       | 1       |
-| theme             | Theme            | No       | light   |
-| lang              | Language         | No       | en      |
-| loading           | Loading type     | No       | lazy    |
+| Option            | Description                              | Required | Default |
+| :---------------- | :--------------------------------------- | :------- | :------ |
+| repo              | Repository                               | Yes      | - -     |
+| repo-id           | Repository ID                            | Yes      | - -     |
+| category          | Category                                 | Yes      | - -     |
+| category-id       | Category ID                              | Yes      | - -     |
+| reactions-enabled | Enable reactions                         | No       | 1       |
+| theme             | Supports **book**,**light** and **dark** | No       | book    |
+| lang              | Language                                 | No       | en      |
+| loading           | Supports **lazy** and **eager**          | No       | lazy    |
 
 ## Example
 
 <!-- embed ignore begin -->
 
 ```text
-{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_kgDOLCxX0Q" category="General" category-id="DIC_kwDOLCxX0c4CdGx-" theme="light" loading="eager" %}
+{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_kgDOLCxX0Q" category="General" category-id="DIC_kwDOLCxX0c4CdGx-" theme="book" loading="eager" %}
 ```
 
 <!-- embed ignore end -->
@@ -36,7 +36,7 @@ giscus.repo-id = "R_kgDOLCxX0Q"
 giscus.category = "General"
 giscus.category-id = "DIC_kwDOLCxX0c4CdGx-"
 giscus.reactions-enabled = "1"
-giscus.theme = "light"
+giscus.theme = "book"
 giscus.lang = "en"
 giscus.loading = "eager"
 ```
@@ -50,7 +50,7 @@ For exampe:
 **node.js installed**
 
 ```sh
-npx serve book
+npx serve book -p 3000
 ```
 
 Which will serve your book at [http://localhost:3000](http://localhost:3000).
@@ -58,7 +58,7 @@ Which will serve your book at [http://localhost:3000](http://localhost:3000).
 **python installed**
 
 ```sh
-python -m http.server --directory book
+python -m http.server --directory book 8080
 ```
 
 Which will serve your book at [http://localhost:8080](http://localhost:8080).

@@ -4,10 +4,10 @@
 
 ## Options
 
-| Option  | Description  | Required | Default |
-| :------ | :----------- | :------- | :------ |
-| id      | Video ID     | Yes      | - -     |
-| loading | Loading type | No       | lazy    |
+| Option  | Description                     | Required | Default |
+| :------ | :------------------------------ | :------- | :------ |
+| id      | Video ID                        | Yes      | - -     |
+| loading | Supports **lazy** and **eager** | No       | lazy    |
 
 ## Example
 

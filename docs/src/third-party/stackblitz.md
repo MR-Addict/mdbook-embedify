@@ -4,11 +4,11 @@
 
 ## Options
 
-| Option  | Description  | Required | Default |
-| :------ | :----------- | :------- | :------ |
-| id      | Project ID   | Yes      | - -     |
-| theme   | Iframe theme | No       | dark    |
-| loading | Loading type | No       | lazy    |
+| Option  | Description                     | Required | Default |
+| :------ | :------------------------------ | :------- | :------ |
+| id      | Project ID                      | Yes      | - -     |
+| theme   | Iframe theme                    | No       | dark    |
+| loading | Supports **lazy** and **eager** | No       | lazy    |
 
 ## Example
 
