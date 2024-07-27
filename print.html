@@ -234,111 +234,98 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -355,12 +342,28 @@
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
@@ -453,111 +456,98 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -574,12 +564,28 @@
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
@@ -682,111 +688,98 @@ giscus.loading = "eager"
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -803,12 +796,28 @@ giscus.loading = "eager"
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
@@ -891,111 +900,98 @@ giscus.loading = "eager"
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -1012,12 +1008,28 @@ giscus.loading = "eager"
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
@@ -1038,8 +1050,8 @@ giscus.loading = "eager"
 <p>In this section, I will show you how to add more apps to this preprocessor.</p>
 <h2 id="create-a-new-app"><a class="header" href="#create-a-new-app">Create a new app</a></h2>
 <p>You may have some other apps that preprocessor doesn't support yet. However, it's very easy to add a new app based on project custom template engine.</p>
-<p>What we need to do is put a new app template in the <code>templates</code> folder. The template file name should be the app name ended with <code>.html</code>.</p>
-<p>For example we want to add a new app called <code>youtube</code>, then we could create a <code>youtube.html</code> under <code>templates</code> folder.</p>
+<p>What we need to do is put a new app template in the <strong>templates</strong> folder. The template file name should be the app name ended with <strong>.html</strong>.</p>
+<p>For example we want to add a new app called <strong>youtube</strong>, then we could create a <strong>youtube.html</strong> under <strong>templates</strong> folder.</p>
 <p>We know that we can use an iframe to embed a youtube video. Template file could be like this:</p>
 <pre><code class="language-html">&lt;iframe
   allowfullscreen
@@ -1052,9 +1064,9 @@ giscus.loading = "eager"
 </code></pre>
 <blockquote>
 <p>💥Attention</p>
-<p>You can even add <code>style</code> and <code>js</code> content to the template file. But the <code>style</code> and <code>js</code> content should be put in the <code>style</code> and <code>js</code> blocks.</p>
+<p>You can even add <strong>style</strong> and <strong>js</strong> content to the template file. But the style and js content should be put in the style and js <strong>blocks</strong>.</p>
 </blockquote>
-<p>However, we want video <code>id</code> and <code>loading</code> strategy to be dynamic and loading strategy has default <code>lazy</code> value. So we can replace them with placeholders like this:</p>
+<p>However, we want video <strong>id</strong> and <strong>loading</strong> strategy to be dynamic and loading strategy has default <strong>lazy</strong> value. So we can replace them with placeholders like this:</p>
 <pre><code class="language-html">&lt;iframe
   allowfullscreen
   name="youtube"
@@ -1064,13 +1076,13 @@ giscus.loading = "eager"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 &gt;&lt;/iframe&gt;
 </code></pre>
-<p>The placeholder syntax is similar to a <strong>function call</strong> in programming languages, which is the combination of function <code>name</code> and <code>argument</code> wrapped by <code>{%</code> and <code>%}</code>.</p>
+<p>The placeholder syntax is similar to a <strong>function call</strong> in programming languages, which is the combination of function <strong>name</strong> and <strong>argument</strong> wrapped by <strong>{%</strong> and <strong>%}</strong>.</p>
 <p><strong>Function name</strong></p>
-<p>The preprocessor reconginzes two function names, <code>raw</code> and <code>markdown</code>. Which <code>raw</code> will keep inner value as it is, <code>markdown</code> will treat the inner value as markdown content and render it to be html.</p>
+<p>The preprocessor reconginzes two function names, <strong>raw</strong> and <strong>markdown</strong>. Which raw will keep inner value as it is, markdown will treat the inner value as markdown content and render it to be html.</p>
 <p><strong>Function argument</strong></p>
-<p>The inner value is key follwed by a default value in the form of <code>key=default_value</code>. If the key is not provided, the default value will be used.</p>
-<p>So <code>raw(id)</code> means the placeholder will be replaced by the value of <code>id</code> key and id is not optional because it doesn't have a default value.</p>
-<p><code>raw(loading=lazy)</code> means the placeholder will be replaced by the value of <code>loading</code> key. If user doesn't provide the value, the default value <code>lazy</code> will be used. And means loading is optional.</p>
+<p>The inner value is key follwed by a default value in the form of <strong>key=default_value</strong>. If the key is not provided, the default value will be used.</p>
+<p>So <strong>raw(id)</strong> means the placeholder will be replaced by the value of <strong>id</strong> key and id is not optional because it doesn't have a default value.</p>
+<p><strong>raw(loading=lazy)</strong> means the placeholder will be replaced by the value of <strong>loading</strong> key. If user doesn't provide the value, the default value <strong>lazy</strong> will be used. And means loading is optional.</p>
 <h2 id="build-the-project"><a class="header" href="#build-the-project">Build the project</a></h2>
 <p>After build the project, the new app will be automatically added to the preprocessor binary.</p>
 <pre><code class="language-sh">cargo build --release
@@ -1138,111 +1150,98 @@ giscus.loading = "eager"
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -1259,12 +1258,28 @@ giscus.loading = "eager"
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
@@ -1285,6 +1300,7 @@ giscus.loading = "eager"
 <p>Third party apps are apps that are hosted on third party sites. Below are all supported third party apps and its detailed options.</p>
 <ul>
 <li><a href="third-party/gist.html">Gist</a></li>
+<li><a href="third-party/vimeo.html">Vimeo</a></li>
 <li><a href="third-party/giscus.html">Giscus</a></li>
 <li><a href="third-party/youtube.html">Youtube</a></li>
 <li><a href="third-party/codepen.html">Codepen</a></li>
@@ -1343,111 +1359,98 @@ giscus.loading = "eager"
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -1464,12 +1467,28 @@ giscus.loading = "eager"
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
@@ -1550,111 +1569,98 @@ giscus.loading = "eager"
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -1671,12 +1677,28 @@ giscus.loading = "eager"
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
@@ -1698,7 +1720,7 @@ giscus.loading = "eager"
 <h2 id="options-1"><a class="header" href="#options-1">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
-<tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Supports <strong>lazy</strong> and <strong>eager</strong></td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
 <h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
@@ -1764,111 +1786,98 @@ giscus.loading = "eager"
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -1885,12 +1894,28 @@ giscus.loading = "eager"
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
@@ -1916,14 +1941,14 @@ giscus.loading = "eager"
 <tr><td style="text-align: left">category</td><td style="text-align: left">Category</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">category-id</td><td style="text-align: left">Category ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">reactions-enabled</td><td style="text-align: left">Enable reactions</td><td style="text-align: left">No</td><td style="text-align: left">1</td></tr>
-<tr><td style="text-align: left">theme</td><td style="text-align: left">Theme</td><td style="text-align: left">No</td><td style="text-align: left">light</td></tr>
+<tr><td style="text-align: left">theme</td><td style="text-align: left">Supports <strong>book</strong>,<strong>light</strong> and <strong>dark</strong></td><td style="text-align: left">No</td><td style="text-align: left">book</td></tr>
 <tr><td style="text-align: left">lang</td><td style="text-align: left">Language</td><td style="text-align: left">No</td><td style="text-align: left">en</td></tr>
-<tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Supports <strong>lazy</strong> and <strong>eager</strong></td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
 <h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_kgDOLCxX0Q" category="General" category-id="DIC_kwDOLCxX0c4CdGx-" theme="light" loading="eager" %}
+<pre><code class="language-text">{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_kgDOLCxX0Q" category="General" category-id="DIC_kwDOLCxX0c4CdGx-" theme="book" loading="eager" %}
 </code></pre>
 <!-- embed ignore end -->
 <p>This book's giscus is enabled, you can see it at the bottom of this page. And you can also have a try by commenting below.</p>
@@ -1934,7 +1959,7 @@ giscus.repo-id = "R_kgDOLCxX0Q"
 giscus.category = "General"
 giscus.category-id = "DIC_kwDOLCxX0c4CdGx-"
 giscus.reactions-enabled = "1"
-giscus.theme = "light"
+giscus.theme = "book"
 giscus.lang = "en"
 giscus.loading = "eager"
 </code></pre>
@@ -1942,11 +1967,11 @@ giscus.loading = "eager"
 <p>Giscus will refuse to connect if you build and preview your book with <strong>file://</strong> protocol. The easiest solution is to use some static server so that you can preview your book with <strong>http://</strong> protocol.</p>
 <p>For exampe:</p>
 <p><strong>node.js installed</strong></p>
-<pre><code class="language-sh">npx serve book
+<pre><code class="language-sh">npx serve book -p 3000
 </code></pre>
 <p>Which will serve your book at <a href="http://localhost:3000">http://localhost:3000</a>.</p>
 <p><strong>python installed</strong></p>
-<pre><code class="language-sh">python -m http.server --directory book
+<pre><code class="language-sh">python -m http.server --directory book 8080
 </code></pre>
 <p>Which will serve your book at <a href="http://localhost:8080">http://localhost:8080</a>.</p>
 <style>
@@ -2000,111 +2025,98 @@ giscus.loading = "eager"
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -2121,12 +2133,28 @@ giscus.loading = "eager"
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
@@ -2148,7 +2176,7 @@ giscus.loading = "eager"
 <h2 id="options-3"><a class="header" href="#options-3">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
-<tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Supports <strong>lazy</strong> and <strong>eager</strong></td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
 <h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
@@ -2215,111 +2243,98 @@ giscus.loading = "eager"
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -2336,12 +2351,28 @@ giscus.loading = "eager"
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
@@ -2366,7 +2397,7 @@ giscus.loading = "eager"
 <tr><td style="text-align: left">slug</td><td style="text-align: left">Project slug</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">height</td><td style="text-align: left">Iframe height</td><td style="text-align: left">No</td><td style="text-align: left">600</td></tr>
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Iframe theme</td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
-<tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Supports <strong>lazy</strong> and <strong>eager</strong></td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
 <h2 id="example-4"><a class="header" href="#example-4">Example</a></h2>
@@ -2433,111 +2464,98 @@ giscus.loading = "eager"
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -2554,12 +2572,28 @@ giscus.loading = "eager"
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
@@ -2582,7 +2616,7 @@ giscus.loading = "eager"
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Project ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Iframe theme</td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
-<tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Supports <strong>lazy</strong> and <strong>eager</strong></td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
 <h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
@@ -2647,111 +2681,98 @@ giscus.loading = "eager"
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -2768,12 +2789,28 @@ giscus.loading = "eager"
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
@@ -2796,7 +2833,7 @@ giscus.loading = "eager"
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Project ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
 <tr><td style="text-align: left">theme</td><td style="text-align: left">Iframe theme</td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
-<tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Supports <strong>lazy</strong> and <strong>eager</strong></td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
 <h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
@@ -2861,111 +2898,98 @@ giscus.loading = "eager"
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -2982,12 +3006,28 @@ giscus.loading = "eager"
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
@@ -3009,7 +3049,7 @@ giscus.loading = "eager"
 <h2 id="options-7"><a class="header" href="#options-7">Options</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
 <tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
-<tr><td style="text-align: left">loading</td><td style="text-align: left">Loading type</td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Supports <strong>lazy</strong> and <strong>eager</strong></td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
 </tbody></table>
 </div>
 <h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
@@ -3075,111 +3115,98 @@ giscus.loading = "eager"
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -3196,12 +3223,28 @@ giscus.loading = "eager"
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
@@ -3277,111 +3320,98 @@ giscus.loading = "eager"
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -3398,12 +3428,28 @@ giscus.loading = "eager"
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
@@ -3488,111 +3534,98 @@ footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -3609,12 +3642,28 @@ footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
@@ -3695,111 +3744,98 @@ footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -3816,12 +3852,28 @@ footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
@@ -3911,111 +3963,98 @@ announcement-banner.message = "*Version **0.2.9** now has relased, check it out 
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<pre><code>margin: 0;
+padding: 1rem 3.5rem;
 
-    margin: 0;
-    padding: 1rem 3.5rem;
+background: repeating-linear-gradient(
+  45deg,
+  var(--site-announcement-bar-stripe-color1),
+  var(--site-announcement-bar-stripe-color1) 20px,
+  var(--site-announcement-bar-stripe-color2) 10px,
+  var(--site-announcement-bar-stripe-color2) 40px
+);
+</code></pre>
+<p>}</p>
+<p>.announcement-banner {
+--site-announcement-bar-stripe-color1: #e5e7eb;
+--site-announcement-bar-stripe-color2: #d1d5db;
+}</p>
+<p>.announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #86b2f9;
+--site-announcement-bar-stripe-color2: #7298ea;
+}</p>
+<p>.announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #97f5d6;
+--site-announcement-bar-stripe-color2: #6de0bf;
+}</p>
+<p>.announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #fea3a3;
+--site-announcement-bar-stripe-color2: #e57e7e;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner {
+--site-announcement-bar-stripe-color1: #1f2937;
+--site-announcement-bar-stripe-color2: #111827;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+--site-announcement-bar-stripe-color1: #2563eb;
+--site-announcement-bar-stripe-color2: #1d4ed8;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+--site-announcement-bar-stripe-color1: #22d3a5;
+--site-announcement-bar-stripe-color2: #0fbf8f;
+}</p>
+<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+--site-announcement-bar-stripe-color1: #f87171;
+--site-announcement-bar-stripe-color2: #ef4444;
+}</p>
+<p>.announcement-banner p {
+width: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+text-align: center;
+white-space: nowrap;
+text-overflow: ellipsis;
+text-wrap: balance;
+}</p>
+<p>.announcement-banner button {
+top: 50%;
+right: 1rem;
+position: absolute;
+transform: translateY(-50%);</p>
+<pre><code>width: 3rem;
+height: 3rem;
+cursor: pointer !important;
 
-    background: repeating-linear-gradient(
-      45deg,
-      var(--site-announcement-bar-stripe-color1),
-      var(--site-announcement-bar-stripe-color1) 20px,
-      var(--site-announcement-bar-stripe-color2) 10px,
-      var(--site-announcement-bar-stripe-color2) 40px
-    );
-  }
-
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner {
-    --site-announcement-bar-stripe-color1: #1f2937;
-    --site-announcement-bar-stripe-color2: #111827;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
-
-  .announcement-banner p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-wrap: balance;
-  }
-
-  .announcement-banner button {
-    top: 50%;
-    right: 1rem;
-    position: absolute;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer !important;
-
-    border: none;
-    font-weight: 900;
-    border-radius: 50%;
-    background-color: transparent;
-  }
-</style>
+border: none;
+font-weight: 900;
+border-radius: 50%;
+background-color: transparent;
+</code></pre>
+<p>}
+</style></p>
 <div style="display: none" data-id="0.2.9" class="announcement-banner" data-theme="default">
   <p><em>Version <strong>0.2.9</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.9">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
-  const banner = document.querySelector(".announcement-banner");
-  const id = banner.getAttribute("data-id");
-  const message = banner.querySelector("p").textContent;
-  const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
-  if (!localData || localData.id !== id || localData.hide !== true) {
-    // update banner display style to be flex
-    banner.style.display = "flex";
-
-    // move banner before page class element slibling
-    const page = document.querySelector(".page");
-    page.parentNode.insertBefore(banner, page);
-
-    // add event listener to close button
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.remove();
-      localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-    });
-  }
-</script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
+  banner.style.display = "flex";
+  const page = document.querySelector(".page");
+  page.parentNode.insertBefore(banner, page);
+  banner.querySelector("button").addEventListener("click", () =&gt; {
+    banner.remove();
+    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+  });
+}
+</code></pre>
+<p>})();
+</script></p>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -4032,12 +4071,28 @@ announcement-banner.message = "*Version **0.2.9** now has relased, check it out 
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme="light"
+  data-theme="book"
   data-lang="en"
   data-loading="eager"
   crossorigin="anonymous"
   async
 ></script>
+<script>
+  (() => {
+    const giscusScript = document.querySelector("script[data-repo][data-repo-id]");
+    if (giscusScript?.getAttribute("data-theme") !== "book") return;
+    const mapTheme = (theme) => (theme === "light" || theme === "rust" ? "light" : "dark");
+    const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class");
+    giscusScript.setAttribute("data-theme", mapTheme(bookTheme));
+    document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        theme = mapTheme(event.target.id);
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*");
+      });
+    });
+  })();
+</script>
 <style>
   footer {
     text-align: center;
