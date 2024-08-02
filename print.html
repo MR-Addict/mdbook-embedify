@@ -191,12 +191,10 @@
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -234,78 +232,74 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -314,18 +308,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -413,12 +406,10 @@ background-color: transparent;
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -456,78 +447,74 @@ background-color: transparent;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -536,18 +523,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -622,9 +608,9 @@ footer.enable = true
 footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)"
 
 announcement-banner.enable = true
-announcement-banner.id = "0.2.10"
+announcement-banner.id = "0.2.11"
 announcement-banner.theme = "default"
-announcement-banner.message = "*Version **0.2.10** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10).*"
+announcement-banner.message = "*Version **0.2.11** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11).*"
 
 giscus.enable = true
 giscus.repo = "MR-Addict/mdbook-embedify"
@@ -645,12 +631,10 @@ giscus.loading = "eager"
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -688,78 +672,74 @@ giscus.loading = "eager"
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -768,18 +748,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -857,12 +836,10 @@ background-color: transparent;
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -900,78 +877,74 @@ background-color: transparent;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -980,18 +953,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -1107,12 +1079,10 @@ background-color: transparent;
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -1150,78 +1120,74 @@ background-color: transparent;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -1230,18 +1196,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -1316,12 +1281,10 @@ background-color: transparent;
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -1359,78 +1322,74 @@ background-color: transparent;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -1439,18 +1398,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -1526,12 +1484,10 @@ background-color: transparent;
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -1569,78 +1525,74 @@ background-color: transparent;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -1649,18 +1601,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -1743,12 +1694,10 @@ background-color: transparent;
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -1786,78 +1735,74 @@ background-color: transparent;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -1866,18 +1811,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -1982,12 +1926,10 @@ giscus.loading = "eager"
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -2025,78 +1967,74 @@ giscus.loading = "eager"
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -2105,18 +2043,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -2200,12 +2137,10 @@ background-color: transparent;
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -2243,78 +2178,74 @@ background-color: transparent;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -2323,18 +2254,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -2421,12 +2351,10 @@ background-color: transparent;
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -2464,78 +2392,74 @@ background-color: transparent;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -2544,18 +2468,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -2638,12 +2561,10 @@ background-color: transparent;
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -2681,78 +2602,74 @@ background-color: transparent;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -2761,18 +2678,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -2855,12 +2771,10 @@ background-color: transparent;
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -2898,78 +2812,74 @@ background-color: transparent;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -2978,18 +2888,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -3072,12 +2981,10 @@ background-color: transparent;
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -3115,78 +3022,74 @@ background-color: transparent;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -3195,18 +3098,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -3277,12 +3179,10 @@ background-color: transparent;
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -3320,78 +3220,74 @@ background-color: transparent;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -3400,18 +3296,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -3491,12 +3386,10 @@ footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -3534,78 +3427,74 @@ footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -3614,18 +3503,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -3701,12 +3589,10 @@ background-color: transparent;
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -3744,78 +3630,74 @@ background-color: transparent;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -3824,18 +3706,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
@@ -3901,15 +3782,15 @@ background-color: transparent;
 </div>
 <h2 id="example-10"><a class="header" href="#example-10">Example</a></h2>
 <!-- embed ignore begin -->
-<pre><code class="language-text">{% embed announcement-banner id="0.2.10" theme="default" message="*Version **0.2.10** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10).*" %}
+<pre><code class="language-text">{% embed announcement-banner id="0.2.11" theme="default" message="*Version **0.2.11** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11).*" %}
 </code></pre>
 <!-- embed ignore end -->
 <p>This book's announcement banner is enabled, you can see it at the top of this page.</p>
 <p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file after <code>[preprocessor.embedify]</code> section:</p>
 <pre><code class="language-toml">announcement-banner.enable = true
-announcement-banner.id = "0.2.10"
+announcement-banner.id = "0.2.11"
 announcement-banner.theme = "default"
-announcement-banner.message = "*Version **0.2.10** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10).*"
+announcement-banner.message = "*Version **0.2.11** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11).*"
 </code></pre>
 <p>Note that announcement banner id must be <strong>unique</strong>, otherwise it won't be shown if there is another announcement banner with the same id when user closed it.</p>
 <style>
@@ -3920,12 +3801,10 @@ announcement-banner.message = "*Version **0.2.10** now has relased, check it out
     display: none;
     align-items: center;
     justify-content: center;
-
     position: fixed;
     padding: 0.75rem;
     bottom: 4rem;
     right: calc(1.25rem + 90px + var(--page-padding));
-
     z-index: 999;
     cursor: pointer;
     border: none;
@@ -3963,78 +3842,74 @@ announcement-banner.message = "*Version **0.2.10** now has relased, check it out
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<pre><code>margin: 0;
-padding: 1rem 3.5rem;
-
-background: repeating-linear-gradient(
-  45deg,
-  var(--site-announcement-bar-stripe-color1),
-  var(--site-announcement-bar-stripe-color1) 20px,
-  var(--site-announcement-bar-stripe-color2) 10px,
-  var(--site-announcement-bar-stripe-color2) 40px
-);
-</code></pre>
-<p>}</p>
-<p>.announcement-banner {
---site-announcement-bar-stripe-color1: #e5e7eb;
---site-announcement-bar-stripe-color2: #d1d5db;
-}</p>
-<p>.announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #86b2f9;
---site-announcement-bar-stripe-color2: #7298ea;
-}</p>
-<p>.announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #97f5d6;
---site-announcement-bar-stripe-color2: #6de0bf;
-}</p>
-<p>.announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #fea3a3;
---site-announcement-bar-stripe-color2: #e57e7e;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner {
---site-announcement-bar-stripe-color1: #1f2937;
---site-announcement-bar-stripe-color2: #111827;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
---site-announcement-bar-stripe-color1: #2563eb;
---site-announcement-bar-stripe-color2: #1d4ed8;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
---site-announcement-bar-stripe-color1: #22d3a5;
---site-announcement-bar-stripe-color2: #0fbf8f;
-}</p>
-<p>html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
---site-announcement-bar-stripe-color1: #f87171;
---site-announcement-bar-stripe-color2: #ef4444;
-}</p>
-<p>.announcement-banner p {
-width: 100%;
-margin: 0;
-padding: 0;
-overflow: hidden;
-text-align: center;
-white-space: nowrap;
-text-overflow: ellipsis;
-text-wrap: balance;
-}</p>
-<p>.announcement-banner button {
-top: 50%;
-right: 1rem;
-position: absolute;
-transform: translateY(-50%);</p>
-<pre><code>width: 3rem;
-height: 3rem;
-cursor: pointer !important;
-
-border: none;
-font-weight: 900;
-border-radius: 50%;
-background-color: transparent;
-</code></pre>
-<p>}
-</style></p>
-<div style="display: none" data-id="0.2.10" class="announcement-banner" data-theme="default">
-  <p><em>Version <strong>0.2.10</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.10">here</a>.</em></p>
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="0.2.11" class="announcement-banner" data-theme="default">
+  <p><em>Version <strong>0.2.11</strong> now has relased, check it out <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11">here</a>.</em></p>
 <p><button type="button">X</button></p>
 </div>
 <script>
@@ -4043,18 +3918,17 @@ background-color: transparent;
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-<pre><code>if (!localData || localData.id !== id || localData.hide !== true) {
-  banner.style.display = "flex";
-  const page = document.querySelector(".page");
-  page.parentNode.insertBefore(banner, page);
-  banner.querySelector("button").addEventListener("click", () =&gt; {
-    banner.remove();
-    localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
-  });
-}
-</code></pre>
-<p>})();
-</script></p>
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
 <style>
   .giscus {
     margin-top: 6rem;
