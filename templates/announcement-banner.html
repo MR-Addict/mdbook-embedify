@@ -6,10 +6,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     margin: 0;
     padding: 1rem 3.5rem;
-
     background: repeating-linear-gradient(
       45deg,
       var(--site-announcement-bar-stripe-color1),
@@ -18,47 +16,38 @@
       var(--site-announcement-bar-stripe-color2) 40px
     );
   }
-
   .announcement-banner {
     --site-announcement-bar-stripe-color1: #e5e7eb;
     --site-announcement-bar-stripe-color2: #d1d5db;
   }
-
   .announcement-banner[data-theme="ocean"] {
     --site-announcement-bar-stripe-color1: #86b2f9;
     --site-announcement-bar-stripe-color2: #7298ea;
   }
-
   .announcement-banner[data-theme="forest"] {
     --site-announcement-bar-stripe-color1: #97f5d6;
     --site-announcement-bar-stripe-color2: #6de0bf;
   }
-
   .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #fea3a3;
     --site-announcement-bar-stripe-color2: #e57e7e;
   }
-
   html:is(.navy, .coal, .ayu) .announcement-banner {
     --site-announcement-bar-stripe-color1: #1f2937;
     --site-announcement-bar-stripe-color2: #111827;
   }
-
   html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
     --site-announcement-bar-stripe-color1: #2563eb;
     --site-announcement-bar-stripe-color2: #1d4ed8;
   }
-
   html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
     --site-announcement-bar-stripe-color1: #22d3a5;
     --site-announcement-bar-stripe-color2: #0fbf8f;
   }
-
   html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
     --site-announcement-bar-stripe-color1: #f87171;
     --site-announcement-bar-stripe-color2: #ef4444;
   }
-
   .announcement-banner p {
     width: 100%;
     margin: 0;
@@ -69,17 +58,14 @@
     text-overflow: ellipsis;
     text-wrap: balance;
   }
-
   .announcement-banner button {
     top: 50%;
     right: 1rem;
     position: absolute;
     transform: translateY(-50%);
-
     width: 3rem;
     height: 3rem;
     cursor: pointer !important;
-
     border: none;
     font-weight: 900;
     border-radius: 50%;
@@ -96,7 +82,6 @@
     const id = banner.getAttribute("data-id");
     const message = banner.querySelector("p").textContent;
     const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
-
     if (!localData || localData.id !== id || localData.hide !== true) {
       banner.style.display = "flex";
       const page = document.querySelector(".page");
