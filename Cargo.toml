@@ -12,9 +12,9 @@ documentation = "https://mr-addict.github.io/mdbook-embedify"
 description = "A rust based mdbook preprocessor plugin that allows you to embed apps to your book, like youtube, codepen and some other apps"
 
 [dependencies]
-clap = "4.5.10"
+clap = "4.5.16"
 mdbook = "0.4.40"
-pulldown-cmark = "0.11.0"
-regex = "1.10.5"
+pulldown-cmark = "0.12.0"
+regex = "1.10.6"
 rust-embed = "8.5.0"
-serde_json = "1.0.120"
+serde_json = "1.0.127"

@@ -25,7 +25,7 @@ We know that we can use an iframe to embed a youtube video. Template file could 
 
 > 💥Attention
 >
-> You can even add **style** and **js** content to the template file. But the style and js content should be put in the style and js **blocks**.
+> You can even add **style** and **js** content to the template file. But the style and js content should be put in the style and js blocks.
 
 However, we want video **id** and **loading** strategy to be dynamic and loading strategy has default **lazy** value. So we can replace them with placeholders like this:
 
