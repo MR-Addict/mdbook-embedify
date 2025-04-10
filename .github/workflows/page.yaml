@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Cahce
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             ~/.cargo/bin/
@@ -36,7 +36,11 @@ jobs:
           chmod u+x docs/assets/bin/* && cp docs/assets/bin/* /usr/local/bin
           cargo build --release && mdbook build docs
 
-      - uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy to github pages
+        uses: crazy-max/ghaction-github-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/book
+          target_branch: gh-pages
+          build_dir: docs/book
+          jekyll: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
