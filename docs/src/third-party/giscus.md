@@ -20,7 +20,7 @@
 <!-- embed ignore begin -->
 
 ```text
-{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_kgDOLCxX0Q" category="General" category-id="DIC_kwDOLCxX0c4CdGx-" theme="book" loading="eager" %}
+{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_XXXXXXXXXX" category="General" category-id="DIC_XXXXXXXXXXXXXXXX" theme="book" loading="eager" %}
 ```
 
 <!-- embed ignore end -->
@@ -32,9 +32,9 @@ However, you may want to enable it for the whole book. You can do this by adding
 ```toml
 giscus.enable = true
 giscus.repo = "MR-Addict/mdbook-embedify"
-giscus.repo-id = "R_kgDOLCxX0Q"
+giscus.repo-id = "R_XXXXXXXXXX"
 giscus.category = "General"
-giscus.category-id = "DIC_kwDOLCxX0c4CdGx-"
+giscus.category-id = "DIC_XXXXXXXXXXXXXXXX"
 giscus.reactions-enabled = "1"
 giscus.theme = "book"
 giscus.lang = "en"

@@ -33,9 +33,9 @@ announcement-banner.message = "*Version **0.2.11** now has relased, check it out
 
 giscus.enable = true
 giscus.repo = "MR-Addict/mdbook-embedify"
-giscus.repo-id = "R_kgDOLCxX0Q"
+giscus.repo-id = "R_XXXXXXXXXX"
 giscus.category = "General"
-giscus.category-id = "DIC_kwDOLCxX0c4CdGx-"
+giscus.category-id = "DIC_XXXXXXXXXXXXXXXX"
 giscus.reactions-enabled = "1"
 giscus.theme = "light"
 giscus.lang = "en"
