@@ -4,10 +4,10 @@ Announcement banner allows you put important messages at the top of the page. It
 
 ## Options
 
-| Option  | Description                              | Required | Default |
-| :------ | :--------------------------------------- | :------- | :------ |
-| id      | Announcement id                          | Yes      | - -     |
-| message | Announcement message, markdown supported | Yes      | - -     |
+| Option  | Description                                  | Required | Default |
+| :------ | :------------------------------------------- | :------- | :------ |
+| id      | Announcement id                              | Yes      | - -     |
+| message | Announcement message, **markdown** supported | Yes      | - -     |
 
 ## Example
 

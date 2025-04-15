@@ -7,7 +7,7 @@
 | Option  | Description                     | Required | Default |
 | :------ | :------------------------------ | :------- | :------ |
 | id      | Project ID                      | Yes      | - -     |
-| theme   | Iframe theme                    | No       | dark    |
+| theme   | Supports **light** and **dark** | No       | dark    |
 | loading | Supports **lazy** and **eager** | No       | lazy    |
 
 ## Example

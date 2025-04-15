@@ -9,7 +9,7 @@
 | user    | username                        | Yes      | - -     |
 | slug    | Project slug                    | Yes      | - -     |
 | height  | Iframe height                   | No       | 600     |
-| theme   | Iframe theme                    | No       | dark    |
+| theme   | Supports **light** and **dark** | No       | dark    |
 | loading | Supports **lazy** and **eager** | No       | lazy    |
 
 ## Example

@@ -4,16 +4,16 @@
 
 ## Options
 
-| Option            | Description                              | Required | Default |
-| :---------------- | :--------------------------------------- | :------- | :------ |
-| repo              | Repository                               | Yes      | - -     |
-| repo-id           | Repository ID                            | Yes      | - -     |
-| category          | Category                                 | Yes      | - -     |
-| category-id       | Category ID                              | Yes      | - -     |
-| reactions-enabled | Enable reactions                         | No       | 1       |
-| theme             | Supports **book**,**light** and **dark** | No       | book    |
-| lang              | Language                                 | No       | en      |
-| loading           | Supports **lazy** and **eager**          | No       | lazy    |
+| Option            | Description                               | Required | Default |
+| :---------------- | :---------------------------------------- | :------- | :------ |
+| repo              | Repository                                | Yes      | - -     |
+| repo-id           | Repository ID                             | Yes      | - -     |
+| category          | Category                                  | Yes      | - -     |
+| category-id       | Category ID                               | Yes      | - -     |
+| reactions-enabled | Enable reactions                          | No       | 1       |
+| theme             | Supports **book**, **light** and **dark** | No       | book    |
+| lang              | Localization language                     | No       | en      |
+| loading           | Supports **lazy** and **eager**           | No       | lazy    |
 
 ## Example
 

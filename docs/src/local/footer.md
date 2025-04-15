@@ -4,9 +4,9 @@ The footer app is useful for displaying copyright information, privacy policy, a
 
 ## Options
 
-| Option  | Description                        | Required | Default |
-| :------ | :--------------------------------- | :------- | :------ |
-| message | Footer message, markdown supported | Yes      | - -     |
+| Option  | Description                            | Required | Default |
+| :------ | :------------------------------------- | :------- | :------ |
+| message | Footer message, **markdown** supported | Yes      | - -     |
 
 ## Example
 
