@@ -1,13 +1,17 @@
-use crate::cfg;
+use crate::parser;
 use crate::utils;
 
 use mdbook::{
     book::Book,
     errors::Error,
     preprocess::{Preprocessor, PreprocessorContext},
-    Config,
 };
 use regex::Regex;
+use rust_embed::RustEmbed;
+
+#[derive(RustEmbed)]
+#[folder = "src/assets/templates"]
+struct Assets;
 
 pub struct Embed;
 
@@ -17,7 +21,68 @@ impl Embed {
     }
 }
 
-fn render_general_embeds(content: String) -> String {
+fn render_template_app(app: parser::EmbedApp) -> String {
+    let app_path = format!("{}.html", app.name);
+
+    // check if and app is supported
+    if !Assets::iter().any(|name| name == app_path) {
+        panic!("App {} is not supported", app.name);
+    }
+
+    // get the template from the embedded files
+    let file = Assets::get(&app_path).unwrap();
+    let template = std::str::from_utf8(file.data.as_ref()).unwrap();
+
+    // render placeholders
+    let re = Regex::new(r"\{%\s*.*?\s*%\}").unwrap();
+
+    let result = re
+        .replace_all(&template.to_string(), |caps: &regex::Captures| {
+            let input = caps.get(0).map_or("", |m| m.as_str());
+            let placeholder = parser::parse_placeholder(input);
+
+            if placeholder.is_none() {
+                return input.to_string();
+            }
+
+            let placeholder = placeholder.unwrap();
+
+            // find the value in the options
+            let found = app
+                .options
+                .iter()
+                .find(|option| option.name == placeholder.key);
+
+            // when default value is not set, and the option value is not set, panic
+            if placeholder.default.is_empty() {
+                if found.is_none() || found.unwrap().value.is_empty() {
+                    panic!(
+                        "Option {} is required for app {}",
+                        placeholder.key, app.name
+                    );
+                }
+            }
+
+            // when the option value is set, use it, otherwise use the default value
+            let mut value = if found.is_some() && !found.unwrap().value.is_empty() {
+                found.unwrap().value.clone()
+            } else {
+                placeholder.default.clone()
+            };
+
+            // render the value with the method
+            if placeholder.method == "markdown" {
+                value = utils::render_to_markdown(value.clone());
+            }
+
+            value
+        })
+        .to_string();
+
+    format!("<!-- mdbook-embedify [{}]  -->\n{}", app.name, result)
+}
+
+fn render_embeds(content: String) -> String {
     let mut content = content;
 
     // create a regex to match <!-- embed ignore begin -->...<!-- embed ignore end -->
@@ -35,16 +100,17 @@ fn render_general_embeds(content: String) -> String {
     }
 
     // replace the content
-    let re_embed = Regex::new(r"\{% embed ([\w-]+)(.*) %\}").unwrap();
+    let re_embed = Regex::new(r"\{%\s*.*?\s*%\}").unwrap();
     content = re_embed
         .replace_all(&content, |caps: &regex::Captures| {
-            // parse app and options
-            let app = caps.get(1).map_or("", |m| m.as_str());
-            let options_str = caps.get(2).map_or("", |m| m.as_str());
+            let input = caps.get(0).map_or("", |m| m.as_str());
+            let app = parser::parse_app(input);
+            if app.is_none() {
+                return input.to_string();
+            }
 
-            // get options and return the rendered template
-            let options = utils::parse_options(options_str);
-            utils::render_template(app, &options)
+            let app = app.unwrap();
+            render_template_app(app)
         })
         .to_string();
 
@@ -58,55 +124,6 @@ fn render_general_embeds(content: String) -> String {
     content
 }
 
-fn render_announcement_banner(config: &Config) -> String {
-    // get the config
-    let id = cfg::get_config_string(config, "announcement-banner.id", "");
-    let theme = cfg::get_config_string(config, "announcement-banner.theme", "default");
-    let message = cfg::get_config_string(config, "announcement-banner.message", "");
-
-    // render the template
-    let options = vec![
-        ("id".to_string(), id),
-        ("message".to_string(), message),
-        ("theme".to_string(), theme),
-    ];
-    utils::render_template("announcement-banner", &options)
-}
-
-fn render_giscus(config: &Config) -> String {
-    // get the config
-    let repo = cfg::get_config_string(config, "giscus.repo", "");
-    let repo_id = cfg::get_config_string(config, "giscus.repo-id", "");
-    let category = cfg::get_config_string(config, "giscus.category", "");
-    let category_id = cfg::get_config_string(config, "giscus.category-id", "");
-    let reactions_enabled = cfg::get_config_string(config, "giscus.reactions-enabled", "1");
-    let theme = cfg::get_config_string(config, "giscus.theme", "light");
-    let lang = cfg::get_config_string(config, "giscus.lang", "en");
-    let loading = cfg::get_config_string(config, "giscus.loading", "lazy");
-
-    // render the template
-    let options = vec![
-        ("repo".to_string(), repo),
-        ("repo-id".to_string(), repo_id),
-        ("category".to_string(), category),
-        ("category-id".to_string(), category_id),
-        ("reactions-enabled".to_string(), reactions_enabled),
-        ("theme".to_string(), theme),
-        ("lang".to_string(), lang),
-        ("loading".to_string(), loading),
-    ];
-    utils::render_template("giscus", &options)
-}
-
-fn render_footer(config: &Config) -> String {
-    // get the config
-    let message = cfg::get_config_string(config, "footer.message", "");
-
-    // render the template
-    let options = vec![("message".to_string(), message)];
-    utils::render_template("footer", &options)
-}
-
 impl Preprocessor for Embed {
     fn name(&self) -> &str {
         "mdbook-embedify"
@@ -115,37 +132,32 @@ impl Preprocessor for Embed {
     fn run(&self, ctx: &PreprocessorContext, mut book: Book) -> Result<Book, Error> {
         let config = &ctx.config;
 
-        let footer = cfg::get_config_bool(config, "footer.enable");
-        let giscus = cfg::get_config_bool(config, "giscus.enable");
-        let scroll_to_top = cfg::get_config_bool(config, "scroll-to-top.enable");
-        let announcement_banner = cfg::get_config_bool(config, "announcement-banner.enable");
+        let footer = utils::get_config_bool(config, "footer.enable");
+        let giscus = utils::get_config_bool(config, "giscus.enable");
+        let scroll_to_top = utils::get_config_bool(config, "scroll-to-top.enable");
+        let announcement_banner = utils::get_config_bool(config, "announcement-banner.enable");
 
         book.for_each_mut(|item| {
             if let mdbook::book::BookItem::Chapter(chapter) = item {
-                // render every single embeds
-                if chapter.content.contains("{% embed ") && chapter.content.contains(" %}") {
-                    chapter.content = render_general_embeds(chapter.content.clone());
-                }
-                // render the global scroll to top button
+                let mut content = chapter.content.clone();
+                // create the global scroll to top button
                 if scroll_to_top {
-                    let template = utils::render_template("scroll-to-top", &Vec::new());
-                    chapter.content.push_str(&template);
+                    content.push_str(&utils::create_scroll_to_top());
                 }
-                // render the global announcement banner
+                // create the global announcement banner
                 if announcement_banner {
-                    let template = render_announcement_banner(config);
-                    chapter.content.push_str(&template);
+                    content.push_str(&utils::create_announcement_banner(config));
                 }
-                // render the global giscus comments
+                // create the global giscus comments
                 if giscus {
-                    let template = render_giscus(config);
-                    chapter.content.push_str(&template);
+                    content.push_str(&utils::create_giscus(config));
                 }
-                // render the global footer
+                // create the global footer
                 if footer {
-                    let template = render_footer(config);
-                    chapter.content.push_str(&template);
+                    content.push_str(&utils::create_footer(config));
                 }
+                // render the embeds in the content
+                chapter.content = render_embeds(content);
             }
         });
 

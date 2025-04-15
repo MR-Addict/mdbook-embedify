@@ -33,26 +33,31 @@ However, we want video **id** and **loading** strategy to be dynamic and loading
 <iframe
   allowfullscreen
   name="youtube"
-  loading="{% raw(loading=lazy) %}"
-  src="https://www.youtube.com/embed/{% raw(id) %}"
+  loading="{% loading=lazy %}"
+  src="https://www.youtube.com/embed/{% id %}"
   style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 ></iframe>
 ```
 
-The placeholder syntax is similar to a **function call** in programming languages, which is the combination of function **name** and **argument** wrapped by **{%** and **%}**.
+There are two ways of adding dynamic values to the template file:
+
+- Only put key name in the placeholder, like **{% key %}**, and you can add default value after the key name, like **{% key=default %}**. The default value will be used if user doesn't provide the value.
+- Wrapped with processor name, like **{% processor(key=default) %}**. The processor name is like as function name, and the key is the argument name. The default value will be used if user doesn't provide the value.
 
 **Function name**
 
-The preprocessor reconginzes two function names, **raw** and **markdown**. Which raw will keep inner value as it is, markdown will treat the inner value as markdown content and render it to be html.
+Now only **markdown** is supported, markdown will treat the inner value as markdown content and render it to be html.
 
 **Function argument**
 
-The inner value is key follwed by a default value in the form of **key=default_value**. If the key is not provided, the default value will be used.
+The inner value is key follwed by a default value in the form of **key=default**. If the key is not provided, the default value will be used.
 
-So **raw(id)** means the placeholder will be replaced by the value of **id** key and id is not optional because it doesn't have a default value.
+For example:
 
-**raw(loading=lazy)** means the placeholder will be replaced by the value of **loading** key. If user doesn't provide the value, the default value **lazy** will be used. And means loading is optional.
+- **id** means the placeholder will be replaced by the value of **id** key and id is not optional because it doesn't have a default value.
+- **loading=lazy** means the placeholder will be replaced by the value of **loading** key. If user doesn't provide the value, the default value **lazy** will be used.
+- **markdown(footer)** means the placeholder will be replaced by the value of **footer** processed by **markdown** processor.
 
 ## Build the project
 

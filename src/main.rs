@@ -1,10 +1,13 @@
-mod cfg;
 mod cli;
 mod embed;
+mod parser;
 mod utils;
 
 use mdbook::preprocess::{CmdPreprocessor, Preprocessor};
 use std::io;
+
+#[macro_use]
+extern crate pest_derive;
 
 fn main() {
     let cli = cli::Cli::new();

@@ -28,7 +28,6 @@ footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https
 
 announcement-banner.enable = true
 announcement-banner.id = "0.2.11"
-announcement-banner.theme = "default"
 announcement-banner.message = "*Version **0.2.11** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11).*"
 
 giscus.enable = true

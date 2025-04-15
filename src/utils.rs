@@ -1,72 +1,78 @@
+use mdbook::Config;
 use pulldown_cmark;
-use regex::Regex;
-use rust_embed::RustEmbed;
 
-#[derive(RustEmbed)]
-#[folder = "templates"]
-struct Assets;
-
-pub fn render_markdown_processor(content: String) -> String {
+pub fn render_to_markdown(content: String) -> String {
     let mut html = String::new();
     let parser = pulldown_cmark::Parser::new(&content);
     pulldown_cmark::html::push_html(&mut html, parser);
     html.into()
 }
 
-pub fn parse_options(options_str: &str) -> Vec<(String, String)> {
-    // options parse regex
-    let re = Regex::new(r#"([\w-]+)="([^"]*)""#).unwrap();
-
-    // optoins turple vector
-    let mut options = Vec::new();
-
-    // parse options
-    for cap in re.captures_iter(options_str.trim()) {
-        options.push((cap[1].to_string(), cap[2].to_string()));
-    }
-
-    // return options
-    options
+pub fn get_config_bool(config: &Config, key: &str) -> bool {
+    config
+        .get(format!("preprocessor.embedify.{}", key).as_str())
+        .and_then(|v| v.as_bool())
+        .unwrap_or(false)
 }
 
-pub fn render_template(app: &str, placeholders: &[(String, String)]) -> String {
-    // app path
-    let path = format!("{}.html", app);
+pub fn get_config_string<'a>(config: &'a Config, key: &str, default: &'a str) -> &'a str {
+    config
+        .get(format!("preprocessor.embedify.{}", key).as_str())
+        .and_then(|v| v.as_str())
+        .unwrap_or(default)
+}
 
-    // check if and app is supported
-    if !Assets::iter().any(|name| name == path) {
-        panic!("App {} is not supported", app);
+pub fn create_embed(name: &str, options: Vec<(&str, &str)>) -> String {
+    let mut option_str = String::new();
+    for (key, value) in options {
+        option_str.push_str(&format!(r#"{}="{}""#, key, value));
     }
+    format!("{{% embed {} {} %}}", name, option_str)
+}
 
-    // get the template from the embedded files
-    let file = Assets::get(&path).unwrap();
-    let template = std::str::from_utf8(file.data.as_ref()).unwrap();
+pub fn create_announcement_banner(config: &Config) -> String {
+    // get the config
+    let id = get_config_string(config, "announcement-banner.id", "");
+    let theme = get_config_string(config, "announcement-banner.theme", "default");
+    let message = get_config_string(config, "announcement-banner.message", "");
 
-    // create a processors vec
-    let processors: Vec<(String, fn(String) -> String)> = vec![
-        ("raw".to_string(), |content| content),
-        ("markdown".to_string(), render_markdown_processor),
+    create_embed(
+        "announcement-banner",
+        vec![("id", id), ("theme", theme), ("message", message)],
+    )
+}
+
+pub fn create_giscus(config: &Config) -> String {
+    // get the config
+    let repo = get_config_string(config, "giscus.repo", "");
+    let repo_id = get_config_string(config, "giscus.repo-id", "");
+    let category = get_config_string(config, "giscus.category", "");
+    let category_id = get_config_string(config, "giscus.category-id", "");
+    let reactions_enabled = get_config_string(config, "giscus.reactions-enabled", "1");
+    let theme = get_config_string(config, "giscus.theme", "book");
+    let lang = get_config_string(config, "giscus.lang", "en");
+    let loading = get_config_string(config, "giscus.loading", "lazy");
+
+    let options = vec![
+        ("repo", repo),
+        ("repo-id", repo_id),
+        ("category", category),
+        ("category-id", category_id),
+        ("reactions-enabled", reactions_enabled),
+        ("theme", theme),
+        ("lang", lang),
+        ("loading", loading),
     ];
 
-    // render placeholders
-    let mut result = template.to_string();
-    for (key, value) in placeholders {
-        // iterate over the methods
-        for (name, processor) in &processors {
-            let pattern = format!(r"\{{% {}\({}(?:=([^)]+))?\) %\}}", name, key);
-            let re = Regex::new(&pattern).unwrap();
-            if re.is_match(&result) {
-                // replace {% processor(key=default) %} with processor rendered content
-                let rendered = processor(value.clone());
-                result = re.replace_all(&result, rendered).to_string();
-            }
-        }
-    }
+    create_embed("giscus", options)
+}
 
-    // replace {% processor(key=default) %} with default value
-    let re = Regex::new(r"\{\% (\w+)\((\w+)=([^)]+)\) \%\}").unwrap();
-    result = re.replace_all(&result, "$3").to_string();
+pub fn create_footer(config: &Config) -> String {
+    // get the config
+    let message = get_config_string(config, "footer.message", "");
+    create_embed("footer", vec![("message", message)])
+}
 
-    // return the result
-    result.to_string()
+pub fn create_scroll_to_top() -> String {
+    create_embed("scroll-to-top", vec![])
 }

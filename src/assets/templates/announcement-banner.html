@@ -1,7 +1,8 @@
 <style>
   .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
     z-index: 150;
-    color: var(--fg);
     position: relative;
     flex-direction: column;
     justify-content: center;
@@ -16,39 +17,12 @@
       var(--site-announcement-bar-stripe-color2) 40px
     );
   }
-  .announcement-banner {
-    --site-announcement-bar-stripe-color1: #e5e7eb;
-    --site-announcement-bar-stripe-color2: #d1d5db;
-  }
-  .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #86b2f9;
-    --site-announcement-bar-stripe-color2: #7298ea;
-  }
-  .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #97f5d6;
-    --site-announcement-bar-stripe-color2: #6de0bf;
-  }
-  .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #fea3a3;
-    --site-announcement-bar-stripe-color2: #e57e7e;
-  }
   html:is(.navy, .coal, .ayu) .announcement-banner {
     --site-announcement-bar-stripe-color1: #1f2937;
     --site-announcement-bar-stripe-color2: #111827;
   }
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="ocean"] {
-    --site-announcement-bar-stripe-color1: #2563eb;
-    --site-announcement-bar-stripe-color2: #1d4ed8;
-  }
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="forest"] {
-    --site-announcement-bar-stripe-color1: #22d3a5;
-    --site-announcement-bar-stripe-color2: #0fbf8f;
-  }
-  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="lava"] {
-    --site-announcement-bar-stripe-color1: #f87171;
-    --site-announcement-bar-stripe-color2: #ef4444;
-  }
   .announcement-banner p {
+    color: var(--fg);
     width: 100%;
     margin: 0;
     padding: 0;
@@ -58,7 +32,7 @@
     text-overflow: ellipsis;
     text-wrap: balance;
   }
-  .announcement-banner button {
+  .announcement-banner button[data-close] {
     top: 50%;
     right: 1rem;
     position: absolute;
@@ -72,9 +46,9 @@
     background-color: transparent;
   }
 </style>
-<div style="display: none" data-id="{% raw(id) %}" class="announcement-banner" data-theme="{% raw(theme=default) %}">
+<div style="display: none" data-id="{% id %}" class="announcement-banner">
   {% markdown(message) %}
-  <button type="button">X</button>
+  <button type="button" data-close>X</button>
 </div>
 <script>
   (() => {

@@ -4,18 +4,17 @@ Announcement banner allows you put important messages at the top of the page. It
 
 ## Options
 
-| Option  | Description                                                  | Required | Default |
-| :------ | :----------------------------------------------------------- | :------- | :------ |
-| id      | Announcement id                                              | Yes      | - -     |
-| message | Announcement message, markdown supported                     | Yes      | - -     |
-| theme   | Supports theme: **default**, **ocean**, **forest**, **lava** | No       | default |
+| Option  | Description                              | Required | Default |
+| :------ | :--------------------------------------- | :------- | :------ |
+| id      | Announcement id                          | Yes      | - -     |
+| message | Announcement message, markdown supported | Yes      | - -     |
 
 ## Example
 
 <!-- embed ignore begin -->
 
 ```text
-{% embed announcement-banner id="0.2.11" theme="default" message="*Version **0.2.11** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11).*" %}
+{% embed announcement-banner id="0.2.11" message="*Version **0.2.11** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11).*" %}
 ```
 
 <!-- embed ignore end -->
@@ -27,7 +26,6 @@ However, you may want to enable it for the whole book. You can do this by adding
 ```toml
 announcement-banner.enable = true
 announcement-banner.id = "0.2.11"
-announcement-banner.theme = "default"
 announcement-banner.message = "*Version **0.2.11** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.11).*"
 ```
 

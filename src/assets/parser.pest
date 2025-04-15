@@ -1,0 +1,28 @@
+// ---
+// Common rules
+WHITESPACE    = _{ " " }
+opener        =  { "{%" }
+closer        =  { "%}" }
+identifier    = @{ (ASCII_ALPHANUMERIC | "_" | "-")+ }
+quoted_string = @{ ("\"" ~ (!"\"" ~ ANY)* ~ "\"") | ("'" ~ (!"'" ~ ANY)* ~ "'") }
+
+// ---
+// Embed rules
+embed_name         = { identifier }
+embed_option_name  = { identifier }
+embed_option_value = { quoted_string }
+embed_option       = { embed_option_name ~ "=" ~ embed_option_value }
+embed_options      = { embed_option+ }
+
+embed = { opener ~ "embed" ~ embed_name ~ embed_options? ~ closer }
+
+// ---
+// Placeholder rules
+placeholder_method   = { identifier }
+placeholder_key      = { identifier }
+placeholder_default  = { identifier | quoted_string }
+placeholder_argument = { placeholder_key ~ ("=" ~ placeholder_default)? }
+
+// ---
+// Placeholder rules
+placeholder = { opener ~ ((placeholder_method ~ "(" ~ placeholder_argument ~ ")") | (placeholder_argument)) ~ closer }
