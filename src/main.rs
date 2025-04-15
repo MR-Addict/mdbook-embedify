@@ -1,3 +1,4 @@
+mod assets;
 mod cli;
 mod embed;
 mod parser;

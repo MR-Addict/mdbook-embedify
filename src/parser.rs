@@ -1,7 +1,7 @@
 use pest::Parser;
 
 #[derive(Parser)]
-#[grammar = "assets/parser.pest"] // Ensure this file name is correct.
+#[grammar = "assets/pests/parser.pest"]
 struct MacroParser;
 
 #[derive(Clone)]
@@ -11,14 +11,21 @@ pub struct Placeholder {
     pub method: String,
 }
 
+#[derive(Clone)]
 pub struct EmbedAppOption {
     pub name: String,
     pub value: String,
 }
 
+#[derive(Clone)]
 pub struct EmbedApp {
     pub name: String,
     pub options: Vec<EmbedAppOption>,
+}
+
+pub fn get_option(name: &str, options: Vec<EmbedAppOption>) -> Option<EmbedAppOption> {
+    let option = options.iter().find(|option| option.name == name).cloned();
+    option
 }
 
 pub fn parse_placeholder(input: &str) -> Option<Placeholder> {

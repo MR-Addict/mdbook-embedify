@@ -13,6 +13,7 @@ description = "A rust based mdbook preprocessor plugin that allows you to embed 
 
 [dependencies]
 clap = "4.5.36"
+detect-lang = "0.1.5"
 mdbook = "0.4.48"
 pest = "2.8.0"
 pest_derive = "2.8.0"

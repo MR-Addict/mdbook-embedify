@@ -390,6 +390,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "detect-lang"
+version = "0.1.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0507346abae214ef8128c9417d9f8ae0aa6aad5bbdf56b9a25440befbbf9c0ac"
+
+[[package]]
 name = "digest"
 version = "0.10.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1015,6 +1021,7 @@ name = "mdbook-embedify"
 version = "0.2.11"
 dependencies = [
  "clap",
+ "detect-lang",
  "mdbook",
  "pest",
  "pest_derive",

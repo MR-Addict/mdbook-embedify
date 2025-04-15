@@ -1,3 +1,4 @@
+use crate::assets::scripts::include;
 use crate::parser;
 use crate::utils;
 
@@ -21,12 +22,19 @@ impl Embed {
     }
 }
 
-fn render_template_app(app: parser::EmbedApp) -> String {
+fn render_script_app(app: parser::EmbedApp) -> Option<String> {
+    match app.name.as_str() {
+        "include" => Some(include::include_script(app.options)),
+        _ => None,
+    }
+}
+
+fn render_template_app(app: parser::EmbedApp) -> Option<String> {
     let app_path = format!("{}.html", app.name);
 
     // check if and app is supported
     if !Assets::iter().any(|name| name == app_path) {
-        panic!("App {} is not supported", app.name);
+        return None;
     }
 
     // get the template from the embedded files
@@ -79,7 +87,7 @@ fn render_template_app(app: parser::EmbedApp) -> String {
         })
         .to_string();
 
-    format!("<!-- mdbook-embedify [{}]  -->\n{}", app.name, result)
+    Some(result)
 }
 
 fn render_embeds(content: String) -> String {
@@ -108,9 +116,23 @@ fn render_embeds(content: String) -> String {
             if app.is_none() {
                 return input.to_string();
             }
-
             let app = app.unwrap();
-            render_template_app(app)
+
+            // render template app
+            let mut rendered = render_template_app(app.clone());
+            // when the template app is not supported, render script app
+            if rendered.is_none() {
+                rendered = render_script_app(app.clone());
+            }
+
+            // when the app is not supported, return the input
+            if rendered.is_none() {
+                panic!("Error while rendering app {}", app.name);
+            }
+
+            // return and format the rendered content
+            let rendered = rendered.unwrap();
+            format!("<!-- mdbook-embedify [{}]  -->\n{}", app.name, rendered)
         })
         .to_string();
 
