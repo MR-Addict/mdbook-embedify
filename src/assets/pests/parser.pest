@@ -10,7 +10,7 @@ quoted_string = @{ ("\"" ~ (!"\"" ~ ANY)* ~ "\"") | ("'" ~ (!"'" ~ ANY)* ~ "'") 
 // Embed rules
 embed_name         = { identifier }
 embed_option_name  = { identifier }
-embed_option_value = { quoted_string }
+embed_option_value = { identifier | quoted_string }
 embed_option       = { embed_option_name ~ "=" ~ embed_option_value }
 embed_options      = { embed_option+ }
 

@@ -6,9 +6,9 @@ In this section, I will show you how to add more apps to this preprocessor.
 
 You may have some other apps that preprocessor doesn't support yet. However, it's very easy to add a new app based on project custom template engine.
 
-What we need to do is put a new app template in the **templates** folder. The template file name should be the app name ended with **.html**.
+What we need to do is put a new app template in the **src/assets/templates** folder. The template file name should be the app name ended with **.html**.
 
-For example we want to add a new app called **youtube**, then we could create a **youtube.html** under **templates** folder.
+For example we want to add a new app called **youtube**, then we could create a **youtube.html** under templates folder.
 
 We know that we can use an iframe to embed a youtube video. Template file could be like this:
 
@@ -40,16 +40,20 @@ However, we want video **id** and **loading** strategy to be dynamic and loading
 ></iframe>
 ```
 
+This way, we can use the **embed** macro to embed a youtube video by passing **id** and **loading** options.
+
+## Template placeholder
+
 There are two ways of adding dynamic values to the template file:
 
 - Only put key name in the placeholder, like **{% key %}**, and you can add default value after the key name, like **{% key=default %}**. The default value will be used if user doesn't provide the value.
-- Wrapped with processor name, like **{% processor(key=default) %}**. The processor name is like as function name, and the key is the argument name. The default value will be used if user doesn't provide the value.
+- Wrapped with preprocessor name, like **{% processor(key=default) %}**. The processor name is like as function name, it will be used to process the inner value and replace the placeholder.
 
-**Function name**
+**Preprocessor**
 
 Now only **markdown** is supported, markdown will treat the inner value as markdown content and render it to be html.
 
-**Function argument**
+**Placeholder**
 
 The inner value is key follwed by a default value in the form of **key=default**. If the key is not provided, the default value will be used.
 
@@ -57,7 +61,7 @@ For example:
 
 - **id** means the placeholder will be replaced by the value of **id** key and id is not optional because it doesn't have a default value.
 - **loading=lazy** means the placeholder will be replaced by the value of **loading** key. If user doesn't provide the value, the default value **lazy** will be used.
-- **markdown(footer)** means the placeholder will be replaced by the value of **footer** processed by **markdown** processor.
+- **markdown(message)** means the placeholder will be replaced by the value of **message** processed by **markdown** processor.
 
 ## Build the project
 

@@ -5,7 +5,7 @@ pub fn render_to_markdown(content: String) -> String {
     let mut html = String::new();
     let parser = pulldown_cmark::Parser::new(&content);
     pulldown_cmark::html::push_html(&mut html, parser);
-    html.into()
+    html.trim().into()
 }
 
 pub fn get_config_bool(config: &Config, key: &str) -> bool {

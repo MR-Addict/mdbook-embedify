@@ -21,5 +21,6 @@
   - [Bilibili](third-party/bilibili.md)
 - [Local Apps](local/index.md)
   - [Footer](local/footer.md)
+  - [Include](local/include.md)
   - [Scroll to Top](local/scroll-to-top.md)
   - [Announcement Banner](local/announcement-banner.md)

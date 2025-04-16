@@ -95,7 +95,7 @@ fn render_embeds(content: String) -> String {
 
     // create a regex to match <!-- embed ignore begin -->...<!-- embed ignore end -->
     let re_ignore =
-        Regex::new(r"(?s)<!-- embed ignore begin -->(.*)<!-- embed ignore end -->").unwrap();
+        Regex::new(r"(?si)<!-- embed ignore begin -->(.*)<!-- embed ignore end -->").unwrap();
 
     // replace the ignored content with a placeholder
     let mut ignored_sections: Vec<(String, String)> = Vec::new();
@@ -130,9 +130,9 @@ fn render_embeds(content: String) -> String {
                 panic!("Error while rendering app {}", app.name);
             }
 
-            // return and format the rendered content
+            // return and formated the rendered content
             let rendered = rendered.unwrap();
-            format!("<!-- mdbook-embedify [{}]  -->\n{}", app.name, rendered)
+            format!("\n<!-- mdbook-embedify [{}]  -->\n{}\n", app.name, rendered)
         })
         .to_string();
 

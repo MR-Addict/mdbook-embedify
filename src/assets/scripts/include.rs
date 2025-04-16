@@ -18,8 +18,7 @@ pub fn include_script(options: Vec<parser::EmbedAppOption>) -> String {
 
     let language = parser::get_option("lang", options);
     let language = if language.is_none() {
-        // detect the language from the content
-        detect_lang::from_path(&file_path).unwrap().id()
+        detect_lang::from_path(&file_path).map_or("", |lang| lang.id())
     } else {
         &language.unwrap().value
     };

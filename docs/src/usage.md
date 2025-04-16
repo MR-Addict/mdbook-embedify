@@ -36,7 +36,7 @@ The basic syntax is like this:
 {% embed app options[] %}
 ```
 
-**options** are key-value based array seperated by space and its value must be wrapped by **quotes**.
+**options** are key-value based array seperated by space and its value should be wrapped by **quotes**.
 
 For example:
 
