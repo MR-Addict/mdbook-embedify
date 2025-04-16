@@ -1,12 +1,14 @@
 # Include
 
-The include app is for including source file and wrapped it as markdown code block. The language is automatically detect by the file name extension. You can override the language by passing `lang` option. The file path is relative to the book root directory.
+The include app is for including source file and wrapped it as markdown code block.
+
+The language is automatically detected by the file name extension. You can override it by passing `lang` option. The file path should be relative to the execution directory.
 
 ## Options
 
 | Option | Description                                            | Required | Default |
 | :----- | :----------------------------------------------------- | :------- | :------ |
-| file   | File path to include                                   | Yes      | - -     |
+| file   | File to include, relative to the exection directory    | Yes      | - -     |
 | lang   | This will override the automatically detected language | No       | - -     |
 
 ## Example

@@ -84,7 +84,7 @@ jobs:
       - name: Compress binaries
         run: |
           chmod u+x mdbook-embedify-*/mdbook-embedify*
-          upx --best mdbook-embedify-*/mdbook-embedify*
+          upx --best --force-macos mdbook-embedify-*/mdbook-embedify*
           zip -r mdbook-embedify-${{ steps.get_version.outputs.VERSION }}-x86_64-unknown-linux-gnu{.zip,}
           zip -r mdbook-embedify-${{ steps.get_version.outputs.VERSION }}-x86_64-apple-darwin{.zip,}
           zip -r mdbook-embedify-${{ steps.get_version.outputs.VERSION }}-x86_64-pc-windows-msvc{.zip,}
