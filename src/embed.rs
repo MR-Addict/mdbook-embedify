@@ -10,6 +10,12 @@ use mdbook::{
 use regex::Regex;
 use rust_embed::RustEmbed;
 
+lazy_static::lazy_static! {
+    // Compile regex patterns once for reuse
+    static ref RE_PLACEHOLDER: Regex = Regex::new(r"\{%\s*.*?\s*%\}").unwrap();
+    static ref RE_IGNORE: Regex = Regex::new(r"(?si)<!-- embed ignore begin -->(.*)<!-- embed ignore end -->").unwrap();
+}
+
 #[derive(RustEmbed)]
 #[folder = "src/assets/templates"]
 struct Assets;
@@ -41,10 +47,7 @@ fn render_template_app(app: parser::EmbedApp) -> Option<String> {
     let file = Assets::get(&app_path).unwrap();
     let template = std::str::from_utf8(file.data.as_ref()).unwrap();
 
-    // render placeholders
-    let re = Regex::new(r"\{%\s*.*?\s*%\}").unwrap();
-
-    let result = re
+    let result = RE_PLACEHOLDER
         .replace_all(&template.to_string(), |caps: &regex::Captures| {
             let input = caps.get(0).map_or("", |m| m.as_str());
             let placeholder = parser::parse_placeholder(input);
@@ -53,22 +56,21 @@ fn render_template_app(app: parser::EmbedApp) -> Option<String> {
                 return input.to_string();
             }
 
-            let placeholder = placeholder.unwrap();
-
             // find the value in the options
+            let placeholder = placeholder.unwrap();
             let found = app
                 .options
                 .iter()
                 .find(|option| option.name == placeholder.key);
 
-            // when default value is not set, and the option value is not set, panic
-            if placeholder.default.is_empty() {
-                if found.is_none() || found.unwrap().value.is_empty() {
-                    panic!(
-                        "Option {} is required for app {}",
-                        placeholder.key, app.name
-                    );
-                }
+            if placeholder.default.is_empty()
+                && (found.is_none() || found.unwrap().value.is_empty())
+            {
+                eprintln!(
+                    "Option '{}' is required for app '{}'",
+                    placeholder.key, app.name
+                );
+                return input.to_string();
             }
 
             // when the option value is set, use it, otherwise use the default value
@@ -93,23 +95,16 @@ fn render_template_app(app: parser::EmbedApp) -> Option<String> {
 fn render_embeds(content: String) -> String {
     let mut content = content;
 
-    // create a regex to match <!-- embed ignore begin -->...<!-- embed ignore end -->
-    let re_ignore =
-        Regex::new(r"(?si)<!-- embed ignore begin -->(.*)<!-- embed ignore end -->").unwrap();
-
-    // replace the ignored content with a placeholder
     let mut ignored_sections: Vec<(String, String)> = Vec::new();
-    for (i, caps) in re_ignore.captures_iter(&content.clone()).enumerate() {
+    for (i, caps) in RE_IGNORE.captures_iter(&content.clone()).enumerate() {
         let placeholder = format!("EMBED_IGNORE_{}", i);
         let ignored = caps.get(0).map_or("", |m| m.as_str());
 
         ignored_sections.push((placeholder.clone(), ignored.to_string()));
-        content = re_ignore.replace(&content, placeholder).to_string();
+        content = RE_IGNORE.replace(&content, placeholder).to_string();
     }
 
-    // replace the content
-    let re_embed = Regex::new(r"\{%\s*.*?\s*%\}").unwrap();
-    content = re_embed
+    content = RE_PLACEHOLDER
         .replace_all(&content, |caps: &regex::Captures| {
             let input = caps.get(0).map_or("", |m| m.as_str());
             let app = parser::parse_app(input);
@@ -118,29 +113,23 @@ fn render_embeds(content: String) -> String {
             }
             let app = app.unwrap();
 
-            // render template app
             let mut rendered = render_template_app(app.clone());
-            // when the template app is not supported, render script app
             if rendered.is_none() {
                 rendered = render_script_app(app.clone());
             }
 
-            // when the app is not supported, return the input
             if rendered.is_none() {
-                panic!("Error while rendering app {}", app.name);
+                eprintln!("Error while rendering app '{}'", app.name);
+                return input.to_string();
             }
 
-            // return and formated the rendered content
             let rendered = rendered.unwrap();
             format!("\n<!-- mdbook-embedify [{}]  -->\n{}\n", app.name, rendered)
         })
         .to_string();
 
-    // replace the placeholders with the ignored content
-    if ignored_sections.len() > 0 {
-        for (placeholder, ignored) in ignored_sections {
-            content = content.replace(&placeholder, &ignored);
-        }
+    for (placeholder, ignored) in ignored_sections {
+        content = content.replace(&placeholder, &ignored);
     }
 
     content

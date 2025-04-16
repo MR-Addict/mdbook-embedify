@@ -12,17 +12,28 @@ pub fn include_script(options: Vec<parser::EmbedAppOption>) -> String {
     let file_path = file_path.unwrap().value;
 
     // read the file content
-    let content = fs::read_to_string(file_path.clone()).unwrap_or_else(|_| {
-        panic!("File {} not found for include", file_path);
+    let content = fs::read_to_string(file_path.clone()).unwrap_or_else(|err| {
+        eprintln!("Error reading file {}: {}", file_path, err);
+        String::new()
     });
-
-    let language = parser::get_option("lang", options);
-    let language = if language.is_none() {
-        detect_lang::from_path(&file_path).map_or("", |lang| lang.id())
+    let content = if content.is_empty() {
+        "[Empty content]".to_string()
     } else {
-        &language.unwrap().value
+        content
     };
 
-    // format the content as a code block
-    format!("```{}\n{}\n```", language, content.trim())
+    let lang_option = parser::get_option("lang", options);
+    let lang_detected = detect_lang::from_path(&file_path);
+
+    let language = match lang_option {
+        Some(option) => option.value,
+        _ => lang_detected.map_or("plaintext".to_string(), |lang| lang.id().to_string()),
+    };
+
+    // check if the language is markdown, if so, wrapped by ```` instead of ```
+    if lang_detected == Some(detect_lang::Language("Markdown", "markdown")) {
+        format!("````{}\n{}\n````", language, content)
+    } else {
+        format!("```{}\n{}\n```", language, content)
+    }
 }
