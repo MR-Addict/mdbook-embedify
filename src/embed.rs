@@ -10,9 +10,9 @@ use mdbook::{
 use regex::Regex;
 use rust_embed::RustEmbed;
 
+// Compile regex patterns once for reuse
 lazy_static::lazy_static! {
-    // Compile regex patterns once for reuse
-    static ref RE_PLACEHOLDER: Regex = Regex::new(r"\{%\s*.*?\s*%\}").unwrap();
+    static ref RE_EMBED_MACRO: Regex = Regex::new(r"\{%\s*.*?\s*%\}").unwrap();
     static ref RE_IGNORE: Regex = Regex::new(r"(?si)<!-- embed ignore begin -->(.*)<!-- embed ignore end -->").unwrap();
 }
 
@@ -28,19 +28,19 @@ impl Embed {
     }
 }
 
-fn render_script_app(app: parser::EmbedApp) -> Option<String> {
+fn render_script_app(app: parser::EmbedApp) -> Result<Option<String>, String> {
     match app.name.as_str() {
-        "include" => include::include_script(app.options),
-        _ => None,
+        "include" => include::include_script(app.options).map(Some),
+        _ => Ok(None),
     }
 }
 
-fn render_template_app(app: parser::EmbedApp) -> Option<String> {
+fn render_template_app(app: parser::EmbedApp) -> Result<Option<String>, String> {
     let app_path = format!("{}.html", app.name);
 
     // check if and app is supported
     if !Assets::iter().any(|name| name == app_path) {
-        return None;
+        return Ok(None);
     }
 
     // get the template from the embedded files
@@ -50,7 +50,7 @@ fn render_template_app(app: parser::EmbedApp) -> Option<String> {
     // Use a mutable flag to track if we need to exit early
     let mut should_exit = false;
 
-    let result = RE_PLACEHOLDER
+    let result = RE_EMBED_MACRO
         .replace_all(&template.to_string(), |caps: &regex::Captures| {
             if should_exit {
                 return "".to_string(); // Short-circuit further replacements
@@ -96,10 +96,10 @@ fn render_template_app(app: parser::EmbedApp) -> Option<String> {
 
     // If the flag is set, return None
     if should_exit {
-        return None;
+        return Err("Missing required options".to_string());
     }
 
-    Some(utils::minify_html(result))
+    Ok(Some(utils::minify_html(result)))
 }
 
 fn render_embeds(content: String, chapter: Chapter) -> String {
@@ -119,7 +119,7 @@ fn render_embeds(content: String, chapter: Chapter) -> String {
         content = RE_IGNORE.replace(&content, placeholder).to_string();
     }
 
-    content = RE_PLACEHOLDER
+    content = RE_EMBED_MACRO
         .replace_all(&content, |caps: &regex::Captures| {
             let input = caps.get(0).map_or("", |m| m.as_str());
             let app = parser::parse_app(input);
@@ -128,20 +128,31 @@ fn render_embeds(content: String, chapter: Chapter) -> String {
             }
             let app = app.unwrap();
 
+            // render template app first
             let mut rendered = render_template_app(app.clone());
-            if rendered.is_none() {
+
+            // when is ok, but not rendered, try to render script app
+            if rendered.is_ok() && rendered.as_ref().unwrap().is_none() {
                 rendered = render_script_app(app.clone());
             }
 
-            if rendered.is_none() {
+            // if failed, print the error and return the input
+            if !rendered.is_ok() {
+                let err = rendered.err().unwrap();
                 eprintln!(
-                    "(mdbook-embedify): Error while rendering app \"{}\" in {:?}",
-                    app.name, chapter_path
+                    "(mdbook-embedify): Error while rendering app \"{}\" in {:?}. {}",
+                    app.name, chapter_path, err
                 );
                 return input.to_string();
             }
 
-            let rendered = rendered.unwrap();
+            // if the app is not rendered, return the input
+            if rendered.as_ref().unwrap().is_none() {
+                return input.to_string();
+            }
+
+            // unwrap the result
+            let rendered = rendered.unwrap().unwrap();
             format!("\n<!-- mdbook-embedify [{}]  -->\n{}\n", app.name, rendered)
         })
         .to_string();

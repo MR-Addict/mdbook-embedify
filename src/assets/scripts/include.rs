@@ -3,21 +3,21 @@ use crate::parser;
 use detect_lang;
 use std::fs;
 
-pub fn include_script(options: Vec<parser::EmbedAppOption>) -> Option<String> {
+pub fn include_script(options: Vec<parser::EmbedAppOption>) -> Result<String, String> {
     // get the file path from the options
     let file_path = parser::get_option("file", options.clone());
     if file_path.is_none() {
-        return None;
+        return Err("Option file is required".to_string());
     }
     let file_path = file_path.unwrap().value;
 
     // read the file content
-    let content = fs::read_to_string(file_path.clone()).unwrap_or_else(|_| String::new());
-    let content = if content.is_empty() {
-        return None;
-    } else {
-        content.trim().to_string()
-    };
+    if !std::path::Path::new(&file_path).exists() {
+        return Err(format!("Cannot find file {}", file_path));
+    }
+
+    let content = fs::read_to_string(&file_path).unwrap_or_else(|_| String::new());
+    let content = content.trim().to_string();
 
     let lang_option = parser::get_option("lang", options);
     let lang_detected = detect_lang::from_path(&file_path);
@@ -27,7 +27,7 @@ pub fn include_script(options: Vec<parser::EmbedAppOption>) -> Option<String> {
         _ => lang_detected.map_or("plaintext".to_string(), |lang| lang.id().to_string()),
     };
 
-    // check if the language is markdown, if so, wrapped by ```` instead of ```
+    // check if the language is markdown, if so, wrapped by backticks
     if lang_detected == Some(detect_lang::Language("Markdown", "markdown")) {
         // Count the maximum number of consecutive backticks in the content
         let max_backticks = content
@@ -46,11 +46,11 @@ pub fn include_script(options: Vec<parser::EmbedAppOption>) -> Option<String> {
 
         let backticks = "`".repeat(max_backticks);
 
-        Some(format!(
+        Ok(format!(
             "{}{}\n{}\n{}",
             backticks, language, content, backticks
         ))
     } else {
-        Some(format!("```{}\n{}\n```", language, content))
+        Ok(format!("```{}\n{}\n```", language, content))
     }
 }
