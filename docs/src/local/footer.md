@@ -13,7 +13,7 @@ The footer app is useful for displaying copyright information, privacy policy, a
 <!-- embed ignore begin -->
 
 ```text
-{% embed footer message="Copyright © 2024 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)" %}
+{% embed footer message="Copyright © 2025 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)" %}
 ```
 
 <!-- embed ignore end -->
@@ -24,5 +24,5 @@ However, you may want to enable it for the whole book. You can do this by adding
 
 ```toml
 footer.enable = true
-footer.message = "Copyright © 2024 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)"
+footer.message = "Copyright © 2025 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)"
 ```
