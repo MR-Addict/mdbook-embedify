@@ -3,7 +3,7 @@ use crate::parser;
 use crate::utils;
 
 use mdbook::{
-    book::Book,
+    book::{Book, Chapter},
     errors::Error,
     preprocess::{Preprocessor, PreprocessorContext},
 };
@@ -30,7 +30,7 @@ impl Embed {
 
 fn render_script_app(app: parser::EmbedApp) -> Option<String> {
     match app.name.as_str() {
-        "include" => Some(include::include_script(app.options)),
+        "include" => include::include_script(app.options),
         _ => None,
     }
 }
@@ -47,8 +47,15 @@ fn render_template_app(app: parser::EmbedApp) -> Option<String> {
     let file = Assets::get(&app_path).unwrap();
     let template = std::str::from_utf8(file.data.as_ref()).unwrap();
 
+    // Use a mutable flag to track if we need to exit early
+    let mut should_exit = false;
+
     let result = RE_PLACEHOLDER
         .replace_all(&template.to_string(), |caps: &regex::Captures| {
+            if should_exit {
+                return "".to_string(); // Short-circuit further replacements
+            }
+
             let input = caps.get(0).map_or("", |m| m.as_str());
             let placeholder = parser::parse_placeholder(input);
 
@@ -63,14 +70,12 @@ fn render_template_app(app: parser::EmbedApp) -> Option<String> {
                 .iter()
                 .find(|option| option.name == placeholder.key);
 
-            if placeholder.default.is_empty()
-                && (found.is_none() || found.unwrap().value.is_empty())
-            {
-                eprintln!(
-                    "Option '{}' is required for app '{}'",
-                    placeholder.key, app.name
-                );
-                return input.to_string();
+            // check if the option is required and not set
+            if placeholder.default.is_empty() {
+                if found.is_none() || found.unwrap().value.is_empty() {
+                    should_exit = true;
+                    return input.to_string();
+                }
             }
 
             // when the option value is set, use it, otherwise use the default value
@@ -89,11 +94,17 @@ fn render_template_app(app: parser::EmbedApp) -> Option<String> {
         })
         .to_string();
 
-    Some(result)
+    // If the flag is set, return None
+    if should_exit {
+        return None;
+    }
+
+    Some(utils::minify_html(result))
 }
 
-fn render_embeds(content: String) -> String {
+fn render_embeds(content: String, chapter: Chapter) -> String {
     let mut content = content;
+    let chapter_path = chapter.path.unwrap().clone(); // Clone chapter path to avoid consuming it
 
     let mut ignored_sections: Vec<(String, String)> = Vec::new();
     for (i, caps) in RE_IGNORE.captures_iter(&content.clone()).enumerate() {
@@ -119,7 +130,10 @@ fn render_embeds(content: String) -> String {
             }
 
             if rendered.is_none() {
-                eprintln!("Error while rendering app '{}'", app.name);
+                eprintln!(
+                    "(mdbook-embedify): Error while rendering app \"{}\" in {:?}",
+                    app.name, chapter_path
+                );
                 return input.to_string();
             }
 
@@ -168,7 +182,7 @@ impl Preprocessor for Embed {
                     content.push_str(&utils::create_footer(config));
                 }
                 // render the embeds in the content
-                chapter.content = render_embeds(content);
+                chapter.content = render_embeds(content, chapter.clone());
             }
         });
 
