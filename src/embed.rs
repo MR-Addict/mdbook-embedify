@@ -104,6 +104,10 @@ fn render_template_app(app: parser::EmbedApp) -> Option<String> {
 
 fn render_embeds(content: String, chapter: Chapter) -> String {
     let mut content = content;
+    if chapter.is_draft_chapter() {
+        return content; // Skip processing if the chapter is a draft
+    }
+
     let chapter_path = chapter.path.unwrap().clone(); // Clone chapter path to avoid consuming it
 
     let mut ignored_sections: Vec<(String, String)> = Vec::new();
