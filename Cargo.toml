@@ -1,6 +1,6 @@
 [package]
 name = "mdbook-embedify"
-version = "0.2.12-rc.4"
+version = "0.2.12"
 edition = "2021"
 license = "MIT"
 readme = "README.md"
@@ -9,7 +9,7 @@ keywords = ["mdbook", "embed", "plugin", "preprocessor"]
 authors = ["MR-Addict <MR-Addict@qq.com>"]
 repository = "https://github.com/MR-Addict/mdbook-embedify"
 documentation = "https://mr-addict.github.io/mdbook-embedify"
-description = "A rust based mdbook preprocessor plugin that allows you to embed apps to your book, like youtube, codepen and some other apps"
+description = "A rust based mdbook preprocessor plugin that allows you to embed apps to your book, like youtube, codepen, giscus and many other apps"
 
 [dependencies]
 clap = "4.5.36"
