@@ -30,4 +30,4 @@ The language is automatically detected by the file name extension. You can overr
 
 This will include the [docs/src/SUMMARY.md](https://github.com/MR-Addict/mdbook-embedify/blob/main/docs/src/SUMMARY.md) file and wrap it as a code block which is the source code of this book's summary.
 
-{% embed include file="docs/src/SUMMARY.md" type="insert" range="-10" %}
+{% embed include file="docs/src/SUMMARY.md" %}
