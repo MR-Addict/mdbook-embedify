@@ -3,6 +3,43 @@ use crate::parser;
 use detect_lang;
 use std::fs;
 
+fn parse_include_range(input: String, max_line: usize) -> Result<(usize, usize), String> {
+    let trimmed = input.trim();
+
+    if trimmed.is_empty() || trimmed == "-" {
+        return Ok((1, max_line));
+    }
+
+    let parts: Vec<&str> = trimmed.split('-').collect();
+
+    if parts.len() != 2 {
+        return Ok((1, max_line));
+    }
+
+    let start = parts[0].trim();
+    let end = parts[1].trim();
+
+    let start_line = if start.is_empty() {
+        1
+    } else {
+        match start.parse::<usize>() {
+            Ok(n) if n >= 1 && n <= max_line => n,
+            _ => return Err("Invalid or out-of-order start line number".to_string()),
+        }
+    };
+
+    let end_line = if end.is_empty() {
+        max_line
+    } else {
+        match end.parse::<usize>() {
+            Ok(n) if n >= start_line && n <= max_line => n,
+            _ => return Err("Invalid or out-of-order end line number".to_string()),
+        }
+    };
+
+    Ok((start_line, end_line))
+}
+
 pub fn include_script(options: Vec<parser::EmbedAppOption>) -> Result<String, String> {
     // get the file path from the options
     let file_path = parser::get_option("file", options.clone());
@@ -17,9 +54,32 @@ pub fn include_script(options: Vec<parser::EmbedAppOption>) -> Result<String, St
     }
 
     let content = fs::read_to_string(&file_path).unwrap_or_else(|_| String::new());
-    let content = content.trim().to_string();
 
-    let lang_option = parser::get_option("lang", options);
+    // get the range from the options
+    let range_option = parser::get_option("range", options.clone());
+    let max_line = content.lines().count();
+    let range = match range_option.map(|option| parse_include_range(option.value.clone(), max_line))
+    {
+        Some(Ok(range)) => range,
+        Some(Err(err)) => return Err(err),
+        _ => (1, max_line), // Default to the full range if no range is provided
+    };
+
+    // get the content from the range
+    let start = range.0 - 1; // convert to 0-based index
+    let end = range.1; // end is exclusive
+    let lines: Vec<&str> = content.lines().collect();
+    let content = lines[start..end].join("\n");
+
+    // if include type is insert, return the content as is
+    if let Some(option) = parser::get_option("type", options.clone()) {
+        if option.value == "insert" {
+            return Ok(content);
+        }
+    }
+
+    // if include type is not insert, wrap the content in a code block
+    let lang_option = parser::get_option("lang", options.clone());
     let lang_detected = detect_lang::from_path(&file_path);
 
     let language = match lang_option {
