@@ -11,7 +11,7 @@ scroll-to-top.enable = true
 
 <!-- embed ignore begin -->
 
-> 💥Attention
+> Attention 💥
 >
 > When you do this, you don't need to add `{% embed scroll-to-top %}` manually. It will be automatically added it to every chapter. If you do, it will be rendered twice.
 

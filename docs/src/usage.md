@@ -46,4 +46,4 @@ For example:
 
 <!-- embed ignore end -->
 
-See some examples at apps section.
+See more examples at apps section.

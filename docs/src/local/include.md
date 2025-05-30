@@ -1,5 +1,9 @@
 # Include
 
+> Attention 💥
+>
+> Support since [v0.2.12](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.12).
+
 The include app is for including source file and wrapped it as markdown code block.
 
 The language is automatically detected by the file name extension. You can override it by passing `lang` option. The file path should be relative to the execution directory.
@@ -13,7 +17,7 @@ The language is automatically detected by the file name extension. You can overr
 | range  | Range of lines to include, e.g. `1-10` or `1-` or `-10` | No       | - -     |
 | type   | Include type, `insert` or `embed`                       | No       | `embed` |
 
-> 💥Attention
+> Attention 💥
 >
 > - When `range` is used, it will insert the specified lines.
 > - The `insert` type will insert the file content into the markdown file directly, while the `embed` type will wrap it as a code block.
