@@ -43,6 +43,7 @@ copy-js = true
 
 [preprocessor.embedify]
 command = "target/release/mdbook-embedify"
+custom-templates-folder = "src/assets/templates"
 
 scroll-to-top.enable = true
 

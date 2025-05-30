@@ -35,23 +35,48 @@ fn render_script_app(app: parser::EmbedApp) -> Result<Option<String>, String> {
     }
 }
 
-fn render_template_app(app: parser::EmbedApp) -> Result<Option<String>, String> {
+fn render_template_app(
+    ctx: &PreprocessorContext,
+    app: parser::EmbedApp,
+) -> Result<Option<String>, String> {
+    let mut template = String::new();
     let app_path = format!("{}.html", app.name);
 
-    // check if and app is supported
-    if !Assets::iter().any(|name| name == app_path) {
-        return Ok(None);
+    // check custom template first
+    let templates_folder = utils::get_config_string(
+        &ctx.config,
+        "custom-templates-folder",
+        "src/assets/templates",
+    );
+    if !templates_folder.is_empty() {
+        let joined_folder = ctx
+            .root
+            .join(templates_folder)
+            .to_string_lossy()
+            .to_string();
+        let template_path = format!("{}/{}", joined_folder, app_path);
+        if std::path::Path::new(&template_path).exists() {
+            template = std::fs::read_to_string(&template_path).unwrap_or_else(|_| String::new());
+        }
     }
 
-    // get the template from the embedded files
-    let file = Assets::get(&app_path).unwrap();
-    let template = std::str::from_utf8(file.data.as_ref()).unwrap();
+    // if custom template not found, use the default template
+    if template.is_empty() && Assets::iter().any(|name| name == app_path) {
+        // get the template from the embedded files
+        let file = Assets::get(&app_path).unwrap();
+        template = String::from_utf8(file.data.to_vec()).unwrap_or_else(|_| String::new());
+    }
+
+    // No template found
+    if template.is_empty() {
+        return Ok(None);
+    }
 
     // Use a mutable flag to track if we need to exit early
     let mut should_exit = false;
 
     let result = RE_EMBED_MACRO
-        .replace_all(&template.to_string(), |caps: &regex::Captures| {
+        .replace_all(&template, |caps: &regex::Captures| {
             if should_exit {
                 return "".to_string(); // Short-circuit further replacements
             }
@@ -102,7 +127,7 @@ fn render_template_app(app: parser::EmbedApp) -> Result<Option<String>, String> 
     Ok(Some(utils::minify_html(result)))
 }
 
-fn render_embeds(content: String, chapter: Chapter) -> String {
+fn render_embeds(ctx: &PreprocessorContext, chapter: Chapter, content: String) -> String {
     let mut content = content;
     if chapter.is_draft_chapter() {
         return content; // Skip processing if the chapter is a draft
@@ -129,7 +154,7 @@ fn render_embeds(content: String, chapter: Chapter) -> String {
             let app = app.unwrap();
 
             // render template app first
-            let mut rendered = render_template_app(app.clone());
+            let mut rendered = render_template_app(ctx, app.clone());
 
             // when is ok, but not rendered, try to render script app
             if rendered.is_ok() && rendered.as_ref().unwrap().is_none() {
@@ -197,7 +222,7 @@ impl Preprocessor for Embed {
                     content.push_str(&utils::create_footer(config));
                 }
                 // render the embeds in the content
-                chapter.content = render_embeds(content, chapter.clone());
+                chapter.content = render_embeds(ctx, chapter.clone(), content);
             }
         });
 
