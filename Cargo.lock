@@ -1241,7 +1241,7 @@ dependencies = [
 
 [[package]]
 name = "mdbook-embedify"
-version = "0.2.13"
+version = "0.2.14"
 dependencies = [
  "clap",
  "detect-lang",

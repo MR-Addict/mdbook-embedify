@@ -28,9 +28,12 @@ impl Embed {
     }
 }
 
-fn render_script_app(app: parser::EmbedApp) -> Result<Option<String>, String> {
+fn render_script_app(
+    ctx: &PreprocessorContext,
+    app: parser::EmbedApp,
+) -> Result<Option<String>, String> {
     match app.name.as_str() {
-        "include" => include::include_script(app.options).map(Some),
+        "include" => include::include_script(ctx, app.options).map(Some),
         _ => Ok(None),
     }
 }
@@ -43,17 +46,11 @@ fn render_template_app(
     let app_path = format!("{}.html", app.name);
 
     // check custom template first
-    let templates_folder = utils::get_config_string(
-        &ctx.config,
-        "custom-templates-folder",
-        "src/assets/templates",
-    );
+    let templates_folder =
+        utils::get_config_string(&ctx.config, "custom-templates-folder", "assets/templates");
     if !templates_folder.is_empty() {
-        let joined_folder = ctx
-            .root
-            .join(templates_folder)
-            .to_string_lossy()
-            .to_string();
+        let joined_folder = ctx.root.join(templates_folder);
+        let joined_folder = joined_folder.to_string_lossy().to_string();
         let template_path = format!("{}/{}", joined_folder, app_path);
         if std::path::Path::new(&template_path).exists() {
             template = std::fs::read_to_string(&template_path).unwrap_or_else(|_| String::new());
@@ -158,7 +155,7 @@ fn render_embeds(ctx: &PreprocessorContext, chapter: Chapter, content: String) -
 
             // when is ok, but not rendered, try to render script app
             if rendered.is_ok() && rendered.as_ref().unwrap().is_none() {
-                rendered = render_script_app(app.clone());
+                rendered = render_script_app(ctx, app.clone());
             }
 
             // if failed, print the error and return the input

@@ -1,6 +1,7 @@
 use crate::parser;
 
 use detect_lang;
+use mdbook::preprocess::PreprocessorContext;
 use std::fs;
 
 fn parse_include_range(input: String, max_line: usize) -> Result<(usize, usize), String> {
@@ -40,13 +41,17 @@ fn parse_include_range(input: String, max_line: usize) -> Result<(usize, usize),
     Ok((start_line, end_line))
 }
 
-pub fn include_script(options: Vec<parser::EmbedAppOption>) -> Result<String, String> {
+pub fn include_script(
+    ctx: &PreprocessorContext,
+    options: Vec<parser::EmbedAppOption>,
+) -> Result<String, String> {
     // get the file path from the options
     let file_path = parser::get_option("file", options.clone());
     if file_path.is_none() {
         return Err("Option file is required".to_string());
     }
-    let file_path = file_path.unwrap().value;
+    let file_path = ctx.root.join(&file_path.unwrap().value);
+    let file_path = file_path.to_string_lossy().to_string();
 
     // read the file content
     if !std::path::Path::new(&file_path).exists() {
@@ -71,14 +76,14 @@ pub fn include_script(options: Vec<parser::EmbedAppOption>) -> Result<String, St
     let lines: Vec<&str> = content.lines().collect();
     let content = lines[start..end].join("\n");
 
-    // if include type is insert, return the content as is
+    // if include type is raw, return the content as is
     if let Some(option) = parser::get_option("type", options.clone()) {
-        if option.value == "insert" {
+        if option.value == "raw" {
             return Ok(content);
         }
     }
 
-    // if include type is not insert, wrap the content in a code block
+    // if include type is not raw, wrap the content in a code block
     let lang_option = parser::get_option("lang", options.clone());
     let lang_detected = detect_lang::from_path(&file_path);
 

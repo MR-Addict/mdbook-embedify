@@ -1,0 +1,48 @@
+<style>
+  .canvas-container {
+    width: 100%;
+    background: white;
+    border-radius: 1rem;
+    border: 1px solid #ccc;
+
+    background-size: 20px 20px;
+    background-image: linear-gradient(to right, #eee 1px, transparent 1px),
+      linear-gradient(to bottom, #eee 1px, transparent 1px);
+  }
+</style>
+<div class="canvas-container">
+  <canvas height="{% height=600 %}"></canvas>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.querySelector(".canvas-container");
+    const canvas = container.querySelector("canvas");
+    const ctx = canvas.getContext("2d");
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) canvas.width = entry.contentRect.width;
+    });
+    resizeObserver.observe(container);
+
+    let drawing = false;
+    const lastPos = { x: 0, y: 0 };
+
+    canvas.addEventListener("mousedown", (e) => {
+      drawing = true;
+      lastPos.x = e.offsetX;
+      lastPos.y = e.offsetY;
+    });
+
+    canvas.addEventListener("mousemove", (e) => {
+      if (!drawing) return;
+      ctx.beginPath();
+      ctx.moveTo(lastPos.x, lastPos.y);
+      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.stroke();
+      lastPos.x = e.offsetX;
+      lastPos.y = e.offsetY;
+    });
+
+    canvas.addEventListener("mouseup", () => (drawing = false));
+    canvas.addEventListener("mouseout", () => (drawing = false));
+  });
+</script>

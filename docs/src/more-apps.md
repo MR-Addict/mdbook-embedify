@@ -4,73 +4,115 @@
 >
 > Support since [v0.2.14](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.14).
 
-In this section, I will show you how to add more apps to this preprocessor.
+> Good to know 💡
+>
+> Custom templates acts like dynamic reusable components. If you want to just copy static content, you should use the [include app](local/include.md) instead.
+
+You may have some other apps that preprocessor doesn't support yet. However, it's very easy to add a new app based on this project custom template engine.
+
+In this section, I will show you how to add custom app to this preprocessor.
 
 ## Create a new app
 
-You may have some other apps that preprocessor doesn't support yet. However, it's very easy to add a new app based on project custom template engine.
-
 ### Template folder
 
-What we need to do is put a new app template in the **src/assets/templates** folder. The template file name should be the app name ended with **.html**.
+First we need to put a new app template in the **assets/templates** folder (which is relative to `book.toml` file).
 
-You can change the template folder path by setting `custom-templates-folder` in the `book.toml` file. The default value is `src/assets/templates`.
+You can change the template folder path by setting `custom-templates-folder` value in the preprocessor section. The default value is `assets/templates`.
 
 ```toml
 [preprocessor.embedify]
-custom-templates-folder = "src/assets/templates"
+custom-templates-folder = "assets/templates"
 ```
 
-The template folder path shoulde be relative to the book **root** directory.
-
-When custom app name is the same as the built-in app name, the custom app will **override** the built-in app. So you can customize the built-in app by creating a template file with the same name.
+The template folder path shoulde be relative to the book root directory, which is the directory where the `book.toml` file is located.
 
 ### Template file
 
-For example, if we want to add a new app called **youtube**, then we could create a **youtube.html** under templates folder.
+Now let's create a new app called **canvas**. Which is a simple drawable canvas app.
 
-We know that we can use an iframe to embed a youtube video. Template file could be like this:
+The template file name will be the app name. For example, we want to add a new app called **canvas**, then we should create a **canvas.html** under templates folder.
+
+If your custom app name is the same as the built-in app name, the custom app will **override** the built-in app while rendering.
+
+First we add some basic html structure and some styles to the `canvas.html` file:
 
 ```html
-<iframe
-  allowfullscreen
-  name="youtube"
-  loading="lazy"
-  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-  style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-></iframe>
+<style>
+  .canvas-container {
+    width: 100%;
+    background: white;
+    border-radius: 1rem;
+    border: 1px solid #ccc;
+
+    background-size: 20px 20px;
+    background-image: linear-gradient(to right, #eee 1px, transparent 1px), linear-gradient(to bottom, #eee 1px, transparent
+          1px);
+  }
+</style>
+<div class="canvas-container">
+  <canvas height="600"></canvas>
+</div>
 ```
 
-> Attention 💥
+And then add some js code to make it drawable:
+
+```html
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.querySelector(".canvas-container");
+    const canvas = container.querySelector("canvas");
+    const ctx = canvas.getContext("2d");
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) canvas.width = entry.contentRect.width;
+    });
+    resizeObserver.observe(container);
+
+    let drawing = false;
+    const lastPos = { x: 0, y: 0 };
+
+    canvas.addEventListener("mousedown", (e) => {
+      drawing = true;
+      lastPos.x = e.offsetX;
+      lastPos.y = e.offsetY;
+    });
+
+    canvas.addEventListener("mousemove", (e) => {
+      if (!drawing) return;
+      ctx.beginPath();
+      ctx.moveTo(lastPos.x, lastPos.y);
+      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.stroke();
+      lastPos.x = e.offsetX;
+      lastPos.y = e.offsetY;
+    });
+
+    canvas.addEventListener("mouseup", () => (drawing = false));
+    canvas.addEventListener("mouseout", () => (drawing = false));
+  });
+</script>
+```
+
+> Good to know 💡
 >
-> You can even add **css** and **js** content to the template file which should be put inside `style` and `script` blocks.
+> You can add **css** and **js** content to the template file which should be put inside `style` and `script` blocks.
 
-However, we want video **id** and **loading** strategy to be dynamic and loading strategy has default **lazy** value. So we can replace them with placeholders like this:
+However, we want to the canvas height to be dynamic. We can do this by using placeholder syntax:
 
 ```html
-<iframe
-  allowfullscreen
-  name="youtube"
-  loading="{% loading=lazy %}"
-  src="https://www.youtube.com/embed/{% id %}"
-  style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-></iframe>
+<canvas height="{% height=600 %}"></canvas>
 ```
 
-This way, we can use the **embed** macro to embed a youtube video by passing **id** and **loading** options.
+Which means the height of the canvas will be replaced by the value of **height** key. If user doesn't provide the value, the default value **600** will be used.
 
 ## Placeholder syntax
-
-The template placeholder is a way to add dynamic values to the template file. It allows you to replace static values with dynamic ones that can be provided by the user when they use the app.
 
 ### Syntax
 
 There are two ways of adding dynamic values to the template file:
 
-- Only put key name in the placeholder, like **{% key %}**, and you can add default value after the key name, like **{% key=default %}**. The default value will be used if user doesn't provide the value.
-- Wrapped with preprocessor name, like **{% processor(key=default) %}**. The processor name is like as function name, it will be used to process the inner value and replace the placeholder.
+- Put key name in the placeholder, like **{% key %}**, and you can add default value after the key name, like **{% key=default %}**. The default value will be used if user doesn't provide the value.
+- Wrapped with preprocessor name, like **{% processor(key=default) %}**. The processor name acts like function name, it will be used to process the inner value and replace the placeholder.
 
 **Placeholder**
 
@@ -82,32 +124,42 @@ Now only **markdown** is supported, markdown will treat the inner value as markd
 
 ### Examples
 
-- **{% id %}** means the placeholder will be replaced by the value of **id** key and id is not optional because it doesn't have a default value.
-- **{% loading=lazy %}** means the placeholder will be replaced by the value of **loading** key. If user doesn't provide the value, the default value **lazy** will be used.
+- **{% height %}** means the placeholder will be replaced by the value of **height** key and height is not optional because it doesn't have a default value.
+- **{% height=600 %}** means the placeholder will be replaced by the value of **height** key. If user doesn't provide the value, the default value **600** will be used.
 - **{% markdown(message) %}** means the placeholder will be replaced by the value of **message** processed by **markdown** processor.
+
+## Final template file
+
+Here is the final template file for the **canvas** app:
+
+{% embed include file="assets/templates/canvas.html" %}
 
 ## Use the new app
 
-After creating the template file, we can use the new app in our markdown files.
+After creating the template file, we can use the new app in our book:
 
 <!-- embed ignore begin -->
 
 ```text
-{% embed youtube id="dQw4w9WgXcQ" loading="eager" %}
+{% embed canvas height=600 %}
 ```
 
-Because the `loading` key has a default value `lazy`, we can omit it.
+Because the height has default value of **600**, we can omit it:
 
 ```text
-{% embed youtube id="dQw4w9WgXcQ" %}
+{% embed canvas %}
 ```
 
 <!-- embed ignore end -->
 
+Test canvas app by drawing something on it:
+
+{% embed canvas %}
+
 ## Conclusion
 
-That's it. You can also use the same method to add your own custom apps to this preprocessor.
+That's it.
 
-Just **clone** this repository and add your own app template to the **src/assets/templates** folder.
+You can also use the same method to add your own custom apps to this preprocessor. Just **clone** this repository and add your own app template to the [src/assets/templates](https://github.com/MR-Addict/mdbook-embedify/tree/main/src/assets/templates) folder.
 
 Welcome to contribute to this project by adding more apps. If you have any questions or suggestions, feel free to open an issue or pull request on the [GitHub repository](https://github.com/mr-addict/mdbook-embedify).
