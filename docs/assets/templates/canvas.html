@@ -1,3 +1,6 @@
+<div class="canvas-container">
+  <canvas height="{% height=400 %}"></canvas>
+</div>
 <style>
   .canvas-container {
     width: 100%;
@@ -10,9 +13,6 @@
       linear-gradient(to bottom, #eee 1px, transparent 1px);
   }
 </style>
-<div class="canvas-container">
-  <canvas height="{% height=600 %}"></canvas>
-</div>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const container = document.querySelector(".canvas-container");
@@ -26,6 +26,17 @@
     let drawing = false;
     const lastPos = { x: 0, y: 0 };
 
+    // Draw a line from last position to current position
+    function draw(x, y) {
+      ctx.beginPath();
+      ctx.moveTo(lastPos.x, lastPos.y);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+      lastPos.x = x;
+      lastPos.y = y;
+    }
+
+    // Mouse events
     canvas.addEventListener("mousedown", (e) => {
       drawing = true;
       lastPos.x = e.offsetX;
@@ -34,15 +45,33 @@
 
     canvas.addEventListener("mousemove", (e) => {
       if (!drawing) return;
-      ctx.beginPath();
-      ctx.moveTo(lastPos.x, lastPos.y);
-      ctx.lineTo(e.offsetX, e.offsetY);
-      ctx.stroke();
-      lastPos.x = e.offsetX;
-      lastPos.y = e.offsetY;
+      draw(e.offsetX, e.offsetY);
     });
 
     canvas.addEventListener("mouseup", () => (drawing = false));
     canvas.addEventListener("mouseout", () => (drawing = false));
+
+    // Touch events
+    canvas.addEventListener("touchstart", (e) => {
+      if (e.touches.length !== 1) return;
+      e.preventDefault();
+      drawing = true;
+
+      const rect = canvas.getBoundingClientRect();
+      lastPos.x = e.touches[0].clientX - rect.left;
+      lastPos.y = e.touches[0].clientY - rect.top;
+    });
+
+    canvas.addEventListener("touchmove", (e) => {
+      if (!drawing || e.touches.length !== 1) return;
+      e.preventDefault();
+      const rect = canvas.getBoundingClientRect();
+      const x = e.touches[0].clientX - rect.left;
+      const y = e.touches[0].clientY - rect.top;
+      draw(x, y);
+    });
+
+    canvas.addEventListener("touchend", () => (drawing = false));
+    canvas.addEventListener("touchcancel", () => (drawing = false));
   });
 </script>

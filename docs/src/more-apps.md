@@ -38,60 +38,15 @@ If your custom app name is the same as the built-in app name, the custom app wil
 First we add some basic html structure and some styles to the `canvas.html` file:
 
 ```html
-<style>
-  .canvas-container {
-    width: 100%;
-    background: white;
-    border-radius: 1rem;
-    border: 1px solid #ccc;
-
-    background-size: 20px 20px;
-    background-image: linear-gradient(to right, #eee 1px, transparent 1px), linear-gradient(to bottom, #eee 1px, transparent
-          1px);
-  }
-</style>
 <div class="canvas-container">
-  <canvas height="600"></canvas>
+  <canvas height="400"></canvas>
 </div>
+{% embed include file="assets/templates/canvas.html" range="4-15" type='raw' %}
 ```
 
 And then add some js code to make it drawable:
 
-```html
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const container = document.querySelector(".canvas-container");
-    const canvas = container.querySelector("canvas");
-    const ctx = canvas.getContext("2d");
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (const entry of entries) canvas.width = entry.contentRect.width;
-    });
-    resizeObserver.observe(container);
-
-    let drawing = false;
-    const lastPos = { x: 0, y: 0 };
-
-    canvas.addEventListener("mousedown", (e) => {
-      drawing = true;
-      lastPos.x = e.offsetX;
-      lastPos.y = e.offsetY;
-    });
-
-    canvas.addEventListener("mousemove", (e) => {
-      if (!drawing) return;
-      ctx.beginPath();
-      ctx.moveTo(lastPos.x, lastPos.y);
-      ctx.lineTo(e.offsetX, e.offsetY);
-      ctx.stroke();
-      lastPos.x = e.offsetX;
-      lastPos.y = e.offsetY;
-    });
-
-    canvas.addEventListener("mouseup", () => (drawing = false));
-    canvas.addEventListener("mouseout", () => (drawing = false));
-  });
-</script>
-```
+{% embed include file="assets/templates/canvas.html" range="16-" %}
 
 > Good to know 💡
 >
@@ -100,10 +55,10 @@ And then add some js code to make it drawable:
 However, we want to the canvas height to be dynamic. We can do this by using placeholder syntax:
 
 ```html
-<canvas height="{% height=600 %}"></canvas>
+<canvas height="{% height=400 %}"></canvas>
 ```
 
-Which means the height of the canvas will be replaced by the value of **height** key. If user doesn't provide the value, the default value **600** will be used.
+Which means the height of the canvas will be replaced by the value of **height** key. If user doesn't provide the value, the default value **400** will be used.
 
 ## Placeholder syntax
 
@@ -125,7 +80,7 @@ Now only **markdown** is supported, markdown will treat the inner value as markd
 ### Examples
 
 - **{% height %}** means the placeholder will be replaced by the value of **height** key and height is not optional because it doesn't have a default value.
-- **{% height=600 %}** means the placeholder will be replaced by the value of **height** key. If user doesn't provide the value, the default value **600** will be used.
+- **{% height=400 %}** means the placeholder will be replaced by the value of **height** key. If user doesn't provide the value, the default value **400** will be used.
 - **{% markdown(message) %}** means the placeholder will be replaced by the value of **message** processed by **markdown** processor.
 
 ## Final template file
@@ -141,10 +96,10 @@ After creating the template file, we can use the new app in our book:
 <!-- embed ignore begin -->
 
 ```text
-{% embed canvas height=600 %}
+{% embed canvas height=400 %}
 ```
 
-Because the height has default value of **600**, we can omit it:
+Because the height has default value of **400**, we can omit it:
 
 ```text
 {% embed canvas %}

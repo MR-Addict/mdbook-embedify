@@ -116,7 +116,7 @@ fn render_template_app(
         })
         .to_string();
 
-    // If the flag is set, return None
+    // If the flag is set, return error
     if should_exit {
         return Err("Missing required options".to_string());
     }
@@ -174,8 +174,7 @@ fn render_embeds(ctx: &PreprocessorContext, chapter: Chapter, content: String) -
             }
 
             // unwrap the result
-            let rendered = rendered.unwrap().unwrap();
-            format!("\n<!-- mdbook-embedify [{}]  -->\n{}\n", app.name, rendered)
+            rendered.unwrap().unwrap()
         })
         .to_string();
 
