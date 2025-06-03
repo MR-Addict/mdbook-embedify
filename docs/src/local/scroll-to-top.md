@@ -1,6 +1,6 @@
 # Scroll to top button
 
-Scroll to top button allows users to smoothly scroll back to the top of the page.
+Scroll to top button allows users to quickly smoothly scroll back to the top of the page.
 
 ## Options
 
