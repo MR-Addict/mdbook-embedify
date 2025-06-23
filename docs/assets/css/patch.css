@@ -12,3 +12,18 @@ table tr :is(th, td) {
     padding-block: 10px;
   }
 }
+
+/* patch for menu title */
+.menu-title {
+  max-width: 100%;
+
+  & span {
+    font-size: 0.5em;
+    padding: 2px 4px;
+    border-radius: 5px;
+    margin-left: 0.5em;
+
+    color: var(--bg);
+    background-color: var(--icons);
+  }
+}

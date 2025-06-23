@@ -21,6 +21,7 @@ no-section-label = false
 git-repository-url = "https://github.com/mr-addict/mdbook-embedify"
 edit-url-template = "https://github.com/mr-addict/mdbook-embedify/edit/main/docs/{path}"
 additional-css = ["assets/css/patch.css"]
+additional-js = ["assets/js/patch.js"]
 
 [output.html.print]
 enable = true
