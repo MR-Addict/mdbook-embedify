@@ -1,6 +1,6 @@
 use crate::parser;
 
-use detect_lang;
+use hyperpolyglot;
 use mdbook::preprocess::PreprocessorContext;
 use std::fs;
 
@@ -85,15 +85,19 @@ pub fn include_script(
 
     // if include type is not raw, wrap the content in a code block
     let lang_option = parser::get_option("lang", options.clone());
-    let lang_detected = detect_lang::from_path(&file_path);
+    let lang_detected = hyperpolyglot::detect(std::path::Path::new(&file_path))
+        .ok()
+        .flatten();
 
     let language = match lang_option {
         Some(option) => option.value,
-        _ => lang_detected.map_or("plaintext".to_string(), |lang| lang.id().to_string()),
+        _ => lang_detected.map_or("plaintext".to_string(), |detection| {
+            detection.language().to_lowercase()
+        }),
     };
 
     // check if the language is markdown, if so, wrapped by backticks
-    if lang_detected == Some(detect_lang::Language("Markdown", "markdown")) {
+    if lang_detected.map_or(false, |detection| detection.language() == "Markdown") {
         // Count the maximum number of consecutive backticks in the content
         let max_backticks = content
             .lines()

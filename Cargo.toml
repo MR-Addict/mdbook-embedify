@@ -1,6 +1,6 @@
 [package]
 name = "mdbook-embedify"
-version = "0.2.15"
+version = "0.2.16"
 edition = "2021"
 license = "MIT"
 readme = "README.md"
@@ -13,7 +13,7 @@ description = "A rust based mdbook preprocessor plugin that allows you to embed 
 
 [dependencies]
 clap = "4.5.39"
-detect-lang = "0.1.5"
+hyperpolyglot = "0.1.7"
 lazy_static = "1.5.0"
 mdbook = "0.4.51"
 minify = "1.3.0"
