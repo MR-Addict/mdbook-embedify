@@ -1,19 +1,36 @@
 [
   {
     "name": "apache",
-    "extensions": [".apacheconf"]
+    "extensions": [
+      ".apacheconf"
+    ]
   },
   {
     "name": "bash",
-    "extensions": [".sh", ".zsh"]
+    "extensions": [
+      ".sh",
+      ".zsh"
+    ]
   },
   {
     "name": "c",
-    "extensions": [".c", ".cats", ".h", ".h.in", ".idc"]
+    "extensions": [
+      ".c",
+      ".cats",
+      ".h",
+      ".h.in",
+      ".idc"
+    ]
   },
   {
     "name": "coffeescript",
-    "extensions": [".coffee", "._coffee", ".cake", ".cjsx", ".iced"]
+    "extensions": [
+      ".coffee",
+      "._coffee",
+      ".cake",
+      ".cjsx",
+      ".iced"
+    ]
   },
   {
     "name": "cpp",
@@ -42,31 +59,88 @@
   },
   {
     "name": "csharp",
-    "extensions": [".cs", ".cake", ".cs.pp", ".csx", ".linq"]
+    "extensions": [
+      ".cs",
+      ".cake",
+      ".cs.pp",
+      ".csx",
+      ".linq"
+    ]
   },
   {
     "name": "css",
-    "extensions": [".css"]
+    "extensions": [
+      ".css"
+    ]
   },
   {
     "name": "diff",
-    "extensions": [".diff", ".patch"]
+    "extensions": [
+      ".diff",
+      ".patch"
+    ]
   },
   {
     "name": "go",
-    "extensions": [".go"]
+    "extensions": [
+      ".go"
+    ]
+  },
+  {
+    "name": "handlebars",
+    "extensions": [
+      ".handlebars",
+      ".hbs"
+    ]
+  },
+  {
+    "name": "haskell",
+    "extensions": [
+      ".hs",
+      ".hs-boot",
+      ".hsc"
+    ]
+  },
+  {
+    "name": "html",
+    "extensions": [
+      ".html",
+      ".hta",
+      ".htm",
+      ".html.hl",
+      ".inc",
+      ".xht",
+      ".xhtml"
+    ]
   },
   {
     "name": "http",
-    "extensions": [".http"]
+    "extensions": [
+      ".http"
+    ]
   },
   {
     "name": "ini",
-    "extensions": [".ini", ".cfg", ".cnf", ".dof", ".frm", ".lektorproject", ".prefs", ".pro", ".properties", ".url"]
+    "extensions": [
+      ".ini",
+      ".cfg",
+      ".cnf",
+      ".dof",
+      ".frm",
+      ".lektorproject",
+      ".prefs",
+      ".pro",
+      ".properties",
+      ".url"
+    ]
   },
   {
     "name": "java",
-    "extensions": [".java", ".jav", ".jsh"]
+    "extensions": [
+      ".java",
+      ".jav",
+      ".jsh"
+    ]
   },
   {
     "name": "javascript",
@@ -124,20 +198,268 @@
     ]
   },
   {
+    "name": "julia",
+    "extensions": [
+      ".jl"
+    ]
+  },
+  {
     "name": "kotlin",
-    "extensions": [".kt", ".ktm", ".kts"]
+    "extensions": [
+      ".kt",
+      ".ktm",
+      ".kts"
+    ]
   },
   {
     "name": "less",
-    "extensions": [".less"]
+    "extensions": [
+      ".less"
+    ]
   },
   {
     "name": "lua",
-    "extensions": [".lua", ".fcgi", ".nse", ".p8", ".pd_lua", ".rbxs", ".rockspec", ".wlua"]
+    "extensions": [
+      ".lua",
+      ".fcgi",
+      ".nse",
+      ".p8",
+      ".pd_lua",
+      ".rbxs",
+      ".rockspec",
+      ".wlua"
+    ]
   },
   {
     "name": "makefile",
-    "extensions": [".mak", ".d", ".make", ".makefile", ".mk", ".mkfile"]
+    "extensions": [
+      ".mak",
+      ".d",
+      ".make",
+      ".makefile",
+      ".mk",
+      ".mkfile"
+    ]
+  },
+  {
+    "name": "markdown",
+    "extensions": [
+      ".md",
+      ".livemd",
+      ".markdown",
+      ".mdown",
+      ".mdwn",
+      ".mkd",
+      ".mkdn",
+      ".mkdown",
+      ".ronn",
+      ".scd",
+      ".workbook"
+    ]
+  },
+  {
+    "name": "nginx",
+    "extensions": [
+      ".nginx",
+      ".nginxconf",
+      ".vhost"
+    ]
+  },
+  {
+    "name": "nim",
+    "extensions": [
+      ".nim",
+      ".nim.cfg",
+      ".nimble",
+      ".nimrod",
+      ".nims"
+    ]
+  },
+  {
+    "name": "nix",
+    "extensions": [
+      ".nix"
+    ]
+  },
+  {
+    "name": "objectivec",
+    "extensions": [
+      ".m",
+      ".h"
+    ]
+  },
+  {
+    "name": "perl",
+    "extensions": [
+      ".pl",
+      ".al",
+      ".cgi",
+      ".fcgi",
+      ".perl",
+      ".ph",
+      ".plx",
+      ".pm",
+      ".psgi",
+      ".t"
+    ]
+  },
+  {
+    "name": "php",
+    "extensions": [
+      ".php",
+      ".aw",
+      ".ctp",
+      ".fcgi",
+      ".inc",
+      ".php3",
+      ".php4",
+      ".php5",
+      ".phps",
+      ".phpt"
+    ]
+  },
+  {
+    "name": "plaintext",
+    "extensions": [
+      ".text",
+      ".txt"
+    ]
+  },
+  {
+    "name": "python",
+    "extensions": [
+      ".py",
+      ".cgi",
+      ".fcgi",
+      ".gyp",
+      ".gypi",
+      ".lmi",
+      ".py3",
+      ".pyde",
+      ".pyi",
+      ".pyp",
+      ".pyt",
+      ".pyw",
+      ".rpy",
+      ".spec",
+      ".tac",
+      ".wsgi",
+      ".xpy"
+    ]
+  },
+  {
+    "name": "r",
+    "extensions": [
+      ".r",
+      ".rd",
+      ".rsx"
+    ]
+  },
+  {
+    "name": "ruby",
+    "extensions": [
+      ".rb",
+      ".builder",
+      ".eye",
+      ".fcgi",
+      ".gemspec",
+      ".god",
+      ".jbuilder",
+      ".mspec",
+      ".pluginspec",
+      ".podspec",
+      ".prawn",
+      ".rabl",
+      ".rake",
+      ".rbi",
+      ".rbuild",
+      ".rbw",
+      ".rbx",
+      ".ru",
+      ".ruby",
+      ".spec",
+      ".thor",
+      ".watchr"
+    ]
+  },
+  {
+    "name": "rust",
+    "extensions": [
+      ".rs",
+      ".rs.in"
+    ]
+  },
+  {
+    "name": "scala",
+    "extensions": [
+      ".scala",
+      ".kojo",
+      ".sbt",
+      ".sc"
+    ]
+  },
+  {
+    "name": "scss",
+    "extensions": [
+      ".scss"
+    ]
+  },
+  {
+    "name": "shell",
+    "extensions": [
+      ".sh",
+      ".bash",
+      ".bats",
+      ".cgi",
+      ".command",
+      ".fcgi",
+      ".ksh",
+      ".sh.in",
+      ".tmux",
+      ".tool",
+      ".trigger",
+      ".zsh",
+      ".zsh-theme"
+    ]
+  },
+  {
+    "name": "sql",
+    "extensions": [
+      ".sql",
+      ".cql",
+      ".ddl",
+      ".inc",
+      ".mysql",
+      ".prc",
+      ".tab",
+      ".udf",
+      ".viw"
+    ]
+  },
+  {
+    "name": "swift",
+    "extensions": [
+      ".swift"
+    ]
+  },
+  {
+    "name": "toml",
+    "extensions": [
+      ".toml"
+    ]
+  },
+  {
+    "name": "typescript",
+    "extensions": [
+      ".ts",
+      ".cts",
+      ".mts",
+      ".tsx"
+    ]
+  },
+  {
+    "name": "x86asm",
+    "extensions": []
   },
   {
     "name": "xml",
@@ -253,129 +575,6 @@
     ]
   },
   {
-    "name": "markdown",
-    "extensions": [
-      ".md",
-      ".livemd",
-      ".markdown",
-      ".mdown",
-      ".mdwn",
-      ".mkd",
-      ".mkdn",
-      ".mkdown",
-      ".ronn",
-      ".scd",
-      ".workbook"
-    ]
-  },
-  {
-    "name": "nginx",
-    "extensions": [".nginx", ".nginxconf", ".vhost"]
-  },
-  {
-    "name": "objectivec",
-    "extensions": [".m", ".h"]
-  },
-  {
-    "name": "perl",
-    "extensions": [".pl", ".al", ".cgi", ".fcgi", ".perl", ".ph", ".plx", ".pm", ".psgi", ".t"]
-  },
-  {
-    "name": "php",
-    "extensions": [".php", ".aw", ".ctp", ".fcgi", ".inc", ".php3", ".php4", ".php5", ".phps", ".phpt"]
-  },
-  {
-    "name": "plaintext",
-    "extensions": [".text", ".txt"]
-  },
-  {
-    "name": "python",
-    "extensions": [
-      ".py",
-      ".cgi",
-      ".fcgi",
-      ".gyp",
-      ".gypi",
-      ".lmi",
-      ".py3",
-      ".pyde",
-      ".pyi",
-      ".pyp",
-      ".pyt",
-      ".pyw",
-      ".rpy",
-      ".spec",
-      ".tac",
-      ".wsgi",
-      ".xpy"
-    ]
-  },
-  {
-    "name": "ruby",
-    "extensions": [
-      ".rb",
-      ".builder",
-      ".eye",
-      ".fcgi",
-      ".gemspec",
-      ".god",
-      ".jbuilder",
-      ".mspec",
-      ".pluginspec",
-      ".podspec",
-      ".prawn",
-      ".rabl",
-      ".rake",
-      ".rbi",
-      ".rbuild",
-      ".rbw",
-      ".rbx",
-      ".ru",
-      ".ruby",
-      ".spec",
-      ".thor",
-      ".watchr"
-    ]
-  },
-  {
-    "name": "rust",
-    "extensions": [".rs", ".rs.in"]
-  },
-  {
-    "name": "scss",
-    "extensions": [".scss"]
-  },
-  {
-    "name": "shell",
-    "extensions": [
-      ".sh",
-      ".bash",
-      ".bats",
-      ".cgi",
-      ".command",
-      ".fcgi",
-      ".ksh",
-      ".sh.in",
-      ".tmux",
-      ".tool",
-      ".trigger",
-      ".zsh",
-      ".zsh-theme"
-    ]
-  },
-  {
-    "name": "sql",
-    "extensions": [".sql", ".cql", ".ddl", ".inc", ".mysql", ".prc", ".tab", ".udf", ".viw"]
-  },
-  {
-    "name": "swift",
-    "extensions": [".swift"]
-  },
-  {
-    "name": "typescript",
-    "extensions": [".ts", ".cts", ".mts", ".tsx"]
-  },
-  {
     "name": "yaml",
     "extensions": [
       ".yml",
@@ -389,37 +588,5 @@
       ".yaml.sed",
       ".yml.mysql"
     ]
-  },
-  {
-    "name": "handlebars",
-    "extensions": [".handlebars", ".hbs"]
-  },
-  {
-    "name": "haskell",
-    "extensions": [".hs", ".hs-boot", ".hsc"]
-  },
-  {
-    "name": "julia",
-    "extensions": [".jl"]
-  },
-  {
-    "name": "nim",
-    "extensions": [".nim", ".nim.cfg", ".nimble", ".nimrod", ".nims"]
-  },
-  {
-    "name": "nix",
-    "extensions": [".nix"]
-  },
-  {
-    "name": "r",
-    "extensions": [".r", ".rd", ".rsx"]
-  },
-  {
-    "name": "scala",
-    "extensions": [".scala", ".kojo", ".sbt", ".sc"]
-  },
-  {
-    "name": "x86asm",
-    "extensions": []
   }
 ]

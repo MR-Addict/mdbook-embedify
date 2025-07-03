@@ -4,7 +4,7 @@
 >
 > Support since [v0.2.12](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.12).
 >
-> Language is detected by file extension, which I manually import from [linguist](https://github.com/github-linguist/linguist/blob/main/lib/linguist/languages.yml). If you find any issues with the language detection, please open an issue on [GitHub](https://github.com/MR-Addict/mdbook-embedify/issues).
+> Language is detected by file extension, which I manually importted from [linguist](https://github.com/github-linguist/linguist/blob/main/lib/linguist/languages.yml). If you find any issues with the language detection, please open an issue on [GitHub](https://github.com/MR-Addict/mdbook-embedify/issues).
 
 The include app is for including source file and wrapped it as markdown code block.
 
