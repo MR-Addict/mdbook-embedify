@@ -5,7 +5,12 @@
 
 {% embed include file="src/examples/hello.pl" %}
 
+{% embed include file="src/examples/Person.pm" lang="perl" %}
+
+## Raku
+
 {% embed include file="src/examples/Person.pm" %}
+
 
 ## Python
 
