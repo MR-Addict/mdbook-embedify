@@ -1,0 +1,5 @@
+
+# As we change directory in the tests we need to make sure the tests run in a single thread.
+# or they will interfere with each other
+[env]
+RUST_TEST_THREADS = "1"
