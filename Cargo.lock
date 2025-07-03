@@ -450,6 +450,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "dircmp"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c3ca7fa3ba397980657070e679f412acddb7a372f1793ff68ef0bbe708680f0f"
+dependencies = [
+ "regex",
+ "sha2",
+ "thiserror 1.0.69",
+ "walkdir",
+]
+
+[[package]]
 name = "displaydoc"
 version = "0.2.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1299,6 +1311,7 @@ name = "mdbook-embedify"
 version = "0.2.16"
 dependencies = [
  "clap 4.5.39",
+ "dircmp",
  "hyperpolyglot",
  "lazy_static",
  "mdbook",
