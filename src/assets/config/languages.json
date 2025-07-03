@@ -1,0 +1,425 @@
+[
+  {
+    "name": "apache",
+    "extensions": [".apacheconf"]
+  },
+  {
+    "name": "bash",
+    "extensions": [".sh", ".zsh"]
+  },
+  {
+    "name": "c",
+    "extensions": [".c", ".cats", ".h", ".h.in", ".idc"]
+  },
+  {
+    "name": "coffeescript",
+    "extensions": [".coffee", "._coffee", ".cake", ".cjsx", ".iced"]
+  },
+  {
+    "name": "cpp",
+    "extensions": [
+      ".cpp",
+      ".c++",
+      ".cc",
+      ".cp",
+      ".cppm",
+      ".cxx",
+      ".h",
+      ".h++",
+      ".hh",
+      ".hpp",
+      ".hxx",
+      ".inc",
+      ".inl",
+      ".ino",
+      ".ipp",
+      ".ixx",
+      ".re",
+      ".tcc",
+      ".tpp",
+      ".txx"
+    ]
+  },
+  {
+    "name": "csharp",
+    "extensions": [".cs", ".cake", ".cs.pp", ".csx", ".linq"]
+  },
+  {
+    "name": "css",
+    "extensions": [".css"]
+  },
+  {
+    "name": "diff",
+    "extensions": [".diff", ".patch"]
+  },
+  {
+    "name": "go",
+    "extensions": [".go"]
+  },
+  {
+    "name": "http",
+    "extensions": [".http"]
+  },
+  {
+    "name": "ini",
+    "extensions": [".ini", ".cfg", ".cnf", ".dof", ".frm", ".lektorproject", ".prefs", ".pro", ".properties", ".url"]
+  },
+  {
+    "name": "java",
+    "extensions": [".java", ".jav", ".jsh"]
+  },
+  {
+    "name": "javascript",
+    "extensions": [
+      ".js",
+      "._js",
+      ".bones",
+      ".cjs",
+      ".es",
+      ".es6",
+      ".frag",
+      ".gs",
+      ".jake",
+      ".javascript",
+      ".jsb",
+      ".jscad",
+      ".jsfl",
+      ".jslib",
+      ".jsm",
+      ".jspre",
+      ".jss",
+      ".jsx",
+      ".mjs",
+      ".njs",
+      ".pac",
+      ".sjs",
+      ".ssjs",
+      ".xsjs",
+      ".xsjslib"
+    ]
+  },
+  {
+    "name": "json",
+    "extensions": [
+      ".json",
+      ".4DForm",
+      ".4DProject",
+      ".avsc",
+      ".geojson",
+      ".gltf",
+      ".har",
+      ".ice",
+      ".json.example",
+      ".jsonl",
+      ".mcmeta",
+      ".sarif",
+      ".tact",
+      ".tfstate",
+      ".tfstate.backup",
+      ".topojson",
+      ".webapp",
+      ".webmanifest",
+      ".yy",
+      ".yyp"
+    ]
+  },
+  {
+    "name": "kotlin",
+    "extensions": [".kt", ".ktm", ".kts"]
+  },
+  {
+    "name": "less",
+    "extensions": [".less"]
+  },
+  {
+    "name": "lua",
+    "extensions": [".lua", ".fcgi", ".nse", ".p8", ".pd_lua", ".rbxs", ".rockspec", ".wlua"]
+  },
+  {
+    "name": "makefile",
+    "extensions": [".mak", ".d", ".make", ".makefile", ".mk", ".mkfile"]
+  },
+  {
+    "name": "xml",
+    "extensions": [
+      ".xml",
+      ".adml",
+      ".admx",
+      ".ant",
+      ".axaml",
+      ".axml",
+      ".builds",
+      ".ccproj",
+      ".ccxml",
+      ".clixml",
+      ".cproject",
+      ".cscfg",
+      ".csdef",
+      ".csl",
+      ".csproj",
+      ".ct",
+      ".depproj",
+      ".dita",
+      ".ditamap",
+      ".ditaval",
+      ".dll.config",
+      ".dotsettings",
+      ".filters",
+      ".fsproj",
+      ".fxml",
+      ".glade",
+      ".gml",
+      ".gmx",
+      ".gpx",
+      ".grxml",
+      ".gst",
+      ".hzp",
+      ".iml",
+      ".ivy",
+      ".jelly",
+      ".jsproj",
+      ".kml",
+      ".launch",
+      ".mdpolicy",
+      ".mjml",
+      ".mm",
+      ".mod",
+      ".mojo",
+      ".mxml",
+      ".natvis",
+      ".ncl",
+      ".ndproj",
+      ".nproj",
+      ".nuspec",
+      ".odd",
+      ".osm",
+      ".pkgproj",
+      ".pluginspec",
+      ".proj",
+      ".props",
+      ".ps1xml",
+      ".psc1",
+      ".pt",
+      ".qhelp",
+      ".rdf",
+      ".res",
+      ".resx",
+      ".rs",
+      ".rss",
+      ".sch",
+      ".scxml",
+      ".sfproj",
+      ".shproj",
+      ".slnx",
+      ".srdf",
+      ".storyboard",
+      ".sublime-snippet",
+      ".sw",
+      ".targets",
+      ".tml",
+      ".ts",
+      ".tsx",
+      ".typ",
+      ".ui",
+      ".urdf",
+      ".ux",
+      ".vbproj",
+      ".vcxproj",
+      ".vsixmanifest",
+      ".vssettings",
+      ".vstemplate",
+      ".vxml",
+      ".wixproj",
+      ".workflow",
+      ".wsdl",
+      ".wsf",
+      ".wxi",
+      ".wxl",
+      ".wxs",
+      ".x3d",
+      ".xacro",
+      ".xaml",
+      ".xib",
+      ".xlf",
+      ".xliff",
+      ".xmi",
+      ".xml.dist",
+      ".xmp",
+      ".xproj",
+      ".xsd",
+      ".xspec",
+      ".xul",
+      ".zcml"
+    ]
+  },
+  {
+    "name": "markdown",
+    "extensions": [
+      ".md",
+      ".livemd",
+      ".markdown",
+      ".mdown",
+      ".mdwn",
+      ".mkd",
+      ".mkdn",
+      ".mkdown",
+      ".ronn",
+      ".scd",
+      ".workbook"
+    ]
+  },
+  {
+    "name": "nginx",
+    "extensions": [".nginx", ".nginxconf", ".vhost"]
+  },
+  {
+    "name": "objectivec",
+    "extensions": [".m", ".h"]
+  },
+  {
+    "name": "perl",
+    "extensions": [".pl", ".al", ".cgi", ".fcgi", ".perl", ".ph", ".plx", ".pm", ".psgi", ".t"]
+  },
+  {
+    "name": "php",
+    "extensions": [".php", ".aw", ".ctp", ".fcgi", ".inc", ".php3", ".php4", ".php5", ".phps", ".phpt"]
+  },
+  {
+    "name": "plaintext",
+    "extensions": [".text", ".txt"]
+  },
+  {
+    "name": "python",
+    "extensions": [
+      ".py",
+      ".cgi",
+      ".fcgi",
+      ".gyp",
+      ".gypi",
+      ".lmi",
+      ".py3",
+      ".pyde",
+      ".pyi",
+      ".pyp",
+      ".pyt",
+      ".pyw",
+      ".rpy",
+      ".spec",
+      ".tac",
+      ".wsgi",
+      ".xpy"
+    ]
+  },
+  {
+    "name": "ruby",
+    "extensions": [
+      ".rb",
+      ".builder",
+      ".eye",
+      ".fcgi",
+      ".gemspec",
+      ".god",
+      ".jbuilder",
+      ".mspec",
+      ".pluginspec",
+      ".podspec",
+      ".prawn",
+      ".rabl",
+      ".rake",
+      ".rbi",
+      ".rbuild",
+      ".rbw",
+      ".rbx",
+      ".ru",
+      ".ruby",
+      ".spec",
+      ".thor",
+      ".watchr"
+    ]
+  },
+  {
+    "name": "rust",
+    "extensions": [".rs", ".rs.in"]
+  },
+  {
+    "name": "scss",
+    "extensions": [".scss"]
+  },
+  {
+    "name": "shell",
+    "extensions": [
+      ".sh",
+      ".bash",
+      ".bats",
+      ".cgi",
+      ".command",
+      ".fcgi",
+      ".ksh",
+      ".sh.in",
+      ".tmux",
+      ".tool",
+      ".trigger",
+      ".zsh",
+      ".zsh-theme"
+    ]
+  },
+  {
+    "name": "sql",
+    "extensions": [".sql", ".cql", ".ddl", ".inc", ".mysql", ".prc", ".tab", ".udf", ".viw"]
+  },
+  {
+    "name": "swift",
+    "extensions": [".swift"]
+  },
+  {
+    "name": "typescript",
+    "extensions": [".ts", ".cts", ".mts", ".tsx"]
+  },
+  {
+    "name": "yaml",
+    "extensions": [
+      ".yml",
+      ".mir",
+      ".reek",
+      ".rviz",
+      ".sublime-syntax",
+      ".syntax",
+      ".yaml",
+      ".yaml-tmlanguage",
+      ".yaml.sed",
+      ".yml.mysql"
+    ]
+  },
+  {
+    "name": "handlebars",
+    "extensions": [".handlebars", ".hbs"]
+  },
+  {
+    "name": "haskell",
+    "extensions": [".hs", ".hs-boot", ".hsc"]
+  },
+  {
+    "name": "julia",
+    "extensions": [".jl"]
+  },
+  {
+    "name": "nim",
+    "extensions": [".nim", ".nim.cfg", ".nimble", ".nimrod", ".nims"]
+  },
+  {
+    "name": "nix",
+    "extensions": [".nix"]
+  },
+  {
+    "name": "r",
+    "extensions": [".r", ".rd", ".rsx"]
+  },
+  {
+    "name": "scala",
+    "extensions": [".scala", ".kojo", ".sbt", ".sc"]
+  },
+  {
+    "name": "x86asm",
+    "extensions": []
+  }
+]

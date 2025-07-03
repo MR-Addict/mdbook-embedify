@@ -1,8 +1,34 @@
 use crate::parser;
+use crate::utils;
 
-use hyperpolyglot;
 use mdbook::preprocess::PreprocessorContext;
 use std::fs;
+
+fn wrap_content_in_code_block(content: &str, language: &str, lang_detected: &str) -> String {
+    // check if the language is markdown, if so, wrapped by backticks
+    if lang_detected == "markdown" {
+        // Count the maximum number of consecutive backticks in the content
+        let max_backticks = content
+            .lines()
+            .filter_map(|line| {
+                let trimmed = line.trim();
+                if trimmed.starts_with("```") {
+                    Some(trimmed.chars().take_while(|&c| c == '`').count())
+                } else {
+                    None
+                }
+            })
+            .max()
+            .unwrap_or(2) // Default to 2 if no backticks found
+            + 1; // Add 1 to ensure we have enough backticks
+
+        let backticks = "`".repeat(max_backticks);
+
+        format!("{}{}\n{}\n{}", backticks, language, content, backticks)
+    } else {
+        format!("```{}\n{}\n```", language, content)
+    }
+}
 
 fn parse_include_range(input: String, max_line: usize) -> Result<(usize, usize), String> {
     let trimmed = input.trim();
@@ -85,41 +111,16 @@ pub fn include_script(
 
     // if include type is not raw, wrap the content in a code block
     let lang_option = parser::get_option("lang", options.clone());
-    let lang_detected = hyperpolyglot::detect(std::path::Path::new(&file_path))
-        .ok()
-        .flatten();
+    let lang_detected = utils::detect_lang(file_path.clone());
 
     let language = match lang_option {
         Some(option) => option.value,
-        _ => lang_detected.map_or("plaintext".to_string(), |detection| {
-            detection.language().to_lowercase()
-        }),
+        _ => lang_detected.clone(),
     };
 
-    // check if the language is markdown, if so, wrapped by backticks
-    if lang_detected.map_or(false, |detection| detection.language() == "Markdown") {
-        // Count the maximum number of consecutive backticks in the content
-        let max_backticks = content
-            .lines()
-            .filter_map(|line| {
-                let trimmed = line.trim();
-                if trimmed.starts_with("```") {
-                    Some(trimmed.chars().take_while(|&c| c == '`').count())
-                } else {
-                    None
-                }
-            })
-            .max()
-            .unwrap_or(2) // Default to 2 if no backticks found
-            + 1; // Add 1 to ensure we have enough backticks
-
-        let backticks = "`".repeat(max_backticks);
-
-        Ok(format!(
-            "{}{}\n{}\n{}",
-            backticks, language, content, backticks
-        ))
-    } else {
-        Ok(format!("```{}\n{}\n```", language, content))
-    }
+    Ok(wrap_content_in_code_block(
+        &content,
+        &language,
+        &lang_detected,
+    ))
 }
