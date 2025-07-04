@@ -36,5 +36,10 @@ runs:
       shell: bash
 
     - name: Install mdbook
-      run: cargo install mdbook --version "$(grep '^mdbook' Cargo.toml | sed 's/.*"\([^"]*\)".*/\1/')"
+      run: |
+        if ! command -v mdbook >/dev/null 2>&1; then
+          cargo install mdbook --version "$(grep '^mdbook' Cargo.toml | sed 's/.*"\([^"]*\)".*/\1/')" --force
+        else
+          echo "mdbook is already installed, skipping."
+        fi
       shell: bash

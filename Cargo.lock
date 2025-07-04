@@ -1181,7 +1181,7 @@ dependencies = [
 
 [[package]]
 name = "mdbook-embedify"
-version = "0.2.17-rc.11"
+version = "0.2.17-rc.12"
 dependencies = [
  "clap",
  "dircmp",
