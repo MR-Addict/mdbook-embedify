@@ -14,16 +14,14 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: Setup Rust
+      - name: Setup environment
         uses: ./.github/actions/setup-rust
 
-      - name: Test
+      - name: Run tests
         run: cargo test --all-features --verbose
 
       - name: Build book
-        run: |
-          chmod u+x docs/assets/bin/* && cp docs/assets/bin/* /usr/local/bin
-          cargo build --release && mdbook build docs
+        run: cargo build --release && mdbook build docs
 
       - name: Deploy to github pages
         uses: crazy-max/ghaction-github-pages@v4

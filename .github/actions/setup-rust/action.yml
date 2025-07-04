@@ -30,3 +30,7 @@ runs:
         override: true
         toolchain: ${{ inputs.toolchain }}
         target: ${{ inputs.target }}
+
+    - name: Install mdbook
+      run: chmod u+x docs/assets/bin/* && cp docs/assets/bin/* /usr/local/bin
+      shell: bash

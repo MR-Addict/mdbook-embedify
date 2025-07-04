@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: Setup Rust
+      - name: Setup environment
         uses: ./.github/actions/setup-rust
 
       - name: Run tests
@@ -31,9 +31,7 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@master
-
-      - name: Setup Rust
+      - name: Setup environment
         uses: ./.github/actions/setup-rust
         with:
           target: ${{ matrix.target }}
