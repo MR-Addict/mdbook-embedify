@@ -7,11 +7,11 @@ There are two ways to do it:
 <!-- embed ignore begin -->
 
 - **Inline**: You can use `{% embed-ignore %}` syntax to ignore the embed in the current line.
-- **Block**: You can use comments to wrap the content you want to ignore.
+- **Block**: You can use `comments` to wrap the content you want to ignore.
 
 ## Inline Ignore
 
-To ignore an embed in the current line, you can use the `{% embed-ignore %}` syntax. This will prevent the embed from being rendered.
+To ignore an embed in the current line, you can use the `{% embed-ignore %}`. The preprocessor will automatically convert it to `{% embed %}`:
 
 For example:
 
@@ -21,7 +21,7 @@ For example:
 
 <!-- embed ignore end -->
 
-Will be shown as:
+Will be replaced as:
 
 ```text
 {% embed-ignore youtube id="DyTCOwB0DVw" loading="lazy" %}
@@ -50,7 +50,7 @@ Will also be shown as:
 
 ## Priorities
 
-Block ignore has higher priority than inline ignore, so if you wrap an inline ignore in a block ignore, it will keep as it is and not be rendered.
+Block ignore has **higher** priority than inline ignore, so if you wrap an inline ignore in a block ignore, it will keep as it is and will not be changed.
 
 For example:
 
@@ -69,5 +69,3 @@ Will be shown as:
 ```
 
 <!-- embed ignore end -->
-
-Because the block ignore takes precedence over the inline ignore, the `embed-ignore` will not be changed.

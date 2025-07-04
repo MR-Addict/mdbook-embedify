@@ -4,10 +4,7 @@ Some apps allow you to automatically embed to every chapter. You can do this by 
 
 For example:
 
-```toml
-[preprocessor.embedify]
-scroll-to-top.enable = true
-```
+{% embed include file="book.toml" range="45-46" %}
 
 > Attention 💥
 >
@@ -15,6 +12,6 @@ scroll-to-top.enable = true
 
 Below is a full list of apps that support global configuration:
 
-{% embed include file="book.toml" range="44-64" %}
+{% embed include file="book.toml" range="45-63" %}
 
 You can see more details about each app at its own page.

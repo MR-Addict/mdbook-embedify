@@ -1,10 +1,10 @@
 [book]
 authors = ["MR-Addict"]
 description = "This is a mdbook preprocessor plugin that allows you embed apps to your book, like youtube, codepen, giscus and many other apps"
-language = "en"
-multilingual = false
-src = "src"
 title = "mdbook-embedify"
+multilingual = false
+language = "en"
+src = "src"
 
 [build]
 build-dir = "book"
@@ -43,8 +43,6 @@ heading-split-level = 3
 copy-js = true
 
 [preprocessor.embedify]
-custom-templates-folder = "assets/templates"
-
 scroll-to-top.enable = true
 
 footer.enable = true
@@ -52,7 +50,7 @@ footer.message = "Copyright © 2025 • Created with ❤️ by [MR-Addict](https
 
 announcement-banner.enable = true
 announcement-banner.id = "0.2.17-rc.13"
-announcement-banner.message = "*Version **0.2.17-rc.13** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17-rc.13).*"
+announcement-banner.message = "*New version [0.2.17-rc.13](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17-rc.13) relased*"
 
 giscus.enable = true
 giscus.repo = "MR-Addict/mdbook-embedify"
@@ -63,6 +61,8 @@ giscus.reactions-enabled = "1"
 giscus.theme = "book"
 giscus.lang = "en"
 giscus.loading = "lazy"
+
+custom-templates-folder = "assets/templates"
 
 # This is for the development environment
 command = "target/release/mdbook-embedify"

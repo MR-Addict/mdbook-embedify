@@ -11,7 +11,7 @@ Ensure you have the following installed:
 - [Rust](https://www.rust-lang.org)
 - [mdbook](https://rust-lang.github.io/mdBook)
 
-Make sure you have the same **mdbook** version installed on your system as the one used in the project.
+Make sure you have the same **mdbook** version installed as the one used in the project.
 
 You can find the version in the `Cargo.toml` file under the `[dependencies]` section.
 
@@ -31,17 +31,17 @@ mdbook-embedify covering these critical modules:
 # Run complete test suite
 cargo test
 
-# Run with detailed output
-cargo test -- --nocapture
-
 # Run specific test suites
 cargo test --test book
 cargo test --test parser
 cargo test --test detect_lang
 
-# Run tests with timing information
-cargo test -- --show-output
-
 # Run tests quietly
 cargo test -- --quiet
+
+# Run with detailed output
+cargo test -- --nocapture
+
+# Run tests with timing information
+cargo test -- --show-output
 ```
