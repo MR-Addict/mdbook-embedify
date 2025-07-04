@@ -1,6 +1,6 @@
 [package]
 name = "mdbook-embedify"
-version = "0.2.17-rc.10"
+version = "0.2.17-rc.11"
 edition = "2021"
 license = "MIT"
 readme = "README.md"

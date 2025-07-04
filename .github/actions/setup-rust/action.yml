@@ -31,10 +31,10 @@ runs:
         toolchain: ${{ inputs.toolchain }}
         target: ${{ inputs.target }}
 
-    - name: Install mdbook
-      run: chmod u+x docs/assets/bin/* && cp docs/assets/bin/* /usr/local/bin
-      shell: bash
-
     - name: Build release
       run: cargo build --release
+      shell: bash
+
+    - name: Install mdbook
+      run: cargo install mdbook --version "$(grep '^mdbook' Cargo.toml | sed 's/.*"\([^"]*\)".*/\1/')"
       shell: bash
