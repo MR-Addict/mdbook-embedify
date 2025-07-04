@@ -14,7 +14,7 @@ Announcement banner allows you put important messages at the top of the page. It
 <!-- embed ignore begin -->
 
 ```text
-{% embed announcement-banner id="0.2.17-rc.2" message="*Version **0.2.17-rc.2** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17-rc.2).*" %}
+{% embed announcement-banner id="0.2.17-rc.3" message="*Version **0.2.17-rc.3** now has relased, check it out [here](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17-rc.3).*" %}
 ```
 
 <!-- embed ignore end -->
