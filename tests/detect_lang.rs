@@ -393,17 +393,11 @@ mod wildcard_pattern_tests {
         // Test dockerfile* pattern
         assert_eq!(detect_lang("dockerfile".to_string()), "dockerfile");
         assert_eq!(detect_lang("dockerfile.base".to_string()), "dockerfile");
-        assert_eq!(
-            detect_lang("dockerfile.production".to_string()),
-            "dockerfile"
-        );
+        assert_eq!(detect_lang("dockerfile.prod".to_string()), "dockerfile");
 
         // Test *.dockerfile pattern
         assert_eq!(detect_lang("base.dockerfile".to_string()), "dockerfile");
-        assert_eq!(
-            detect_lang("production.dockerfile".to_string()),
-            "dockerfile"
-        );
+        assert_eq!(detect_lang("prod.dockerfile".to_string()), "dockerfile");
         assert_eq!(detect_lang("app.dockerfile".to_string()), "dockerfile");
         assert_eq!(detect_lang("web.dockerfile".to_string()), "dockerfile");
     }

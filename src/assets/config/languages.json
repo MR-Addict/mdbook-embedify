@@ -26,8 +26,7 @@
   {
     "name": "dockerfile",
     "extensions": [".dockerfile"],
-    "filenames": ["Dockerfile", "dockerfile", "Containerfile"],
-    "filename_patterns": ["Dockerfile.*", "dockerfile.*", "*.dockerfile"]
+    "filenames": ["Dockerfile", "dockerfile", "Containerfile", "Dockerfile.*", "dockerfile.*", "*.dockerfile"]
   },
   {
     "name": "go",
@@ -76,8 +75,7 @@
   {
     "name": "makefile",
     "extensions": [".make", ".makefile", ".mk"],
-    "filenames": ["Makefile", "makefile", "GNUmakefile", "Makefile.am", "Makefile.in"],
-    "filename_patterns": ["Makefile.*", "makefile.*"]
+    "filenames": ["Makefile", "makefile", "GNUmakefile", "Makefile.am", "Makefile.in", "Makefile.*", "makefile.*"]
   },
   {
     "name": "markdown",
@@ -124,8 +122,7 @@
   {
     "name": "shell",
     "extensions": [".sh", ".bash", ".zsh"],
-    "filenames": [".bashrc", ".zshrc", ".profile", ".bash_profile", ".zprofile"],
-    "filename_patterns": ["*.bashrc", "*.zshrc", "*.profile"]
+    "filenames": [".bashrc", ".zshrc", ".profile", ".bash_profile", ".zprofile", "*.bashrc", "*.zshrc", "*.profile"]
   },
   {
     "name": "sql",

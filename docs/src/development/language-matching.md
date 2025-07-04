@@ -28,70 +28,15 @@ Language definitions are stored in [src/assets/config/languages.json](https://gi
 {
   "name": "dockerfile",
   "extensions": [".dockerfile"],
-  "filenames": ["Dockerfile", "dockerfile", "Containerfile"],
-  "filename_patterns": ["Dockerfile.*", "dockerfile.*", "*.dockerfile"]
+  "filenames": ["Dockerfile", "dockerfile", "Containerfile", "Dockerfile.*", "dockerfile.*", "*.dockerfile"]
 }
 ```
 
-| Property            | Type   | Purpose                                     | Example                           |
-| ------------------- | ------ | ------------------------------------------- | --------------------------------- |
-| `name`              | String | Language identifier for syntax highlighting | `"javascript"`                    |
-| `extensions`        | Array  | File extensions (with dots)                 | `[".js", ".jsx"]`                 |
-| `filenames`         | Array  | Exact filename matches                      | `["Dockerfile", "Makefile"]`      |
-| `filename_patterns` | Array  | Glob-style wildcard patterns                | `["Dockerfile.*", "*.config.js"]` |
-
-## Matching System Details
-
-### 1. Exact Filename Matching (Highest Precedence)
-
-The system first performs a **case-sensitive** exact match against the `filenames` array.
-
-**Performance**: O(1) HashMap lookup
-
-**Examples:**
-
-| Filename     | Detected Language | Reason                               |
-| ------------ | ----------------- | ------------------------------------ |
-| `Dockerfile` | `dockerfile`      | Exact match in filenames array       |
-| `Makefile`   | `makefile`        | Exact match in filenames array       |
-| `.bashrc`    | `shell`           | Exact match for configuration file   |
-| `.gitignore` | `gitignore`       | Exact match for version control file |
-
-### 2. File Extension Matching
-
-If no exact filename match is found, the system checks the **last file extension** (case-insensitive).
-
-**Performance**: O(1) HashMap lookup after string processing
-
-**Extension Rules:**
-
-- ✅ **Case-insensitive** (`.JS` matches `.js`)
-- ✅ **Last dot wins** (`file.test.js` → `.js`)
-- ✅ **Requires dot** (stored as `".js"`, not `"js"`)
-
-**Examples:**
-
-| Filename       | Extension | Detected Language               |
-| -------------- | --------- | ------------------------------- |
-| `script.js`    | `.js`     | `javascript`                    |
-| `app.py`       | `.py`     | `python`                        |
-| `styles.css`   | `.css`    | `css`                           |
-| `file.test.js` | `.js`     | `javascript` (last extension)   |
-| `Script.JS`    | `.js`     | `javascript` (case-insensitive) |
-
-### 3. Wildcard Pattern Matching (Lowest Precedence)
-
-When neither exact nor extension matching succeeds, the system tries **glob-style wildcard patterns**.
-
-**Performance**: O(n) regex matching where n = number of patterns
-
-**Examples:**
-| Filename | Matching Pattern | Detected Language |
-|----------|------------------|-------------------|
-| `Dockerfile.base` | `Dockerfile.*` | `dockerfile` |
-| `web.dockerfile` | `*.dockerfile` | `dockerfile` |
-| `Makefile.local` | `Makefile.*` | `makefile` |
-| `config.prod.json` | `config.*.json` | `json` |
+| Property     | Type   | Purpose                                     | Example                                       |
+| ------------ | ------ | ------------------------------------------- | --------------------------------------------- |
+| `name`       | String | Language identifier for syntax highlighting | `"javascript"`                                |
+| `extensions` | Array  | File extensions (with dots)                 | `[".js", ".jsx"]`                             |
+| `filenames`  | Array  | Exact filenames and wildcard patterns       | `["Dockerfile", "Makefile.*", "*.config.js"]` |
 
 ## Wildcard Pattern Syntax
 
@@ -106,42 +51,41 @@ When neither exact nor extension matching succeeds, the system tries **glob-styl
 
 ### 🐳 Dockerfile Variants
 
-| Filename                | Result       | Reason                                  |
-| ----------------------- | ------------ | --------------------------------------- |
-| `Dockerfile`            | `dockerfile` | ✅ Exact match                          |
-| `Dockerfile.base`       | `dockerfile` | 🔍 Pattern: `Dockerfile.*`              |
-| `Dockerfile.production` | `dockerfile` | 🔍 Pattern: `Dockerfile.*`              |
-| `dockerfile.dev`        | `dockerfile` | 🔍 Pattern: `dockerfile.*`              |
-| `web.dockerfile`        | `dockerfile` | 🔍 Pattern: `*.dockerfile`              |
-| `api.dockerfile`        | `dockerfile` | 🔍 Pattern: `*.dockerfile`              |
-| `Dockerfile.js`         | `javascript` | 📁 Extension: `.js` (overrides pattern) |
+| Filename                | Result       | Reason                                      |
+| ----------------------- | ------------ | ------------------------------------------- |
+| `Dockerfile`            | `dockerfile` | ✅ Exact match (non-wildcard entry)         |
+| `Dockerfile.base`       | `dockerfile` | 🔍 Pattern: `Dockerfile.*` (wildcard entry) |
+| `Dockerfile.production` | `dockerfile` | 🔍 Pattern: `Dockerfile.*` (wildcard entry) |
+| `dockerfile.dev`        | `dockerfile` | 🔍 Pattern: `dockerfile.*` (wildcard entry) |
+| `web.dockerfile`        | `dockerfile` | 🔍 Pattern: `*.dockerfile` (wildcard entry) |
+| `api.dockerfile`        | `dockerfile` | 🔍 Pattern: `*.dockerfile` (wildcard entry) |
+| `Dockerfile.js`         | `javascript` | 📁 Extension: `.js` (overrides pattern)     |
 
 ### 🔨 Makefile Variants
 
-| Filename          | Result     | Reason                    |
-| ----------------- | ---------- | ------------------------- |
-| `Makefile`        | `makefile` | ✅ Exact match            |
-| `Makefile.local`  | `makefile` | 🔍 Pattern: `Makefile.*`  |
-| `Makefile.am`     | `makefile` | ✅ Exact match            |
-| `custom.makefile` | `makefile` | 📁 Extension: `.makefile` |
-| `build.mk`        | `makefile` | 📁 Extension: `.mk`       |
+| Filename          | Result     | Reason                                    |
+| ----------------- | ---------- | ----------------------------------------- |
+| `Makefile`        | `makefile` | ✅ Exact match (non-wildcard entry)       |
+| `Makefile.local`  | `makefile` | 🔍 Pattern: `Makefile.*` (wildcard entry) |
+| `Makefile.am`     | `makefile` | ✅ Exact match (non-wildcard entry)       |
+| `custom.makefile` | `makefile` | 📁 Extension: `.makefile`                 |
+| `build.mk`        | `makefile` | 📁 Extension: `.mk`                       |
 
 ### 🐚 Shell Configuration Files
 
-| Filename        | Result  | Reason                  |
-| --------------- | ------- | ----------------------- |
-| `.bashrc`       | `shell` | ✅ Exact match          |
-| `.zshrc`        | `shell` | ✅ Exact match          |
-| `custom.bashrc` | `shell` | 🔍 Pattern: `*.bashrc`  |
-| `my.profile`    | `shell` | 🔍 Pattern: `*.profile` |
-| `script.sh`     | `shell` | 📁 Extension: `.sh`     |
+| Filename        | Result  | Reason                                   |
+| --------------- | ------- | ---------------------------------------- |
+| `.bashrc`       | `shell` | ✅ Exact match (non-wildcard entry)      |
+| `.zshrc`        | `shell` | ✅ Exact match (non-wildcard entry)      |
+| `custom.bashrc` | `shell` | 🔍 Pattern: `*.bashrc` (wildcard entry)  |
+| `my.profile`    | `shell` | 🔍 Pattern: `*.profile` (wildcard entry) |
+| `script.sh`     | `shell` | 📁 Extension: `.sh`                      |
 
 ### 📦 Configuration Files
 
-| Filename             | Result       | Reason                        |
-| -------------------- | ------------ | ----------------------------- |
-| `package.json`       | `json`       | 📁 Extension: `.json`         |
-| `tsconfig.json`      | `typescript` | ✅ Exact match                |
-| `tsconfig.base.json` | `typescript` | 🔍 Pattern: `tsconfig.*.json` |
-| `webpack.config.js`  | `javascript` | 📁 Extension: `.js`           |
-| `.eslintrc.json`     | `json`       | 📁 Extension: `.json`         |
+| Filename            | Result       | Reason                |
+| ------------------- | ------------ | --------------------- |
+| `package.json`      | `json`       | 📁 Extension: `.json` |
+| `tsconfig.json`     | `json`       | 📁 Extension: `.json` |
+| `webpack.config.js` | `javascript` | 📁 Extension: `.js`   |
+| `.eslintrc.json`    | `json`       | 📁 Extension: `.json` |

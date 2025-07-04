@@ -20,11 +20,14 @@ lazy_static! {
                     }
                 }
 
-                // Handle filenames
+                // Handle exact filenames (non-pattern entries)
                 if let Some(filenames) = lang["filenames"].as_array() {
                     for filename in filenames {
                         if let Some(filename_str) = filename.as_str() {
-                            map.insert(filename_str.to_string(), name.to_string());
+                            // Only add to exact match map if it doesn't contain wildcards
+                            if !filename_str.contains('*') && !filename_str.contains('?') {
+                                map.insert(filename_str.to_string(), name.to_string());
+                            }
                         }
                     }
                 }
@@ -41,14 +44,17 @@ lazy_static! {
         let mut patterns = Vec::new();
         for lang in languages {
             if let Some(name) = lang["name"].as_str() {
-                // Handle filename patterns
-                if let Some(filename_patterns) = lang["filename_patterns"].as_array() {
-                    for pattern in filename_patterns {
-                        if let Some(pattern_str) = pattern.as_str() {
-                            // Convert glob pattern to regex
-                            let regex_pattern = glob_to_regex(pattern_str);
-                            if let Ok(regex) = regex::Regex::new(&regex_pattern) {
-                                patterns.push((regex, name.to_string()));
+                // Handle filename patterns (entries with wildcards)
+                if let Some(filenames) = lang["filenames"].as_array() {
+                    for filename in filenames {
+                        if let Some(filename_str) = filename.as_str() {
+                            // Only add to patterns if it contains wildcards
+                            if filename_str.contains('*') || filename_str.contains('?') {
+                                // Convert glob pattern to regex
+                                let regex_pattern = glob_to_regex(filename_str);
+                                if let Ok(regex) = regex::Regex::new(&regex_pattern) {
+                                    patterns.push((regex, name.to_string()));
+                                }
                             }
                         }
                     }
@@ -87,7 +93,7 @@ pub fn detect_lang(path: String) -> String {
     // Get the filename
     if let Some(filename) = path_obj.file_name() {
         if let Some(filename_str) = filename.to_str() {
-            // First, try to match the full filename (for cases like Makefile, Dockerfile, etc.)
+            // First, try to match the full filename (exact matches from filenames array)
             if let Some(language) = LANGUAGE_MAP.get(filename_str) {
                 return language.clone();
             }
@@ -100,7 +106,7 @@ pub fn detect_lang(path: String) -> String {
                 }
             }
 
-            // Finally try filename patterns (for wildcard matching)
+            // Finally try filename patterns (wildcard entries from filenames array)
             for (pattern, language) in LANGUAGE_PATTERNS.iter() {
                 if pattern.is_match(filename_str) {
                     return language.clone();

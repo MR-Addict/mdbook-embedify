@@ -28,4 +28,7 @@ cargo test --test detect_lang
 
 # Run tests with timing information
 cargo test -- --show-output
+
+# Run tests quietly
+cargo test -- --quiet
 ```
