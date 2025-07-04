@@ -14,22 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: Cahce
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: ${{ runner.os }}-cargo-
-
-      - name: Setup toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          override: true
+      - name: Setup Rust
+        uses: ./.github/actions/setup-rust
 
       - name: Test
         run: cargo test --all-features --verbose

@@ -1,0 +1,32 @@
+name: "Setup Rust"
+description: "Setup Rust toolchain with caching"
+inputs:
+  target:
+    description: "Target triple to install"
+    required: false
+    default: ""
+  toolchain:
+    description: "Rust toolchain to install"
+    required: false
+    default: "stable"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Cache Cargo
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          target/
+        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+        restore-keys: ${{ runner.os }}-cargo-
+
+    - name: Install Rust toolchain
+      uses: actions-rs/toolchain@v1
+      with:
+        override: true
+        toolchain: ${{ inputs.toolchain }}
+        target: ${{ inputs.target }}
