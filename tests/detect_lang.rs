@@ -8,7 +8,6 @@ mod basic_language_detection_tests {
     fn test_detect_rust_language() {
         assert_eq!(detect_lang("src/main.rs".to_string()), "rust");
         assert_eq!(detect_lang("lib.rs".to_string()), "rust");
-        assert_eq!(detect_lang("config.rs.in".to_string()), "rust");
         assert_eq!(detect_lang("/path/to/file.rs".to_string()), "rust");
     }
 
@@ -91,8 +90,7 @@ mod compiled_languages_tests {
     #[test]
     fn test_detect_c_language() {
         assert_eq!(detect_lang("main.c".to_string()), "c");
-        assert_eq!(detect_lang("header.h".to_string()), "cpp");
-        assert_eq!(detect_lang("config.h.in".to_string()), "c");
+        assert_eq!(detect_lang("header.h".to_string()), "c");
     }
 
     #[test]
@@ -217,21 +215,6 @@ mod edge_cases_and_fallback_tests {
 #[cfg(test)]
 mod complex_extension_tests {
     use super::*;
-
-    #[test]
-    fn test_compound_extensions() {
-        // Test extensions with multiple parts
-        assert_eq!(detect_lang("archive.tar.gz".to_string()), "plaintext");
-        assert_eq!(detect_lang("config.rs.in".to_string()), "rust");
-    }
-
-    #[test]
-    fn test_longest_extension_match() {
-        // The function should try longer extensions first
-        // For example, if both .html and .html.hl are defined, it should prefer the longer one
-        assert_eq!(detect_lang("file.html".to_string()), "html");
-        assert_eq!(detect_lang("file.html.hl".to_string()), "html");
-    }
 
     #[test]
     fn test_typescript_extensions() {

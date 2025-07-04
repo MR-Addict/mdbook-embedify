@@ -30,26 +30,16 @@ pub fn detect_lang(path: String) -> String {
     // Get the filename
     if let Some(filename) = path_obj.file_name() {
         if let Some(filename_str) = filename.to_str() {
-            // Check for multi-dot extensions by looking for patterns like .html.hl, .tar.gz, etc.
-            // We'll try progressively longer extensions starting from the first dot
-            if let Some(first_dot_pos) = filename_str.find('.') {
-                let mut current_pos = first_dot_pos;
+            // First, try to match the full filename (for cases like Makefile, Dockerfile, etc.)
+            if let Some(language) = LANGUAGE_MAP.get(filename_str) {
+                return language.clone();
+            }
 
-                // Try each possible extension from longest to shortest
-                while current_pos < filename_str.len() {
-                    let potential_ext = &filename_str[current_pos..].to_lowercase();
-
-                    // Look up the extension in our language map
-                    if let Some(language) = LANGUAGE_MAP.get(potential_ext) {
-                        return language.clone();
-                    }
-
-                    // Move to the next dot for a shorter extension
-                    if let Some(next_dot) = filename_str[current_pos + 1..].find('.') {
-                        current_pos = current_pos + 1 + next_dot;
-                    } else {
-                        break;
-                    }
+            // Then try the file extension (everything after the last dot)
+            if let Some(last_dot_pos) = filename_str.rfind('.') {
+                let extension = &filename_str[last_dot_pos..].to_lowercase();
+                if let Some(language) = LANGUAGE_MAP.get(extension) {
+                    return language.clone();
                 }
             }
         }
