@@ -10,13 +10,9 @@ The footer app is useful for displaying copyright information, privacy policy, a
 
 ## Example
 
-<!-- embed ignore begin -->
-
 ```text
-{% embed footer message="Copyright © 2025 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)" %}
+{% embed-ignore footer message="Copyright © 2025 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)" %}
 ```
-
-<!-- embed ignore end -->
 
 This book's footer is enabled, you can see it at the bottom of this page.
 

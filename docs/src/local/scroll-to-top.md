@@ -8,13 +8,9 @@ Scroll to top button app has no options.
 
 ## Example
 
-<!-- embed ignore begin -->
-
 ```text
-{% embed scroll-to-top %}
+{% embed-ignore scroll-to-top %}
 ```
-
-<!-- embed ignore end -->
 
 Typically, we want to use it for the whole book. You can do this by adding below options to `book.toml` file after `[preprocessor.embedify]` section:
 

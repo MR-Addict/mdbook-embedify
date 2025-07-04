@@ -14,6 +14,7 @@ use rust_embed::RustEmbed;
 lazy_static::lazy_static! {
     static ref RE_EMBED_MACRO: Regex = Regex::new(r"\{%\s+.*?\s+%\}").unwrap();
     static ref RE_IGNORE: Regex = Regex::new(r"(?si)<!--\s*embed\s+ignore\s+begin\s*-->(.*?)<!--\s*embed\s+ignore\s+end\s*-->").unwrap();
+    static ref RE_EMBED_IGNORE: Regex = Regex::new(r"\{%\s+embed-ignore\s+(.*?)\s+%\}").unwrap();
 }
 
 #[derive(RustEmbed)]
@@ -179,6 +180,15 @@ fn render_embeds(ctx: &PreprocessorContext, chapter: Chapter, content: String) -
 
             // unwrap the result
             rendered.unwrap().unwrap()
+        })
+        .to_string();
+
+    // Handle embed-ignore syntax - replace {% embed-ignore %} with {% embed %}
+    // This allows the content to be processed as a regular embed without rendering
+    content = RE_EMBED_IGNORE
+        .replace_all(&content, |caps: &regex::Captures| {
+            let content_part = caps.get(1).map_or("", |m| m.as_str());
+            format!("{{% embed {} %}}", content_part)
         })
         .to_string();
 

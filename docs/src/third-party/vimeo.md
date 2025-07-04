@@ -11,12 +11,8 @@ Vimeo is a video hosting platform that allows you to upload and share videos.
 
 ## Example
 
-<!-- embed ignore begin -->
-
 ```text
-{% embed vimeo id="914391191" loading="lazy" %}
+{% embed-ignore vimeo id="914391191" loading="lazy" %}
 ```
-
-<!-- embed ignore end -->
 
 {% embed vimeo id="914391191" loading="lazy" %}

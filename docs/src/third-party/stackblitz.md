@@ -12,12 +12,8 @@
 
 ## Example
 
-<!-- embed ignore begin -->
-
 ```text
-{% embed stackblitz id="vitejs-vite-y8mdxg" theme="light" loading="lazy" %}
+{% embed-ignore stackblitz id="vitejs-vite-y8mdxg" theme="light" loading="lazy" %}
 ```
-
-<!-- embed ignore end -->
 
 {% embed stackblitz id="vitejs-vite-y8mdxg" theme="light" loading="lazy" %}

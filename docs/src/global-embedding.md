@@ -9,13 +9,9 @@ For example:
 scroll-to-top.enable = true
 ```
 
-<!-- embed ignore begin -->
-
 > Attention 💥
 >
-> When you do this, you don't need to add `{% embed scroll-to-top %}` manually. It will be automatically added it to every chapter. If you do, it will be rendered twice.
-
-<!-- embed ignore end -->
+> When you do this, you don't need to add `{% embed-ignore scroll-to-top %}` manually. It will be automatically added it to every chapter. If you do, it will be rendered twice.
 
 Below is a full list of apps that support global configuration:
 

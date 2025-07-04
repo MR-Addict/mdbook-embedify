@@ -2,7 +2,34 @@
 
 Sometimes you may want preprocessor to ignore some embeds.
 
-You can do it by wrapping content that you want to ignore with below two comments:
+There are two ways to do it:
+
+<!-- embed ignore begin -->
+
+- **Inline**: You can use `{% embed-ignore %}` syntax to ignore the embed in the current line.
+- **Block**: You can use comments to wrap the content you want to ignore.
+
+## Inline Ignore
+
+To ignore an embed in the current line, you can use the `{% embed-ignore %}` syntax. This will prevent the embed from being rendered.
+
+For example:
+
+```text
+{% embed-ignore youtube id="DyTCOwB0DVw" loading="lazy" %}
+```
+
+<!-- embed ignore end -->
+
+Will be shown as:
+
+```text
+{% embed-ignore youtube id="DyTCOwB0DVw" loading="lazy" %}
+```
+
+## Block Ignore
+
+To ignore a block of embeds, you can use HTML comments to wrap the content you want to ignore. The preprocessor will not render any embeds inside these comments.
 
 - `<!-- embed ignore begin -->`
 - `<!-- embed ignore end -->`
@@ -11,10 +38,36 @@ For example:
 
 ```text
 <!-- embed ignore begin -->
-
 {% embed youtube id="DyTCOwB0DVw" loading="lazy" %}
-
 <!-- embed ignore end -->
 ```
 
-And youtube embed won't be rendered.
+Will also be shown as:
+
+```text
+{% embed-ignore youtube id="DyTCOwB0DVw" loading="lazy" %}
+```
+
+## Priorities
+
+Block ignore has higher priority than inline ignore, so if you wrap an inline ignore in a block ignore, it will keep as it is and not be rendered.
+
+For example:
+
+```text
+<!-- embed ignore begin -->
+{% embed-ignore youtube id="DyTCOwB0DVw" loading="lazy" %}
+<!-- embed ignore end -->
+```
+
+Will be shown as:
+
+<!-- embed ignore begin -->
+
+```text
+{% embed-ignore youtube id="DyTCOwB0DVw" loading="lazy" %}
+```
+
+<!-- embed ignore end -->
+
+Because the block ignore takes precedence over the inline ignore, the `embed-ignore` will not be changed.

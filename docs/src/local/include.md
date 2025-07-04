@@ -26,13 +26,9 @@ The language is automatically detected by the file name extension. You can overr
 
 ## Example
 
-<!-- embed ignore begin -->
-
 ```text
-{% embed include file="src/SUMMARY.md" %}
+{% embed-ignore include file="src/SUMMARY.md" %}
 ```
-
-<!-- embed ignore end -->
 
 This will include the [src/SUMMARY.md](https://github.com/MR-Addict/mdbook-embedify/blob/main/docs/src/SUMMARY.md) file and wrap it as a markdown code block which is the source code of this book's summary.
 

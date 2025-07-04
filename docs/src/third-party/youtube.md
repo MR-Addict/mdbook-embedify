@@ -11,12 +11,8 @@
 
 ## Example
 
-<!-- embed ignore begin -->
-
 ```text
-{% embed youtube id="DyTCOwB0DVw" loading="lazy" %}
+{% embed-ignore youtube id="DyTCOwB0DVw" loading="lazy" %}
 ```
-
-<!-- embed ignore end -->
 
 {% embed youtube id="DyTCOwB0DVw" loading="lazy" %}

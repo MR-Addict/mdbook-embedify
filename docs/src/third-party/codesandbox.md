@@ -12,12 +12,8 @@
 
 ## Example
 
-<!-- embed ignore begin -->
-
 ```text
-{% embed codesandbox id="ke8wx" theme="light" loading="lazy" %}
+{% embed-ignore codesandbox id="ke8wx" theme="light" loading="lazy" %}
 ```
-
-<!-- embed ignore end -->
 
 {% embed codesandbox id="ke8wx" theme="light" loading="lazy" %}

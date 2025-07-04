@@ -37,15 +37,11 @@ custom-templates-folder = "assets/templates"
 
 The template filename becomes the app name:
 
-<!-- embed ignore begin -->
-
-| Template File    | App Name    | Usage                                      |
-| ---------------- | ----------- | ------------------------------------------ |
-| `canvas.html`    | `canvas`    | `{% embed canvas %}`                       |
-| `my-widget.html` | `my-widget` | `{% embed my-widget %}`                    |
-| `youtube.html`   | `youtube`   | `{% embed youtube %}` (overrides built-in) |
-
-<!-- embed ignore end -->
+| Template File    | App Name    | Usage                                             |
+| ---------------- | ----------- | ------------------------------------------------- |
+| `canvas.html`    | `canvas`    | `{% embed-ignore canvas %}`                       |
+| `my-widget.html` | `my-widget` | `{% embed-ignore my-widget %}`                    |
+| `youtube.html`   | `youtube`   | `{% embed-ignore youtube %}` (overrides built-in) |
 
 > ⚠️ **Override Behavior**:
 >
@@ -82,11 +78,7 @@ Make the canvas height configurable using placeholder syntax:
 <canvas height="{% height=400 %}"></canvas>
 ```
 
-<!-- embed ignore begin -->
-
-This allows users to customize the height: `{% embed canvas height=600 %}`
-
-<!-- embed ignore end -->
+This allows users to customize the height: `{% embed-ignore canvas height=600 %}`
 
 ## Placeholder Syntax
 
@@ -127,14 +119,12 @@ Here's the complete template file for our canvas app:
 
 ## Using Your Custom App
 
-<!-- embed ignore begin -->
-
 ### Basic Usage
 
 After creating the template file, use your app in your book:
 
 ```text
-{% embed canvas height=400 %}
+{% embed-ignore canvas height=400 %}
 ```
 
 ### With Default Values
@@ -142,10 +132,8 @@ After creating the template file, use your app in your book:
 Since height has a default value of **400**, you can omit it:
 
 ```text
-{% embed canvas %}
+{% embed-ignore canvas %}
 ```
-
-<!-- embed ignore end -->
 
 ### Interactive Example
 

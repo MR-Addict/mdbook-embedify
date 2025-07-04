@@ -11,12 +11,8 @@
 
 ## Example
 
-<!-- embed ignore begin -->
-
 ```text
-{% embed bilibili id="BV1uT4y1P7CX" loading="lazy" %}
+{% embed-ignore bilibili id="BV1uT4y1P7CX" loading="lazy" %}
 ```
-
-<!-- embed ignore end -->
 
 {% embed bilibili id="BV1uT4y1P7CX" loading="lazy" %}

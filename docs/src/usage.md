@@ -30,10 +30,8 @@ And that's it! You can now use `embed` macro to embed apps to your book.
 
 The basic syntax is like this:
 
-<!-- embed ignore begin -->
-
 ```text
-{% embed app options[] %}
+{% embed-ignore app options[] %}
 ```
 
 **options** are key-value based array seperated by space and its value should be wrapped by **quotes**.
@@ -41,9 +39,7 @@ The basic syntax is like this:
 For example:
 
 ```text
-{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" loading="lazy" %}
+{% embed-ignore codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" loading="lazy" %}
 ```
-
-<!-- embed ignore end -->
 
 See more examples at apps section.

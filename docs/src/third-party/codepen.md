@@ -14,12 +14,8 @@
 
 ## Example
 
-<!-- embed ignore begin -->
-
 ```text
-{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" loading="lazy" %}
+{% embed-ignore codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" loading="lazy" %}
 ```
-
-<!-- embed ignore end -->
 
 {% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" loading="lazy" %}

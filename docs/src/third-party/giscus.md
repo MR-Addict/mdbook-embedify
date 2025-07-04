@@ -17,13 +17,9 @@
 
 ## Example
 
-<!-- embed ignore begin -->
-
 ```text
-{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_XXXXXXXXXX" category="General" category-id="DIC_XXXXXXXXXXXXXXXX" theme="book" loading="eager" %}
+{% embed-ignore giscus repo="MR-Addict/mdbook-embedify" repo-id="R_XXXXXXXXXX" category="General" category-id="DIC_XXXXXXXXXXXXXXXX" theme="book" loading="eager" %}
 ```
-
-<!-- embed ignore end -->
 
 This book's giscus is enabled, you can see it at the bottom of this page. And you can also have a try by commenting below.
 
