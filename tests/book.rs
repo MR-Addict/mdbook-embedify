@@ -10,7 +10,7 @@ use std::process::Command;
 /// 2. Uses `dircmp` to compare the generated `book/` directory with `expected/`
 /// 3. Fails if there are any differences in file structure or content
 #[test]
-fn test_basic_apps() {
+fn test_book() {
     let test_book_path = "tests/test-book";
     let book_output_path = "tests/test-book/book";
     let expected_path = "tests/test-book/expected";

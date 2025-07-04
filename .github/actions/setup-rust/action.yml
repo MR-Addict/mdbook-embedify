@@ -34,3 +34,7 @@ runs:
     - name: Install mdbook
       run: chmod u+x docs/assets/bin/* && cp docs/assets/bin/* /usr/local/bin
       shell: bash
+
+    - name: Build release
+      run: cargo build --release
+      shell: bash

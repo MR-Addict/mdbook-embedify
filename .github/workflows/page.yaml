@@ -21,7 +21,7 @@ jobs:
         run: cargo test --all-features --verbose
 
       - name: Build book
-        run: cargo build --release && mdbook build docs
+        run: mdbook build docs
 
       - name: Deploy to github pages
         uses: crazy-max/ghaction-github-pages@v4

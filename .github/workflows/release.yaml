@@ -36,9 +36,6 @@ jobs:
         with:
           target: ${{ matrix.target }}
 
-      - name: Build release
-        run: cargo build --release
-
       - name: Artifact (Unix)
         if: matrix.target != 'x86_64-pc-windows-msvc'
         uses: actions/upload-artifact@v4
