@@ -35,6 +35,27 @@ fn test_book() {
             .expect("Failed to clean existing book output directory");
     }
 
+    // Run cargo build --release to ensure the preprocessor is built
+    let cargo_output = Command::new("cargo")
+        .args(&["build", "--release"])
+        .output()
+        .expect("Failed to execute cargo build --release");
+
+    if !cargo_output.status.success() {
+        eprintln!(
+            "cargo build stdout: {}",
+            String::from_utf8_lossy(&cargo_output.stdout)
+        );
+        eprintln!(
+            "cargo build stderr: {}",
+            String::from_utf8_lossy(&cargo_output.stderr)
+        );
+        panic!(
+            "cargo build failed with exit code: {:?}",
+            cargo_output.status.code()
+        );
+    }
+
     // Run mdbook build on the test book
     let output = Command::new("mdbook")
         .args(&["build", test_book_path])
