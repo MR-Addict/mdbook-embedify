@@ -63,7 +63,7 @@ Let's create a **canvas** app - a simple drawable canvas component.
 <div class="canvas-container">
   <canvas height="400"></canvas>
 </div>
-{% embed include file="assets/templates/canvas.html" range="4-15" type='raw' %}
+{% embed include file="assets/templates/canvas.html" range="4-15" type="raw" %}
 ```
 
 **Add interactive JavaScript:**
@@ -116,7 +116,7 @@ The template system supports two types of dynamic content:
 **Example usage:**
 
 ```html
-<div class="content">{% markdown(description="Default description in **markdown**") %}</div>
+<div class="content">{% markdown(description="Description in **markdown**") %}</div>
 ```
 
 ## Complete Canvas Template
@@ -126,6 +126,8 @@ Here's the complete template file for our canvas app:
 {% embed include file="assets/templates/canvas.html" %}
 
 ## Using Your Custom App
+
+<!-- embed ignore begin -->
 
 ### Basic Usage
 
@@ -142,6 +144,8 @@ Since height has a default value of **400**, you can omit it:
 ```text
 {% embed canvas %}
 ```
+
+<!-- embed ignore end -->
 
 ### Interactive Example
 

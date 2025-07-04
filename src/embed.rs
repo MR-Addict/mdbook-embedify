@@ -12,8 +12,8 @@ use rust_embed::RustEmbed;
 
 // Compile regex patterns once for reuse
 lazy_static::lazy_static! {
-    static ref RE_EMBED_MACRO: Regex = Regex::new(r"\{%\s*.*?\s*%\}").unwrap();
-    static ref RE_IGNORE: Regex = Regex::new(r"(?si)<!-- embed ignore begin -->(.*)<!-- embed ignore end -->").unwrap();
+    static ref RE_EMBED_MACRO: Regex = Regex::new(r"\{%\s+.*?\s+%\}").unwrap();
+    static ref RE_IGNORE: Regex = Regex::new(r"(?si)<!--\s*embed\s+ignore\s+begin\s*-->(.*?)<!--\s*embed\s+ignore\s+end\s*-->").unwrap();
 }
 
 #[derive(RustEmbed)]
@@ -132,14 +132,18 @@ fn render_embeds(ctx: &PreprocessorContext, chapter: Chapter, content: String) -
 
     let chapter_path = chapter.path.unwrap().clone(); // Clone chapter path to avoid consuming it
 
+    // Collect and replace all ignored sections in a single pass
     let mut ignored_sections: Vec<(String, String)> = Vec::new();
-    for (i, caps) in RE_IGNORE.captures_iter(&content.clone()).enumerate() {
-        let placeholder = format!("EMBED_IGNORE_{}", i);
-        let ignored = caps.get(0).map_or("", |m| m.as_str());
 
-        ignored_sections.push((placeholder.clone(), ignored.to_string()));
-        content = RE_IGNORE.replace(&content, placeholder).to_string();
-    }
+    content = RE_IGNORE
+        .replace_all(&content, |caps: &regex::Captures| {
+            let placeholder = format!("EMBED_IGNORE_{}", ignored_sections.len());
+            let ignored_content = caps.get(0).unwrap().as_str();
+
+            ignored_sections.push((placeholder.clone(), ignored_content.to_string()));
+            placeholder
+        })
+        .to_string();
 
     content = RE_EMBED_MACRO
         .replace_all(&content, |caps: &regex::Captures| {
@@ -178,8 +182,9 @@ fn render_embeds(ctx: &PreprocessorContext, chapter: Chapter, content: String) -
         })
         .to_string();
 
-    for (placeholder, ignored) in ignored_sections {
-        content = content.replace(&placeholder, &ignored);
+    // Restore ignored sections efficiently
+    for (placeholder, ignored_content) in ignored_sections {
+        content = content.replace(&placeholder, &ignored_content);
     }
 
     content
