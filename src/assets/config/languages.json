@@ -1,36 +1,19 @@
 [
   {
     "name": "apache",
-    "extensions": [
-      ".apacheconf"
-    ]
+    "extensions": [".apacheconf"]
   },
   {
     "name": "bash",
-    "extensions": [
-      ".sh",
-      ".zsh"
-    ]
+    "extensions": [".sh", ".zsh"]
   },
   {
     "name": "c",
-    "extensions": [
-      ".c",
-      ".cats",
-      ".h",
-      ".h.in",
-      ".idc"
-    ]
+    "extensions": [".c", ".cats", ".h", ".h.in", ".idc"]
   },
   {
     "name": "coffeescript",
-    "extensions": [
-      ".coffee",
-      "._coffee",
-      ".cake",
-      ".cjsx",
-      ".iced"
-    ]
+    "extensions": [".coffee", "._coffee", ".cake", ".cjsx", ".iced"]
   },
   {
     "name": "cpp",
@@ -59,88 +42,43 @@
   },
   {
     "name": "csharp",
-    "extensions": [
-      ".cs",
-      ".cake",
-      ".cs.pp",
-      ".csx",
-      ".linq"
-    ]
+    "extensions": [".cs", ".cake", ".cs.pp", ".csx", ".linq"]
   },
   {
     "name": "css",
-    "extensions": [
-      ".css"
-    ]
+    "extensions": [".css"]
   },
   {
     "name": "diff",
-    "extensions": [
-      ".diff",
-      ".patch"
-    ]
+    "extensions": [".diff", ".patch"]
   },
   {
     "name": "go",
-    "extensions": [
-      ".go"
-    ]
+    "extensions": [".go"]
   },
   {
     "name": "handlebars",
-    "extensions": [
-      ".handlebars",
-      ".hbs"
-    ]
+    "extensions": [".handlebars", ".hbs"]
   },
   {
     "name": "haskell",
-    "extensions": [
-      ".hs",
-      ".hs-boot",
-      ".hsc"
-    ]
+    "extensions": [".hs", ".hs-boot", ".hsc"]
   },
   {
     "name": "html",
-    "extensions": [
-      ".html",
-      ".hta",
-      ".htm",
-      ".html.hl",
-      ".inc",
-      ".xht",
-      ".xhtml"
-    ]
+    "extensions": [".html", ".hta", ".htm", ".html.hl", ".inc", ".xht", ".xhtml"]
   },
   {
     "name": "http",
-    "extensions": [
-      ".http"
-    ]
+    "extensions": [".http"]
   },
   {
     "name": "ini",
-    "extensions": [
-      ".ini",
-      ".cfg",
-      ".cnf",
-      ".dof",
-      ".frm",
-      ".lektorproject",
-      ".prefs",
-      ".pro",
-      ".properties",
-      ".url"
-    ]
+    "extensions": [".ini", ".cfg", ".cnf", ".dof", ".frm", ".lektorproject", ".prefs", ".pro", ".properties", ".url"]
   },
   {
     "name": "java",
-    "extensions": [
-      ".java",
-      ".jav",
-      ".jsh"
-    ]
+    "extensions": [".java", ".jav", ".jsh"]
   },
   {
     "name": "javascript",
@@ -199,47 +137,23 @@
   },
   {
     "name": "julia",
-    "extensions": [
-      ".jl"
-    ]
+    "extensions": [".jl"]
   },
   {
     "name": "kotlin",
-    "extensions": [
-      ".kt",
-      ".ktm",
-      ".kts"
-    ]
+    "extensions": [".kt", ".ktm", ".kts"]
   },
   {
     "name": "less",
-    "extensions": [
-      ".less"
-    ]
+    "extensions": [".less"]
   },
   {
     "name": "lua",
-    "extensions": [
-      ".lua",
-      ".fcgi",
-      ".nse",
-      ".p8",
-      ".pd_lua",
-      ".rbxs",
-      ".rockspec",
-      ".wlua"
-    ]
+    "extensions": [".lua", ".fcgi", ".nse", ".p8", ".pd_lua", ".rbxs", ".rockspec", ".wlua"]
   },
   {
     "name": "makefile",
-    "extensions": [
-      ".mak",
-      ".d",
-      ".make",
-      ".makefile",
-      ".mk",
-      ".mkfile"
-    ]
+    "extensions": [".mak", ".d", ".make", ".makefile", ".mk", ".mkfile"]
   },
   {
     "name": "markdown",
@@ -259,71 +173,27 @@
   },
   {
     "name": "nginx",
-    "extensions": [
-      ".nginx",
-      ".nginxconf",
-      ".vhost"
-    ]
+    "extensions": [".nginx", ".nginxconf", ".vhost"]
   },
   {
     "name": "nim",
-    "extensions": [
-      ".nim",
-      ".nim.cfg",
-      ".nimble",
-      ".nimrod",
-      ".nims"
-    ]
+    "extensions": [".nim", ".nim.cfg", ".nimble", ".nimrod", ".nims"]
   },
   {
     "name": "nix",
-    "extensions": [
-      ".nix"
-    ]
-  },
-  {
-    "name": "objectivec",
-    "extensions": [
-      ".m",
-      ".h"
-    ]
+    "extensions": [".nix"]
   },
   {
     "name": "perl",
-    "extensions": [
-      ".pl",
-      ".al",
-      ".cgi",
-      ".fcgi",
-      ".perl",
-      ".ph",
-      ".plx",
-      ".pm",
-      ".psgi",
-      ".t"
-    ]
+    "extensions": [".pl", ".al", ".cgi", ".fcgi", ".perl", ".ph", ".plx", ".pm", ".psgi", ".t"]
   },
   {
     "name": "php",
-    "extensions": [
-      ".php",
-      ".aw",
-      ".ctp",
-      ".fcgi",
-      ".inc",
-      ".php3",
-      ".php4",
-      ".php5",
-      ".phps",
-      ".phpt"
-    ]
+    "extensions": [".php", ".aw", ".ctp", ".fcgi", ".inc", ".php3", ".php4", ".php5", ".phps", ".phpt"]
   },
   {
     "name": "plaintext",
-    "extensions": [
-      ".text",
-      ".txt"
-    ]
+    "extensions": [".text", ".txt"]
   },
   {
     "name": "python",
@@ -349,11 +219,7 @@
   },
   {
     "name": "r",
-    "extensions": [
-      ".r",
-      ".rd",
-      ".rsx"
-    ]
+    "extensions": [".r", ".rd", ".rsx"]
   },
   {
     "name": "ruby",
@@ -384,25 +250,15 @@
   },
   {
     "name": "rust",
-    "extensions": [
-      ".rs",
-      ".rs.in"
-    ]
+    "extensions": [".rs", ".rs.in"]
   },
   {
     "name": "scala",
-    "extensions": [
-      ".scala",
-      ".kojo",
-      ".sbt",
-      ".sc"
-    ]
+    "extensions": [".scala", ".kojo", ".sbt", ".sc"]
   },
   {
     "name": "scss",
-    "extensions": [
-      ".scss"
-    ]
+    "extensions": [".scss"]
   },
   {
     "name": "shell",
@@ -424,38 +280,19 @@
   },
   {
     "name": "sql",
-    "extensions": [
-      ".sql",
-      ".cql",
-      ".ddl",
-      ".inc",
-      ".mysql",
-      ".prc",
-      ".tab",
-      ".udf",
-      ".viw"
-    ]
+    "extensions": [".sql", ".cql", ".ddl", ".inc", ".mysql", ".prc", ".tab", ".udf", ".viw"]
   },
   {
     "name": "swift",
-    "extensions": [
-      ".swift"
-    ]
+    "extensions": [".swift"]
   },
   {
     "name": "toml",
-    "extensions": [
-      ".toml"
-    ]
+    "extensions": [".toml"]
   },
   {
     "name": "typescript",
-    "extensions": [
-      ".ts",
-      ".cts",
-      ".mts",
-      ".tsx"
-    ]
+    "extensions": [".ts", ".cts", ".mts", ".tsx"]
   },
   {
     "name": "x86asm",
@@ -526,7 +363,6 @@
       ".rdf",
       ".res",
       ".resx",
-      ".rs",
       ".rss",
       ".sch",
       ".scxml",
@@ -539,8 +375,6 @@
       ".sw",
       ".targets",
       ".tml",
-      ".ts",
-      ".tsx",
       ".typ",
       ".ui",
       ".urdf",

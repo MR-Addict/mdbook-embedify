@@ -1,5 +1,5 @@
+use crate::detect_lang;
 use crate::parser;
-use crate::utils;
 
 use mdbook::preprocess::PreprocessorContext;
 use std::fs;
@@ -111,7 +111,7 @@ pub fn include_script(
 
     // if include type is not raw, wrap the content in a code block
     let lang_option = parser::get_option("lang", options.clone());
-    let lang_detected = utils::detect_lang(file_path.clone());
+    let lang_detected = detect_lang::detect_lang(file_path.clone());
 
     let language = match lang_option {
         Some(option) => option.value,

@@ -1,5 +1,6 @@
 mod assets;
 mod cli;
+mod detect_lang;
 mod embed;
 mod parser;
 mod utils;
