@@ -4,7 +4,6 @@
 
 - [Intro](index.md)
 - [Usage](usage.md)
-- [More Apps](more-apps.md)
 - [Ignore Embeds](ignore-embeds.md)
 - [Global Embedding](global-embedding.md)
 
@@ -24,3 +23,10 @@
   - [Include](local/include.md)
   - [Scroll to Top](local/scroll-to-top.md)
   - [Announcement Banner](local/announcement-banner.md)
+
+# Development
+
+- [Development Guide](development/index.md)
+  - [Testing Guide](development/testing.md)
+  - [Template System](development/template.md)
+  - [Language Matching](development/language-matching.md)

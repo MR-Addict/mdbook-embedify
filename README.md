@@ -48,6 +48,10 @@ Then you can use `embed` macro to embed an app. The syntax is like this:
 
 You can see a live demo and more detailed documentation [here](https://mr-addict.github.io/mdbook-embedify).
 
-## 4. More Apps
+## 4. Development
 
-If you want to add more apps to this preprocessor, you can follow the instructions [here](https://mr-addict.github.io/mdbook-embedify/more-apps.html).
+Please read the [development guide](https://mr-addict.github.io/mdbook-embedify/development/testing.html) for more information on how to contribute to this project.
+
+- [Template](https://mr-addict.github.io/mdbook-embedify/development/template.html)
+- [Testing](https://mr-addict.github.io/mdbook-embedify/development/testing.html)
+- [Language Matching](https://mr-addict.github.io/mdbook-embedify/development/language-matching.html)

@@ -16,12 +16,26 @@
     "extensions": [".css"]
   },
   {
+    "name": "csv",
+    "extensions": [".csv"]
+  },
+  {
     "name": "diff",
     "extensions": [".diff", ".patch"]
   },
   {
+    "name": "dockerfile",
+    "extensions": [".dockerfile"],
+    "filenames": ["Dockerfile", "dockerfile", "Containerfile"],
+    "filename_patterns": ["Dockerfile.*", "dockerfile.*", "*.dockerfile"]
+  },
+  {
     "name": "go",
     "extensions": [".go"]
+  },
+  {
+    "name": "graphql",
+    "extensions": [".graphql", ".gql"]
   },
   {
     "name": "html",
@@ -61,7 +75,9 @@
   },
   {
     "name": "makefile",
-    "extensions": [".make", ".makefile", ".mk"]
+    "extensions": [".make", ".makefile", ".mk"],
+    "filenames": ["Makefile", "makefile", "GNUmakefile", "Makefile.am", "Makefile.in"],
+    "filename_patterns": ["Makefile.*", "makefile.*"]
   },
   {
     "name": "markdown",
@@ -89,11 +105,13 @@
   },
   {
     "name": "python",
-    "extensions": [".py", ".pyi", ".pyw"]
+    "extensions": [".py", ".pyi", ".pyw"],
+    "filenames": ["SConstruct", "SConscript"]
   },
   {
     "name": "ruby",
-    "extensions": [".rb", ".rake", ".gemspec"]
+    "extensions": [".rb", ".rake", ".gemspec"],
+    "filenames": ["Rakefile", "Gemfile", "Guardfile", "Capfile", "Vagrantfile"]
   },
   {
     "name": "rust",
@@ -105,7 +123,9 @@
   },
   {
     "name": "shell",
-    "extensions": [".sh", ".bash", ".zsh"]
+    "extensions": [".sh", ".bash", ".zsh"],
+    "filenames": [".bashrc", ".zshrc", ".profile", ".bash_profile", ".zprofile"],
+    "filename_patterns": ["*.bashrc", "*.zshrc", "*.profile"]
   },
   {
     "name": "sql",

@@ -163,9 +163,9 @@ mod edge_cases_and_fallback_tests {
     #[test]
     fn test_no_extension_returns_plaintext() {
         assert_eq!(detect_lang("README".to_string()), "plaintext");
-        assert_eq!(detect_lang("Makefile".to_string()), "plaintext");
         assert_eq!(detect_lang("LICENSE".to_string()), "plaintext");
-        assert_eq!(detect_lang("Dockerfile".to_string()), "plaintext");
+        assert_eq!(detect_lang("CHANGELOG".to_string()), "plaintext");
+        assert_eq!(detect_lang("unknown_file".to_string()), "plaintext");
     }
 
     #[test]
@@ -218,7 +218,6 @@ mod complex_extension_tests {
 
     #[test]
     fn test_typescript_extensions() {
-        // TypeScript extensions conflict with XML
         assert_eq!(detect_lang("app.ts".to_string()), "typescript");
         assert_eq!(detect_lang("component.tsx".to_string()), "typescript");
         assert_eq!(detect_lang("types.d.ts".to_string()), "typescript");
@@ -314,9 +313,217 @@ mod real_world_filenames_tests {
 
     #[test]
     fn test_data_files() {
-        assert_eq!(detect_lang("data.csv".to_string()), "plaintext"); // CSV not in language map
+        assert_eq!(detect_lang("data.csv".to_string()), "csv");
         assert_eq!(detect_lang("config.ini".to_string()), "ini");
         assert_eq!(detect_lang("database.sql".to_string()), "sql");
-        assert_eq!(detect_lang("query.graphql".to_string()), "plaintext"); // GraphQL not in language map
+        assert_eq!(detect_lang("query.graphql".to_string()), "graphql");
+    }
+}
+
+#[cfg(test)]
+mod filename_based_detection_tests {
+    use super::*;
+
+    #[test]
+    fn test_makefile_detection() {
+        assert_eq!(detect_lang("Makefile".to_string()), "makefile");
+        assert_eq!(detect_lang("makefile".to_string()), "makefile");
+        assert_eq!(detect_lang("GNUmakefile".to_string()), "makefile");
+        assert_eq!(detect_lang("Makefile.am".to_string()), "makefile");
+        assert_eq!(detect_lang("Makefile.in".to_string()), "makefile");
+    }
+
+    #[test]
+    fn test_dockerfile_detection() {
+        assert_eq!(detect_lang("Dockerfile".to_string()), "dockerfile");
+        assert_eq!(detect_lang("dockerfile".to_string()), "dockerfile");
+        assert_eq!(detect_lang("Containerfile".to_string()), "dockerfile");
+    }
+
+    #[test]
+    fn test_ruby_specific_files() {
+        assert_eq!(detect_lang("Rakefile".to_string()), "ruby");
+        assert_eq!(detect_lang("Gemfile".to_string()), "ruby");
+        assert_eq!(detect_lang("Guardfile".to_string()), "ruby");
+        assert_eq!(detect_lang("Capfile".to_string()), "ruby");
+        assert_eq!(detect_lang("Vagrantfile".to_string()), "ruby");
+    }
+
+    #[test]
+    fn test_python_specific_files() {
+        assert_eq!(detect_lang("SConstruct".to_string()), "python");
+        assert_eq!(detect_lang("SConscript".to_string()), "python");
+    }
+
+    #[test]
+    fn test_shell_config_files() {
+        assert_eq!(detect_lang(".bashrc".to_string()), "shell");
+        assert_eq!(detect_lang(".zshrc".to_string()), "shell");
+        assert_eq!(detect_lang(".profile".to_string()), "shell");
+        assert_eq!(detect_lang(".bash_profile".to_string()), "shell");
+        assert_eq!(detect_lang(".zprofile".to_string()), "shell");
+    }
+
+    #[test]
+    fn test_filename_takes_precedence_over_extension() {
+        // Exact filename match takes precedence
+        assert_eq!(detect_lang("Makefile".to_string()), "makefile"); // exact filename match
+
+        // Pattern match takes precedence over unknown extension
+        assert_eq!(detect_lang("Makefile.bak".to_string()), "makefile"); // matches Makefile.* pattern
+
+        // But known extension takes precedence over pattern
+        assert_eq!(detect_lang("Makefile.js".to_string()), "javascript"); // .js extension takes precedence
+    }
+}
+
+#[cfg(test)]
+mod wildcard_pattern_tests {
+    use super::*;
+
+    #[test]
+    fn test_dockerfile_wildcard_patterns() {
+        // Test Dockerfile* pattern
+        assert_eq!(detect_lang("Dockerfile".to_string()), "dockerfile");
+        assert_eq!(detect_lang("Dockerfile.base".to_string()), "dockerfile");
+        assert_eq!(detect_lang("Dockerfile.prod".to_string()), "dockerfile");
+        assert_eq!(detect_lang("Dockerfile.dev".to_string()), "dockerfile");
+        assert_eq!(detect_lang("Dockerfile.test".to_string()), "dockerfile");
+
+        // Test dockerfile* pattern
+        assert_eq!(detect_lang("dockerfile".to_string()), "dockerfile");
+        assert_eq!(detect_lang("dockerfile.base".to_string()), "dockerfile");
+        assert_eq!(
+            detect_lang("dockerfile.production".to_string()),
+            "dockerfile"
+        );
+
+        // Test *.dockerfile pattern
+        assert_eq!(detect_lang("base.dockerfile".to_string()), "dockerfile");
+        assert_eq!(
+            detect_lang("production.dockerfile".to_string()),
+            "dockerfile"
+        );
+        assert_eq!(detect_lang("app.dockerfile".to_string()), "dockerfile");
+        assert_eq!(detect_lang("web.dockerfile".to_string()), "dockerfile");
+    }
+
+    #[test]
+    fn test_wildcard_patterns_case_sensitivity() {
+        // Should match case-sensitive patterns
+        assert_eq!(detect_lang("Dockerfile.base".to_string()), "dockerfile");
+        assert_eq!(detect_lang("dockerfile.base".to_string()), "dockerfile");
+
+        // Should not match different case for the base name
+        assert_eq!(detect_lang("DOCKERFILE.base".to_string()), "plaintext");
+        assert_eq!(detect_lang("DockerFile.base".to_string()), "plaintext");
+    }
+
+    #[test]
+    fn test_wildcard_patterns_precedence() {
+        // Exact filename match should take precedence over patterns
+        assert_eq!(detect_lang("Dockerfile".to_string()), "dockerfile");
+        assert_eq!(detect_lang("dockerfile".to_string()), "dockerfile");
+        assert_eq!(detect_lang("Containerfile".to_string()), "dockerfile");
+
+        // Pattern match should work for non-exact matches
+        assert_eq!(detect_lang("Dockerfile.custom".to_string()), "dockerfile");
+        assert_eq!(detect_lang("my.dockerfile".to_string()), "dockerfile");
+    }
+
+    #[test]
+    fn test_extension_vs_pattern_precedence() {
+        // Extension should still take precedence over patterns if it's a valid extension
+        // For example, if we had a file called "Dockerfile.js", it should be detected as javascript
+        assert_eq!(detect_lang("Dockerfile.js".to_string()), "javascript");
+        assert_eq!(detect_lang("dockerfile.py".to_string()), "python");
+
+        // But if the extension is not recognized, pattern matching should work
+        assert_eq!(detect_lang("Dockerfile.custom".to_string()), "dockerfile");
+        assert_eq!(detect_lang("dockerfile.myext".to_string()), "dockerfile");
+    }
+
+    #[test]
+    fn test_no_false_positives() {
+        // Files that start with dockerfile but don't match patterns should not be detected
+        assert_eq!(detect_lang("dockerfiles".to_string()), "plaintext");
+        assert_eq!(detect_lang("Dockerfiles".to_string()), "plaintext");
+        assert_eq!(detect_lang("dockerfile_backup".to_string()), "plaintext");
+        assert_eq!(detect_lang("Dockerfile_backup".to_string()), "plaintext");
+
+        // Files that end with dockerfile but don't match patterns should not be detected
+        assert_eq!(detect_lang("notadockerfile".to_string()), "plaintext");
+        assert_eq!(detect_lang("backup_dockerfile".to_string()), "plaintext");
+
+        // Files that contain dockerfile but don't match patterns
+        assert_eq!(detect_lang("my_dockerfile_backup".to_string()), "plaintext");
+    }
+
+    #[test]
+    fn test_manual_demonstration() {
+        // Demonstrate the wildcard functionality working
+        println!("=== Dockerfile Wildcard Pattern Tests ===");
+
+        // Exact filename matches (highest precedence)
+        let result1 = detect_lang("Dockerfile".to_string());
+        println!("Dockerfile -> {}", result1);
+        assert_eq!(result1, "dockerfile");
+
+        let result2 = detect_lang("dockerfile".to_string());
+        println!("dockerfile -> {}", result2);
+        assert_eq!(result2, "dockerfile");
+
+        // Pattern matches for Dockerfile.*
+        let result3 = detect_lang("Dockerfile.base".to_string());
+        println!("Dockerfile.base -> {}", result3);
+        assert_eq!(result3, "dockerfile");
+
+        let result4 = detect_lang("Dockerfile.production".to_string());
+        println!("Dockerfile.production -> {}", result4);
+        assert_eq!(result4, "dockerfile");
+
+        // Pattern matches for dockerfile.*
+        let result5 = detect_lang("dockerfile.dev".to_string());
+        println!("dockerfile.dev -> {}", result5);
+        assert_eq!(result5, "dockerfile");
+
+        // Pattern matches for *.dockerfile
+        let result6 = detect_lang("web.dockerfile".to_string());
+        println!("web.dockerfile -> {}", result6);
+        assert_eq!(result6, "dockerfile");
+
+        let result7 = detect_lang("api.dockerfile".to_string());
+        println!("api.dockerfile -> {}", result7);
+        assert_eq!(result7, "dockerfile");
+
+        // Extensions take precedence over patterns
+        let result8 = detect_lang("Dockerfile.js".to_string());
+        println!("Dockerfile.js -> {}", result8);
+        assert_eq!(result8, "javascript");
+
+        let result9 = detect_lang("dockerfile.py".to_string());
+        println!("dockerfile.py -> {}", result9);
+        assert_eq!(result9, "python");
+
+        println!("=== All wildcard tests passed! ===");
+    }
+
+    #[test]
+    fn test_additional_wildcard_patterns() {
+        // Test Makefile patterns
+        assert_eq!(detect_lang("Makefile".to_string()), "makefile");
+        assert_eq!(detect_lang("Makefile.local".to_string()), "makefile");
+        assert_eq!(detect_lang("Makefile.dev".to_string()), "makefile");
+        assert_eq!(detect_lang("makefile.prod".to_string()), "makefile");
+
+        // Test shell patterns
+        assert_eq!(detect_lang(".bashrc".to_string()), "shell");
+        assert_eq!(detect_lang("my.bashrc".to_string()), "shell");
+        assert_eq!(detect_lang("custom.zshrc".to_string()), "shell");
+        assert_eq!(detect_lang("local.profile".to_string()), "shell");
+
+        // These should not match
+        assert_eq!(detect_lang("bashrc".to_string()), "plaintext"); // no dot prefix
+        assert_eq!(detect_lang("notmakefile".to_string()), "plaintext");
     }
 }
