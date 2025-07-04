@@ -30,17 +30,18 @@ fn wrap_content_in_code_block(content: &str, language: &str, lang_detected: &str
     }
 }
 
-fn parse_include_range(input: String, max_line: usize) -> Result<(usize, usize), String> {
+fn parse_include_range(input: String, max_line: usize) -> (usize, usize) {
     let trimmed = input.trim();
 
     if trimmed.is_empty() || trimmed == "-" {
-        return Ok((1, max_line));
+        return (1, max_line);
     }
 
+    // Split by dash, but only accept exactly 2 parts
     let parts: Vec<&str> = trimmed.split('-').collect();
 
     if parts.len() != 2 {
-        return Ok((1, max_line));
+        return (1, max_line);
     }
 
     let start = parts[0].trim();
@@ -49,22 +50,22 @@ fn parse_include_range(input: String, max_line: usize) -> Result<(usize, usize),
     let start_line = if start.is_empty() {
         1
     } else {
-        match start.parse::<usize>() {
-            Ok(n) if n >= 1 && n <= max_line => n,
-            _ => return Err("Invalid or out-of-order start line number".to_string()),
+        match start.parse::<i32>() {
+            Ok(n) if n >= 1 && n as usize <= max_line => n as usize,
+            _ => 1, // Return 1 for invalid start line
         }
     };
 
     let end_line = if end.is_empty() {
         max_line
     } else {
-        match end.parse::<usize>() {
-            Ok(n) if n >= start_line && n <= max_line => n,
-            _ => return Err("Invalid or out-of-order end line number".to_string()),
+        match end.parse::<i32>() {
+            Ok(n) if n >= start_line as i32 && n as usize <= max_line => n as usize,
+            _ => max_line, // Return max_line for invalid end line
         }
     };
 
-    Ok((start_line, end_line))
+    (start_line, end_line)
 }
 
 pub fn include_script(
@@ -89,10 +90,8 @@ pub fn include_script(
     // get the range from the options
     let range_option = parser::get_option("range", options.clone());
     let max_line = content.lines().count();
-    let range = match range_option.map(|option| parse_include_range(option.value.clone(), max_line))
-    {
-        Some(Ok(range)) => range,
-        Some(Err(err)) => return Err(err),
+    let range = match range_option {
+        Some(option) => parse_include_range(option.value.clone(), max_line),
         _ => (1, max_line), // Default to the full range if no range is provided
     };
 
@@ -123,4 +122,50 @@ pub fn include_script(
         &language,
         &lang_detected,
     ))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_parse_include_range() {
+        // Test empty input
+        assert_eq!(parse_include_range("".to_string(), 100), (1, 100));
+        assert_eq!(parse_include_range("-".to_string(), 100), (1, 100));
+
+        // Test valid ranges
+        assert_eq!(parse_include_range("1-10".to_string(), 100), (1, 10));
+        assert_eq!(parse_include_range("5-15".to_string(), 100), (5, 15));
+        assert_eq!(parse_include_range("1-100".to_string(), 100), (1, 100));
+
+        // Test partial ranges (empty start or end)
+        assert_eq!(parse_include_range("-10".to_string(), 100), (1, 10));
+        assert_eq!(parse_include_range("5-".to_string(), 100), (5, 100));
+
+        // Test invalid start line (should default to 1)
+        assert_eq!(parse_include_range("0-10".to_string(), 100), (1, 10));
+        assert_eq!(parse_include_range("-1-10".to_string(), 100), (1, 100)); // Multiple dashes, so treated as invalid format
+        assert_eq!(parse_include_range("abc-10".to_string(), 100), (1, 10));
+        assert_eq!(parse_include_range("101-110".to_string(), 100), (1, 100));
+
+        // Test invalid end line (should default to max_line)
+        assert_eq!(parse_include_range("1-0".to_string(), 100), (1, 100));
+        assert_eq!(parse_include_range("1-abc".to_string(), 100), (1, 100));
+        assert_eq!(parse_include_range("1-101".to_string(), 100), (1, 100));
+        assert_eq!(parse_include_range("10-5".to_string(), 100), (10, 100)); // end < start
+
+        // Test edge cases
+        assert_eq!(parse_include_range("1-1".to_string(), 100), (1, 1));
+        assert_eq!(parse_include_range("100-100".to_string(), 100), (100, 100));
+
+        // Test invalid format (not containing exactly one dash)
+        assert_eq!(parse_include_range("123".to_string(), 100), (1, 100));
+        assert_eq!(parse_include_range("1-2-3".to_string(), 100), (1, 100));
+
+        // Test with whitespace
+        assert_eq!(parse_include_range(" 1 - 10 ".to_string(), 100), (1, 10));
+        assert_eq!(parse_include_range("  - 10  ".to_string(), 100), (1, 10));
+        assert_eq!(parse_include_range("  5 -   ".to_string(), 100), (5, 100));
+    }
 }

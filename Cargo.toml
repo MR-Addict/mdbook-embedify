@@ -1,6 +1,6 @@
 [package]
 name = "mdbook-embedify"
-version = "0.2.17-rc.7"
+version = "0.2.17-rc.8"
 edition = "2021"
 license = "MIT"
 readme = "README.md"
@@ -22,6 +22,9 @@ pulldown-cmark = "0.13.0"
 regex = "1.11.1"
 rust-embed = "8.7.2"
 serde_json = "1.0.140"
+
+[dev-dependencies]
+dircmp = "0.2.0"
 
 [[bin]]
 name = "mdbook-embedify"

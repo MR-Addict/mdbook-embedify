@@ -138,7 +138,12 @@ fn render_embeds(ctx: &PreprocessorContext, chapter: Chapter, content: String) -
 
     content = RE_IGNORE
         .replace_all(&content, |caps: &regex::Captures| {
-            let placeholder = format!("EMBED_IGNORE_{}", ignored_sections.len());
+            // Use a highly unique placeholder to avoid any possible conflicts
+            let placeholder = format!(
+                "__MDBOOK_EMBEDIFY_IGNORE_{}_{:x}__",
+                ignored_sections.len(),
+                std::ptr::addr_of!(ignored_sections) as usize
+            );
             let ignored_content = caps.get(0).unwrap().as_str();
 
             ignored_sections.push((placeholder.clone(), ignored_content.to_string()));
@@ -192,9 +197,13 @@ fn render_embeds(ctx: &PreprocessorContext, chapter: Chapter, content: String) -
         })
         .to_string();
 
-    // Restore ignored sections efficiently
-    for (placeholder, ignored_content) in ignored_sections {
-        content = content.replace(&placeholder, &ignored_content);
+    // Restore ignored sections efficiently with exact matching
+    // Process in reverse order of creation to avoid index conflicts
+    for (placeholder, ignored_content) in ignored_sections.into_iter().rev() {
+        // Use exact string replacement to avoid partial matches
+        if let Some(pos) = content.find(&placeholder) {
+            content.replace_range(pos..pos + placeholder.len(), &ignored_content);
+        }
     }
 
     content
