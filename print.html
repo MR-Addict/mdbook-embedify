@@ -1,0 +1,1072 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>mdbook-embedify</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="This is a mdbook preprocessor plugin that allows you embed apps to your book, like youtube, codepen, giscus and many other apps">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="assets/css/patch.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">mdbook-embedify</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/mr-addict/mdbook-embedify" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="mdbook-embedify"><a class="header" href="#mdbook-embedify">Mdbook Embedify</a></h1>
+<p><img src="https://img.shields.io/crates/v/mdbook-embedify" alt="Crates.io" /> <img src="https://img.shields.io/crates/l/mdbook-embedify" alt="Crates.io" /></p>
+<p>This is a <a href="https://rust-lang.github.io/mdBook">mdbook</a> preprocessor plugin that allows you to embed apps to your book, like youtube, codepen, giscus and many other apps.</p>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="usage"><a class="header" href="#usage">Usage</a></h1>
+<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
+<p>There are two ways to install this preprocessor.</p>
+<p>You can install it from crates.io using cargo.</p>
+<pre><code class="language-sh">cargo install mdbook-embedify
+</code></pre>
+<p>Or you can download the binary from <a href="https://github.com/mr-addict/mdbook-embedify/releases">releases</a> page.</p>
+<p>Then you can check your installation by running:</p>
+<pre><code class="language-sh">mdbook-embedify --version
+</code></pre>
+<p>After installation, add the following code to your <code>book.toml</code> file:</p>
+<pre><code class="language-toml">[preprocessor.embedify]
+</code></pre>
+<p>And that’s it! You can now use <code>embed</code> macro to embed apps to your book.</p>
+<h2 id="syntax"><a class="header" href="#syntax">Syntax</a></h2>
+<p>The basic syntax is like this:</p>
+<pre><code class="language-text">{% embed app options[] %}
+</code></pre>
+<p><strong>options</strong> are key-value based array seperated by space and its value should be wrapped by <strong>quotes</strong>.</p>
+<p>For example:</p>
+<pre><code class="language-text">{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" loading="lazy" %}
+</code></pre>
+<p>See more examples at apps section.</p>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="ignore-embeds"><a class="header" href="#ignore-embeds">Ignore Embeds</a></h1>
+<p>Sometimes you may want preprocessor to ignore some embeds.</p>
+<p>There are two ways to do it:</p>
+<!-- embed ignore begin -->
+<ul>
+<li><strong>Inline</strong>: You can use <code>{% embed-ignore %}</code> syntax to ignore the embed in the current line.</li>
+<li><strong>Block</strong>: You can use <code>comments</code> to wrap the content you want to ignore.</li>
+</ul>
+<h2 id="inline-ignore"><a class="header" href="#inline-ignore">Inline Ignore</a></h2>
+<p>To ignore an embed in the current line, you can use the <code>{% embed-ignore %}</code>. The preprocessor will automatically convert it to <code>{% embed %}</code>:</p>
+<p>For example:</p>
+<pre><code class="language-text">{% embed-ignore youtube id="DyTCOwB0DVw" loading="lazy" %}
+</code></pre>
+<!-- embed ignore end -->
+<p>Will be replaced as:</p>
+<pre><code class="language-text">{% embed youtube id="DyTCOwB0DVw" loading="lazy" %}
+</code></pre>
+<h2 id="block-ignore"><a class="header" href="#block-ignore">Block Ignore</a></h2>
+<p>To ignore a block of embeds, you can use HTML comments to wrap the content you want to ignore. The preprocessor will not render any embeds inside these comments.</p>
+<ul>
+<li><code>&lt;!-- embed ignore begin --&gt;</code></li>
+<li><code>&lt;!-- embed ignore end --&gt;</code></li>
+</ul>
+<p>For example:</p>
+<pre><code class="language-text">&lt;!-- embed ignore begin --&gt;
+{% embed youtube id="DyTCOwB0DVw" loading="lazy" %}
+&lt;!-- embed ignore end --&gt;
+</code></pre>
+<p>Will also be shown as:</p>
+<pre><code class="language-text">{% embed youtube id="DyTCOwB0DVw" loading="lazy" %}
+</code></pre>
+<h2 id="priorities"><a class="header" href="#priorities">Priorities</a></h2>
+<p>Block ignore has <strong>higher</strong> priority than inline ignore, so if you wrap an inline ignore in a block ignore, it will keep as it is and will not be changed.</p>
+<p>For example:</p>
+<pre><code class="language-text">&lt;!-- embed ignore begin --&gt;
+{% embed-ignore youtube id="DyTCOwB0DVw" loading="lazy" %}
+&lt;!-- embed ignore end --&gt;
+</code></pre>
+<p>Will be shown as:</p>
+<!-- embed ignore begin -->
+<pre><code class="language-text">{% embed-ignore youtube id="DyTCOwB0DVw" loading="lazy" %}
+</code></pre>
+<!-- embed ignore end -->
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="global-embedding"><a class="header" href="#global-embedding">Global Embedding</a></h1>
+<p>Some apps allow you to automatically embed to every chapter. You can do this by modifying <code>book.toml</code> file to enable them.</p>
+<p>For example:</p>
+<pre><code class="language-toml">[preprocessor.embedify]
+scroll-to-top.enable = true
+</code></pre>
+<blockquote>
+<p>Attention 💥</p>
+<p>When you do this, you don’t need to add <code>{% embed scroll-to-top %}</code> manually. It will be automatically added it to every chapter. If you do, it will be rendered twice.</p>
+</blockquote>
+<p>Below is a full list of apps that support global configuration:</p>
+<pre><code class="language-toml">[preprocessor.embedify]
+scroll-to-top.enable = true
+
+footer.enable = true
+footer.message = "Copyright © 2025 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)"
+
+announcement-banner.enable = true
+announcement-banner.id = "0.2.17"
+announcement-banner.message = "*New version [0.2.17](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17) relased*"
+
+giscus.enable = true
+giscus.repo = "MR-Addict/mdbook-embedify"
+giscus.repo-id = "R_kgDOLCxX0Q"
+giscus.category = "General"
+giscus.category-id = "DIC_kwDOLCxX0c4CdGx-"
+giscus.reactions-enabled = "1"
+giscus.theme = "book"
+giscus.lang = "en"
+giscus.loading = "lazy"
+</code></pre>
+<p>You can see more details about each app at its own page.</p>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="third-party-apps"><a class="header" href="#third-party-apps">Third Party Apps</a></h1>
+<p>Third party apps are apps that are hosted on third party sites. Below are all supported third party apps and its detailed options.</p>
+<ul>
+<li><a href="third-party/gist.html">Gist</a></li>
+<li><a href="third-party/vimeo.html">Vimeo</a></li>
+<li><a href="third-party/giscus.html">Giscus</a></li>
+<li><a href="third-party/youtube.html">Youtube</a></li>
+<li><a href="third-party/codepen.html">Codepen</a></li>
+<li><a href="third-party/stackblitz.html">Stackblitz</a></li>
+<li><a href="third-party/codesandbox.html">Codesandbox</a></li>
+<li><a href="third-party/bilibili.html">Bilibili</a></li>
+</ul>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="gist"><a class="header" href="#gist">Gist</a></h1>
+<p><a href="https://gist.github.com">Gist</a> is a simple way to share snippets and pastes with others. All gists are Git repositories, so they are automatically versioned, forkable and usable from Git.</p>
+<h2 id="options"><a class="header" href="#options">Options</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
+<tr><td style="text-align: left">id</td><td style="text-align: left">Gist ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+</tbody></table>
+</div>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><code class="language-text">{% embed gist id="76cf171d1bdd7da41d4ca96b908eb57a" %}
+</code></pre>
+<script src="https://gist.github.com/76cf171d1bdd7da41d4ca96b908eb57a.js"></script>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="vimeo"><a class="header" href="#vimeo">Vimeo</a></h1>
+<p>Vimeo is a video hosting platform that allows you to upload and share videos.</p>
+<h2 id="options-1"><a class="header" href="#options-1">Options</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
+<tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Supports <strong>lazy</strong> and <strong>eager</strong></td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
+</tbody></table>
+</div>
+<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<pre><code class="language-text">{% embed vimeo id="914391191" loading="lazy" %}
+</code></pre>
+<iframe name="vimeo" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" src="https://player.vimeo.com/video/914391191" style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"></iframe>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="giscus"><a class="header" href="#giscus">Giscus</a></h1>
+<p><a href="https://giscus.app">Giscus</a> is a comments system powered by GitHub Discussions. Let visitors leave comments and reactions on your website via GitHub! Heavily inspired by <a href="https://github.com/utterance/utterances">utterances</a>.</p>
+<h2 id="options-2"><a class="header" href="#options-2">Options</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
+<tr><td style="text-align: left">repo</td><td style="text-align: left">Repository</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">repo-id</td><td style="text-align: left">Repository ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">category</td><td style="text-align: left">Category</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">category-id</td><td style="text-align: left">Category ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">reactions-enabled</td><td style="text-align: left">Enable reactions</td><td style="text-align: left">No</td><td style="text-align: left">1</td></tr>
+<tr><td style="text-align: left">theme</td><td style="text-align: left">Supports <strong>book</strong>, <strong>light</strong> and <strong>dark</strong></td><td style="text-align: left">No</td><td style="text-align: left">book</td></tr>
+<tr><td style="text-align: left">lang</td><td style="text-align: left">Localization language</td><td style="text-align: left">No</td><td style="text-align: left">en</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Supports <strong>lazy</strong> and <strong>eager</strong></td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
+</tbody></table>
+</div>
+<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
+<pre><code class="language-text">{% embed giscus repo="MR-Addict/mdbook-embedify" repo-id="R_XXXXXXXXXX" category="General" category-id="DIC_XXXXXXXXXXXXXXXX" theme="book" loading="eager" %}
+</code></pre>
+<p>This book’s giscus is enabled, you can see it at the bottom of this page. And you can also have a try by commenting below.</p>
+<p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file after <code>[preprocessor.embedify]</code> section:</p>
+<pre><code class="language-toml">giscus.enable = true
+giscus.repo = "MR-Addict/mdbook-embedify"
+giscus.repo-id = "R_XXXXXXXXXX"
+giscus.category = "General"
+giscus.category-id = "DIC_XXXXXXXXXXXXXXXX"
+giscus.reactions-enabled = "1"
+giscus.theme = "book"
+giscus.lang = "en"
+giscus.loading = "eager"
+</code></pre>
+<h2 id="refuse-to-connect"><a class="header" href="#refuse-to-connect">Refuse to Connect</a></h2>
+<p>Giscus will refuse to connect if you build and preview your book with <strong>file://</strong> protocol. The easiest solution is to use some static server so that you can preview your book with <strong>http://</strong> protocol.</p>
+<p>For exampe:</p>
+<p><strong>node.js installed</strong></p>
+<pre><code class="language-sh">npx serve book -p 3000
+</code></pre>
+<p>Which will serve your book at <a href="http://localhost:3000">http://localhost:3000</a>.</p>
+<p><strong>python installed</strong></p>
+<pre><code class="language-sh">python -m http.server --directory book 8080
+</code></pre>
+<p>Which will serve your book at <a href="http://localhost:8080">http://localhost:8080</a>.</p>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="youtube"><a class="header" href="#youtube">Youtube</a></h1>
+<p><a href="https://www.youtube.com">YouTube</a> is a popular online video sharing and social media platform.</p>
+<h2 id="options-3"><a class="header" href="#options-3">Options</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
+<tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Supports <strong>lazy</strong> and <strong>eager</strong></td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
+</tbody></table>
+</div>
+<h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
+<pre><code class="language-text">{% embed youtube id="DyTCOwB0DVw" loading="lazy" %}
+</code></pre>
+<iframe allowfullscreen name="youtube" loading="lazy" src="https://www.youtube.com/embed/DyTCOwB0DVw" style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="codepen"><a class="header" href="#codepen">Codepen</a></h1>
+<p><a href="https://codepen.io">Codepen</a> is a social development environment for front-end designers and developers. It’s the best place to build and deploy a website, show off your work, build test cases, and find inspiration.</p>
+<h2 id="options-4"><a class="header" href="#options-4">Options</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
+<tr><td style="text-align: left">user</td><td style="text-align: left">username</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">slug</td><td style="text-align: left">Project slug</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">height</td><td style="text-align: left">Iframe height</td><td style="text-align: left">No</td><td style="text-align: left">600</td></tr>
+<tr><td style="text-align: left">theme</td><td style="text-align: left">Supports <strong>light</strong> and <strong>dark</strong></td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Supports <strong>lazy</strong> and <strong>eager</strong></td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
+</tbody></table>
+</div>
+<h2 id="example-4"><a class="header" href="#example-4">Example</a></h2>
+<pre><code class="language-text">{% embed codepen user="MR-Addict" slug="NWBOqKw" height="600" theme="dark" loading="lazy" %}
+</code></pre>
+<iframe allowfullscreen name="codepen" loading="lazy" height="600" style="width: 100%; border: none; border-radius: 1rem; background: black" src="https://codepen.io/MR-Addict/embed/NWBOqKw?default-tab=result&theme-id=dark"></iframe>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="stackblitz"><a class="header" href="#stackblitz">Stackblitz</a></h1>
+<p><a href="https://stackblitz.com">Stackblitz</a> is an instant fullstack web IDE for the JavaScript ecosystem. It’s powered by <a href="https://blog.stackblitz.com/posts/introducing-webcontainers">WebContainers</a>, the first WebAssembly-based operating system which boots the Node.js environment in milliseconds, securely within your browser tab.</p>
+<h2 id="options-5"><a class="header" href="#options-5">Options</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
+<tr><td style="text-align: left">id</td><td style="text-align: left">Project ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">theme</td><td style="text-align: left">Supports <strong>light</strong> and <strong>dark</strong></td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Supports <strong>lazy</strong> and <strong>eager</strong></td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
+</tbody></table>
+</div>
+<h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
+<pre><code class="language-text">{% embed stackblitz id="vitejs-vite-y8mdxg" theme="light" loading="lazy" %}
+</code></pre>
+<iframe name="stackblitz" loading="lazy" src="https://stackblitz.com/edit/vitejs-vite-y8mdxg?embed=1&theme=light&view=preview" style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"></iframe>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="codesandbox"><a class="header" href="#codesandbox">Codesandbox</a></h1>
+<p><a href="https://codesandbox.io">Codesandbox</a> is an online code editor that allows you to create and share web applications. It is particularly useful for web developers who want to work on React, Vue, Angular, or any other front-end libraries.</p>
+<h2 id="options-6"><a class="header" href="#options-6">Options</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
+<tr><td style="text-align: left">id</td><td style="text-align: left">Project ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">theme</td><td style="text-align: left">Supports <strong>light</strong> and <strong>dark</strong></td><td style="text-align: left">No</td><td style="text-align: left">dark</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Supports <strong>lazy</strong> and <strong>eager</strong></td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
+</tbody></table>
+</div>
+<h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
+<pre><code class="language-text">{% embed codesandbox id="ke8wx" theme="light" loading="lazy" %}
+</code></pre>
+<iframe name="sandbox" loading="lazy" src="https://codesandbox.io/embed/ke8wx?&theme=light" style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"></iframe>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="bilibili"><a class="header" href="#bilibili">Bilibili</a></h1>
+<p><a href="https://www.bilibili.com">Bilibili</a> is a Chinese video sharing website based in Shanghai, themed around animation, comic, and games (ACG), where users can submit, view, and add commentary subtitles on videos.</p>
+<h2 id="options-7"><a class="header" href="#options-7">Options</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
+<tr><td style="text-align: left">id</td><td style="text-align: left">Video ID</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">loading</td><td style="text-align: left">Supports <strong>lazy</strong> and <strong>eager</strong></td><td style="text-align: left">No</td><td style="text-align: left">lazy</td></tr>
+</tbody></table>
+</div>
+<h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
+<pre><code class="language-text">{% embed bilibili id="BV1uT4y1P7CX" loading="lazy" %}
+</code></pre>
+<iframe allowfullscreen name="bilibili" loading="lazy" src="https://player.bilibili.com/player.html?bvid=BV1uT4y1P7CX&danmaku=0" style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"></iframe>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="local-apps"><a class="header" href="#local-apps">Local Apps</a></h1>
+<p>Local apps are apps hosted on your local book, so it is not necessary to have internet connection to use them.</p>
+<p>Below are all supported local apps and its detailed options.</p>
+<ul>
+<li><a href="local/footer.html">Footer</a></li>
+<li><a href="local/include.html">Include</a></li>
+<li><a href="local/scroll-to-top.html">Scroll To Top</a></li>
+<li><a href="local/announcement-banner.html">Announcement Banner</a></li>
+</ul>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="footer"><a class="header" href="#footer">Footer</a></h1>
+<p>The footer app is useful for displaying copyright information, privacy policy, and other legal information. It supports <strong>markdown</strong> syntax so that you can easily customize the message.</p>
+<h2 id="options-8"><a class="header" href="#options-8">Options</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
+<tr><td style="text-align: left">message</td><td style="text-align: left">Footer message, <strong>markdown</strong> supported</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+</tbody></table>
+</div>
+<h2 id="example-8"><a class="header" href="#example-8">Example</a></h2>
+<pre><code class="language-text">{% embed footer message="Copyright © 2025 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)" %}
+</code></pre>
+<p>This book’s footer is enabled, you can see it at the bottom of this page.</p>
+<p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file after <code>[preprocessor.embedify]</code> section:</p>
+<pre><code class="language-toml">footer.message = "Copyright © 2025 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)"
+</code></pre>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="include"><a class="header" href="#include">Include</a></h1>
+<blockquote>
+<p>Attention 💥</p>
+<p>Support since <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.12">v0.2.12</a>.</p>
+<p>Language is detected by file extension, which I manually edited from <a href="https://github.com/github-linguist/linguist/blob/main/lib/linguist/languages.yml">linguist</a>. If you find any issues with the language detection, please open an <a href="https://github.com/MR-Addict/mdbook-embedify/issues">issue</a>.</p>
+</blockquote>
+<p>The include app is for including source file or wrapped it as markdown code block.</p>
+<p>The language is automatically detected by the file name extension. You can override it by passing <code>lang</code> option. The file path should be relative to book root directory.</p>
+<h2 id="options-9"><a class="header" href="#options-9">Options</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
+<tr><td style="text-align: left">file</td><td style="text-align: left">File to include, relative to book root directory</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">lang</td><td style="text-align: left">This will override the automatically detected language</td><td style="text-align: left">No</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">range</td><td style="text-align: left">Range of lines to include, e.g. <code>1-10</code> or <code>1-</code> or <code>-10</code></td><td style="text-align: left">No</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">type</td><td style="text-align: left">Include type, cloud be <code>raw</code> or <code>codeblock</code></td><td style="text-align: left">No</td><td style="text-align: left"><code>codeblock</code></td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p>Attention 💥</p>
+<ul>
+<li>When <code>range</code> is used, it will insert the specified lines starts from 1.</li>
+<li>The <code>raw</code> type will insert the raw file content into the markdown file directly, while the <code>codeblock</code> type will wrap it as a code block.</li>
+</ul>
+</blockquote>
+<h2 id="example-9"><a class="header" href="#example-9">Example</a></h2>
+<pre><code class="language-text">{% embed include file="src/SUMMARY.md" %}
+</code></pre>
+<p>This will include the <a href="https://github.com/MR-Addict/mdbook-embedify/blob/main/docs/src/SUMMARY.md">src/SUMMARY.md</a> file and wrap it as a markdown code block which is the source code of this book’s summary.</p>
+<pre><code class="language-markdown"># Summary
+
+# Basics
+
+- [Intro](index.md)
+- [Usage](usage.md)
+- [Ignore Embeds](ignore-embeds.md)
+- [Global Embedding](global-embedding.md)
+
+# Apps
+
+- [Third Party Apps](third-party/index.md)
+  - [Gist](third-party/gist.md)
+  - [Vimeo](third-party/vimeo.md)
+  - [Giscus](third-party/giscus.md)
+  - [Youtube](third-party/youtube.md)
+  - [Codepen](third-party/codepen.md)
+  - [Stackblitz](third-party/stackblitz.md)
+  - [Codesandbox](third-party/codesandbox.md)
+  - [Bilibili](third-party/bilibili.md)
+- [Local Apps](local/index.md)
+  - [Footer](local/footer.md)
+  - [Include](local/include.md)
+  - [Scroll to Top](local/scroll-to-top.md)
+  - [Announcement Banner](local/announcement-banner.md)
+
+# Development
+
+- [Development Guide](development/index.md)
+  - [Testing Guide](development/testing.md)
+  - [Template System](development/template.md)
+  - [Language Matching](development/language-matching.md)
+
+# CHANGELOG
+
+- [CHANGELOG](CHANGELOG.md)
+</code></pre>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="scroll-to-top-button"><a class="header" href="#scroll-to-top-button">Scroll to top button</a></h1>
+<p>Scroll to top button allows users to quickly smoothly scroll back to the top of the page.</p>
+<h2 id="options-10"><a class="header" href="#options-10">Options</a></h2>
+<p>Scroll to top button app has no options.</p>
+<h2 id="example-10"><a class="header" href="#example-10">Example</a></h2>
+<pre><code class="language-text">{% embed scroll-to-top %}
+</code></pre>
+<p>Typically, we want to use it for the whole book. You can do this by adding below options to <code>book.toml</code> file after <code>[preprocessor.embedify]</code> section:</p>
+<pre><code class="language-toml">scroll-to-top.enable = true
+</code></pre>
+<p>This book uses this option. You can see it at the bottom right corner of this page. But it only shows when pages are long enough to scroll. Or you can see it my another book <a href="https://mr-addict.github.io/notes">Notes</a>.</p>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="announcement-banner"><a class="header" href="#announcement-banner">Announcement Banner</a></h1>
+<p>Announcement banner allows you put important messages at the top of the page. It supports <strong>markdown</strong> syntax too.</p>
+<h2 id="options-11"><a class="header" href="#options-11">Options</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Option</th><th style="text-align: left">Description</th><th style="text-align: left">Required</th><th style="text-align: left">Default</th></tr></thead><tbody>
+<tr><td style="text-align: left">id</td><td style="text-align: left">Announcement id</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+<tr><td style="text-align: left">message</td><td style="text-align: left">Announcement message, <strong>markdown</strong> supported</td><td style="text-align: left">Yes</td><td style="text-align: left">- -</td></tr>
+</tbody></table>
+</div>
+<h2 id="example-11"><a class="header" href="#example-11">Example</a></h2>
+<pre><code class="language-text">{% embed announcement-banner id="0.2.17" message="*New version [0.2.17](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17) relased*" %}
+</code></pre>
+<p>This book’s announcement banner is enabled, you can see it at the top of this page.</p>
+<p>However, you may want to enable it for the whole book. You can do this by adding below options to <code>book.toml</code> file after <code>[preprocessor.embedify]</code> section:</p>
+<pre><code class="language-toml">announcement-banner.enable = true
+announcement-banner.id = "0.2.17"
+announcement-banner.message = "*New version [0.2.17](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17) relased*"
+</code></pre>
+<p>Note that announcement banner id must be <strong>unique</strong>, otherwise it won’t be shown if there is another announcement banner with the same id when user closed it.</p>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="development-guide"><a class="header" href="#development-guide">Development Guide</a></h1>
+<p>This guide provides an overview of how to develop custom embed applications for mdBook.</p>
+<ul>
+<li><a href="development/testing.html">Testing Guide</a> - Learn how to write and run tests</li>
+<li><a href="development/template.html">Template System</a> - Create custom embed applications</li>
+<li><a href="development/language-matching.html">Language Matching</a> - Understand file language detection</li>
+</ul>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="testing-guide"><a class="header" href="#testing-guide">Testing Guide</a></h1>
+<h2 id="pre-requisites"><a class="header" href="#pre-requisites">Pre-requisites</a></h2>
+<p>Ensure you have the following installed:</p>
+<ul>
+<li><a href="https://www.rust-lang.org">Rust</a></li>
+<li><a href="https://rust-lang.github.io/mdBook">mdbook</a></li>
+</ul>
+<p>Make sure you have the same <strong>mdbook</strong> version installed as the one used in the project.</p>
+<p>You can find the version in the <code>Cargo.toml</code> file under the <code>[dependencies]</code> section.</p>
+<h2 id="test-suite-overview"><a class="header" href="#test-suite-overview">Test Suite Overview</a></h2>
+<p>mdbook-embedify covering these critical modules:</p>
+<div class="table-wrapper"><table><thead><tr><th>Module</th><th>Coverage</th></tr></thead><tbody>
+<tr><td><strong>Book Testing</strong></td><td>Real book building and validation</td></tr>
+<tr><td><strong>Parser Testing</strong></td><td>Placeholder &amp; embed syntax parsing</td></tr>
+<tr><td><strong>Language Detection</strong></td><td>File extension to language mapping</td></tr>
+</tbody></table>
+</div>
+<h2 id="quick-commands"><a class="header" href="#quick-commands">Quick Commands</a></h2>
+<pre><code class="language-bash"># Run complete test suite
+cargo test
+
+# Run specific test suites
+cargo test --test book
+cargo test --test parser
+cargo test --test detect_lang
+
+# Run tests quietly
+cargo test -- --quiet
+
+# Run with detailed output
+cargo test -- --nocapture
+
+# Run tests with timing information
+cargo test -- --show-output
+</code></pre>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="template-system"><a class="header" href="#template-system">Template System</a></h1>
+<blockquote>
+<p>Attention 💥</p>
+<p>Support since <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.14">v0.2.14</a>.</p>
+</blockquote>
+<p>The template system allows you to create custom embed applications that aren’t supported by the built-in preprocessor. This powerful feature enables you to extend mdbook-embedify with your own interactive components and dynamic content.</p>
+<blockquote>
+<p>Real world example 💡</p>
+<p>You can take a looke of my <a href="https://mr-addict.github.io/notes/life/studio/disney/index.html">notes</a> book.</p>
+<p>It supports <strong>caption</strong> and <strong>preview</strong> with much more complex behavior.</p>
+</blockquote>
+<h2 id="dynamic-vs-static-content"><a class="header" href="#dynamic-vs-static-content">Dynamic vs Static Content</a></h2>
+<p>Custom templates act like dynamic reusable components. If you want to just copy static content, you should use the <a href="development/../local/include.html">include app</a> instead.</p>
+<h2 id="creating-a-custom-app"><a class="header" href="#creating-a-custom-app">Creating a Custom App</a></h2>
+<h3 id="template-folder-setup"><a class="header" href="#template-folder-setup">Template Folder Setup</a></h3>
+<p>Templates must be placed in the <strong>assets/templates</strong> folder (relative to your <code>book.toml</code> file).</p>
+<p><strong>Configure the template folder</strong> (optional):</p>
+<pre><code class="language-toml">[preprocessor.embedify]
+custom-templates-folder = "assets/templates"
+</code></pre>
+<blockquote>
+<p>📍 <strong>Path Requirements</strong>:</p>
+<p>The template folder path must be relative to the book root directory (where <code>book.toml</code> is located).</p>
+</blockquote>
+<h3 id="template-file-naming"><a class="header" href="#template-file-naming">Template File Naming</a></h3>
+<p>The template filename becomes the app name:</p>
+<div class="table-wrapper"><table><thead><tr><th>Template File</th><th>App Name</th><th>Usage</th></tr></thead><tbody>
+<tr><td><code>canvas.html</code></td><td><code>canvas</code></td><td><code>{% embed canvas %}</code></td></tr>
+<tr><td><code>my-widget.html</code></td><td><code>my-widget</code></td><td><code>{% embed my-widget %}</code></td></tr>
+<tr><td><code>youtube.html</code></td><td><code>youtube</code></td><td><code>{% embed youtube %}</code> (overrides built-in)</td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p>⚠️ <strong>Override Behavior</strong>:</p>
+<p>If your custom app name matches a built-in app, the custom template will <strong>override</strong> the built-in functionality.</p>
+</blockquote>
+<h3 id="example-creating-a-canvas-app"><a class="header" href="#example-creating-a-canvas-app">Example: Creating a Canvas App</a></h3>
+<p>Let’s create a <strong>canvas</strong> app - a simple drawable canvas component.</p>
+<p><strong>Step 1: Create the template file</strong> (<code>assets/templates/canvas.html</code>)</p>
+<p><strong>Basic HTML structure with styling:</strong></p>
+<pre><code class="language-html">&lt;div class="canvas-container"&gt;
+  &lt;canvas height="400"&gt;&lt;/canvas&gt;
+&lt;/div&gt;
+&lt;style&gt;
+  .canvas-container {
+    width: 100%;
+    background: white;
+    border-radius: 1rem;
+    border: 1px solid #ccc;
+
+    background-size: 20px 20px;
+    background-image: linear-gradient(to right, #eee 1px, transparent 1px),
+      linear-gradient(to bottom, #eee 1px, transparent 1px);
+  }
+&lt;/style&gt;
+</code></pre>
+<p><strong>Add interactive JavaScript:</strong></p>
+<pre><code class="language-html">&lt;script&gt;
+  document.addEventListener("DOMContentLoaded", () =&gt; {
+    const container = document.querySelector(".canvas-container");
+    const canvas = container.querySelector("canvas");
+    const ctx = canvas.getContext("2d");
+    const resizeObserver = new ResizeObserver((entries) =&gt; {
+      for (const entry of entries) canvas.width = entry.contentRect.width;
+    });
+    resizeObserver.observe(container);
+
+    let drawing = false;
+    const lastPos = { x: 0, y: 0 };
+
+    // Draw a line from last position to current position
+    function draw(x, y) {
+      ctx.beginPath();
+      ctx.moveTo(lastPos.x, lastPos.y);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+      lastPos.x = x;
+      lastPos.y = y;
+    }
+
+    // Mouse events
+    canvas.addEventListener("mousedown", (e) =&gt; {
+      drawing = true;
+      lastPos.x = e.offsetX;
+      lastPos.y = e.offsetY;
+    });
+
+    canvas.addEventListener("mousemove", (e) =&gt; {
+      if (!drawing) return;
+      draw(e.offsetX, e.offsetY);
+    });
+
+    canvas.addEventListener("mouseup", () =&gt; (drawing = false));
+    canvas.addEventListener("mouseout", () =&gt; (drawing = false));
+
+    // Touch events
+    canvas.addEventListener("touchstart", (e) =&gt; {
+      if (e.touches.length !== 1) return;
+      e.preventDefault();
+      drawing = true;
+
+      const rect = canvas.getBoundingClientRect();
+      lastPos.x = e.touches[0].clientX - rect.left;
+      lastPos.y = e.touches[0].clientY - rect.top;
+    });
+
+    canvas.addEventListener("touchmove", (e) =&gt; {
+      if (!drawing || e.touches.length !== 1) return;
+      e.preventDefault();
+      const rect = canvas.getBoundingClientRect();
+      const x = e.touches[0].clientX - rect.left;
+      const y = e.touches[0].clientY - rect.top;
+      draw(x, y);
+    });
+
+    canvas.addEventListener("touchend", () =&gt; (drawing = false));
+    canvas.addEventListener("touchcancel", () =&gt; (drawing = false));
+  });
+&lt;/script&gt;
+</code></pre>
+<blockquote>
+<p><strong>CSS &amp; JavaScript Integration</strong> 💡</p>
+<p>You can include <strong>CSS</strong> and <strong>JavaScript</strong> directly in template files using <code>&lt;style&gt;</code> and <code>&lt;script&gt;</code> blocks.</p>
+</blockquote>
+<p><strong>Step 2: Add dynamic height support</strong></p>
+<p>Make the canvas height configurable using placeholder syntax:</p>
+<pre><code class="language-html">&lt;canvas height="{% height=400 %}"&gt;&lt;/canvas&gt;
+</code></pre>
+<p>This allows users to customize the height: <code>{% embed canvas height=600 %}</code></p>
+<h2 id="placeholder-syntax"><a class="header" href="#placeholder-syntax">Placeholder Syntax</a></h2>
+<p>The template system supports two types of dynamic content:</p>
+<h3 id="syntax-types"><a class="header" href="#syntax-types">Syntax Types</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Type</th><th>Syntax</th><th>Purpose</th><th>Example</th></tr></thead><tbody>
+<tr><td><strong>Placeholder</strong></td><td><code>{% key=default %}</code></td><td>Variable substitution</td><td><code>{% height=400 %}</code></td></tr>
+<tr><td><strong>Processor</strong></td><td><code>{% processor(key=default) %}</code></td><td>Content transformation</td><td><code>{% markdown(content) %}</code></td></tr>
+</tbody></table>
+</div>
+<h3 id="placeholder-examples"><a class="header" href="#placeholder-examples">Placeholder Examples</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Syntax</th><th>Behavior</th><th>Use Case</th></tr></thead><tbody>
+<tr><td><code>{% height %}</code></td><td><strong>Required</strong> - User must provide value</td><td>Mandatory configuration</td></tr>
+<tr><td><code>{% height=400 %}</code></td><td><strong>Optional</strong> - Uses default if not provided</td><td>Optional configuration</td></tr>
+<tr><td><code>{% markdown(message) %}</code></td><td><strong>Processed</strong> - Content transformed by processor</td><td>Dynamic content rendering</td></tr>
+</tbody></table>
+</div>
+<h3 id="available-processors"><a class="header" href="#available-processors">Available Processors</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Processor</th><th>Purpose</th><th>Input</th><th>Output</th></tr></thead><tbody>
+<tr><td><code>markdown</code></td><td>Renders markdown to HTML</td><td>Markdown text</td><td>HTML content</td></tr>
+</tbody></table>
+</div>
+<p><strong>Example usage:</strong></p>
+<pre><code class="language-html">&lt;div class="content"&gt;{% markdown(description="Description in **markdown**") %}&lt;/div&gt;
+</code></pre>
+<h2 id="complete-canvas-template"><a class="header" href="#complete-canvas-template">Complete Canvas Template</a></h2>
+<p>Here’s the complete template file for our canvas app:</p>
+<pre><code class="language-html">&lt;div class="canvas-container"&gt;
+  &lt;canvas height="{% height=400 %}"&gt;&lt;/canvas&gt;
+&lt;/div&gt;
+&lt;style&gt;
+  .canvas-container {
+    width: 100%;
+    background: white;
+    border-radius: 1rem;
+    border: 1px solid #ccc;
+
+    background-size: 20px 20px;
+    background-image: linear-gradient(to right, #eee 1px, transparent 1px),
+      linear-gradient(to bottom, #eee 1px, transparent 1px);
+  }
+&lt;/style&gt;
+&lt;script&gt;
+  document.addEventListener("DOMContentLoaded", () =&gt; {
+    const container = document.querySelector(".canvas-container");
+    const canvas = container.querySelector("canvas");
+    const ctx = canvas.getContext("2d");
+    const resizeObserver = new ResizeObserver((entries) =&gt; {
+      for (const entry of entries) canvas.width = entry.contentRect.width;
+    });
+    resizeObserver.observe(container);
+
+    let drawing = false;
+    const lastPos = { x: 0, y: 0 };
+
+    // Draw a line from last position to current position
+    function draw(x, y) {
+      ctx.beginPath();
+      ctx.moveTo(lastPos.x, lastPos.y);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+      lastPos.x = x;
+      lastPos.y = y;
+    }
+
+    // Mouse events
+    canvas.addEventListener("mousedown", (e) =&gt; {
+      drawing = true;
+      lastPos.x = e.offsetX;
+      lastPos.y = e.offsetY;
+    });
+
+    canvas.addEventListener("mousemove", (e) =&gt; {
+      if (!drawing) return;
+      draw(e.offsetX, e.offsetY);
+    });
+
+    canvas.addEventListener("mouseup", () =&gt; (drawing = false));
+    canvas.addEventListener("mouseout", () =&gt; (drawing = false));
+
+    // Touch events
+    canvas.addEventListener("touchstart", (e) =&gt; {
+      if (e.touches.length !== 1) return;
+      e.preventDefault();
+      drawing = true;
+
+      const rect = canvas.getBoundingClientRect();
+      lastPos.x = e.touches[0].clientX - rect.left;
+      lastPos.y = e.touches[0].clientY - rect.top;
+    });
+
+    canvas.addEventListener("touchmove", (e) =&gt; {
+      if (!drawing || e.touches.length !== 1) return;
+      e.preventDefault();
+      const rect = canvas.getBoundingClientRect();
+      const x = e.touches[0].clientX - rect.left;
+      const y = e.touches[0].clientY - rect.top;
+      draw(x, y);
+    });
+
+    canvas.addEventListener("touchend", () =&gt; (drawing = false));
+    canvas.addEventListener("touchcancel", () =&gt; (drawing = false));
+  });
+&lt;/script&gt;
+</code></pre>
+<h2 id="using-your-custom-app"><a class="header" href="#using-your-custom-app">Using Your Custom App</a></h2>
+<h3 id="basic-usage"><a class="header" href="#basic-usage">Basic Usage</a></h3>
+<p>After creating the template file, use your app in your book:</p>
+<pre><code class="language-text">{% embed canvas height=400 %}
+</code></pre>
+<h3 id="with-default-values"><a class="header" href="#with-default-values">With Default Values</a></h3>
+<p>Since height has a default value of <strong>400</strong>, you can omit it:</p>
+<pre><code class="language-text">{% embed canvas %}
+</code></pre>
+<h3 id="interactive-example"><a class="header" href="#interactive-example">Interactive Example</a></h3>
+<p>Test the canvas app by drawing on it:</p>
+<div class="canvas-container"> <canvas height="400"></canvas></div><style>.canvas-container { width: 100%; background: white; border-radius: 1rem; border: 1px solid #ccc; background-size: 20px 20px; background-image: linear-gradient(to right, #eee 1px, transparent 1px), linear-gradient(to bottom, #eee 1px, transparent 1px); }</style><script>document.addEventListener("DOMContentLoaded", () => { const container = document.querySelector(".canvas-container"); const canvas = container.querySelector("canvas"); const ctx = canvas.getContext("2d"); const resizeObserver = new ResizeObserver((entries) => { for (const entry of entries) canvas.width = entry.contentRect.width; }); resizeObserver.observe(container); let drawing = false; const lastPos = { x: 0, y: 0 }; function draw(x, y) { ctx.beginPath(); ctx.moveTo(lastPos.x, lastPos.y); ctx.lineTo(x, y); ctx.stroke(); lastPos.x = x; lastPos.y = y; } canvas.addEventListener("mousedown", (e) => { drawing = true; lastPos.x = e.offsetX; lastPos.y = e.offsetY; }); canvas.addEventListener("mousemove", (e) => { if (!drawing) return; draw(e.offsetX, e.offsetY); }); canvas.addEventListener("mouseup", () => (drawing = false)); canvas.addEventListener("mouseout", () => (drawing = false)); canvas.addEventListener("touchstart", (e) => { if (e.touches.length !== 1) return; e.preventDefault(); drawing = true; const rect = canvas.getBoundingClientRect(); lastPos.x = e.touches[0].clientX - rect.left; lastPos.y = e.touches[0].clientY - rect.top; }); canvas.addEventListener("touchmove", (e) => { if (!drawing || e.touches.length !== 1) return; e.preventDefault(); const rect = canvas.getBoundingClientRect(); const x = e.touches[0].clientX - rect.left; const y = e.touches[0].clientY - rect.top; draw(x, y); }); canvas.addEventListener("touchend", () => (drawing = false)); canvas.addEventListener("touchcancel", () => (drawing = false)); });</script>
+<h2 id="contributing-templates"><a class="header" href="#contributing-templates">Contributing Templates</a></h2>
+<p>Want to share your custom templates with the community?</p>
+<h3 id="for-personal-use"><a class="header" href="#for-personal-use">For Personal Use</a></h3>
+<ul>
+<li>Keep templates in your <code>assets/templates/</code> folder</li>
+<li>Customize as needed for your specific use case</li>
+</ul>
+<h3 id="for-community-contribution"><a class="header" href="#for-community-contribution">For Community Contribution</a></h3>
+<ul>
+<li><strong>Fork</strong> the <a href="https://github.com/mr-addict/mdbook-embedify">mdbook-embedify repository</a></li>
+<li><strong>Add</strong> your template to <a href="https://github.com/MR-Addict/mdbook-embedify/tree/main/src/assets/templates">src/assets/templates</a></li>
+<li><strong>Submit</strong> a pull request with documentation</li>
+<li><strong>Include</strong> examples and usage instructions</li>
+</ul>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="language-matching-system"><a class="header" href="#language-matching-system">Language Matching System</a></h1>
+<blockquote>
+<p>Attention 💥</p>
+<p>Support since <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">v0.2.17</a>.</p>
+</blockquote>
+<p>The language detection system is used for <a href="development/../local/include.html">include</a> app to provide accurate syntax highlighting based on file paths.</p>
+<h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
+<p>The language detection system intelligently identifies programming languages from file paths using a sophisticated <strong>three-tier matching system</strong> with clear precedence rules:</p>
+<div class="table-wrapper"><table><thead><tr><th>Priority</th><th>Method</th><th>Example</th><th>Description</th></tr></thead><tbody>
+<tr><td><strong>1st</strong> (Highest)</td><td><strong>Exact filename</strong></td><td><code>Dockerfile</code> → <code>dockerfile</code></td><td>Perfect filename matches</td></tr>
+<tr><td><strong>2nd</strong></td><td><strong>File extension</strong></td><td><code>script.js</code> → <code>javascript</code></td><td>Extension-based detection</td></tr>
+<tr><td><strong>3rd</strong> (Lowest)</td><td><strong>Wildcard pattern</strong></td><td><code>Dockerfile.prod</code> → <code>dockerfile</code></td><td>Flexible pattern matching</td></tr>
+</tbody></table>
+</div>
+<h2 id="configuration-system"><a class="header" href="#configuration-system">Configuration System</a></h2>
+<h3 id="configuration-location"><a class="header" href="#configuration-location">Configuration Location</a></h3>
+<p>Language definitions are stored in <a href="https://github.com/MR-Addict/mdbook-embedify/tree/main/src/assets/config/languages.json">src/assets/config/languages.json</a>. Each language entry supports multiple matching strategies.</p>
+<h3 id="language-definition-structure"><a class="header" href="#language-definition-structure">Language Definition Structure</a></h3>
+<pre><code class="language-json">{
+  "name": "dockerfile",
+  "extensions": [".dockerfile"],
+  "filenames": ["Dockerfile", "dockerfile", "Containerfile", "Dockerfile.*", "dockerfile.*", "*.dockerfile"]
+}
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>Property</th><th>Type</th><th>Purpose</th><th>Example</th></tr></thead><tbody>
+<tr><td><code>name</code></td><td>String</td><td>Language identifier for syntax highlighting</td><td><code>"javascript"</code></td></tr>
+<tr><td><code>extensions</code></td><td>Array</td><td>File extensions (with dots)</td><td><code>[".js", ".jsx"]</code></td></tr>
+<tr><td><code>filenames</code></td><td>Array</td><td>Exact filenames and wildcard patterns</td><td><code>["Dockerfile", "Makefile.*", "*.config.js"]</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="wildcard-pattern-syntax"><a class="header" href="#wildcard-pattern-syntax">Wildcard Pattern Syntax</a></h2>
+<h3 id="supported-wildcards"><a class="header" href="#supported-wildcards">Supported Wildcards</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Wildcard</th><th>Regex</th><th>Description</th><th>Example Pattern</th><th>Matches</th></tr></thead><tbody>
+<tr><td><code>*</code></td><td><code>.*</code></td><td>Zero or more characters</td><td><code>Dockerfile.*</code></td><td><code>Dockerfile.base</code>, <code>Dockerfile.production</code></td></tr>
+<tr><td><code>?</code></td><td><code>.</code></td><td>Exactly one character</td><td><code>test?.txt</code></td><td><code>test1.txt</code>, <code>testa.txt</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="examples"><a class="header" href="#examples">Examples</a></h2>
+<h3 id="-dockerfile-variants"><a class="header" href="#-dockerfile-variants">🐳 Dockerfile Variants</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Filename</th><th>Result</th><th>Reason</th></tr></thead><tbody>
+<tr><td><code>Dockerfile</code></td><td><code>dockerfile</code></td><td>✅ Exact match (non-wildcard entry)</td></tr>
+<tr><td><code>Dockerfile.base</code></td><td><code>dockerfile</code></td><td>🔍 Pattern: <code>Dockerfile.*</code> (wildcard entry)</td></tr>
+<tr><td><code>Dockerfile.production</code></td><td><code>dockerfile</code></td><td>🔍 Pattern: <code>Dockerfile.*</code> (wildcard entry)</td></tr>
+<tr><td><code>dockerfile.dev</code></td><td><code>dockerfile</code></td><td>🔍 Pattern: <code>dockerfile.*</code> (wildcard entry)</td></tr>
+<tr><td><code>web.dockerfile</code></td><td><code>dockerfile</code></td><td>🔍 Pattern: <code>*.dockerfile</code> (wildcard entry)</td></tr>
+<tr><td><code>api.dockerfile</code></td><td><code>dockerfile</code></td><td>🔍 Pattern: <code>*.dockerfile</code> (wildcard entry)</td></tr>
+<tr><td><code>Dockerfile.js</code></td><td><code>javascript</code></td><td>📁 Extension: <code>.js</code> (overrides pattern)</td></tr>
+</tbody></table>
+</div>
+<h3 id="-makefile-variants"><a class="header" href="#-makefile-variants">🔨 Makefile Variants</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Filename</th><th>Result</th><th>Reason</th></tr></thead><tbody>
+<tr><td><code>Makefile</code></td><td><code>makefile</code></td><td>✅ Exact match (non-wildcard entry)</td></tr>
+<tr><td><code>Makefile.local</code></td><td><code>makefile</code></td><td>🔍 Pattern: <code>Makefile.*</code> (wildcard entry)</td></tr>
+<tr><td><code>Makefile.am</code></td><td><code>makefile</code></td><td>✅ Exact match (non-wildcard entry)</td></tr>
+<tr><td><code>custom.makefile</code></td><td><code>makefile</code></td><td>📁 Extension: <code>.makefile</code></td></tr>
+<tr><td><code>build.mk</code></td><td><code>makefile</code></td><td>📁 Extension: <code>.mk</code></td></tr>
+</tbody></table>
+</div>
+<h3 id="-shell-configuration-files"><a class="header" href="#-shell-configuration-files">🐚 Shell Configuration Files</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Filename</th><th>Result</th><th>Reason</th></tr></thead><tbody>
+<tr><td><code>.bashrc</code></td><td><code>shell</code></td><td>✅ Exact match (non-wildcard entry)</td></tr>
+<tr><td><code>.zshrc</code></td><td><code>shell</code></td><td>✅ Exact match (non-wildcard entry)</td></tr>
+<tr><td><code>custom.bashrc</code></td><td><code>shell</code></td><td>🔍 Pattern: <code>*.bashrc</code> (wildcard entry)</td></tr>
+<tr><td><code>my.profile</code></td><td><code>shell</code></td><td>🔍 Pattern: <code>*.profile</code> (wildcard entry)</td></tr>
+<tr><td><code>script.sh</code></td><td><code>shell</code></td><td>📁 Extension: <code>.sh</code></td></tr>
+</tbody></table>
+</div>
+<h3 id="-configuration-files"><a class="header" href="#-configuration-files">📦 Configuration Files</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Filename</th><th>Result</th><th>Reason</th></tr></thead><tbody>
+<tr><td><code>package.json</code></td><td><code>json</code></td><td>📁 Extension: <code>.json</code></td></tr>
+<tr><td><code>tsconfig.json</code></td><td><code>json</code></td><td>📁 Extension: <code>.json</code></td></tr>
+<tr><td><code>webpack.config.js</code></td><td><code>javascript</code></td><td>📁 Extension: <code>.js</code></td></tr>
+<tr><td><code>.eslintrc.json</code></td><td><code>json</code></td><td>📁 Extension: <code>.json</code></td></tr>
+</tbody></table>
+</div><style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="changelog"><a class="header" href="#changelog">Changelog</a></h1>
+<p>This page tracks all notable changes to mdbook-embedify. The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>.</p>
+<h2 id="0217---2025-01-05-"><a class="header" href="#0217---2025-01-05-">[0.2.17] - 2025-01-05 🎉</a></h2>
+<h3 id="-new-features"><a class="header" href="#-new-features">✨ New Features</a></h3>
+<ul>
+<li>
+<p><strong>Embed Ignore Functionality</strong>: You can now prevent specific embed blocks from being processed using <code>embed-ignore</code></p>
+<pre><code class="language-text">{% embed codepen user="example" slug="demo" %}
+</code></pre>
+<p>This is perfect for documentation where you want to show embed syntax without processing it.</p>
+</li>
+<li>
+<p><strong>Comprehensive Testing Suite</strong>: Added robust testing framework including:</p>
+<ul>
+<li>Book integration tests that validate entire mdbook builds</li>
+<li>Parser testing for embed syntax validation</li>
+<li>Language detection testing</li>
+<li>Automated comparison of generated vs expected output</li>
+</ul>
+</li>
+<li>
+<p><strong>Enhanced Language Detection</strong>: Major improvements to file extension mapping:</p>
+<ul>
+<li>Support for wildcard matching in filename patterns</li>
+<li>Multi-dot file extensions (<code>.spec.ts</code>, <code>.test.js</code>, etc.)</li>
+<li>More accurate language detection using consolidated patterns</li>
+</ul>
+</li>
+<li>
+<p><strong>Development Documentation</strong>: Added comprehensive guides for contributors and developers</p>
+</li>
+</ul>
+<h3 id="-improvements"><a class="header" href="#-improvements">🔧 Improvements</a></h3>
+<ul>
+<li>
+<p><strong>Include App Enhancements</strong>:</p>
+<ul>
+<li>Added <code>type</code> and <code>range</code> options for more flexible content inclusion</li>
+<li>Better handling of markdown files with automatic code block wrapping</li>
+<li>Wildcard matching support for include files</li>
+</ul>
+</li>
+<li>
+<p><strong>Custom Template Support</strong>: Configure custom templates folder for your specific needs</p>
+</li>
+<li>
+<p><strong>Better Error Reporting</strong>: Enhanced error messages throughout the system</p>
+</li>
+</ul>
+<h3 id="-bug-fixes"><a class="header" href="#-bug-fixes">🐛 Bug Fixes</a></h3>
+<ul>
+<li>Improved mdbook installation process with existing installation checks</li>
+<li>Fixed language detection issues with complex file extensions</li>
+<li>Resolved regex handling problems</li>
+<li>Better handling of draft chapters</li>
+<li>Fixed various CI/CD workflow issues</li>
+</ul>
+<h3 id="-technical-improvements"><a class="header" href="#-technical-improvements">🔧 Technical Improvements</a></h3>
+<ul>
+<li>Rewritten parser using Rust Pest for better performance</li>
+<li>Enhanced HTML minification process</li>
+<li>Canvas template improvements with dynamic height and touch support</li>
+</ul>
+<h2 id="0216---2024-12-xx"><a class="header" href="#0216---2024-12-xx">[0.2.16] - 2024-12-XX</a></h2>
+<h3 id="-new-features-1"><a class="header" href="#-new-features-1">✨ New Features</a></h3>
+<ul>
+<li><strong>Advanced Language Detection</strong>: Integrated hyperpolyglot for improved language detection accuracy</li>
+<li>Version number display in documentation interface</li>
+</ul>
+<h2 id="0215---2024-12-xx"><a class="header" href="#0215---2024-12-xx">[0.2.15] - 2024-12-XX</a></h2>
+<h3 id="-new-features-2"><a class="header" href="#-new-features-2">✨ New Features</a></h3>
+<ul>
+<li>Enhanced canvas template with dynamic height and touch support</li>
+</ul>
+<h3 id="-improvements-1"><a class="header" href="#-improvements-1">🔧 Improvements</a></h3>
+<ul>
+<li>HTML minification now removes style and script comments for cleaner output</li>
+</ul>
+<h2 id="0214---2024-12-xx"><a class="header" href="#0214---2024-12-xx">[0.2.14] - 2024-12-XX</a></h2>
+<h3 id="-new-features-3"><a class="header" href="#-new-features-3">✨ New Features</a></h3>
+<ul>
+<li><strong>Custom Templates</strong>: Full support for custom templates in embed preprocessor</li>
+<li><strong>Canvas App Template</strong>: New interactive canvas template for dynamic content</li>
+</ul>
+<h3 id="-documentation"><a class="header" href="#-documentation">📚 Documentation</a></h3>
+<ul>
+<li>Updated guides for creating new apps and using templates</li>
+</ul>
+<h2 id="0213---2024-12-xx"><a class="header" href="#0213---2024-12-xx">[0.2.13] - 2024-12-XX</a></h2>
+<h3 id="-new-features-4"><a class="header" href="#-new-features-4">✨ New Features</a></h3>
+<ul>
+<li><strong>Enhanced Include App</strong>: Added <code>type</code> and <code>range</code> options for precise content inclusion</li>
+</ul>
+<h3 id="-improvements-2"><a class="header" href="#-improvements-2">🔧 Improvements</a></h3>
+<ul>
+<li>Better error reporting and validation across the board</li>
+</ul>
+<h2 id="0212---2024-12-xx"><a class="header" href="#0212---2024-12-xx">[0.2.12] - 2024-12-XX</a></h2>
+<h3 id="-new-features-5"><a class="header" href="#-new-features-5">✨ New Features</a></h3>
+<ul>
+<li><strong>Include App</strong>: Brand new functionality for embedding content from other files</li>
+<li>Enhanced markdown code block support for better formatting</li>
+</ul>
+<h3 id="-bug-fixes-1"><a class="header" href="#-bug-fixes-1">🐛 Bug Fixes</a></h3>
+<ul>
+<li>Proper handling of draft chapters in mdbook</li>
+<li>Improved markdown file processing and rendering</li>
+</ul>
+<hr />
+<h2 id="-whats-next"><a class="header" href="#-whats-next">🚀 What’s Next?</a></h2>
+<p>Stay tuned for upcoming features and improvements! Check our <a href="https://github.com/MR-Addict/mdbook-embedify">GitHub repository</a> for the latest updates and to contribute to the project.</p>
+<h2 id="-contributing"><a class="header" href="#-contributing">🤝 Contributing</a></h2>
+<p>Found a bug or have a feature request? We’d love to hear from you:</p>
+<ul>
+<li><a href="https://github.com/MR-Addict/mdbook-embedify/issues">Report issues</a></li>
+<li><a href="https://github.com/MR-Addict/mdbook-embedify/pulls">Submit pull requests</a></li>
+<li><a href="https://github.com/MR-Addict/mdbook-embedify/discussions">Join discussions</a></li>
+</ul>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><style>.announcement-banner { --site-announcement-bar-stripe-color1: #e5e7eb; --site-announcement-bar-stripe-color2: #d1d5db; z-index: 150; position: relative; flex-direction: column; justify-content: center; align-items: center; margin: 0; padding: 1rem 3.5rem; background: repeating-linear-gradient( 45deg, var(--site-announcement-bar-stripe-color1), var(--site-announcement-bar-stripe-color1) 20px, var(--site-announcement-bar-stripe-color2) 10px, var(--site-announcement-bar-stripe-color2) 40px ); } html:is(.navy, .coal, .ayu) .announcement-banner { --site-announcement-bar-stripe-color1: #1f2937; --site-announcement-bar-stripe-color2: #111827; } .announcement-banner p { color: var(--fg); width: 100%; margin: 0; padding: 0; overflow: hidden; text-align: center; white-space: nowrap; text-overflow: ellipsis; text-wrap: balance; } .announcement-banner button[data-close] { top: 50%; right: 1rem; position: absolute; transform: translateY(-50%); width: 3rem; height: 3rem; cursor: pointer !important; border: none; font-weight: 900; border-radius: 50%; background-color: transparent; }</style><div style="display: none" data-id="0.2.17" class="announcement-banner"> <p><em>New version <a href="https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17">0.2.17</a> relased</em></p> <button type="button" data-close>X</button></div><script>(() => { const banner = document.querySelector(".announcement-banner"); const id = banner.getAttribute("data-id"); const message = banner.querySelector("p").textContent; const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner")); if (!localData || localData.id !== id || localData.hide !== true) { banner.style.display = "flex"; const page = document.querySelector(".page"); page.parentNode.insertBefore(banner, page); banner.querySelector("button").addEventListener("click", () => { banner.remove(); localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message })); }); } })();</script><style>.giscus { margin-top: 6rem; }</style><script src="https://giscus.app/client.js" data-repo="MR-Addict/mdbook-embedify" data-repo-id="R_kgDOLCxX0Q" data-category="General" data-category-id="DIC_kwDOLCxX0c4CdGx-" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-loading="lazy" crossorigin="anonymous" data-theme="book" async></script><script>(() => { const giscusScript = document.querySelector("script[data-repo][data-repo-id]"); if (giscusScript?.getAttribute("data-theme") !== "book") return; const mapTheme = (theme) => (["light", "rust"].includes(theme) ? "light" : "dark"); const bookTheme = localStorage.getItem("mdbook-theme") || html.getAttribute("class"); giscusScript.setAttribute("data-theme", mapTheme(bookTheme)); document.querySelectorAll("button[role='menuitem'].theme").forEach((btn) => { btn.addEventListener("click", (event) => { const theme = mapTheme(event.target.id); const iframe = document.querySelector("iframe.giscus-frame"); if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "*"); }); }); })();</script><style>footer { text-align: center; text-wrap: balance; margin-top: 5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; } footer p { margin: 0; }</style><footer><p>Copyright © 2025 • Created with ❤️ by <a href="https://github.com/MR-Addict">MR-Addict</a></p></footer>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="assets/js/patch.js"></script>
+
+        <script>
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
