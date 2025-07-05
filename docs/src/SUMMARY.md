@@ -30,3 +30,7 @@
   - [Testing Guide](development/testing.md)
   - [Template System](development/template.md)
   - [Language Matching](development/language-matching.md)
+
+# CHANGELOG
+
+- [CHANGELOG](CHANGELOG.md)

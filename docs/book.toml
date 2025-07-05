@@ -49,8 +49,8 @@ footer.enable = true
 footer.message = "Copyright © 2025 • Created with ❤️ by [MR-Addict](https://github.com/MR-Addict)"
 
 announcement-banner.enable = true
-announcement-banner.id = "0.2.17-rc.13"
-announcement-banner.message = "*New version [0.2.17-rc.13](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17-rc.13) relased*"
+announcement-banner.id = "0.2.17"
+announcement-banner.message = "*New version [0.2.17](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17) relased*"
 
 giscus.enable = true
 giscus.repo = "MR-Addict/mdbook-embedify"

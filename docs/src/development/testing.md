@@ -1,9 +1,5 @@
 # Testing Guide
 
-> Attention 💥
->
-> Support since [v0.2.17](https://github.com/MR-Addict/mdbook-embedify/releases/tag/0.2.17).
-
 ## Pre-requisites
 
 Ensure you have the following installed:

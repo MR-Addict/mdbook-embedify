@@ -137,22 +137,3 @@ fn test_book() {
 
     println!("✓ Generated book matches expected output perfectly!");
 }
-
-#[cfg(test)]
-mod cleanup {
-    use super::*;
-
-    /// Helper function to clean up test artifacts
-    pub fn clean_test_artifacts() {
-        let book_output_path = "tests/test-book/book";
-        if Path::new(book_output_path).exists() {
-            let _ = std::fs::remove_dir_all(book_output_path);
-        }
-    }
-
-    #[test]
-    fn cleanup_after_tests() {
-        // This test runs last (alphabetically) to clean up
-        clean_test_artifacts();
-    }
-}
