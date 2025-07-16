@@ -6,6 +6,8 @@ This page tracks all notable changes to mdbook-embedify. The format is based on 
 
 ### ✨ New Features
 
+<!-- embed ignore begin -->
+
 - **Embed Ignore Functionality**: You can now prevent specific embed blocks from being processed using `embed-ignore`
 
   ```text
@@ -13,6 +15,8 @@ This page tracks all notable changes to mdbook-embedify. The format is based on 
   ```
 
   This is perfect for documentation where you want to show embed syntax without processing it.
+
+<!-- embed ignore end -->
 
 - **Comprehensive Testing Suite**: Added robust testing framework including:
 
