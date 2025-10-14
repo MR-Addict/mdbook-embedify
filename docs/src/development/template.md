@@ -53,16 +53,19 @@ Let's create a **canvas** app - a simple drawable canvas component.
 
 **Step 1: Create the template file** (`assets/templates/canvas.html`)
 
-**Basic HTML structure with styling:**
+**Basic HTML:**
 
 ```html
 <div class="canvas-container">
   <canvas height="400"></canvas>
 </div>
-{% embed include file="assets/templates/canvas.html" range="4-15" type="raw" %}
 ```
 
-**Add interactive JavaScript:**
+**Add some styles:**
+
+{% embed include file="assets/templates/canvas.html" range="4-15" %}
+
+**Add interactive javaScript:**
 
 {% embed include file="assets/templates/canvas.html" range="16-" %}
 

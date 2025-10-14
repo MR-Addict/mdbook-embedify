@@ -184,7 +184,26 @@ fn render_embeds(ctx: &PreprocessorContext, chapter: Chapter, content: String) -
             }
 
             // unwrap the result
-            rendered.unwrap().unwrap()
+            // Convert app.options to JSON string for data attribute
+            let options_string = {
+                let mut json_parts = Vec::new();
+                for option in &app.options {
+                    json_parts.push(format!(
+                        "data-option-{}=\"{}\"",
+                        option.name,
+                        option.value
+                    ));
+                }
+                format!("{}", json_parts.join(" "))
+            };
+
+            format!(
+                "<!-- {} -->\n\n<div data-embedify data-app=\"{}\" {} style=\"display:none\"></div>\n\n{}",
+                input,
+                app.name,
+                options_string,
+                rendered.unwrap().unwrap()
+            )
         })
         .to_string();
 

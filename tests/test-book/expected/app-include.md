@@ -8,6 +8,10 @@ This page tests the include app functionality for including source files with va
 
 Include a Python file with automatic language detection:
 
+<!-- {% embed include file="src/samples/hello.py" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/hello.py" style="display:none"></div>
+
 ```python
 #!/usr/bin/env python3
 
@@ -31,6 +35,10 @@ if __name__ == "__main__":
 
 Include a JavaScript file with automatic language detection:
 
+<!-- {% embed include file="src/samples/fibonacci.js" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/fibonacci.js" style="display:none"></div>
+
 ```javascript
 function fibonacci(n) {
   if (n <= 1) {
@@ -53,6 +61,10 @@ console.log(generateSequence(10));
 ### JSON File (Auto-detected Language)
 
 Include a JSON file with automatic language detection:
+
+<!-- {% embed include file="src/samples/package.json" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/package.json" style="display:none"></div>
 
 ```json
 {
@@ -82,6 +94,10 @@ Include a JSON file with automatic language detection:
 
 Include only the first 5 lines of the Python file:
 
+<!-- {% embed include file="src/samples/hello.py" range="-5" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/hello.py" data-option-range="-5" style="display:none"></div>
+
 ```python
 #!/usr/bin/env python3
 
@@ -93,6 +109,10 @@ def greet(name):
 ### Lines 3-8
 
 Include lines 3 through 8 of the JavaScript file:
+
+<!-- {% embed include file="src/samples/fibonacci.js" range="3-8" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/fibonacci.js" data-option-range="3-8" style="display:none"></div>
 
 ```javascript
     return n;
@@ -106,6 +126,10 @@ function generateSequence(length) {
 ### From Line 10 to End
 
 Include from line 10 to the end of the JavaScript file:
+
+<!-- {% embed include file="src/samples/fibonacci.js" range="10-" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/fibonacci.js" data-option-range="10-" style="display:none"></div>
 
 ```javascript
   for (let i = 0; i < length; i++) {
@@ -121,6 +145,10 @@ console.log(generateSequence(10));
 
 Include only line 1 of the Python file:
 
+<!-- {% embed include file="src/samples/hello.py" range="1-1" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/hello.py" data-option-range="1-1" style="display:none"></div>
+
 ```python
 #!/usr/bin/env python3
 ```
@@ -130,6 +158,10 @@ Include only line 1 of the Python file:
 ### Python File as Plain Text
 
 Include Python file but override language to text:
+
+<!-- {% embed include file="src/samples/hello.py" lang="text" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/hello.py" data-option-lang="text" style="display:none"></div>
 
 ```text
 #!/usr/bin/env python3
@@ -153,6 +185,10 @@ if __name__ == "__main__":
 ### JSON File as JavaScript
 
 Include JSON file but override language to JavaScript:
+
+<!-- {% embed include file="src/samples/package.json" lang="javascript" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/package.json" data-option-lang="javascript" style="display:none"></div>
 
 ```javascript
 {
@@ -182,6 +218,10 @@ Include JSON file but override language to JavaScript:
 
 Include markdown file as raw content (not wrapped in code block):
 
+<!-- {% embed include file="src/samples/config.md" type="raw" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/config.md" data-option-type="raw" style="display:none"></div>
+
 # Sample Configuration
 
 This is a sample configuration file for testing include functionality.
@@ -208,6 +248,10 @@ This is a sample configuration file for testing include functionality.
 
 Include lines 3-6 of Python file as raw content:
 
+<!-- {% embed include file="src/samples/hello.py" range="3-6" type="raw" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/hello.py" data-option-range="3-6" data-option-type="raw" style="display:none"></div>
+
 
 def greet(name):
     """Greet someone with a hello message."""
@@ -219,6 +263,10 @@ def greet(name):
 
 Include lines 1-3 of JavaScript file with Python syntax highlighting:
 
+<!-- {% embed include file="src/samples/fibonacci.js" range="1-3" lang="python" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/fibonacci.js" data-option-range="1-3" data-option-lang="python" style="display:none"></div>
+
 ```python
 function fibonacci(n) {
   if (n <= 1) {
@@ -229,6 +277,10 @@ function fibonacci(n) {
 
 Include lines 2-4 of JSON file as raw content:
 
+<!-- {% embed include file="src/samples/package.json" range="2-4" type="raw" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/package.json" data-option-range="2-4" data-option-type="raw" style="display:none"></div>
+
   "name": "test-project",
   "version": "1.0.0",
   "description": "A test project for include functionality",
@@ -236,6 +288,10 @@ Include lines 2-4 of JSON file as raw content:
 ### Full Options Combination
 
 Include lines 5-10 of Python file as raw content with language override:
+
+<!-- {% embed include file="src/samples/hello.py" range="5-10" lang="bash" type="raw" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/hello.py" data-option-range="5-10" data-option-lang="bash" data-option-type="raw" style="display:none"></div>
 
     """Greet someone with a hello message."""
     return f"Hello, {name}!"
@@ -249,6 +305,10 @@ def main():
 ### Empty Range (Should Include Full File)
 
 Test empty range defaults to full file:
+
+<!-- {% embed include file="src/samples/hello.py" range="" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/hello.py" data-option-range="" style="display:none"></div>
 
 ```python
 #!/usr/bin/env python3
@@ -273,6 +333,10 @@ if __name__ == "__main__":
 
 Test invalid range defaults to full file:
 
+<!-- {% embed include file="src/samples/hello.py" range="invalid-range" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/hello.py" data-option-range="invalid-range" style="display:none"></div>
+
 ```python
 #!/usr/bin/env python3
 
@@ -295,6 +359,10 @@ if __name__ == "__main__":
 ### Out-of-bounds Range (Should Clamp to Valid Range)
 
 Test range that goes beyond file length:
+
+<!-- {% embed include file="src/samples/hello.py" range="1-1000" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/hello.py" data-option-range="1-1000" style="display:none"></div>
 
 ```python
 #!/usr/bin/env python3

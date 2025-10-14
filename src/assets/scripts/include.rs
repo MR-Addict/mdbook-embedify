@@ -4,9 +4,8 @@ use crate::parser;
 use mdbook::preprocess::PreprocessorContext;
 use std::fs;
 
-fn wrap_content_in_code_block(content: &str, language: &str, lang_detected: &str) -> String {
-    // check if the language is markdown, if so, wrapped by backticks
-    if lang_detected == "markdown" {
+fn wrap_content_in_code_block(content: String, language: String, lang_detected: String) -> String {
+    let backticks = if lang_detected == "markdown" {
         // Count the maximum number of consecutive backticks in the content
         let max_backticks = content
             .lines()
@@ -22,12 +21,12 @@ fn wrap_content_in_code_block(content: &str, language: &str, lang_detected: &str
             .unwrap_or(2) // Default to 2 if no backticks found
             + 1; // Add 1 to ensure we have enough backticks
 
-        let backticks = "`".repeat(max_backticks);
-
-        format!("{}{}\n{}\n{}", backticks, language, content, backticks)
+        "`".repeat(max_backticks)
     } else {
-        format!("```{}\n{}\n```", language, content)
-    }
+        "```".to_string()
+    };
+
+    format!("{}{}\n{}\n{}", backticks, language, content, backticks)
 }
 
 fn parse_include_range(input: String, max_line: usize) -> (usize, usize) {
@@ -73,12 +72,16 @@ pub fn include_script(
     options: Vec<parser::EmbedAppOption>,
 ) -> Result<String, String> {
     // get the file path from the options
-    let file_path = parser::get_option("file", options.clone());
-    if file_path.is_none() {
+    let file_path_option = parser::get_option("file", options.clone());
+    if file_path_option.is_none() {
         return Err("Option file is required".to_string());
     }
-    let file_path = ctx.root.join(&file_path.unwrap().value);
-    let file_path = file_path.to_string_lossy().to_string();
+
+    let file_path = ctx
+        .root
+        .join(file_path_option.unwrap().value)
+        .to_string_lossy()
+        .to_string();
 
     // read the file content
     if !std::path::Path::new(&file_path).exists() {
@@ -117,9 +120,5 @@ pub fn include_script(
         _ => lang_detected.clone(),
     };
 
-    Ok(wrap_content_in_code_block(
-        &content,
-        &language,
-        &lang_detected,
-    ))
+    Ok(wrap_content_in_code_block(content, language, lang_detected))
 }

@@ -64,6 +64,10 @@ Block ignore should take precedence over inline ignore:
 
 This embed should render:
 
+<!-- {% embed include file="src/samples/hello.py" range="1-3" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/hello.py" data-option-range="1-3" style="display:none"></div>
+
 ```python
 #!/usr/bin/env python3
 
@@ -75,6 +79,10 @@ This embed should be ignored (inline):
 {% embed include file="src/samples/fibonacci.js" range="1-3" %}
 
 This embed should also render:
+
+<!-- {% embed include file="src/samples/package.json" lang="javascript" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/package.json" data-option-lang="javascript" style="display:none"></div>
 
 ```javascript
 {
@@ -110,6 +118,10 @@ Content before the ignored block.
 <!-- embed ignore end -->
 
 Content after the ignored block.
+
+<!-- {% embed include file="src/samples/config.md" type="raw" %} -->
+
+<div data-embedify data-app="include" data-option-file="src/samples/config.md" data-option-type="raw" style="display:none"></div>
 
 # Sample Configuration
 
