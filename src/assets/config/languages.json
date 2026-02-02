@@ -91,7 +91,7 @@
   },
   {
     "name": "perl",
-    "extensions": [".pm", ".t"]
+    "extensions": [".pl", ".pm", ".t"]
   },
   {
     "name": "php",
