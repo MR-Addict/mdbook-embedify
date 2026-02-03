@@ -16,7 +16,7 @@ jobs:
       - name: Install mdbook
         run: |
           if ! command -v mdbook >/dev/null 2>&1; then
-            cargo install mdbook --version "$(grep '^mdbook' Cargo.toml | sed 's/.*"\([^"]*\)".*/\1/')" --force
+            cargo install mdbook --version "$(grep '^mdbook-core' Cargo.toml | sed 's/.*"\([^"]*\)".*/\1/')" --force
           else
             echo "mdbook is already installed, skipping."
           fi
