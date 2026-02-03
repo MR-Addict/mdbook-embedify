@@ -15,10 +15,18 @@ jobs:
 
       - name: Install mdbook
         run: |
-          if ! command -v mdbook >/dev/null 2>&1; then
-            cargo install mdbook --version "$(grep '^mdbook-core' Cargo.toml | sed 's/.*"\([^"]*\)".*/\1/')" --force
+          REQUIRED_VERSION="$(grep '^mdbook-core' Cargo.toml | sed 's/.*"\([^"]*\)".*/\1/')"
+          if command -v mdbook >/dev/null 2>&1; then
+            INSTALLED_VERSION="$(mdbook --version | awk '{print $2}')"
+            if [ "$INSTALLED_VERSION" = "$REQUIRED_VERSION" ]; then
+              echo "mdbook $INSTALLED_VERSION is already installed."
+            else
+              echo "mdbook $INSTALLED_VERSION is installed but we need $REQUIRED_VERSION. Reinstalling..."
+              cargo install mdbook --version "$REQUIRED_VERSION" --force
+            fi
           else
-            echo "mdbook is already installed, skipping."
+            echo "mdbook not found. Installing version $REQUIRED_VERSION..."
+            cargo install mdbook --version "$REQUIRED_VERSION" --force
           fi
 
       - name: Run tests
