@@ -5,7 +5,7 @@ mod embed;
 mod parser;
 mod utils;
 
-use mdbook::preprocess::{CmdPreprocessor, Preprocessor};
+use mdbook_preprocessor::{parse_input, Preprocessor};
 use std::io;
 
 #[macro_use]
@@ -18,7 +18,7 @@ fn main() {
     // reply --supports command line argument
     cli.reply_supports(&embed);
 
-    let (ctx, book) = CmdPreprocessor::parse_input(io::stdin()).unwrap();
+    let (ctx, book) = parse_input(io::stdin()).unwrap();
     let result = embed.run(&ctx, book).unwrap();
 
     // Write the result to stdout

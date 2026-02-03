@@ -1,5 +1,5 @@
 use clap::{Arg, Command};
-use mdbook::preprocess::Preprocessor;
+use mdbook_preprocessor::Preprocessor;
 use std::{
     io::{self, IsTerminal},
     process,
@@ -38,10 +38,10 @@ impl Cli {
             let renderer = sub_args.get_one::<String>("renderer").unwrap();
 
             // signal whether the renderer is supported by exiting with 1 or 0.
-            if pre.supports_renderer(renderer) {
-                process::exit(0);
-            } else {
-                process::exit(1);
+            match pre.supports_renderer(renderer) {
+                Ok(true) => process::exit(0),
+                Ok(false) => process::exit(1),
+                Err(_) => process::exit(1),
             }
         }
     }

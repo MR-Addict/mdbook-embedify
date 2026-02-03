@@ -1,7 +1,7 @@
 use crate::detect_lang;
 use crate::parser;
 
-use mdbook::preprocess::PreprocessorContext;
+use mdbook_preprocessor::PreprocessorContext;
 use std::fs;
 
 fn wrap_content_in_code_block(content: String, language: String, lang_detected: String) -> String {
