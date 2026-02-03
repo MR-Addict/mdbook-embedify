@@ -2,7 +2,6 @@
 authors = ["MR-Addict"]
 description = "This is a mdbook preprocessor plugin that allows you embed apps to your book, like youtube, codepen, giscus and many other apps"
 title = "mdbook-embedify"
-multilingual = false
 language = "en"
 src = "src"
 
@@ -16,7 +15,6 @@ default-theme = "Light"
 preferred-dark-theme = "Ayu"
 smart-punctuation = true
 mathjax-support = true
-copy-fonts = true
 no-section-label = false
 git-repository-url = "https://github.com/mr-addict/mdbook-embedify"
 edit-url-template = "https://github.com/mr-addict/mdbook-embedify/edit/main/docs/{path}"
@@ -65,4 +63,4 @@ giscus.loading = "lazy"
 custom-templates-folder = "assets/templates"
 
 # This is for the development environment
-command = "target/release/mdbook-embedify"
+command = "../target/release/mdbook-embedify"
