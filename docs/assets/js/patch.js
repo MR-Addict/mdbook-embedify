@@ -1,6 +1,6 @@
 function appendVersion() {
   const shield = document.createElement("span");
-  shield.textContent = "0.2.18";
+  shield.textContent = "0.2.19";
   document.querySelector(".menu-title").appendChild(shield);
 }
 
