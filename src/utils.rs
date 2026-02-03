@@ -78,7 +78,7 @@ pub fn get_config_bool(config: &Config, key: &str) -> bool {
         .unwrap_or(false)
 }
 
-pub fn get_config_string<'a>(config: &'a Config, key: &str, default: &'a str) -> String {
+pub fn get_config_string(config: &Config, key: &str, default: &str) -> String {
     config
         .get::<String>(format!("preprocessor.embedify.{}", key).as_str())
         .ok()
