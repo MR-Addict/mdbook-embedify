@@ -2,6 +2,17 @@
 
 This page tracks all notable changes to mdbook-embedify. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.2.18] - 2025-10-14
+
+### ✨ New Features
+
+- **Enhanced App Rendering**: Added additional information display to final app rendering, providing more context to users about embedded content
+
+### 🔧 Improvements
+
+- Better template documentation and examples for creating custom templates
+- Improved include app functionality with enhanced error handling
+
 ## [0.2.17] - 2025-01-05 🎉
 
 ### ✨ New Features
@@ -19,14 +30,12 @@ This page tracks all notable changes to mdbook-embedify. The format is based on 
 <!-- embed ignore end -->
 
 - **Comprehensive Testing Suite**: Added robust testing framework including:
-
   - Book integration tests that validate entire mdbook builds
   - Parser testing for embed syntax validation
   - Language detection testing
   - Automated comparison of generated vs expected output
 
 - **Enhanced Language Detection**: Major improvements to file extension mapping:
-
   - Support for wildcard matching in filename patterns
   - Multi-dot file extensions (`.spec.ts`, `.test.js`, etc.)
   - More accurate language detection using consolidated patterns
@@ -36,7 +45,6 @@ This page tracks all notable changes to mdbook-embedify. The format is based on 
 ### 🔧 Improvements
 
 - **Include App Enhancements**:
-
   - Added `type` and `range` options for more flexible content inclusion
   - Better handling of markdown files with automatic code block wrapping
   - Wildcard matching support for include files
