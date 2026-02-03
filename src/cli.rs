@@ -1,4 +1,4 @@
-use clap::{Arg, Command};
+use clap::{Arg, ArgMatches, Command};
 use mdbook_preprocessor::Preprocessor;
 use std::{
     io::{self, IsTerminal},
@@ -6,7 +6,7 @@ use std::{
 };
 
 pub struct Cli {
-    pub cmd: Command,
+    pub matches: ArgMatches,
 }
 
 impl Cli {
@@ -21,19 +21,18 @@ impl Cli {
             );
 
         let matches = cmd.clone().get_matches();
-        if !matches.args_present() {
-            if io::stdin().is_terminal() {
-                cmd.clone().print_help().unwrap();
-                process::exit(1);
-            }
+        
+        // If no subcommand provided and stdin is a terminal, print help
+        if matches.subcommand().is_none() && io::stdin().is_terminal() {
+            cmd.clone().print_help().unwrap();
+            process::exit(1);
         }
 
-        Self { cmd }
+        Self { matches }
     }
 
     pub fn reply_supports(&self, pre: &dyn Preprocessor) {
-        let matches = self.cmd.clone().get_matches();
-        if let Some(sub_args) = matches.subcommand_matches("supports") {
+        if let Some(sub_args) = self.matches.subcommand_matches("supports") {
             // get the renderer
             let renderer = sub_args.get_one::<String>("renderer").unwrap();
 
