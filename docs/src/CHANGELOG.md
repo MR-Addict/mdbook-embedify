@@ -2,6 +2,16 @@
 
 This page tracks all notable changes to mdbook-embedify. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.3.1] - 2026-02-04
+
+### ✨ New Features
+
+- **YAML Configuration**: Migrated language detection configuration from JSON to YAML format for better readability and maintainability
+
+### 🔧 Improvements
+
+- **mdBook Compatibility**: Updated to support mdbook 0.5.x versions
+
 ## [0.2.18] - 2025-10-14
 
 ### ✨ New Features
