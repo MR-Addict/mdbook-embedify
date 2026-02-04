@@ -11,10 +11,10 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Setup environment
-        uses: .github/actions/setup-rust
+        uses: ./.github/actions/setup-rust
 
       - name: Install mdbook
-        uses: .github/actions/setup-mdbook
+        uses: ./.github/actions/setup-mdbook
 
       - name: Run tests
         run: cargo test --all-features --verbose
@@ -37,7 +37,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Setup environment
-        uses: .github/actions/setup-rust
+        uses: ./.github/actions/setup-rust
         with:
           target: ${{ matrix.target }}
 
