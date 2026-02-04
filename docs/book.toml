@@ -60,16 +60,6 @@ giscus.theme = "book"
 giscus.lang = "en"
 giscus.loading = "lazy"
 
-include.languages.dockerfile.extensions = [".dockerfile"]
-include.languages.dockerfile.filenames = [
-  "Dockerfile",
-  "dockerfile",
-  "Containerfile",
-  "Dockerfile.*",
-  "dockerfile.*",
-  "*.dockerfile",
-]
-
 custom-templates-folder = "assets/templates"
 
 # This is for the development environment

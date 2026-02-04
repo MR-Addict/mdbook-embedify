@@ -36,11 +36,12 @@ Example `book.toml` configuration:
 [preprocessor.embedify]
 # Add .dockerfile extension to dockerfile language
 include.languages.dockerfile.extensions = [".dockerfile"]
-# Add specific filenames to dockerfile language
+# Add specific filenames to dockerfile language(Optional)
 include.languages.dockerfile.filenames = ["Dockerfile", "*.dockerfile"]
 
 # Add a completely new language
 include.languages.mylang.extensions = [".mlg"]
+include.languages.mylang.filenames = ["MyLangFile", "MyLangFile.*"]
 ```
 
 ### Language Definition Structure
