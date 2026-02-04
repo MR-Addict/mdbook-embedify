@@ -1,0 +1,183 @@
+- name: "c"
+  extensions:
+    - ".c"
+    - ".h"
+- name: "cpp"
+  extensions:
+    - ".cpp"
+    - ".c++"
+    - ".cc"
+    - ".cxx"
+    - ".hpp"
+    - ".hxx"
+- name: "csharp"
+  extensions:
+    - ".cs"
+- name: "css"
+  extensions:
+    - ".css"
+- name: "csv"
+  extensions:
+    - ".csv"
+- name: "diff"
+  extensions:
+    - ".diff"
+    - ".patch"
+- name: "dockerfile"
+  extensions:
+    - ".dockerfile"
+  filenames:
+    - "Dockerfile"
+    - "dockerfile"
+    - "Containerfile"
+    - "Dockerfile.*"
+    - "dockerfile.*"
+    - "*.dockerfile"
+- name: "go"
+  extensions:
+    - ".go"
+- name: "graphql"
+  extensions:
+    - ".graphql"
+    - ".gql"
+- name: "html"
+  extensions:
+    - ".html"
+    - ".htm"
+    - ".xhtml"
+- name: "ini"
+  extensions:
+    - ".ini"
+    - ".cfg"
+    - ".properties"
+- name: "java"
+  extensions:
+    - ".java"
+- name: "javascript"
+  extensions:
+    - ".js"
+    - ".jsx"
+    - ".mjs"
+    - ".cjs"
+    - ".es6"
+- name: "json"
+  extensions:
+    - ".json"
+    - ".jsonl"
+    - ".geojson"
+- name: "julia"
+  extensions:
+    - ".jl"
+- name: "kotlin"
+  extensions:
+    - ".kt"
+    - ".kts"
+- name: "less"
+  extensions:
+    - ".less"
+- name: "lua"
+  extensions:
+    - ".lua"
+- name: "makefile"
+  extensions:
+    - ".make"
+    - ".makefile"
+    - ".mk"
+  filenames:
+    - "Makefile"
+    - "makefile"
+    - "GNUmakefile"
+    - "Makefile.am"
+    - "Makefile.in"
+    - "Makefile.*"
+    - "makefile.*"
+- name: "markdown"
+  extensions:
+    - ".md"
+    - ".markdown"
+    - ".mdown"
+    - ".mkd"
+    - ".mkdn"
+- name: "nginx"
+  extensions:
+    - ".nginx"
+    - ".nginxconf"
+    - ".conf"
+- name: "nim"
+  extensions:
+    - ".nim"
+- name: "perl"
+  extensions:
+    - ".pl"
+    - ".pm"
+    - ".t"
+- name: "php"
+  extensions:
+    - ".php"
+- name: "plaintext"
+  extensions:
+    - ".text"
+    - ".txt"
+- name: "python"
+  extensions:
+    - ".py"
+    - ".pyi"
+    - ".pyw"
+  filenames:
+    - "SConstruct"
+    - "SConscript"
+- name: "ruby"
+  extensions:
+    - ".rb"
+    - ".rake"
+    - ".gemspec"
+  filenames:
+    - "Rakefile"
+    - "Gemfile"
+    - "Guardfile"
+    - "Capfile"
+    - "Vagrantfile"
+- name: "rust"
+  extensions:
+    - ".rs"
+- name: "scss"
+  extensions:
+    - ".scss"
+- name: "shell"
+  extensions:
+    - ".sh"
+    - ".bash"
+    - ".zsh"
+  filenames:
+    - ".bashrc"
+    - ".zshrc"
+    - ".profile"
+    - ".bash_profile"
+    - ".zprofile"
+    - "*.bashrc"
+    - "*.zshrc"
+    - "*.profile"
+- name: "sql"
+  extensions:
+    - ".sql"
+- name: "swift"
+  extensions:
+    - ".swift"
+- name: "toml"
+  extensions:
+    - ".toml"
+- name: "typescript"
+  extensions:
+    - ".ts"
+    - ".cts"
+    - ".mts"
+    - ".tsx"
+- name: "xml"
+  extensions:
+    - ".xml"
+    - ".xsd"
+    - ".xsl"
+- name: "yaml"
+  extensions:
+    - ".yml"
+    - ".yaml"

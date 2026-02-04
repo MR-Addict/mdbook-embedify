@@ -20,16 +20,21 @@ The language detection system intelligently identifies programming languages fro
 
 ### Configuration Location
 
-Language definitions are stored in [src/assets/config/languages.json](https://github.com/MR-Addict/mdbook-embedify/tree/main/src/assets/config/languages.json). Each language entry supports multiple matching strategies.
+Language definitions are stored in [src/assets/config/languages.yaml](https://github.com/MR-Addict/mdbook-embedify/tree/main/src/assets/config/languages.yaml). Each language entry supports multiple matching strategies.
 
 ### Language Definition Structure
 
-```json
-{
-  "name": "dockerfile",
-  "extensions": [".dockerfile"],
-  "filenames": ["Dockerfile", "dockerfile", "Containerfile", "Dockerfile.*", "dockerfile.*", "*.dockerfile"]
-}
+```yaml
+- name: "dockerfile"
+  extensions:
+    - ".dockerfile"
+  filenames:
+    - "Dockerfile"
+    - "dockerfile"
+    - "Containerfile"
+    - "Dockerfile.*"
+    - "dockerfile.*"
+    - "*.dockerfile"
 ```
 
 | Property     | Type   | Purpose                                     | Example                                       |

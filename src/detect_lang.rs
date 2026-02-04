@@ -4,15 +4,15 @@ use std::path::Path;
 
 lazy_static! {
     static ref LANGUAGE_MAP: HashMap<String, String> = {
-        let json_content = include_str!("assets/config/languages.json");
-        let languages: Vec<serde_json::Value> =
-            serde_json::from_str(json_content).expect("Failed to parse languages.json");
+        let yaml_content = include_str!("assets/config/languages.yaml");
+        let languages: Vec<serde_yaml::Value> =
+            serde_yaml::from_str(yaml_content).expect("Failed to parse languages.yaml");
 
         let mut map = HashMap::new();
         for lang in languages {
             if let Some(name) = lang["name"].as_str() {
                 // Handle extensions
-                if let Some(extensions) = lang["extensions"].as_array() {
+                if let Some(extensions) = lang["extensions"].as_sequence() {
                     for ext in extensions {
                         if let Some(extension) = ext.as_str() {
                             map.insert(extension.to_string(), name.to_string());
@@ -21,7 +21,7 @@ lazy_static! {
                 }
 
                 // Handle exact filenames (non-pattern entries)
-                if let Some(filenames) = lang["filenames"].as_array() {
+                if let Some(filenames) = lang["filenames"].as_sequence() {
                     for filename in filenames {
                         if let Some(filename_str) = filename.as_str() {
                             // Only add to exact match map if it doesn't contain wildcards
@@ -37,15 +37,15 @@ lazy_static! {
     };
 
     static ref LANGUAGE_PATTERNS: Vec<(regex::Regex, String)> = {
-        let json_content = include_str!("assets/config/languages.json");
-        let languages: Vec<serde_json::Value> =
-            serde_json::from_str(json_content).expect("Failed to parse languages.json");
+        let yaml_content = include_str!("assets/config/languages.yaml");
+        let languages: Vec<serde_yaml::Value> =
+            serde_yaml::from_str(yaml_content).expect("Failed to parse languages.yaml");
 
         let mut patterns = Vec::new();
         for lang in languages {
             if let Some(name) = lang["name"].as_str() {
                 // Handle filename patterns (entries with wildcards)
-                if let Some(filenames) = lang["filenames"].as_array() {
+                if let Some(filenames) = lang["filenames"].as_sequence() {
                     for filename in filenames {
                         if let Some(filename_str) = filename.as_str() {
                             // Only add to patterns if it contains wildcards
