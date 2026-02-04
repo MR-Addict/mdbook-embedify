@@ -4,6 +4,12 @@
 
 This is a [mdbook](https://rust-lang.github.io/mdBook) preprocessor plugin that allows you to embed apps to your book, like youtube, codepen, giscus and many other apps.
 
+> Attention 💥
+>
+> If you still using mdbook version below **v0.5.x**, please use **v0.2.x** of this plugin.
+>
+> This plugin requires mdbook version **v0.5.x** or above.
+
 ## 1. Installation
 
 There are two ways to install this plugin.
