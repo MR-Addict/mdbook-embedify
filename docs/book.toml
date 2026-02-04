@@ -15,7 +15,6 @@ default-theme = "Light"
 preferred-dark-theme = "Ayu"
 smart-punctuation = true
 mathjax-support = true
-copy-fonts = true
 no-section-label = false
 git-repository-url = "https://github.com/mr-addict/mdbook-embedify"
 edit-url-template = "https://github.com/mr-addict/mdbook-embedify/edit/main/docs/{path}"
@@ -64,4 +63,4 @@ giscus.loading = "lazy"
 custom-templates-folder = "assets/templates"
 
 # This is for the development environment
-command = "target/release/mdbook-embedify"
+command = "../target/release/mdbook-embedify"

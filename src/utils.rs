@@ -1,4 +1,4 @@
-use mdbook::Config;
+use mdbook_core::config::Config;
 use minify::html::minify;
 use pulldown_cmark;
 use regex::Regex;
@@ -72,16 +72,18 @@ pub fn render_to_markdown(content: String) -> String {
 
 pub fn get_config_bool(config: &Config, key: &str) -> bool {
     config
-        .get(format!("preprocessor.embedify.{}", key).as_str())
-        .and_then(|v| v.as_bool())
+        .get::<bool>(format!("preprocessor.embedify.{}", key).as_str())
+        .ok()
+        .flatten()
         .unwrap_or(false)
 }
 
-pub fn get_config_string<'a>(config: &'a Config, key: &str, default: &'a str) -> &'a str {
+pub fn get_config_string(config: &Config, key: &str, default: &str) -> String {
     config
-        .get(format!("preprocessor.embedify.{}", key).as_str())
-        .and_then(|v| v.as_str())
-        .unwrap_or(default)
+        .get::<String>(format!("preprocessor.embedify.{}", key).as_str())
+        .ok()
+        .flatten()
+        .unwrap_or_else(|| default.to_string())
 }
 
 pub fn create_embed(name: &str, options: Vec<(&str, &str)>) -> String {
@@ -100,7 +102,7 @@ pub fn create_announcement_banner(config: &Config) -> String {
 
     create_embed(
         "announcement-banner",
-        vec![("id", id), ("theme", theme), ("message", message)],
+        vec![("id", &id), ("theme", &theme), ("message", &message)],
     )
 }
 
@@ -116,14 +118,14 @@ pub fn create_giscus(config: &Config) -> String {
     let loading = get_config_string(config, "giscus.loading", "lazy");
 
     let options = vec![
-        ("repo", repo),
-        ("repo-id", repo_id),
-        ("category", category),
-        ("category-id", category_id),
-        ("reactions-enabled", reactions_enabled),
-        ("theme", theme),
-        ("lang", lang),
-        ("loading", loading),
+        ("repo", repo.as_str()),
+        ("repo-id", repo_id.as_str()),
+        ("category", category.as_str()),
+        ("category-id", category_id.as_str()),
+        ("reactions-enabled", reactions_enabled.as_str()),
+        ("theme", theme.as_str()),
+        ("lang", lang.as_str()),
+        ("loading", loading.as_str()),
     ];
 
     create_embed("giscus", options)
@@ -132,7 +134,7 @@ pub fn create_giscus(config: &Config) -> String {
 pub fn create_footer(config: &Config) -> String {
     // get the config
     let message = get_config_string(config, "footer.message", "");
-    create_embed("footer", vec![("message", message)])
+    create_embed("footer", vec![("message", &message)])
 }
 
 pub fn create_scroll_to_top() -> String {

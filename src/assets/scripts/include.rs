@@ -1,7 +1,7 @@
 use crate::detect_lang;
 use crate::parser;
 
-use mdbook::preprocess::PreprocessorContext;
+use mdbook_preprocessor::PreprocessorContext;
 use std::fs;
 
 fn wrap_content_in_code_block(content: String, language: String, lang_detected: String) -> String {
@@ -104,14 +104,7 @@ pub fn include_script(
     let lines: Vec<&str> = content.lines().collect();
     let content = lines[start..end].join("\n");
 
-    // if include type is raw, return the content as is
-    if let Some(option) = parser::get_option("type", options.clone()) {
-        if option.value == "raw" {
-            return Ok(content);
-        }
-    }
-
-    // if include type is not raw, wrap the content in a code block
+    // wrap the content in a code block
     let lang_option = parser::get_option("lang", options.clone());
     let lang_detected = detect_lang::detect_lang(file_path.clone());
 

@@ -2,11 +2,11 @@ use crate::assets::scripts::include;
 use crate::parser;
 use crate::utils;
 
-use mdbook::{
+use mdbook_core::{
     book::{Book, Chapter},
     errors::Error,
-    preprocess::{Preprocessor, PreprocessorContext},
 };
+use mdbook_preprocessor::{Preprocessor, PreprocessorContext};
 use regex::Regex;
 use rust_embed::RustEmbed;
 
@@ -242,7 +242,7 @@ impl Preprocessor for Embed {
         let announcement_banner = utils::get_config_bool(config, "announcement-banner.enable");
 
         book.for_each_mut(|item| {
-            if let mdbook::book::BookItem::Chapter(chapter) = item {
+            if let mdbook_core::book::BookItem::Chapter(chapter) = item {
                 let mut content = chapter.content.clone();
                 // create the global scroll to top button
                 if scroll_to_top {

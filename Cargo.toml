@@ -14,7 +14,8 @@ description = "A rust based mdbook preprocessor plugin that allows you to embed 
 [dependencies]
 clap = "4.5.40"
 lazy_static = "1.5.0"
-mdbook = "0.4.51"
+mdbook-preprocessor = "0.5.2"
+mdbook-core = "0.5.2"
 minify = "1.3.0"
 pest = "2.8.1"
 pest_derive = "2.8.1"

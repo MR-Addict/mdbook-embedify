@@ -42,7 +42,7 @@ Multiple embeds in a block should all be ignored:
 <!-- embed ignore begin -->
 
 {% embed include file="src/samples/package.json" %}
-{% embed include file="src/samples/config.md" type="raw" %}
+{% embed include file="src/samples/config.md" %}
 {% embed youtube id="testid123" %}
 
 <!-- embed ignore end -->
@@ -119,10 +119,11 @@ Content before the ignored block.
 
 Content after the ignored block.
 
-<!-- {% embed include file="src/samples/config.md" type="raw" %} -->
+<!-- {% embed include file="src/samples/config.md" %} -->
 
-<div data-embedify data-app="include" data-option-file="src/samples/config.md" data-option-type="raw" style="display:none"></div>
+<div data-embedify data-app="include" data-option-file="src/samples/config.md" style="display:none"></div>
 
+```markdown
 # Sample Configuration
 
 This is a sample configuration file for testing include functionality.
@@ -144,6 +145,7 @@ This is a sample configuration file for testing include functionality.
 > This is just for testing purposes.
 >
 > Do not use in production!
+```
 
 ## Edge Cases
 

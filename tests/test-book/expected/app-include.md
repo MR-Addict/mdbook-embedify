@@ -212,16 +212,17 @@ Include JSON file but override language to JavaScript:
 }
 ```
 
-## Raw Type Inclusion
+## Explicit Codeblock Wrapping
 
-### Markdown File as Raw Content
+### Markdown File (Wrapped in Code Block)
 
-Include markdown file as raw content (not wrapped in code block):
+Include markdown file wrapped as a code block:
 
-<!-- {% embed include file="src/samples/config.md" type="raw" %} -->
+<!-- {% embed include file="src/samples/config.md" %} -->
 
-<div data-embedify data-app="include" data-option-file="src/samples/config.md" data-option-type="raw" style="display:none"></div>
+<div data-embedify data-app="include" data-option-file="src/samples/config.md" style="display:none"></div>
 
+```markdown
 # Sample Configuration
 
 This is a sample configuration file for testing include functionality.
@@ -243,19 +244,22 @@ This is a sample configuration file for testing include functionality.
 > This is just for testing purposes.
 >
 > Do not use in production!
+```
 
-### Python File as Raw with Range
+### Python File with Range
 
-Include lines 3-6 of Python file as raw content:
+Include lines 3-6 of Python file as code block:
 
-<!-- {% embed include file="src/samples/hello.py" range="3-6" type="raw" %} -->
+<!-- {% embed include file="src/samples/hello.py" range="3-6" %} -->
 
-<div data-embedify data-app="include" data-option-file="src/samples/hello.py" data-option-range="3-6" data-option-type="raw" style="display:none"></div>
+<div data-embedify data-app="include" data-option-file="src/samples/hello.py" data-option-range="3-6" style="display:none"></div>
 
+```python
 
 def greet(name):
     """Greet someone with a hello message."""
     return f"Hello, {name}!"
+```
 
 ## Combined Options
 
@@ -273,32 +277,36 @@ function fibonacci(n) {
     return n;
 ```
 
-### Range + Raw Type
+### Range + Language Override (Continued)
 
-Include lines 2-4 of JSON file as raw content:
+Include lines 2-4 of JSON file with language override:
 
-<!-- {% embed include file="src/samples/package.json" range="2-4" type="raw" %} -->
+<!-- {% embed include file="src/samples/package.json" range="2-4" lang="json" %} -->
 
-<div data-embedify data-app="include" data-option-file="src/samples/package.json" data-option-range="2-4" data-option-type="raw" style="display:none"></div>
+<div data-embedify data-app="include" data-option-file="src/samples/package.json" data-option-range="2-4" data-option-lang="json" style="display:none"></div>
 
+```json
   "name": "test-project",
   "version": "1.0.0",
   "description": "A test project for include functionality",
+```
 
-### Full Options Combination
+### Multiple Options Combined
 
-Include lines 5-10 of Python file as raw content with language override:
+Include lines 5-10 of Python file with language override:
 
-<!-- {% embed include file="src/samples/hello.py" range="5-10" lang="bash" type="raw" %} -->
+<!-- {% embed include file="src/samples/hello.py" range="5-10" lang="bash" %} -->
 
-<div data-embedify data-app="include" data-option-file="src/samples/hello.py" data-option-range="5-10" data-option-lang="bash" data-option-type="raw" style="display:none"></div>
+<div data-embedify data-app="include" data-option-file="src/samples/hello.py" data-option-range="5-10" data-option-lang="bash" style="display:none"></div>
 
+```bash
     """Greet someone with a hello message."""
     return f"Hello, {name}!"
 
 
 def main():
     name = "World"
+```
 
 ## Edge Cases
 

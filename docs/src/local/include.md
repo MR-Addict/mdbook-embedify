@@ -8,23 +8,21 @@
 >
 > If you find any issues with the language detection, please open an [issue](https://github.com/MR-Addict/mdbook-embedify/issues). Currenltly language map is under [languages.json](https://github.com/MR-Addict/mdbook-embedify/blob/main/src/assets/config/languages.json)
 
-The include app is for including source file or wrapped it as markdown code block.
+The include app is for including source file and wrapping it as markdown code block.
 
 The language is automatically detected by the file name extension. You can override it by passing `lang` option. The file path should be relative to book root directory.
 
 ## Options
 
-| Option | Description                                             | Required | Default     |
-| :----- | :------------------------------------------------------ | :------- | :---------- |
-| file   | File to include, relative to book root directory        | Yes      | - -         |
-| lang   | This will override the automatically detected language  | No       | - -         |
-| range  | Range of lines to include, e.g. `1-10` or `1-` or `-10` | No       | - -         |
-| type   | Include type, cloud be `raw` or `codeblock`             | No       | `codeblock` |
+| Option | Description                                             | Required | Default |
+| :----- | :------------------------------------------------------ | :------- | :------ |
+| file   | File to include, relative to book root directory        | Yes      | - -     |
+| lang   | This will override the automatically detected language  | No       | - -     |
+| range  | Range of lines to include, e.g. `1-10` or `1-` or `-10` | No       | - -     |
 
 > Attention 💥
 >
-> - When `range` is used, it will insert the specified lines starts from 1.
-> - The `raw` type will insert the raw file content into the markdown file directly, while the `codeblock` type will wrap it as a code block.
+> When `range` is used, it will insert the specified lines starts from 1.
 
 ## Example
 
