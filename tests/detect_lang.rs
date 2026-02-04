@@ -1,4 +1,8 @@
-use mdbook_embedify::detect_lang::detect_lang;
+use mdbook_embedify::detect_lang;
+
+fn detect_lang(path: String) -> String {
+    detect_lang::detect_lang(path, None)
+}
 
 #[cfg(test)]
 mod basic_language_detection_tests {
@@ -519,5 +523,47 @@ mod wildcard_pattern_tests {
         // These should not match
         assert_eq!(detect_lang("bashrc".to_string()), "plaintext"); // no dot prefix
         assert_eq!(detect_lang("notmakefile".to_string()), "plaintext");
+    }
+}
+
+#[cfg(test)]
+mod config_detection_tests {
+    use mdbook_embedify::detect_lang;
+    use mdbook_core::config::Config;
+
+    #[test]
+    fn test_config_overrides() {
+         // Construct context
+         let mut config = Config::default();
+         // Set include.languages.dockerfile.extensions = [".mydev"]
+         config.set("preprocessor.embedify.include.languages.dockerfile.extensions", vec![".mydev"]).unwrap();
+           
+         assert_eq!(detect_lang::detect_lang("test.mydev".to_string(), Some(&config)), "dockerfile");
+    }
+
+    #[test]
+    fn test_config_filenames() {
+         let mut config = Config::default();
+         config.set("preprocessor.embedify.include.languages.makefile.filenames", vec!["MyMake"]).unwrap();
+           
+         assert_eq!(detect_lang::detect_lang("MyMake".to_string(), Some(&config)), "makefile");
+    }
+
+    #[test]
+    fn test_config_patterns() {
+         let mut config = Config::default();
+         // Test wildcard pattern configuration
+         config.set("preprocessor.embedify.include.languages.python.filenames", vec!["config_*.script"]).unwrap();
+           
+         assert_eq!(detect_lang::detect_lang("config_test.script".to_string(), Some(&config)), "python");
+    }
+
+    #[test]
+    fn test_add_new_language() {
+         let mut config = Config::default();
+         // Add a completely new language
+         config.set("preprocessor.embedify.include.languages.mylang.extensions", vec![".mlg"]).unwrap();
+           
+         assert_eq!(detect_lang::detect_lang("test.mlg".to_string(), Some(&config)), "mylang");
     }
 }

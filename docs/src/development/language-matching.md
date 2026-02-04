@@ -22,6 +22,27 @@ The language detection system intelligently identifies programming languages fro
 
 Language definitions are stored in [src/assets/config/languages.yaml](https://github.com/MR-Addict/mdbook-embedify/tree/main/src/assets/config/languages.yaml). Each language entry supports multiple matching strategies.
 
+### Custom Configuration
+
+> Attention 💥
+>
+> Support since [v0.3.2](https://github.com/MR-Addict/mdbook-embedify/releases/tag/v0.3.2).
+
+You can override or extend the language detection rules in your `book.toml`. This is useful when you want to add support for new file extensions or modify existing detection rules without waiting for a new release.
+
+Example `book.toml` configuration:
+
+```toml
+[preprocessor.embedify]
+# Add .dockerfile extension to dockerfile language
+include.languages.dockerfile.extensions = [".dockerfile"]
+# Add specific filenames to dockerfile language
+include.languages.dockerfile.filenames = ["Dockerfile", "*.dockerfile"]
+
+# Add a completely new language
+include.languages.mylang.extensions = [".mlg"]
+```
+
 ### Language Definition Structure
 
 ```yaml

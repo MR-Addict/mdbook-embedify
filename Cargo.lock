@@ -243,7 +243,7 @@ dependencies = [
 
 [[package]]
 name = "mdbook-embedify"
-version = "0.3.1"
+version = "0.3.2"
 dependencies = [
  "clap",
  "dircmp",
@@ -256,6 +256,7 @@ dependencies = [
  "pulldown-cmark",
  "regex",
  "rust-embed",
+ "serde",
  "serde_json",
  "serde_yaml",
 ]

@@ -1,67 +1,20 @@
 use lazy_static::lazy_static;
-use std::collections::HashMap;
+use mdbook_core::config::Config;
+use serde::Deserialize;
+use std::collections::{HashMap, HashSet};
 use std::path::Path;
 
+#[derive(Deserialize, Clone)]
+struct LanguageConfig {
+    name: Option<String>,
+    extensions: Option<Vec<String>>,
+    filenames: Option<Vec<String>>,
+}
+
 lazy_static! {
-    static ref LANGUAGE_MAP: HashMap<String, String> = {
+    static ref STATIC_LANGUAGES: Vec<LanguageConfig> = {
         let yaml_content = include_str!("assets/config/languages.yaml");
-        let languages: Vec<serde_yaml::Value> =
-            serde_yaml::from_str(yaml_content).expect("Failed to parse languages.yaml");
-
-        let mut map = HashMap::new();
-        for lang in languages {
-            if let Some(name) = lang["name"].as_str() {
-                // Handle extensions
-                if let Some(extensions) = lang["extensions"].as_sequence() {
-                    for ext in extensions {
-                        if let Some(extension) = ext.as_str() {
-                            map.insert(extension.to_string(), name.to_string());
-                        }
-                    }
-                }
-
-                // Handle exact filenames (non-pattern entries)
-                if let Some(filenames) = lang["filenames"].as_sequence() {
-                    for filename in filenames {
-                        if let Some(filename_str) = filename.as_str() {
-                            // Only add to exact match map if it doesn't contain wildcards
-                            if !filename_str.contains('*') && !filename_str.contains('?') {
-                                map.insert(filename_str.to_string(), name.to_string());
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        map
-    };
-
-    static ref LANGUAGE_PATTERNS: Vec<(regex::Regex, String)> = {
-        let yaml_content = include_str!("assets/config/languages.yaml");
-        let languages: Vec<serde_yaml::Value> =
-            serde_yaml::from_str(yaml_content).expect("Failed to parse languages.yaml");
-
-        let mut patterns = Vec::new();
-        for lang in languages {
-            if let Some(name) = lang["name"].as_str() {
-                // Handle filename patterns (entries with wildcards)
-                if let Some(filenames) = lang["filenames"].as_sequence() {
-                    for filename in filenames {
-                        if let Some(filename_str) = filename.as_str() {
-                            // Only add to patterns if it contains wildcards
-                            if filename_str.contains('*') || filename_str.contains('?') {
-                                // Convert glob pattern to regex
-                                let regex_pattern = glob_to_regex(filename_str);
-                                if let Ok(regex) = regex::Regex::new(&regex_pattern) {
-                                    patterns.push((regex, name.to_string()));
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        patterns
+        serde_yaml::from_str(yaml_content).expect("Failed to parse languages.yaml")
     };
 }
 
@@ -87,34 +40,112 @@ fn glob_to_regex(glob: &str) -> String {
     regex
 }
 
-pub fn detect_lang(path: String) -> String {
-    let path_obj = Path::new(&path);
+fn get_language_overrides(config: Option<&Config>) -> HashMap<String, LanguageConfig> {
+    if let Some(config) = config {
+        if let Ok(Some(languages)) =
+            config.get::<HashMap<String, LanguageConfig>>("preprocessor.embedify.include.languages")
+        {
+            return languages;
+        }
+    }
+    HashMap::new()
+}
 
-    // Get the filename
-    if let Some(filename) = path_obj.file_name() {
-        if let Some(filename_str) = filename.to_str() {
-            // First, try to match the full filename (exact matches from filenames array)
-            if let Some(language) = LANGUAGE_MAP.get(filename_str) {
-                return language.clone();
-            }
-
-            // Then try the file extension (everything after the last dot)
-            if let Some(last_dot_pos) = filename_str.rfind('.') {
-                let extension = &filename_str[last_dot_pos..].to_lowercase();
-                if let Some(language) = LANGUAGE_MAP.get(extension) {
-                    return language.clone();
-                }
-            }
-
-            // Finally try filename patterns (wildcard entries from filenames array)
-            for (pattern, language) in LANGUAGE_PATTERNS.iter() {
-                if pattern.is_match(filename_str) {
-                    return language.clone();
+fn match_exact(filename: &str, config: &LanguageConfig) -> bool {
+    if let Some(filenames) = &config.filenames {
+        for pattern in filenames {
+            if !pattern.contains('*') && !pattern.contains('?') {
+                if pattern == filename {
+                    return true;
                 }
             }
         }
     }
+    false
+}
 
-    // If no extension found or extension not in map, return "plaintext"
+fn match_extension(filename: &str, config: &LanguageConfig) -> bool {
+    if let Some(extensions) = &config.extensions {
+        if let Some(last_dot_pos) = filename.rfind('.') {
+            let extension = &filename[last_dot_pos..].to_lowercase();
+            for ext in extensions {
+                if ext.to_lowercase() == *extension {
+                    return true;
+                }
+            }
+        }
+    }
+    false
+}
+
+fn match_pattern(filename: &str, config: &LanguageConfig) -> bool {
+    if let Some(filenames) = &config.filenames {
+        for pattern in filenames {
+            if pattern.contains('*') || pattern.contains('?') {
+                // Wildcard match
+                let regex_pattern = glob_to_regex(pattern);
+                if let Ok(regex) = regex::Regex::new(&regex_pattern) {
+                    if regex.is_match(filename) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    false
+}
+
+pub fn detect_lang(path: String, config: Option<&Config>) -> String {
+    let path_obj = Path::new(&path);
+    let filename = match path_obj.file_name().and_then(|f| f.to_str()) {
+        Some(f) => f,
+        None => return "plaintext".to_string(),
+    };
+
+    let overrides = get_language_overrides(config);
+    let mut languages_check_list: Vec<(&str, &LanguageConfig)> =
+        Vec::with_capacity(STATIC_LANGUAGES.len() + overrides.len());
+    let mut processed_overrides = HashSet::new();
+
+    // 1. Add static languages (checking for overrides)
+    for config in STATIC_LANGUAGES.iter() {
+        if let Some(name) = &config.name {
+            if let Some(override_config) = overrides.get(name) {
+                languages_check_list.push((name, override_config));
+                processed_overrides.insert(name);
+            } else {
+                languages_check_list.push((name, config));
+            }
+        }
+    }
+
+    // 2. Add remaining overrides
+    for (name, config) in &overrides {
+        if !processed_overrides.contains(name) {
+            languages_check_list.push((name, config));
+        }
+    }
+
+    // Pass 1: Check Exact Filenames
+    for (name, config) in &languages_check_list {
+        if match_exact(filename, config) {
+            return name.to_string();
+        }
+    }
+
+    // Pass 2: Check Extensions
+    for (name, config) in &languages_check_list {
+        if match_extension(filename, config) {
+            return name.to_string();
+        }
+    }
+
+    // Pass 3: Check Patterns
+    for (name, config) in &languages_check_list {
+        if match_pattern(filename, config) {
+            return name.to_string();
+        }
+    }
+
     "plaintext".to_string()
 }

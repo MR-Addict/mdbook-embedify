@@ -6,7 +6,11 @@
 >
 > Language is detected by file extension, which I manually referred, simplified and extended from [linguist](https://github.com/github-linguist/linguist/blob/main/lib/linguist/languages.yml).
 >
-> If you find any issues with the language detection, please open an [issue](https://github.com/MR-Addict/mdbook-embedify/issues). Currenltly language map is under [languages.yaml](https://github.com/MR-Addict/mdbook-embedify/blob/main/src/assets/config/languages.yaml)
+> If you find any issues with the language detection, please open an [issue](https://github.com/MR-Addict/mdbook-embedify/issues). Currenltly language map is under [languages.yaml](https://github.com/MR-Addict/mdbook-embedify/blob/main/src/assets/config/languages.yaml).
+
+> Tip 💡
+>
+> You can customize language detection rules in your `book.toml`. See [Language Matching](../development/language-matching.md#custom-configuration) for details.
 
 The include app is for including source file and wrapping it as markdown code block.
 

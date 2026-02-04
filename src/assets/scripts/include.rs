@@ -106,7 +106,7 @@ pub fn include_script(
 
     // wrap the content in a code block
     let lang_option = parser::get_option("lang", options.clone());
-    let lang_detected = detect_lang::detect_lang(file_path.clone());
+    let lang_detected = detect_lang::detect_lang(file_path.clone(), Some(&ctx.config));
 
     let language = match lang_option {
         Some(option) => option.value,
