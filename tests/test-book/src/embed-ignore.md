@@ -42,7 +42,7 @@ Multiple embeds in a block should all be ignored:
 <!-- embed ignore begin -->
 
 {% embed include file="src/samples/package.json" %}
-{% embed include file="src/samples/config.md" type="raw" %}
+{% embed include file="src/samples/config.md" %}
 {% embed youtube id="testid123" %}
 
 <!-- embed ignore end -->
@@ -87,7 +87,7 @@ Content before the ignored block.
 
 Content after the ignored block.
 
-{% embed include file="src/samples/config.md" type="raw" %}
+{% embed include file="src/samples/config.md" %}
 
 ## Edge Cases
 

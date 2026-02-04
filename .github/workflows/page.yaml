@@ -15,29 +15,16 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Setup environment
-        uses: ./.github/actions/setup-rust
+        uses: .github/actions/setup-rust
 
       - name: Install mdbook
-        run: |
-          REQUIRED_VERSION="$(grep '^mdbook-core' Cargo.toml | sed 's/.*"\([^"]*\)".*/\1/')"
-          if command -v mdbook >/dev/null 2>&1; then
-            INSTALLED_VERSION="$(mdbook --version | awk '{print $2}')"
-            if [ "$INSTALLED_VERSION" = "$REQUIRED_VERSION" ]; then
-              echo "mdbook $INSTALLED_VERSION is already installed."
-            else
-              echo "mdbook $INSTALLED_VERSION is installed but we need $REQUIRED_VERSION. Reinstalling..."
-              cargo install mdbook --version "$REQUIRED_VERSION" --force
-            fi
-          else
-            echo "mdbook not found. Installing version $REQUIRED_VERSION..."
-            cargo install mdbook --version "$REQUIRED_VERSION" --force
-          fi
+        uses: .github/actions/setup-mdbook
 
       - name: Run tests
         run: cargo test --all-features --verbose
 
       - name: Build book
-        run: mdbook build docs
+        run: head -n 5 README.md > docs/src/index.md && mdbook build docs
 
       - name: Deploy to github pages
         uses: crazy-max/ghaction-github-pages@v4

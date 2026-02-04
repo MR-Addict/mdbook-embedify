@@ -62,19 +62,19 @@ Include JSON file but override language to JavaScript:
 
 {% embed include file="src/samples/package.json" lang="javascript" %}
 
-## Raw Type Inclusion
+## Explicit Codeblock Wrapping
 
-### Markdown File as Raw Content
+### Markdown File (Wrapped in Code Block)
 
-Include markdown file as raw content (not wrapped in code block):
+Include markdown file wrapped as a code block:
 
-{% embed include file="src/samples/config.md" type="raw" %}
+{% embed include file="src/samples/config.md" %}
 
-### Python File as Raw with Range
+### Python File with Range
 
-Include lines 3-6 of Python file as raw content:
+Include lines 3-6 of Python file as code block:
 
-{% embed include file="src/samples/hello.py" range="3-6" type="raw" %}
+{% embed include file="src/samples/hello.py" range="3-6" %}
 
 ## Combined Options
 
@@ -84,17 +84,17 @@ Include lines 1-3 of JavaScript file with Python syntax highlighting:
 
 {% embed include file="src/samples/fibonacci.js" range="1-3" lang="python" %}
 
-### Range + Raw Type
+### Range + Language Override (Continued)
 
-Include lines 2-4 of JSON file as raw content:
+Include lines 2-4 of JSON file with language override:
 
-{% embed include file="src/samples/package.json" range="2-4" type="raw" %}
+{% embed include file="src/samples/package.json" range="2-4" lang="json" %}
 
-### Full Options Combination
+### Multiple Options Combined
 
-Include lines 5-10 of Python file as raw content with language override:
+Include lines 5-10 of Python file with language override:
 
-{% embed include file="src/samples/hello.py" range="5-10" lang="bash" type="raw" %}
+{% embed include file="src/samples/hello.py" range="5-10" lang="bash" %}
 
 ## Edge Cases
 
