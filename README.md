@@ -55,7 +55,3 @@ You can see a live demo and more detailed documentation [here](https://mr-addict
 ## 4. Development
 
 Please read the [development guide](https://mr-addict.github.io/mdbook-embedify/development/index.html) for more information on how to contribute to this project.
-
-- [Testing Guide](https://mr-addict.github.io/mdbook-embedify/development/testing.html) - Learn how to write and run tests
-- [Template System](https://mr-addict.github.io/mdbook-embedify/development/template.html) - Create custom embed applications
-- [Language Matching](https://mr-addict.github.io/mdbook-embedify/development/language-matching.html) - Understand file language detection
