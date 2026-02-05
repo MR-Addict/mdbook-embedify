@@ -6,9 +6,7 @@ This is a [mdbook](https://rust-lang.github.io/mdBook) preprocessor plugin that 
 
 > Attention 💥
 >
-> If you still using mdbook version below **v0.5.x**, please use **v0.2.x** of this plugin.
->
-> This plugin requires mdbook version **v0.5.x** or above.
+> Currently 0.3.x requires mdbook version **v0.5.x** or above, if you are using an older version of mdbook, please use **v0.2.x** of this plugin
 
 ## 1. Installation
 

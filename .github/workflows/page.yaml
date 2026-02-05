@@ -24,7 +24,7 @@ jobs:
         run: cargo test --all-features --verbose
 
       - name: Build book
-        run: head -n 11 README.md > docs/src/index.md && mdbook build docs
+        run: head -n 9 README.md > docs/src/index.md && mdbook build docs
 
       - name: Deploy to github pages
         uses: crazy-max/ghaction-github-pages@v4

@@ -19,6 +19,6 @@ This book's announcement banner is enabled, you can see it at the top of this pa
 
 However, you may want to enable it for the whole book. You can do this by adding below options to `book.toml` file after `[preprocessor.embedify]` section:
 
-{% embed include file="book.toml" range="51-53" %}
+{% embed include file="book.toml" range="49-51" %}
 
 Note that announcement banner id must be **unique**, otherwise it won't be shown if there is another announcement banner with the same id when user closed it.
